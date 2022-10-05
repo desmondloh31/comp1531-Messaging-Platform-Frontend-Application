@@ -104,6 +104,8 @@ The files from iteration 0 should be developed with actual implementations, in a
  * `users.js`
  * `other.js`
 
+ The `userProfileV1` function should be included in `users.js`, and the `clearV1` function should be included in `other.js`.
+
 ### 3.4. Authorisation
 
 Elements of securely storing passwords and other tricky authorisation methods are not required for iteration 1. You can simply store passwords plainly, and use the user ID to identify each user. We will discuss ways to improve the quality and methods of these capabilities in the later iterations.
@@ -149,7 +151,7 @@ Inside `src/dataStore.js` we have provided you with an object called `data` whic
 For example, you could define a structure in a file that is empty, and as functions are called, the structure populates and fills up like the one below:
 
 ```javascript
-const data = {
+let data = {
     'users': [
         {
             'id': 1,
@@ -232,7 +234,7 @@ There are several approaches that you can consider to overcome these challenges:
       <li>Demonstrated an understanding of the importance of <b>clarity</b> in communicating the purpose of tests and code</li>
       <li>Demonstrated an understanding of thoughtful test <b>design</b></li>
       <li>Appropriate use of Javascript data structures (arrays, objects, etc.)</li>
-      <li>Appropriate style as described in section 8.4
+      <li>Appropriate style as described in section 6.4
     </ul></td>
   </tr>
   <tr>
@@ -265,7 +267,7 @@ There are several approaches that you can consider to overcome these challenges:
   </tr>
 </table>
 
-For this and for all future milestones, you should consider the other expectations as outlined in section 8 below.
+For this and for all future milestones, you should consider the other expectations as outlined in section 6 below.
 
 The formula used for automarking in this iteration is:
 
@@ -408,7 +410,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
   </tr>
   <tr>
     <td><code>authLoginV1</code><br /><br />Given a registered user's email and password, returns their <code>authUserId</code> value.</td>
-    <td><b>Parameters:</b><br /><code>{ email, password }</code><br /><br /><b>Return type if no error:</b><br /><code>{ authUserId }</code></td>
+    <td><b>Parameters:</b><br /><code>( email, password )</code><br /><br /><b>Return type if no error:</b><br /><code>{ authUserId }</code></td>
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
       <ul>
@@ -426,11 +428,11 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
         <li>The addition of this final number may result in the handle exceeding the 20 character limit (the handle 'abcdefghijklmnopqrst0' is allowed if the handle 'abcdefghijklmnopqrst' is already taken).</li>
       </ul>
     </td>
-    <td><b>Parameters:</b><br /><code>{ email, password, nameFirst, nameLast }</code><br /><br /><b>Return type if no error:</b><br /><code>{ authUserId }</code></td>
+    <td><b>Parameters:</b><br /><code>( email, password, nameFirst, nameLast )</code><br /><br /><b>Return type if no error:</b><br /><code>{ authUserId }</code></td>
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
       <ul>
-        <li>email entered is not a valid email (more in section 6.4)</li>
+        <li>email entered is not a valid email (more in section 4.3)</li>
         <li>email address is already being used by another user</li>
         <li>length of password is less than 6 characters</li>
         <li>length of nameFirst is not between 1 and 50 characters inclusive</li>
@@ -440,7 +442,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
   </tr>
   <tr>
     <td><code>channelsCreateV1</code><br /><br />Creates a new channel with the given name, that is either a public or private channel. The user who created it automatically joins the channel.</td>
-    <td><b>Parameters:</b><br /><code>{ authUserId, name, isPublic }</code><br /><br /><b>Return type if no error:</b><br /><code>{ channelId }</code></td>
+    <td><b>Parameters:</b><br /><code>( authUserId, name, isPublic )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channelId }</code></td>
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
       <ul>
@@ -451,17 +453,17 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
   </tr>
   <tr>
     <td><code>channelsListV1</code><br /><br />Provides an array of all channels (and their associated details) that the authorised user is part of.</td>
-    <td><b>Parameters:</b><br /><code>{ authUserId }</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
+    <td><b>Parameters:</b><br /><code>( authUserId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
     <td><li><code>authUserId</code> is invalid</li></td>
   </tr>
   <tr>
     <td><code>channelsListAllV1</code><br /><br />Provides an array of all channels, including private channels (and their associated details)</td>
-    <td><b>Parameters:</b><br /><code>{ authUserId }</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
+    <td><b>Parameters:</b><br /><code>( authUserId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
     <td><li><code>authUserId</code> is invalid</li></td>
   </tr>
   <tr>
     <td><code>channelDetailsV1</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, provides basic details about the channel.</td>
-    <td><b>Parameters:</b><br /><code>{ authUserId, channelId }</code><br /><br /><b>Return type if no error:</b><br /><code>{ name, isPublic, ownerMembers, allMembers }</code></td>
+    <td><b>Parameters:</b><br /><code>( authUserId, channelId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ name, isPublic, ownerMembers, allMembers }</code></td>
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
       <ul>
@@ -473,7 +475,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
   </tr>
   <tr>
     <td><code>channelJoinV1</code><br /><br />Given a <code>channelId</code> of a channel that the authorised user can join, adds them to that channel.</td>
-    <td><b>Parameters:</b><br /><code>{ authUserId, channelId }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
+    <td><b>Parameters:</b><br /><code>( authUserId, channelId )</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
       <ul>
@@ -486,7 +488,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
   </tr>
   <tr>
     <td><code>channelInviteV1</code><br /><br />Invites a user with ID <code>uId</code> to join a channel with ID <code>channelId</code>. Once invited, the user is added to the channel immediately. In both public and private channels, all members are able to invite users.</td>
-    <td><b>Parameters:</b><br /><code>{ authUserId, channelId, uId }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
+    <td><b>Parameters:</b><br /><code>( authUserId, channelId, uId )</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
       <ul>
@@ -500,7 +502,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
   </tr>
   <tr>
     <td><code>channelMessagesV1</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, returns up to 50 messages between index "start" and "start + 50". Message with index 0 (i.e. the first element in the returned array of <code>messages</code>) is the most recent message in the channel. This function returns a new index "end". If there are more messages to return after this function call, "end" equals "start + 50". If this function has returned the least recent messages in the channel, "end" equals -1 to indicate that there are no more messages to load after this return.</td>
-    <td><b>Parameters:</b><br /><code>{ authUserId, channelId, start }</code><br /><br /><b>Return type if no error:</b><br /><code>{ messages, start, end }</code></td>
+    <td><b>Parameters:</b><br /><code>( authUserId, channelId, start )</code><br /><br /><b>Return type if no error:</b><br /><code>{ messages, start, end }</code></td>
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
       <ul>
@@ -514,7 +516,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
   <tr>
     <td><code>userProfileV1</code><br /><br />For a valid user, returns information about their user ID, email, first name, last name, and handle
     </td>
-    <td><b>Parameters:</b><br /><code>{ authUserId, uId }</code><br /><br /><b>Return type if no error:</b><br /><code>{ user }</code></td>
+    <td><b>Parameters:</b><br /><code>( authUserId, uId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ user }</code></td>
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
       <ul>
@@ -525,7 +527,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
   </tr>
   <tr>
     <td><code>clearV1</code><br /><br />Resets the internal data of the application to its initial state</td>
-    <td><b>Parameters:</b><br /><code>{}</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
+    <td><b>Parameters:</b><br /><code>()</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>N/A</td>
   </tr>
 </table>
