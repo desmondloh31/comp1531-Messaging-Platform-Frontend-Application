@@ -454,12 +454,22 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
   <tr>
     <td><code>channelsListV1</code><br /><br />Provides an array of all channels (and their associated details) that the authorised user is part of.</td>
     <td><b>Parameters:</b><br /><code>( authUserId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
-    <td><li><code>authUserId</code> is invalid</li></td>
+    <td>
+      <b>Return object <code>{error: 'error'}</code></b> when any of:
+      <ul>
+        <li><code>authUserId</code> is invalid</li>
+      </ul>
+    </td>
   </tr>
   <tr>
     <td><code>channelsListAllV1</code><br /><br />Provides an array of all channels, including private channels (and their associated details)</td>
     <td><b>Parameters:</b><br /><code>( authUserId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
-    <td><li><code>authUserId</code> is invalid</li></td>
+    <td>
+      <b>Return object <code>{error: 'error'}</code></b> when any of:
+      <ul>
+        <li><code>authUserId</code> is invalid</li>
+      </ul>
+    </td>
   </tr>
   <tr>
     <td><code>channelDetailsV1</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, provides basic details about the channel.</td>
