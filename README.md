@@ -292,13 +292,13 @@ This iteration due date and demonstration week is described in section 7. You wi
 ### 4.12. Peer Assessment
 
 Reference 7.5.
-## 4. Interface specifications
+## 5. Interface specifications
 
 These interface specifications come from Hayden & COMP6080, who are building the frontend to the requirements set out below.
 
-### 4.1. Input/Output types
+### 5.1. Input/Output types
 
-#### 4.1.1. Iteration 0+ Input/Output Types
+#### 5.1.1. Iteration 0+ Input/Output Types
 <table>
   <tr>
     <th>Variable name</th>
@@ -334,7 +334,7 @@ These interface specifications come from Hayden & COMP6080, who are building the
   </tr>
 </table>
 
-#### 4.1.2. Iteration 1+ Input/Output Types
+#### 5.1.2. Iteration 1+ Input/Output Types
 
 <table>
   <tr>
@@ -403,7 +403,7 @@ These interface specifications come from Hayden & COMP6080, who are building the
   </tr>
 </table>
 
-#### 6.1.3. Iteration 2+ Input/Output
+#### 5.1.3. Iteration 2+ Input/Output
 
 <table>
   <tr>
@@ -424,7 +424,7 @@ These interface specifications come from Hayden & COMP6080, who are building the
   </tr>
 </table>
 
-### 4.2. Interface
+### 5.2. Interface
 
 ### 5.2.3. Iteration 2 Interface
 
@@ -829,7 +829,7 @@ Additional Rules:
 * DM permissions
   * A global owner does NOT gain owner permissions in DMs they're part of. The only users with owner permissions in DMs are the original creators of each DM.
 
-### 6.7. User Sessions
+### 5.7. User Sessions
 Iteration 2 introduces the concept of <b>sessions</b>. With sessions, when a user logs in or registers, they receive a "token" (think of it like a ticket to a concert). These tokens are stored on the web browser (something the frontend handles), and nearly every time that user wants to make a request to the server, they will pass this "token" as part of this request. In this way, the server is able to take this token, look at it (like checking a ticket), and figure out who the user is.
 
 The difference between an <code>authUserId</code> and a <code>token</code> is that an <code>authUserId</code> is a permanent identifier of a user, whereas a new token is generated upon each new login for a user.
@@ -840,19 +840,19 @@ In this structure, this also means it's possible to "log out" a particular user'
 
 Don't worry about creating a secure method of session storage in iteration 2 - that is for iteration 3.
 
-### 6.8. Working with the frontend
+### 5.8. Working with the frontend
 There is a SINGLE repository available for all students at https://gitlab.cse.unsw.edu.au/COMP1531/22T3/project-frontend. You can clone this frontend locally. If you'd like to modify the frontend repo (i.e. teach yourself some frontend), please FORK the repository.
 
 If you run the frontend at the same time as your express server is running on the backend, then you can power the frontend via your backend.
 
 Please note: The frontend may have very slight inconsistencies with expected behaviour outlined in the specification. Our automarkers will be running against your compliance to the specification. The frontend is there for further testing and demonstration.
 
-#### 6.8.1. Example implementation
+#### 5.8.1. Example implementation
 A working example of the frontend can be used at http://Beans-unsw.herokuapp.com/. This is not a gospel implementation that dictates the required behaviour for all possible occurrences. Our implementation will make reasonable assumptions just as yours will, and they might be different, and that's fine. However, you may use this implementation as a guide for how your backend should behave in the case of ambiguities in the spec.
 
 The data is reset occasionally, but you can use this link to play around and get a feel for how the application should behave.
 
-## 7. Due Dates and Weightings
+## 6. Due Dates and Weightings
 
 |Iteration|Due date                              |Demonstration to tutor(s)      |Assessment weighting of project (%)|
 |---------|--------------------------------------|-------------------------------|-----------------------------------|
@@ -861,7 +861,7 @@ The data is reset occasionally, but you can use this link to play around and get
 |   2     |10pm Friday 28th October (**week 7**)    |In YOUR **week 8** laboratory  |35%                                |
 |   3     |10pm Friday 18th November (**week 10**)  |No demonstration               |30%                               |
 
-### 7.1. Submission & Late Penalties
+### 6.1. Submission & Late Penalties
 
 There is no late penalty, as we do not accept late submissions. You will be assessed on the most recent version of your work at the due date and time.
 
@@ -889,12 +889,12 @@ If you want to have your automarking re-run:
 * push the changes to GitLab  
 * share the name of the branch with your tutor
 
-### 7.2. Demonstration
+### 6.2. Demonstration
 The demonstrations in weeks 5 and 8 will take place during your lab sessions. All team members **must** attend these lab sessions. Team members who do not attend a demonstration may receive a mark of 0 for that iteration. If you are unable to attend a demonstration due to circumstances beyond your control, you must apply for special consideration.
 
 Demonstrations consist of a 15 minute Q&A in front of your tutor and potentially some other students in your tutorial. For online classes, webcams and audio are required to be on during this Q&A (your phone is a good alternative if your laptop/desktop doesn't have a webcam).
 
-## 8. Individual Contribution
+## 7. Individual Contribution
 While we do award a tentative mark to your group as a whole, your actual mark for each iteration is given to you individually. Your individual mark is determined by your tutor, with your group mark as a reference point. Your tutor will look at the following items each iteration to determine your mark:
  * Project check-in
  * Code contribution
@@ -903,7 +903,7 @@ While we do award a tentative mark to your group as a whole, your actual mark fo
 
 In general, all team members will receive the same mark (a sum of the marks for each iteration), **but if you as an individual fail to meet these criteria, your final project mark may be scaled down**, most likely quite significantly.
 
-### 8.1. Project check-in
+### 7.1. Project check-in
 During your lab class, you and your team will conduct a short standup in the presence of your tutor. Each member of the team will briefly state what they have done in the past week, what they intend to do over the next week, and what issues they have faced or are currently facing. This is so your tutor, who is acting as a representative of the client, is kept informed of your progress. They will make note of your presence and may ask you to elaborate on the work you've done.
 
 Project check-ins are also excellent opportunities for your tutor to provide you with both technical and non-technical guidance.
@@ -919,7 +919,7 @@ The following serves as a baseline for expected progress during project check-in
 |   1     |**Week 3**   |Iteration 1 specification has been discussed in a meeting, at least 1 task per person has been assigned |
 |   1     |**Week 4**   |1x function per person complete (tests and implementation in master)|
 
-### 8.2. Tutorial contributions
+### 7.2. Tutorial contributions
 From weeks 2 onward, your individual project mark may be reduced if you do not satisfy the following:
 * Attend all tutorials
 * Participate in tutorials by asking questions and offering answers
@@ -929,12 +929,12 @@ We're comfortable with you missing or disengaging with 1 tutorial per term, but 
 
 These are easy marks. They are marks assumed that you will receive automatically, and are yours to lose if you neglect them.
 
-### 8.3. Code contribution
+### 7.3. Code contribution
 All team members must contribute code to the project to a generally similar degree. Tutors will assess the degree to which you have contributed by looking at your **git history** and analysing lines of code, number of commits, timing of commits, etc. If you contribute significantly less code than your team members, your work will be closely examined to determine what scaling needs to be applied.
 
 Note that **contributing more code is not a substitute for not contributing documentation**.
 
-### 8.4. Documentation contribution
+### 7.4. Documentation contribution
 All team members must contribute documentation to the project to a generally similar degree.
 
 In terms of code documentation, your functions such as `authRegister`, `channelInvite`, `userProfile`, etc. are required to contain comments in JSDoc format, including paramters and return values:
@@ -958,7 +958,7 @@ In terms of other documentation (such as reports and other notes in later iterat
 
 Note that, **contributing more documentation is not a substitute for not contributing code**.
 
-### 8.5. Peer Assessment
+### 7.5. Peer Assessment
 At the end of each iteration, there will be a peer assessment survey where you will rate and leave comments about each team member's contribution to the project up until that point. 
 
 Your other team members will **not** be able to see how you rated them or what comments you left in either peer assessment. If your team members give you a less than satisfactory rating, your contribution will be scrutinised and you may find your final mark scaled down.
@@ -990,7 +990,7 @@ Your other team members will **not** be able to see how you rated them or what c
   </tr>
 </table>
 
-### 8.6. Managing Issues
+### 7.6. Managing Issues
 
 When a group member does not contribute equally, we are aware it can implicitly have an impact on your own mark by pulling the group mark down (e.g. through not finishing a critical feature), etc.
 
@@ -1003,14 +1003,14 @@ If you don't feel that the issue is being resolved quickly, you should escalate 
 
 It's imperative that issues are raised to your tutor ASAP, as we are limited in the mark adjustments we can do when issues are raised too late (e.g. we're limited with what we can do if you email your tutor with iteration 2 issues after iteration 2 is due).
 
-## 9. Automarking & Leaderboard
-### 9.1. Automarking
+## 8. Automarking & Leaderboard
+### 8.1. Automarking
 
 Each iteration consists of an automarking component. The particular formula used to calculate this mark is specific to the iteration (and detailed above).
 
 When running your code or tests as part of the automarking, we place a 2.5 minute timer on the running of your group's tests. This is more than enough time to complete everything unless you're doing something very wrong or silly with your code. As long as your tests take under 2.5 minutes to run on the pipeline, you don't have to worry about it potentially taking longer when we run automarking.
 
-### 9.2. Leaderboard
+### 8.2. Leaderboard
 In the days preceding iterations 1, 2, and 3's due date, we will be running your code against the actual automarkers (the same ones that determine your final mark) and publishing the results of every group on a leaderboard. [The leaderboard will be available here once released](http://cgi.cse.unsw.edu.au/~cs1531/22T3/leaderboard).
 
 The leaderboard will be run on Monday, Wednesday, and Friday afternoons during the week that the iteration is due.
@@ -1021,7 +1021,7 @@ The leaderboard gives you a chance to sanity check your automark (without knowin
 
 If the leaderboard isn't updating for you, try hard-refreshing your browser (Ctrl+R or Command+R), clearing your cache, or opening it in a private window. Also note the HTTP (not HTTPS) in the URL, as the site is only accessible via HTTP.
 
-## 10. Plagiarism
+## 9. Plagiarism
 
 The work you and your group submit must be your own work. Submission of work partially or completely derived from any other person or jointly written with any other person is not permitted. The penalties for such an offence may include negative marks, automatic failure of the course and possibly other academic discipline. Assignment submissions will be examined both automatically and manually for such submissions.
 
