@@ -67,7 +67,7 @@ In this iteration, you are expected to:
 
     * Your implementation will need to include persistence of data (see section 4.7).
 
-    * Introduce tokens for session management (see 6.7).
+    * Introduce tokens for session management (see 5.7).
 
     * You can structure your tests inside a `/tests` folder (or however you choose), as long as they are appended with `.test.js`. For this iteration and iteration 3 we will only be testing your HTTP layer of tests. You may still wish to use your iteration 1 tests and simply wrap up them - that is a design choice up to you. An example of an HTTP test can be found in section 4.4.
 
@@ -249,7 +249,7 @@ To run the dryrun, you should be in the root directory of your project (e.g. `/p
       <li>Demonstrated an understanding of the importance of <b>clarity</b> on the communication test and code purposes</li>
       <li>Demonstrated an understanding of thoughtful test <b>design</b></li>
       <li>Appropriate use of Javascript data structures (arrays, objects, etc.)</li>
-      <li>Appropriate style as described in section 8.4</li>
+      <li>Appropriate style as described in section 7.4</li>
       <li>Appropriate application of good software design practices</li>
       <li>Implementation of persistent state</li>
       <li>Demonstrated successful connection of the supplied frontend to the backend code required for iteration 2</li>
@@ -272,7 +272,7 @@ To run the dryrun, you should be in the root directory of your project (e.g. `/p
   </tr>
 </table>
 
-For this and for all future milestones, you should consider the other expectations as outlined in section 8 below.
+For this and for all future milestones, you should consider the other expectations as outlined in section 7 below.
 
 The formula used for automarking in this iteration is:
 
@@ -287,7 +287,7 @@ Where:
 
 ### 4.11. Submission
 
-This iteration due date and demonstration week is described in section 7. You will demonstrate this submission in line with the information provided in section 6.
+This iteration due date and demonstration week is described in section 6. You will demonstrate this submission in line with the information provided in section 7.
 
 ### 4.12. Peer Assessment
 
@@ -458,7 +458,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
       <ul>
-        <li>email entered is not a valid email (more in section 6.4)</li>
+        <li>email entered is not a valid email (more in section 5.3)</li>
         <li>email address is already being used by another user</li>
         <li>length of password is less than 6 characters</li>
         <li>length of nameFirst is not between 1 and 50 characters inclusive</li>
@@ -770,7 +770,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     <td>
       <b>Return object <code>{error: 'error'}</code></b> when any of:
         <ul>  
-          <li>email entered is not a valid email (more in section 6.4)</li>
+          <li>email entered is not a valid email (more in section 5.3)</li>
           <li>email address is already being used by another user</li>
           <li><code>token</code> is invalid</li>
         </ul>
