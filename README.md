@@ -75,7 +75,7 @@ In this iteration, you are expected to:
 
 4. Ensure your code is linted to the provided style guide
 
-    * `eslint` should be added to your repo via `npm` and then added to your `package.json` file to run when the command `npm run lint` is run. The provided `.eslint` file is *very* lenient, so there is no reason you should have to disable any additional checks. See section 4.5 below for instructions on adding linting to your pipeline.
+    * `eslint` should be added to your repo via `npm` and then added to your `package.json` file to run when the command `npm run lint` is run. The provided `.eslintrc.json` file is *very* lenient, so there is no reason you should have to disable any additional checks. See section 4.5 below for instructions on adding linting to your pipeline.
 
     * You are required to edit the `gitlab-ci.yml` file, as per section 4.5 to add linting to the code on `master`. **You must do this BEFORE merging anything from iteration 2 into `master`**, so that you ensure `master` is always stable.
 
@@ -122,7 +122,7 @@ You should first approach this project by considering its distinct "features". E
 7. Fix any issues identified in the review.
 8. Merge the merge request into master.
 
-For this project, a feature is typically sized somewhere between a single function, and a whole file of functions (e.g. `auth.js`). It is up to you and your team to decide what each feature is.
+For this project, a feature is typically sized somewhere between a single function, and a whole file of functions (e.g. `auth.ts`). It is up to you and your team to decide what each feature is.
 
 There is no requirement that each feature be implemented by only one person. In fact, we encourage you to work together closely on features, especially to help those who may still be coming to grips with Javascript.
 
@@ -209,9 +209,9 @@ Modify your backend such that it is able to persist and reload its data store if
 
 ### 4.8. Versioning
 
-You might notice that some routes are suffixed with `V1` and `V2`, and that all the new routes are `V1` yet all the old routes are `V2`. Why is this? When you make changes to specifications, it's usually good practice to give the new function/capability/route a different unique name. This way, if people are using older versions of the specification they can't accidentally call the updated function/route with the wrong data input.
+You might notice that some routes are suffixed with `v1` and `v2`, and that all the new routes are `v1` yet all the old routes are `v2`. Why is this? When you make changes to specifications, it's usually good practice to give the new function/capability/route a different unique name. This way, if people are using older versions of the specification they can't accidentally call the updated function/route with the wrong data input.
 
-Hint: Yes, your `V2` routes can use the `functionNameV1` functions you had in iteration 1, regardless of whether you rename the functions or not. The layer of abstraction in iteration 2 has changed from the function interface to the HTTP interface, and therefore your 'functions' from iteration 1 are essentially now just implementation details, and therefore are completely modifiable by you.
+Hint: Yes, your `v2` routes can use the `functionNameV1` functions you had in iteration 1, regardless of whether you rename the functions or not. The layer of abstraction in iteration 2 has changed from the function interface to the HTTP interface, and therefore your 'functions' from iteration 1 are essentially now just implementation details, and therefore are completely modifiable by you.
 
 ### 4.9. Dryrun
 
@@ -428,8 +428,6 @@ These interface specifications come from Hayden & COMP6080, who are building the
 
 ### 5.2.3. Iteration 2 Interface
 
-NOTE: For all routes which take `token` as a parameter, an <code>{ error: 'error' }</code> object should be returned when the `token` passed in is invalid.
-
 All error cases should return <code>{error: 'error'}</code>, where the error message in quotations can be anything you like (this will not be marked).
 
 <table>
@@ -440,7 +438,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     <th style="width:32%">Error returns</th>
   </tr>
   <tr>
-    <td><code>auth/login/v2</code><br /><br />Given a registered user's email and password, returns their `authUserId` value.</td>
+    <td><code>auth/login/v2</code><br /><br />Given a registered user's email and password, returns their <code>authUserId</code> value.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>( email, password )</code><br /><br /><b>Return type if no error:</b><br /><code>{ token, authUserId }</code></td>
     <td>
@@ -452,7 +450,14 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>auth/register/v2</code><br /><br />Given a user's first and last name, email address, and password, create a new account for them and return a new `authUserId`.<br /><br />A handle is generated that is the concatenation of their casted-to-lowercase alphanumeric (a-z0-9) first name and last name (i.e. make lowercase then remove non-alphanumeric characters). If the concatenation is longer than 20 characters, it is cut off at 20 characters. Once you've concatenated it, if the handle is once again taken, append the concatenated names with the smallest number (starting from 0) that forms a new handle that isn't already taken. The addition of this final number may result in the handle exceeding the 20 character limit (the handle 'abcdefghijklmnopqrst0' is allowed if the handle 'abcdefghijklmnopqrst' is already taken).</td>
+    <td><code>auth/register/v2</code><br /><br />Given a user's first and last name, email address, and password, creates a new account for them and returns a new <code>authUserId</code>.<br /><br />A unique handle will be generated for each registered user. The user handle is created as follows:
+      <ul>
+        <li>First, generate a concatenation of their casted-to-lowercase alphanumeric (a-z0-9) first name and last name (i.e. make lowercase then remove non-alphanumeric characters).</li>
+        <li>If the concatenation is longer than 20 characters, it is cut off at 20 characters.</li>
+        <li>If this handle is already taken by another user, append the concatenated names with the smallest number (starting from 0) that forms a new handle that isn't already taken.</li>
+        <li>The addition of this final number may result in the handle exceeding the 20 character limit (the handle 'abcdefghijklmnopqrst0' is allowed if the handle 'abcdefghijklmnopqrst' is already taken).</li>
+      </ul>
+    </td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>( email, password, nameFirst, nameLast )</code><br /><br /><b>Return type if no error:</b><br /><code>{ token, authUserId }</code></td>
     <td>
@@ -479,19 +484,29 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channels/list/v2</code><br /><br />Provide an array of all channels (and their associated details) that the authorised user is part of.</td>
+    <td><code>channels/list/v2</code><br /><br />Provide a list of all channels (and their associated details) that the authorised user is part of.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
-    <td><li><code>token</code> is invalid</li></td>
+    <td>
+      <b>Return object <code>{error: 'error'}</code></b> when any of:
+      <ul>
+        <li><code>token</code> is invalid</li>
+      </ul>
+    </td>
   </tr>
   <tr>
-    <td><code>channels/listAll/v2</code><br /><br />Provide an array of all channels, including private channels, (and their associated details)</td>
+    <td><code>channels/listAll/v2</code><br /><br />Provide a list of all channels, including private channels, (and their associated details)</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
-    <td><li><code>token</code> is invalid</li></td>
+    <td>
+      <b>Return object <code>{error: 'error'}</code></b> when any of:
+      <ul>
+        <li><code>token</code> is invalid</li>
+      </ul>
+    </td>
   </tr>
   <tr>
-    <td><code>channel/details/v2</code><br /><br />Given a channel with ID channelId that the authorised user is a member of, provide basic details about the channel.</td>
+    <td><code>channel/details/v2</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, provide basic details about the channel.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token, channelId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ name, isPublic, ownerMembers, allMembers }</code></td>
     <td>
@@ -504,7 +519,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/join/v2</code><br /><br />Given a channelId of a channel that the authorised user can join, adds them to that channel.</td>
+    <td><code>channel/join/v2</code><br /><br />Given a <code>channelId</code> of a channel that the authorised user can join, adds them to that channel.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>( token, channelId )</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -518,7 +533,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/invite/v2</code><br /><br />Invites a user with ID uId to join a channel with ID channelId. Once invited, the user is added to the channel immediately. In both public and private channels, all members are able to invite users.</td>
+    <td><code>channel/invite/v2</code><br /><br />Invites a user with ID <code>uId</code> to join a channel with ID channelId. Once invited, the user is added to the channel immediately. In both public and private channels, all members are able to invite users.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>( token, channelId, uId )</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -533,7 +548,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/messages/v2</code><br /><br />Given a channel with ID channelId that the authorised user is a member of, return up to 50 messages between index "start" and "start + 50". Message with index 0 is the most recent message in the channel. This function returns a new index "end" which is the value of "start + 50", or, if this function has returned the least recent messages in the channel, returns -1 in "end" to indicate there are no more messages to load after this return.</td>
+    <td><code>channel/messages/v2</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, return up to 50 messages between index "start" and "start + 50". Message with index 0 is the most recent message in the channel. This function returns a new index "end" which is the value of "start + 50", or, if this function has returned the least recent messages in the channel, returns -1 in "end" to indicate there are no more messages to load after this return.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token, channelId, start )</code><br /><br /><b>Return type if no error:</b><br /><code>{ messages, start, end }</code></td>
     <td>
@@ -569,10 +584,15 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     <td><code>auth/logout/v1</code><br /><br />Given an active token, invalidates the token to log the user out.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
-    <td><li><code>token</code> is invalid</li></td>
+    <td>
+      <b>Return object <code>{error: 'error'}</code></b> when any of:
+      <ul>
+        <li><code>token</code> is invalid</li>
+      </ul>
+    </td>
   </tr>
   <tr>
-    <td><code>channel/leave/v1</code><br /><br />Given a channel with ID channelId that the authorised user is a member of, remove them as a member of the channel. Their messages should remain in the channel. If the only channel owner leaves, the channel will remain.</td>
+    <td><code>channel/leave/v1</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, remove them as a member of the channel. Their messages should remain in the channel. If the only channel owner leaves, the channel will remain.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, channelId }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -585,7 +605,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/addowner/v1</code><br /><br />Make user with user id uId an owner of the channel.</td>
+    <td><code>channel/addowner/v1</code><br /><br />Make user with user id <code>uId</code> an owner of the channel.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, channelId, uId }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code>
     </td>
@@ -618,7 +638,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>message/send/v1</code><br /><br />Send a message from the authorised user to the channel specified by channelId. Note: Each message should have its own unique ID, i.e. no messages should share an ID with another message, even if that other message is in a different channel.</td>
+    <td><code>message/send/v1</code><br /><br />Send a message from the authorised user to the channel specified by <code>channelId</code>. Note: Each message should have its own unique ID, i.e. no messages should share an ID with another message, even if that other message is in a different channel.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, channelId, message }</code><br /><br /><b>Return type if no error:</b><br /><code>{ messageId }</code></td>
     <td>
@@ -672,10 +692,15 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>dm/list/v1</code><br /><br />Returns the array of DMs that the user is a member of.</td>
+    <td><code>dm/list/v1</code><br /><br />Returns the list of DMs that the user is a member of.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token )</code><br /><br /><b>Return type if no error:</b><br /><code>{ dms }</code></td>
-    <td> <li><code>token</code> is invalid</li> </td>
+    <td>
+      <b>Return object <code>{error: 'error'}</code></b> when any of:
+        <ul>  
+        <li><code>token</code> is invalid</li>
+        </ul>
+    </td>
   </tr>
   <tr>
     <td><code>dm/remove/v1</code><br /><br />Remove an existing DM, so all members are no longer in the DM. This can only be done by the original creator of the DM.</td>
@@ -692,7 +717,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>dm/details/v1</code><br /><br />Given a DM with ID dmId that the authorised user is a member of, provide basic details about the DM.</td>
+    <td><code>dm/details/v1</code><br /><br />Given a DM with ID <code>dmId</code> that the authorised user is a member of, provide basic details about the DM.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token, dmId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ name, members }</code></td>
     <td>
@@ -718,7 +743,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>dm/messages/v1</code><br /><br />Given a DM with ID dmId that the authorised user is a member of, return up to 50 messages between index "start" and "start + 50". Message with index 0 is the most recent message in the DM. This function returns a new index "end" which is the value of "start + 50", or, if this function has returned the least recent messages in the DM, returns -1 in "end" to indicate there are no more messages to load after this return.</td>
+    <td><code>dm/messages/v1</code><br /><br />Given a DM with ID <code>dmId</code> that the authorised user is a member of, return up to 50 messages between index "start" and "start + 50". Message with index 0 is the most recent message in the DM. This function returns a new index "end" which is the value of "start + 50", or, if this function has returned the least recent messages in the DM, returns -1 in "end" to indicate there are no more messages to load after this return.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token, dmId, start )</code><br /><br /><b>Return type if no error:</b><br /><code>{ messages, start, end }</code></td>
     <td>
@@ -732,7 +757,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>message/senddm/v1</code><br /><br />Send a message from authorisedUser to the DM specified by dmId. Note: Each message should have it's own unique ID, i.e. no messages should share an ID with another message, even if that other message is in a different channel or DM.</td>
+    <td><code>message/senddm/v1</code><br /><br />Send a message from authorised user to the DM specified by <code>dmId</code>. Note: Each message should have it's own unique ID, i.e. no messages should share an ID with another message, even if that other message is in a different channel or DM.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, dmId, message }</code><br /><br /><b>Return type if no error:</b><br /><code>{ messageId }</code></td>
     <td>
@@ -746,10 +771,15 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>users/all/v1</code><br /><br />Returns an array of all users and their associated details.</td>
+    <td><code>users/all/v1</code><br /><br />Returns a list of all users and their associated details.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token )</code><br /><br /><b>Return type if no error:</b><br /><code>{ users }</code></td>
-    <td><li><code>token</code> is invalid</li></td>
+    <td>
+      <b>Return object <code>{error: 'error'}</code></b> when any of:
+        <ul>  
+        <li><code>token</code> is invalid</li>
+        </ul>
+    </td>
   </tr>
   <tr>
     <td><code>user/profile/setname/v1</code><br /><br />Update the authorised user's first and last name</td>
@@ -918,6 +948,9 @@ The following serves as a baseline for expected progress during project check-in
 |   0     |**Week 2**   |Twice-weekly standup meeting times organised, iteration 0 specification has been discussed in a meeting, at least 1 task per person has been assigned |
 |   1     |**Week 3**   |Iteration 1 specification has been discussed in a meeting, at least 1 task per person has been assigned |
 |   1     |**Week 4**   |1x function per person complete (tests and implementation in master)|
+|   2     |**Week 5**   |Iteration 2 specification has been discussed in a meeting, at least 1 task per person has been assigned|
+|   2     |**Week 6**   |**(Checked by your tutor in week 7)** Server routes for all iteration 1 functions complete and in master|
+|   2     |**Week 7**   |1x iteration 2 route per person complete (HTTP tests and implementation in master)|
 
 ### 7.2. Tutorial contributions
 From weeks 2 onward, your individual project mark may be reduced if you do not satisfy the following:
