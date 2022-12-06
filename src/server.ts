@@ -20,8 +20,8 @@ app.get('/echo', (req: Request, res: Response, next) => {
   return res.json(echo(data));
 });
 
-// for logging errors (print to terminal)
 // Keep this BENEATH route definitions
+// for logging errors (print to terminal)
 app.use(morgan('dev'));
 
 // start server
