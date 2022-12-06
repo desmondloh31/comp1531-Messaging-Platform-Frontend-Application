@@ -438,7 +438,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     <th style="width:32%">Error returns</th>
   </tr>
   <tr>
-    <td><code>auth/login/v2</code><br /><br />Given a registered user's email and password, returns their <code>authUserId</code> value.</td>
+    <td><code>/auth/login/v2</code><br /><br />Given a registered user's email and password, returns their <code>authUserId</code> value.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>( email, password )</code><br /><br /><b>Return type if no error:</b><br /><code>{ token, authUserId }</code></td>
     <td>
@@ -450,7 +450,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>auth/register/v2</code><br /><br />Given a user's first and last name, email address, and password, creates a new account for them and returns a new <code>authUserId</code>.<br /><br />A unique handle will be generated for each registered user. The user handle is created as follows:
+    <td><code>/auth/register/v2</code><br /><br />Given a user's first and last name, email address, and password, creates a new account for them and returns a new <code>authUserId</code>.<br /><br />A unique handle will be generated for each registered user. The user handle is created as follows:
       <ul>
         <li>First, generate a concatenation of their casted-to-lowercase alphanumeric (a-z0-9) first name and last name (i.e. make lowercase then remove non-alphanumeric characters).</li>
         <li>If the concatenation is longer than 20 characters, it is cut off at 20 characters.</li>
@@ -472,7 +472,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channels/create/v2</code><br /><br />Creates a new channel with the given name that is either a public or private channel. The user who created it automatically joins the channel and is the owner.</td>
+    <td><code>/channels/create/v2</code><br /><br />Creates a new channel with the given name that is either a public or private channel. The user who created it automatically joins the channel and is the owner.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>( token, name, isPublic )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channelId }</code></td>
     <td>
@@ -484,7 +484,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channels/list/v2</code><br /><br />Provide a list of all channels (and their associated details) that the authorised user is part of.</td>
+    <td><code>/channels/list/v2</code><br /><br />Provide a list of all channels (and their associated details) that the authorised user is part of.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
     <td>
@@ -495,7 +495,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channels/listAll/v2</code><br /><br />Provide a list of all channels, including private channels, (and their associated details)</td>
+    <td><code>/channels/listAll/v2</code><br /><br />Provide a list of all channels, including private channels, (and their associated details)</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
     <td>
@@ -506,7 +506,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/details/v2</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, provide basic details about the channel.</td>
+    <td><code>/channel/details/v2</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, provide basic details about the channel.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token, channelId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ name, isPublic, ownerMembers, allMembers }</code></td>
     <td>
@@ -519,7 +519,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/join/v2</code><br /><br />Given a <code>channelId</code> of a channel that the authorised user can join, adds them to that channel.</td>
+    <td><code>/channel/join/v2</code><br /><br />Given a <code>channelId</code> of a channel that the authorised user can join, adds them to that channel.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>( token, channelId )</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -533,7 +533,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/invite/v2</code><br /><br />Invites a user with ID <code>uId</code> to join a channel with ID channelId. Once invited, the user is added to the channel immediately. In both public and private channels, all members are able to invite users.</td>
+    <td><code>/channel/invite/v2</code><br /><br />Invites a user with ID <code>uId</code> to join a channel with ID channelId. Once invited, the user is added to the channel immediately. In both public and private channels, all members are able to invite users.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>( token, channelId, uId )</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -548,7 +548,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/messages/v2</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, return up to 50 messages between index "start" and "start + 50". Message with index 0 is the most recent message in the channel. This function returns a new index "end" which is the value of "start + 50", or, if this function has returned the least recent messages in the channel, returns -1 in "end" to indicate there are no more messages to load after this return.</td>
+    <td><code>/channel/messages/v2</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, return up to 50 messages between index "start" and "start + 50". Message with index 0 is the most recent message in the channel. This function returns a new index "end" which is the value of "start + 50", or, if this function has returned the least recent messages in the channel, returns -1 in "end" to indicate there are no more messages to load after this return.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token, channelId, start )</code><br /><br /><b>Return type if no error:</b><br /><code>{ messages, start, end }</code></td>
     <td>
@@ -562,7 +562,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>user/profile/v2</code><br /><br />For a valid user, returns information about their userId, email, first name, last name, and handle
+    <td><code>/user/profile/v2</code><br /><br />For a valid user, returns information about their userId, email, first name, last name, and handle
     </td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token, uId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ user }</code></td>
@@ -575,13 +575,13 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>clear/v1</code><br /><br />Resets the internal data of the application to its initial state</td>
+    <td><code>/clear/v1</code><br /><br />Resets the internal data of the application to its initial state</td>
     <td style="font-weight: bold; color: red;">DELETE</td>
     <td><b>Parameters:</b><br /><code>()</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><code>auth/logout/v1</code><br /><br />Given an active token, invalidates the token to log the user out.</td>
+    <td><code>/auth/logout/v1</code><br /><br />Given an active token, invalidates the token to log the user out.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -592,7 +592,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/leave/v1</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, remove them as a member of the channel. Their messages should remain in the channel. If the only channel owner leaves, the channel will remain.</td>
+    <td><code>/channel/leave/v1</code><br /><br />Given a channel with ID <code>channelId</code> that the authorised user is a member of, remove them as a member of the channel. Their messages should remain in the channel. If the only channel owner leaves, the channel will remain.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, channelId }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -605,7 +605,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/addowner/v1</code><br /><br />Make user with user id <code>uId</code> an owner of the channel.</td>
+    <td><code>/channel/addowner/v1</code><br /><br />Make user with user id <code>uId</code> an owner of the channel.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, channelId, uId }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code>
     </td>
@@ -622,7 +622,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>channel/removeowner/v1</code><br /><br />Remove user with user id uId as an owner of the channel.</td>
+    <td><code>/channel/removeowner/v1</code><br /><br />Remove user with user id uId as an owner of the channel.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, channelId, uId }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -638,7 +638,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>message/send/v1</code><br /><br />Send a message from the authorised user to the channel specified by <code>channelId</code>. Note: Each message should have its own unique ID, i.e. no messages should share an ID with another message, even if that other message is in a different channel.</td>
+    <td><code>/message/send/v1</code><br /><br />Send a message from the authorised user to the channel specified by <code>channelId</code>. Note: Each message should have its own unique ID, i.e. no messages should share an ID with another message, even if that other message is in a different channel.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, channelId, message }</code><br /><br /><b>Return type if no error:</b><br /><code>{ messageId }</code></td>
     <td>
@@ -652,7 +652,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>message/edit/v1</code><br /><br />Given a message, update its text with new text. If the new message is an empty string, the message is deleted.</td>
+    <td><code>/message/edit/v1</code><br /><br />Given a message, update its text with new text. If the new message is an empty string, the message is deleted.</td>
     <td style="font-weight: bold; color: brown;">PUT</td>
     <td><b>Body Parameters:</b><br /><code>{ token, messageId, message }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -666,7 +666,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>message/remove/v1</code><br /><br />Given a messageId for a message, this message is removed from the channel/DM</td>
+    <td><code>/message/remove/v1</code><br /><br />Given a messageId for a message, this message is removed from the channel/DM</td>
     <td style="color: red; font-weight: bold;">DELETE</td>
     <td><b>Query Parameters:</b><br /><code>( token, messageId )</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -679,7 +679,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>dm/create/v1</code><br /><br /><code>uIds</code> contains the user(s) that this DM is directed to, and will not include the creator. The creator is the owner of the DM. <code>name</code> should be automatically generated based on the users that are in this DM. The name should be an alphabetically-sorted, comma-and-space-separated list of user handles, e.g. 'ahandle1, bhandle2, chandle3'. An empty <code>uIds</code> list indicates the creator is the only member of the DM.</td>
+    <td><code>/dm/create/v1</code><br /><br /><code>uIds</code> contains the user(s) that this DM is directed to, and will not include the creator. The creator is the owner of the DM. <code>name</code> should be automatically generated based on the users that are in this DM. The name should be an alphabetically-sorted, comma-and-space-separated list of user handles, e.g. 'ahandle1, bhandle2, chandle3'. An empty <code>uIds</code> list indicates the creator is the only member of the DM.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, uIds }</code><br /><br /><b>Return type if no error:</b><br /><code>{ dmId }</code></td>
     <td>
@@ -692,7 +692,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>dm/list/v1</code><br /><br />Returns the list of DMs that the user is a member of.</td>
+    <td><code>/dm/list/v1</code><br /><br />Returns the list of DMs that the user is a member of.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token )</code><br /><br /><b>Return type if no error:</b><br /><code>{ dms }</code></td>
     <td>
@@ -703,7 +703,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>dm/remove/v1</code><br /><br />Remove an existing DM, so all members are no longer in the DM. This can only be done by the original creator of the DM.</td>
+    <td><code>/dm/remove/v1</code><br /><br />Remove an existing DM, so all members are no longer in the DM. This can only be done by the original creator of the DM.</td>
     <td style="color: red; font-weight: bold;">DELETE</td>
     <td><b>Query Parameters:</b><br /><code>( token, dmId )</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -717,7 +717,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>dm/details/v1</code><br /><br />Given a DM with ID <code>dmId</code> that the authorised user is a member of, provide basic details about the DM.</td>
+    <td><code>/dm/details/v1</code><br /><br />Given a DM with ID <code>dmId</code> that the authorised user is a member of, provide basic details about the DM.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token, dmId )</code><br /><br /><b>Return type if no error:</b><br /><code>{ name, members }</code></td>
     <td>
@@ -730,7 +730,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>dm/leave/v1</code><br /><br />Given a DM ID, the user is removed as a member of this DM. The creator is allowed to leave and the DM will still exist if this happens. This does not update the name of the DM.</td>
+    <td><code>/dm/leave/v1</code><br /><br />Given a DM ID, the user is removed as a member of this DM. The creator is allowed to leave and the DM will still exist if this happens. This does not update the name of the DM.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, dmId }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -743,7 +743,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>dm/messages/v1</code><br /><br />Given a DM with ID <code>dmId</code> that the authorised user is a member of, return up to 50 messages between index "start" and "start + 50". Message with index 0 is the most recent message in the DM. This function returns a new index "end" which is the value of "start + 50", or, if this function has returned the least recent messages in the DM, returns -1 in "end" to indicate there are no more messages to load after this return.</td>
+    <td><code>/dm/messages/v1</code><br /><br />Given a DM with ID <code>dmId</code> that the authorised user is a member of, return up to 50 messages between index "start" and "start + 50". Message with index 0 is the most recent message in the DM. This function returns a new index "end" which is the value of "start + 50", or, if this function has returned the least recent messages in the DM, returns -1 in "end" to indicate there are no more messages to load after this return.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token, dmId, start )</code><br /><br /><b>Return type if no error:</b><br /><code>{ messages, start, end }</code></td>
     <td>
@@ -757,7 +757,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>message/senddm/v1</code><br /><br />Send a message from authorised user to the DM specified by <code>dmId</code>. Note: Each message should have it's own unique ID, i.e. no messages should share an ID with another message, even if that other message is in a different channel or DM.</td>
+    <td><code>/message/senddm/v1</code><br /><br />Send a message from authorised user to the DM specified by <code>dmId</code>. Note: Each message should have it's own unique ID, i.e. no messages should share an ID with another message, even if that other message is in a different channel or DM.</td>
     <td style="font-weight: bold; color: blue;">POST</td>
     <td><b>Body Parameters:</b><br /><code>{ token, dmId, message }</code><br /><br /><b>Return type if no error:</b><br /><code>{ messageId }</code></td>
     <td>
@@ -771,7 +771,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>users/all/v1</code><br /><br />Returns a list of all users and their associated details.</td>
+    <td><code>/users/all/v1</code><br /><br />Returns a list of all users and their associated details.</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token )</code><br /><br /><b>Return type if no error:</b><br /><code>{ users }</code></td>
     <td>
@@ -782,7 +782,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>user/profile/setname/v1</code><br /><br />Update the authorised user's first and last name</td>
+    <td><code>/user/profile/setname/v1</code><br /><br />Update the authorised user's first and last name</td>
     <td style="font-weight: bold; color: brown;">PUT</td>
     <td><b>Body Parameters:</b><br /><code>{ token, nameFirst, nameLast }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -794,7 +794,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
         </ul>
   </tr>
   <tr>
-    <td><code>user/profile/setemail/v1</code><br /><br />Update the authorised user's email address</td>
+    <td><code>/user/profile/setemail/v1</code><br /><br />Update the authorised user's email address</td>
     <td style="font-weight: bold; color: brown;">PUT</td>
     <td><b>Body Parameters:</b><br /><code>{ token, email }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
@@ -806,7 +806,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
         </ul>
   </tr>
   <tr>
-    <td><code>user/profile/sethandle/v1</code><br /><br />Update the authorised user's handle (i.e. display name)</td>
+    <td><code>/user/profile/sethandle/v1</code><br /><br />Update the authorised user's handle (i.e. display name)</td>
     <td style="font-weight: bold; color: brown;">PUT</td>
     <td><b>Body Parameters:</b><br /><code>{ token, handleStr }</code><br /><br /><b>Return type if no error:</b><br /><code>{}</code></td>
     <td>
