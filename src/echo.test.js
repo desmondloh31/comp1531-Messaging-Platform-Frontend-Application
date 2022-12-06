@@ -1,4 +1,4 @@
-import { echo } from './echo';
+import { echo } from './echo.js';
 
 test('Test successful echo', () => {
   let result = echo('1');

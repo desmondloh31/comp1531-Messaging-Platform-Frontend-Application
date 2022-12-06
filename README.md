@@ -185,6 +185,10 @@ To run the dryrun, you should be on a CSE machine (i.e. using `VLAB` or `ssh`'ed
 1531 dryrun 1
 ```
 
+Tips to ensure dryrun runs successfully:
+* Files used for imports are appended with `.js` e.g. `import { clearV1 } from './other.js';`
+* Files sit within the `/src` directory
+
 ### 3.8. Bad Assumptions
 
 Here are a few examples of bad assumptions:
