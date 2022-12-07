@@ -10,6 +10,8 @@ const app = express();
 app.use(json());
 // Use middleware that allows for access from other domains
 app.use(cors());
+// for logging errors (print to terminal)
+app.use(morgan('dev'));
 
 const PORT: number = parseInt(process.env.PORT || config.port);
 const HOST: string = process.env.IP || 'localhost';
@@ -19,10 +21,6 @@ app.get('/echo', (req: Request, res: Response, next) => {
   const data = req.query.echo as string;
   return res.json(echo(data));
 });
-
-// Keep this BENEATH route definitions
-// for logging errors (print to terminal)
-app.use(morgan('dev'));
 
 // start server
 const server = app.listen(PORT, HOST, () => {
