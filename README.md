@@ -886,10 +886,11 @@ The data is reset occasionally, but you can use this link to play around and get
 
 |Iteration|Due date                              |Demonstration to tutor(s)      |Assessment weighting of project (%)|
 |---------|--------------------------------------|-------------------------------|-----------------------------------|
-|   0     |10pm Friday 23rd September (**week 2**)    |No demonstration               |5%                                 |
-|   1     |10pm Friday 7th October  (**week 4**)   |In YOUR **week 5** laboratory  |30%                                |
-|   2     |10pm Friday 28th October (**week 7**)    |In YOUR **week 8** laboratory  |35%                                |
-|   3     |10pm Friday 18th November (**week 10**)  |No demonstration               |30%                               |
+|   0     |10pm Friday 24th February (**week 2**)    |No demonstration               |5%                                 |
+|   1     |10pm Friday 10th March  (**week 4**)   |In YOUR **week 5** laboratory  |20%                                |
+|   2     |10pm Friday 31st March (**week 7**)    |In YOUR **week 8** laboratory  |30%                                |
+|   3     |10pm Monday 17th April (**week 10**)  |No demonstration               |30%                               |
+|   3     |10pm Friday 28th April (**week 11**)  |No demonstration               |15%                              |
 
 ### 6.1. Submission & Late Penalties
 
