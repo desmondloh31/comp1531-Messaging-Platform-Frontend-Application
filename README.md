@@ -1,6 +1,6 @@
 # COMP1531 Major Project
 
-**✨ 🥜  UNSW Beans 🥜 ✨**
+**✨ 🥜  UNSW Memes 🥜 ✨**
 
 ## Contents
 
@@ -19,11 +19,11 @@
 
 UNSW's revenue has been going down, despite the absolutely perfect MyExperience feedback.
 
-Realising the bright potential of its students to recreate existing products they pay for, UNSW has tasked me (Hayden), and my army of COMP1531 students with recreating **<a href="https://www.microsoft.com/en-au/microsoft-teams/group-chat-software">Microsoft Teams</a>**.
+Realising the bright potential of its students to recreate existing products they pay for, UNSW has tasked me and my army of COMP1531 students with recreating **<a href="https://www.microsoft.com/en-au/microsoft-teams/group-chat-software">Microsoft Teams</a>**.
 
-The 22T3 cohort of COMP1531 students will build the **backend Javascript server** for a new communication platform, **UNSW Beans** (or just **Beans** for short). We plan to task future COMP6080 students to build the frontend for Beans, something you won't have to worry about.
+The 22T3 cohort of COMP1531 students will build the **backend Javascript server** for a new communication platform, **UNSW Memes** (or just **Memes** for short). We plan to task future COMP6080 students to build the frontend for Memes, something you won't have to worry about.
 
-**UNSW Beans** is the questionably-named communication tool that allows you to share, communicate, and collaborate virtually on a bean-like budget.
+**UNSW Memes** is the questionably-named communication tool that allows you to share, communicate, and collaborate virtually on a meme-like budget.
 
 We have already specified a **common interface** for the frontend and backend to operate on. This allows both courses to go off and do their own development and testing under the assumption that both parties will comply with the common interface. This is the interface **you are required to use**.
 
@@ -43,7 +43,7 @@ Please note that this video was recorded in 22T2. You should consult this spec f
 
 In this iteration, you are expected to:
 
-1. Write tests for and implement the basic functionality of Beans. The basic functionality is defined as the `auth*`, `channel*`, `channels*`, `users*`, `other*` capabilities/functions, as per the interface section below.
+1. Write tests for and implement the basic functionality of Memes. The basic functionality is defined as the `auth*`, `channel*`, `channels*`, `users*`, `other*` capabilities/functions, as per the interface section below.
     * Test files you add should all be in the form `*.test.js`.
     * Do NOT attempt to try and write or start a web server. Don't overthink how these functions are meant to connect to a frontend yet. That is for the next iteration. In this iteration you are just focusing on the basic backend functionality.
 
@@ -111,7 +111,7 @@ The files from iteration 0 should be developed with actual implementations, in a
 Elements of securely storing passwords and other tricky authorisation methods are not required for iteration 1. You can simply store passwords plainly, and use the user ID to identify each user. We will discuss ways to improve the quality and methods of these capabilities in the later iterations.
 
 Note that the `authUserId` variable is simply the user ID of the user who is making the function call. For example,
-* A user registers an account with UNSW Beans and is assigned some integer ID, e.g. `42` as their user ID.
+* A user registers an account with UNSW Memes and is assigned some integer ID, e.g. `42` as their user ID.
 * When they make subsequent calls to functions, their user ID - in this case, `42` - is passed in as the `authUserId` argument.
 
 Since `authUserId` refers to the user ID of the user calling the functions, you do NOT need to store separate user IDs (e.g. a uId or userId + a authUserId) to identify each user in your data structure - you only need to store one user ID. How you name this user ID property in your data structure is up to you.
@@ -200,7 +200,7 @@ Here are a few examples of bad assumptions:
 
 Bad assumptions are usually ones that directly contradict an explicit or implicit requirement in the specification. Good assumptions are ones that fill holes or gaps in requirements. 
 
-Avoid "assumptions" that simply describe the implementation details irrelevant to the client, e.g. a particular method of ID generation. Instead, consider the scenarios in which the expected behaviour of Beans is not addressed clearly in the spec and document, with reasoning, your assumptions regarding such scenarios.
+Avoid "assumptions" that simply describe the implementation details irrelevant to the client, e.g. a particular method of ID generation. Instead, consider the scenarios in which the expected behaviour of Memes is not addressed clearly in the spec and document, with reasoning, your assumptions regarding such scenarios.
 
 ### 3.9. Working in parallel
 
@@ -578,7 +578,7 @@ There are TWO different types of permissions: global permissions and channel-spe
 
 Additional Rules:
 * Global permissions
-  * All Beans users are global members by default, except for the very first user who signs up, who is a global owner.
+  * All Memes users are global members by default, except for the very first user who signs up, who is a global owner.
 * Channel permissions
   * A global owner has the same permissions as a channel owner in every channel they're part of. They do not become a channel owner unless explicitly added as one (by a channel owner, or themselves). Hence, if they are removed as a global owner (and are not a channel owner), they will no longer have those channel owner permissions.
 
