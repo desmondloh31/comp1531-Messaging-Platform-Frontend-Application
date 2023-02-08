@@ -1,6 +1,6 @@
 # COMP1531 Major Project
 
-**✨ 🥜  UNSW Beans 🥜 ✨**
+**✨ 🥜  UNSW Memes 🥜 ✨**
 
 ## Contents
 
@@ -19,11 +19,11 @@
 
 UNSW's revenue has been going down, despite the absolutely perfect MyExperience feedback.
 
-Realising the bright potential of its students to recreate existing products they pay for, UNSW has tasked me (Hayden), and my army of COMP1531 students with recreating **<a href="https://www.microsoft.com/en-au/microsoft-teams/group-chat-software">Microsoft Teams</a>**.
+Realising the bright potential of its students to recreate existing products they pay for, UNSW has tasked me and my army of COMP1531 students with recreating **<a href="https://www.microsoft.com/en-au/microsoft-teams/group-chat-software">Microsoft Teams</a>**.
 
-The 22T3 cohort of COMP1531 students will build the **backend Javascript server** for a new communication platform, **UNSW Beans** (or just **Beans** for short). We plan to task future COMP6080 students to build the frontend for Beans, something you won't have to worry about.
+The 23T1 cohort of COMP1531 students will build the **backend Javascript server** for a new communication platform, **UNSW Memes** (or just **Memes** for short). We plan to task future COMP6080 students to build the frontend for Memes, something you won't have to worry about.
 
-**UNSW Beans** is the questionably-named communication tool that allows you to share, communicate, and collaborate virtually on a bean-like budget.
+**UNSW Memes** is the questionably-named communication tool that allows you to share, communicate, and collaborate virtually on a meme-like budget.
 
 We have already specified a **common interface** for the frontend and backend to operate on. This allows both courses to go off and do their own development and testing under the assumption that both parties will comply with the common interface. This is the interface **you are required to use**.
 
@@ -294,7 +294,7 @@ This iteration due date and demonstration week is described in section 6. You wi
 Reference 7.5.
 ## 5. Interface specifications
 
-These interface specifications come from Hayden & COMP6080, who are building the frontend to the requirements set out below.
+These interface specifications come from COMP6080, who are building the frontend to the requirements set out below.
 
 ### 5.1. Input/Output types
 
@@ -853,7 +853,7 @@ There are TWO different types of permissions: global permissions and channel/DM-
 
 Additional Rules:
 * Global permissions
-  * All Beans users are global members by default, except for the very first user who signs up, who is a global owner
+  * All Memes users are global members by default, except for the very first user who signs up, who is a global owner
 * Channel permissions
   * A global owner has the same permissions as a channel owner in every channel they're part of. They do not become a channel owner unless explicitly added as one (by a channel owner, or themselves). Hence, if they are removed as a global owner (and are not a channel owner), they will no longer have those channel owner permissions.
 * DM permissions
@@ -871,7 +871,7 @@ In this structure, this also means it's possible to "log out" a particular user'
 Don't worry about creating a secure method of session storage in iteration 2 - that is for iteration 3.
 
 ### 5.8. Working with the frontend
-There is a SINGLE repository available for all students at https://gitlab.cse.unsw.edu.au/COMP1531/22T3/project-frontend. You can clone this frontend locally. If you'd like to modify the frontend repo (i.e. teach yourself some frontend), please FORK the repository.
+There is a SINGLE repository available for all students at https://gitlab.cse.unsw.edu.au/COMP1531/23T1/project-frontend. You can clone this frontend locally. If you'd like to modify the frontend repo (i.e. teach yourself some frontend), please FORK the repository.
 
 If you run the frontend at the same time as your express server is running on the backend, then you can power the frontend via your backend.
 
@@ -1045,7 +1045,7 @@ Each iteration consists of an automarking component. The particular formula used
 When running your code or tests as part of the automarking, we place a 2.5 minute timer on the running of your group's tests. This is more than enough time to complete everything unless you're doing something very wrong or silly with your code. As long as your tests take under 2.5 minutes to run on the pipeline, you don't have to worry about it potentially taking longer when we run automarking.
 
 ### 8.2. Leaderboard
-In the days preceding iterations 1, 2, and 3's due date, we will be running your code against the actual automarkers (the same ones that determine your final mark) and publishing the results of every group on a leaderboard. [The leaderboard will be available here once released](http://cgi.cse.unsw.edu.au/~cs1531/22T3/leaderboard).
+In the days preceding iterations 1, 2, and 3's due date, we will be running your code against the actual automarkers (the same ones that determine your final mark) and publishing the results of every group on a leaderboard. [The leaderboard will be available here once released](http://cgi.cse.unsw.edu.au/~cs1531/23T1/leaderboard).
 
 You must have the code you wish to be tested in your `master` branch by **10pm** the night before leaderboard runs.
 
