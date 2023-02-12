@@ -590,7 +590,7 @@ Additional Rules:
 |   1     |10pm Friday 10th March  (**week 4**)   |In YOUR **week 5** laboratory  |20%                                |
 |   2     |10pm Friday 31st March (**week 7**)    |In YOUR **week 8** laboratory  |30%                                |
 |   3     |10pm Monday 17th April (**week 10**)  |No demonstration               |30%                               |
-|   3     |10pm Friday 28th April (**week 11**)  |No demonstration               |15%                              |
+|   4     |10pm Friday 28th April (**week 11**)  |No demonstration               |15%                              |
 
 ### 5.1. Submission & Late Penalties
 
