@@ -584,13 +584,13 @@ Additional Rules:
 
 ## 5. Due Dates and Weightings
 
-|Iteration|Due date                              |Demonstration to tutor(s)      |Assessment weighting of project (%)|
+|Iteration|Due date                              |Demonstration to tutor(s)      |Assessment weighting (%)|
 |---------|--------------------------------------|-------------------------------|-----------------------------------|
-|   0     |10pm Friday 24th February (**week 2**)    |No demonstration               |5%                                 |
-|   1     |10pm Friday 10th March  (**week 4**)   |In YOUR **week 5** laboratory  |20%                                |
-|   2     |10pm Friday 31st March (**week 7**)    |In YOUR **week 8** laboratory  |30%                                |
-|   3     |10pm Monday 17th April (**week 10**)  |No demonstration               |30%                               |
-|   3     |10pm Friday 28th April (**week 11**)  |No demonstration               |15%                              |
+|   0     |10pm Friday 24th February (**week 2**) |No demonstration           |5% of project mark                 |
+|   1     |10pm Friday 10th March  (**week 4**)   |In YOUR **week 5** laboratory |30% of project mark                |
+|   2     |10pm Friday 31st March (**week 7**)    |In YOUR **week 8** laboratory |35% of project mark                |
+|   3     |10pm Monday 17th April (**week 10**)  |No demonstration               |30% of project mark                |
+|   4     |10pm Friday 28th April (**week 11**)  |Video presentation             |30% of course mark                 |
 
 ### 5.1. Submission & Late Penalties
 
