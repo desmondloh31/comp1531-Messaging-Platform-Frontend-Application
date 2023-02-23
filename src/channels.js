@@ -7,7 +7,7 @@
  * 
  * @param {integer} authUserId - user id explantation
  * 
- * @returns {object} channels - 
+ * @returns {object} channels - channels explanation 
  */
 
 //parameters and returrn
@@ -21,9 +21,7 @@ function channelsListAllV1(authUserId) {
         ],
       }
 }
-function channelInviteV1( authUserId, channelId, uId ) {
-    return {};
-}
+
 function channelsCreatev1(authUserId, name, isPublic) {
     return {
         channelId: 1
