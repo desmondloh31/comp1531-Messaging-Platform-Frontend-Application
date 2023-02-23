@@ -45,4 +45,6 @@ function channelInviteV1( authUserId, channelId, uId ) {
 }
 
 
-
+function channelJoinV1(authUserId, channelId){
+    return{};
+}
