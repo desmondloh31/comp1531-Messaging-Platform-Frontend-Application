@@ -1,4 +1,11 @@
 
+function channelsCreateV1(authUserId, name, isPublic) {
+    return {
+        channelId: 1
+    }
+}
+
+
 
 /**
  * @module channels
@@ -23,13 +30,6 @@ function channelsListAllV1(authUserId) {
       }
 }
 
-function channelsCreatev1(authUserId, name, isPublic) {
-    return {
-        channelId: 1
-    }
-
-}
-
 function channelsListV1(authUserId) {
     return {
         channels: [
@@ -41,6 +41,7 @@ function channelsListV1(authUserId) {
     }
 }
     
+
 
 
 
