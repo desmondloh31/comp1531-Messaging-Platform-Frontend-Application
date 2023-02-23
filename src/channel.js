@@ -1,4 +1,5 @@
 
+
 function channelMessagesV1( authUserId, channelId, start ) {
     return {
         messages: [
@@ -13,3 +14,11 @@ function channelMessagesV1( authUserId, channelId, start ) {
           end: 50,
     };
 }
+
+
+function channelInviteV1( authUserId, channelId, uId ) {
+    return {};
+}
+
+
+
