@@ -30,15 +30,15 @@ function channelsCreatev1(authUserId, name, isPublic) {
 
 }
 
-function channelsListV1(authUserId) {
+function channelsListV1(authUserId){
     return {
         channels: [
-            {
-                channelId: 1,
-                name: "stub Channel",
-            }
+          {
+            channelId: 1,
+            name: 'My Channel',
+          }
         ],
-    }
+      }
 }
     
 
