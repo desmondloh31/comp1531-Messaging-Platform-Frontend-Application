@@ -38,7 +38,7 @@ function channelsCreatev1(authUserId, name, isPublic) {
 
 }
 
-function channelsListV1(authUserId){
+
 
 function channelsListV1(authUserId) {
     return {
