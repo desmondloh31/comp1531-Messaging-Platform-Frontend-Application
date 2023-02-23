@@ -1,4 +1,5 @@
 
+
 /**
  * @module channels
  */
@@ -28,3 +29,19 @@ function channelsCreatev1(authUserId, name, isPublic) {
     }
 
 }
+
+function channelsListV1(authUserId) {
+    return {
+        channels: [
+            {
+                channelId: 1,
+                name: "stub Channel",
+            }
+        ],
+    }
+}
+    
+
+
+}
+
