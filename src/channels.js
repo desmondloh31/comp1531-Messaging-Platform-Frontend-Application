@@ -1,4 +1,4 @@
-function channelsCreatev1(authUserId, name, isPublic) {
+function channelsCreateV1(authUserId, name, isPublic) {
     return {
         channelId: 1
     }
