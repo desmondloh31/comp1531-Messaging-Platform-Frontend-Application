@@ -7,7 +7,7 @@
  * 
  * @param {integer} authUserId - user id explantation
  * 
- * @returns {object} channels - 
+ * @returns {object} channels - channels explanation 
  */
 
 //parameters and returrn
