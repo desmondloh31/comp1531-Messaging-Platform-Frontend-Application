@@ -41,3 +41,5 @@ let messages = [
 ```
 
 [Optional] short description: 
+
+Design for the data needed to be stored in Memes
