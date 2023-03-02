@@ -1,41 +1,43 @@
 ```javascript
-let Users = [
-{
-    authUserId: 4,
-    uId: 1,
-    nameFirst: "John",
-    nameLast: "Smith",
-    email: "genericman@gmail.com"
-    password: "password123",
-    name: "generic_man"
-},
-]
 
-//ownerMembers and allMembers only stores the Uid for each user
-
-let Channels = [
-{
-     channelId: 1,
-     name: 'My Channel',
-     users: Users,
-     ownerMembers: [1,], 
-     allMembers: [1,],
-     msg: messages 
-},
-]
-
-
-let messages = [
+  let data = {
+  users: [
     {
-      messageId: 1,
       uId: 1,
-      channelId: 1,
-      message: 'Hello world',
-      timeSent: 1582426789,
+      nameFirst: 'generic',
+      nameLast: 'generic',
+      email: 'genericman@unsw.edu.au',
+      handleStr: 'hackerman',
+      password: 'ilovecomputers',     
     },
-  start: 0,
-  end: 50,
-]
+  ],
+
+  channels: [
+      {
+        channelId: 1,
+        name: 'Private Channel',
+        isPublic: false,
+        ownerIds: [1],
+        memberIds: [1],
+        messages: [
+          {
+            messageId: 1,
+            senderId: 1,
+            message: 'Hello World!',
+            timeSent: 1582426789,
+            reactions: [
+              {
+                reactionName: 'Heart',
+                unicode: 'U+2764',
+                timesUsed: 3,
+              },
+            ],
+          },
+        ],
+      },
+  ]
+}
+
 
 
 ```
