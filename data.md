@@ -5,9 +5,9 @@
     {
       uId: 1,
       nameFirst: 'generic',
-      nameLast: 'generic',
+      nameLast: 'man',
       email: 'genericman@unsw.edu.au',
-      handleStr: 'hackerman',
+      handleStr: 'genericman',
       password: 'ilovecomputers',     
     },
   ],
