@@ -1,10 +1,7 @@
-function channelsCreateV1(authUserId, name, isPublic) {
-    return {
-        channelId: 1
-    }
-}
 
-
+import {authRegisterV1, authLoginV1} from './auth.js'
+import {getData, setData} from './dataStore';
+import { uuid } from 'uuidv4';
 
 /**
  * @module channels
@@ -29,24 +26,55 @@ function channelsListAllV1(authUserId) {
       }
 }
 
+//creating the channel from the uuid and authUserId
+function channelsCreateV1(authUserId, name, isPublic) {
 
-function channelsCreatev1(authUserId, name, isPublic) {
-    return {
-        channelId: 1
-    }
+  const data = getData();
+  if (name.length < 1 || name.length > 20) {
+    return {error: "error"};
+  }
+
+  if (!data.users[authUserId]) {
+    return {error: "error"};
+  }
+
+  const channelId = uuid();
+  data.channels[channelId] = {
+    name,
+    isPublic,
+    userIds: [authUserId]
+  }
+
+  setData(data);
+
+  return {
+    channelId
+  }
 
 }
 
-
+//Listing the given channels:
 function channelsListV1(authUserId) {
-    return {
-        channels: [
-          {
-            channelId: 1,
-            name: 'My Channel',
-          }
-        ],
-      }
+
+  const data = getData();
+  if (!data.users[authUserId]) {
+    return {error: "error"};
+  }
+
+  const channels = [];
+  for (const channel of Object.values(data.channels)) {
+    if (channel.userIds.includes(authUserId)) {
+      channels.push ({
+        channelId: channel.channelId,
+        name: channel.name
+      })
+    }
+  }
+
+  return {
+    channels
+  }
+      
 }
     
 
