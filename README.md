@@ -627,9 +627,7 @@ The demonstrations in weeks 5 and 8 will take place during your lab sessions. Al
 Demonstrations consist of a 15 minute Q&A in front of your tutor and potentially some other students in your tutorial. For online classes, webcams and audio are required to be on during this Q&A (your phone is a good alternative if your laptop/desktop doesn't have a webcam).
 
 ## 6. Individual Contribution
-Half of each iteration's mark is awarded to your group as a whole. The other half is given to you individually. This is the case for all iterations going forward, except for iteration 4 which is entirely individually marked. For example, if iteration 1 is worth 30% of the project mark, 15% is awarded as a group mark and 15% is awarded individually.
-
-Your individual mark is determined by your tutor, with your group mark as a reference point. Your tutor will look at the following items each iteration to determine your mark:
+While we do award a tentative mark to your group as a whole, your actual mark for each iteration is given to you individually. Your individual mark is determined by your tutor, with your group mark as a reference point.Your tutor will look at the following items each iteration to determine your mark:
  * Project check-in
  * Code contribution
  * Tutorial contributions
