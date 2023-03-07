@@ -33,7 +33,8 @@ describe ("Testing channelsListV1", () => {
 describe ("Testing channelsListAllV1", () => {
     test ('testing if authUserId is not valid', () => {
         const AuthUserID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith");
-        expect(channelsListAllV1(45)).toStrictEqual({error: 'error'});
+        const ChannelID = channelsCreateV1(AuthUserID, "Kavish", true);
+        expect(channelsListAllV1(4576987)).toStrictEqual({error: 'error'});
     });
     test ('Testing with channels and isPublic being true and authUserId being valid', () => {
         const AuthUserID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith");
