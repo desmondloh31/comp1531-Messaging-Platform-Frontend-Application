@@ -1,7 +1,7 @@
 
-import {authRegisterV1, authLoginV1} from './auth.js'
+import {authRegisterV1, authLoginV1} from './auth'
 import {getData, setData} from './dataStore';
-import { uuid } from 'uuidv4';
+//import { uuid } from 'uuidv4';
 
 /**
  * @module channels
