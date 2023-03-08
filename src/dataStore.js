@@ -13,21 +13,14 @@ let data = {
       channelId: {},
       name: {},
       isPublic: {},
-      ownerIds: {},
-      memberIds: {},
+      ownerIds: [],
+      memberIds: [],
       messages: [
         {
           messageId: {},
           senderId: {},
           message: {},
           timeSent: {},
-          reactions: [
-            {
-              reactionName: {},
-              unicode: {},
-              timesUsed: {},
-            },
-          ],
         },
       ],
     },
