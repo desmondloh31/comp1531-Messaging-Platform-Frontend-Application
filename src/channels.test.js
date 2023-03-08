@@ -1,5 +1,5 @@
-import {channelsCreateV1, channelsListV1, channelsListAllV1} from './channels';
-import {getData, setData} from './dataStore';
+import {channelsCreateV1, channelsListV1, channelsListAllV1} from './channels.js';
+import {getData, setData } from './dataStore.js';
 //import { uuid } from 'uuidv4';
 
 //testing channelsCreateV1:
@@ -102,5 +102,37 @@ describe ("Testing channelsListV1", () => {
 
 //testing channelsListAllV1:
 describe ("Testing channelsListAllV1", () => {
+    const authUserId = 'user123';
+    const channel1 = {
+        channelId: 'channel1',
+        name: 'channel1',
+        isPublic: true,
+        members: [authUserId],
+    };
 
+    const channel2 = {
+        channelId: 'channel2',
+        name: 'channel2',
+        isPublic: false,
+        members: ['otherUser'],
+    };
+
+    beforeEach (() => {
+        const data = {
+            users: { [authUserId]: {} },
+            channels: { [channel1.channelId]: channel1, [channel2.channelId]: channel2},
+        };
+        setData(data);
+    });
+   
+    test ('testing if authUserId is not valid', () => {
+        const result = channelsListAllV1('asdas');
+        expect(result).toEqual({error: "authUserId is invalid"});
+    });
+    test ('testing if authUserId is valid', () => {
+        const result = channelsListAllV1(authUserId);
+        expect(result).toEqual(getData().channels);
+        
+    });
+   
 });

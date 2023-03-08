@@ -1,7 +1,7 @@
 
 import {authRegisterV1, authLoginV1} from './auth.js'
-import {getData, setData} from './dataStore';
-import { uuid } from 'uuidv4';
+import {getData, setData} from './dataStore.js';
+//import { uuid } from 'uuidv4';
 
 /**
  * @module channels
@@ -15,15 +15,18 @@ import { uuid } from 'uuidv4';
  */
 
 //parameters and returrn
-function channelsListAllV1(authUserId) {
-    return {
-         channels: [
-          {
-            channelId: 1,
-            name: 'My Channel',
-          }
-        ],
-      }
+export function channelsListAllV1(authUserId) {
+  const data = getData();
+  const user = data.users[authUserId];
+  if (!user) {
+    return { error: "authUserId is invalid"}; 
+  }
+  else{
+    //setData(data.channels)
+
+    return data.channels
+  }
+
 }
 
 //creating the channel from the uuid and authUserId
