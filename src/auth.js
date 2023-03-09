@@ -1,5 +1,5 @@
 import {getData, setData} from './dataStore';
-import { uuid } from 'uuidv4';
+//import { uuid } from 'uuidv4';
 
 function authRegisterV1(email, password, nameFirst, nameLast) {
     const { uuid } = require('uuidv4');
