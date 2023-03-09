@@ -1,7 +1,7 @@
 
 import {authRegisterV1, authLoginV1} from './auth'
 import {getData, setData} from './dataStore';
-import { fromString } from 'uuidv4';
+import { fromString} from 'uuidv4';
 
 /**
  * @module channels
@@ -30,7 +30,7 @@ export function channelsListAllV1(authUserId) {
 }
 
 //creating the channel from the uuid and authUserId
-function channelsCreateV1(authUserId, name, isPublic) {
+export function channelsCreateV1(authUserId, name, isPublic) {
 
   const data = getData();
 
@@ -47,11 +47,11 @@ function channelsCreateV1(authUserId, name, isPublic) {
 
   //create a new channel object:
   const newChannel = {
-    channelId: fromString(),
+    channelId: fromString(authUserId + name),
     name: name,
     isPublic: isPublic,
-    ownerIds: [authUserId],
-    memberIds: [authUserId],
+    ownerMembers: [authUserId],
+    allMembers: [authUserId],
   };
 
   //add a new channel to the data store:
@@ -59,32 +59,34 @@ function channelsCreateV1(authUserId, name, isPublic) {
   setData(data);
 
   return {
-    channelId: newChannel.channelId,
+    /*channelId: newChannel.channelId,
     name: newChannel.name,
     isPublic: newChannel.isPublic,
-    ownerIds: newChannel.ownerIds,
-    memberIds: newChannel.memberIds,
+    ownerMembers: newChannel.ownerMembers,    
+    allMembers: newChannel.allMembers,*/
+    newChannel,
   };
+
 
 
 }
 
 //Listing the given channels:
-function channelsListV1(authUserId) {
+export function channelsListV1(authUserId) {
 
   const data = getData();
 
   //check if authUserId is valid:
   const user = data.users[authUserId];
   if (!user) {
-    return { error: "authUserId is invalid"};
+    return { error: "authUserId is invalid "};
   }
 
   //get array of channels that the user is a member of:
   const channels = [];
   for (const channelId in data.channels) {
     const channel = data.channels[channelId];
-    if (channel.members.includes(authUserId)) {
+    if (channel.allMembers.includes(authUserId) || channel.ownerMembers.includes(authUserId)) {
       channels.push(channel);
     }
   }
