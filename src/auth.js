@@ -5,8 +5,9 @@ import validator from 'validator';
 function authRegisterV1(email, password, nameFirst, nameLast) {
     const users = {};
     const data = getData()
-    const authUserId =  fromString(email + nameFirst + nameLast)
-
+    //const authUserId =  fromString(email + nameFirst + nameLast)
+    const authUserId = data.users.length
+    //console.log(authUserId)
 
     if(validator.isEmail(email) == false){
         return{error:"error"}
@@ -64,7 +65,7 @@ function authLoginV1(email, password) {
         if (data.users[user].email ==  email){
             //console.log("Here");
             if(data.users[user].password == password){
-                console.log(data.users[user].authUserId +  " - result");
+                //console.log(data.users[user].authUserId +  " - result");
                 return data.users[user].authUserId;
             } 
             else{
@@ -90,6 +91,3 @@ function formatAlias(handleLower, currentMaxNum){
 } 
 
 export {authRegisterV1, authLoginV1};
-
-authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
-authLoginV1("example@gmail.com", "abc123")
