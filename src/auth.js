@@ -91,5 +91,4 @@ function formatAlias(handleLower, currentMaxNum){
 
 export {authRegisterV1, authLoginV1};
 
-authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
-authLoginV1("example@gmail.com", "abc123")
+
