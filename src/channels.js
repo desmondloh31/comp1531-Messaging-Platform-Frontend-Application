@@ -1,7 +1,7 @@
 
 import {authRegisterV1, authLoginV1} from './auth'
 import {getData, setData} from './dataStore';
-//import { uuid } from 'uuidv4';
+import { fromString } from 'uuidv4';
 
 /**
  * @module channels
@@ -15,15 +15,18 @@ import {getData, setData} from './dataStore';
  */
 
 //parameters and returrn
-function channelsListAllV1(authUserId) {
-    return {
-         channels: [
-          {
-            channelId: 1,
-            name: 'My Channel',
-          }
-        ],
-      }
+export function channelsListAllV1(authUserId) {
+  const data = getData();
+  const user = data.users[authUserId];
+  if (!user) {
+    return { error: "authUserId is invalid"}; 
+  }
+  else{
+    //setData(data.channels)
+
+    return data.channels
+  }
+
 }
 
 //creating the channel from the uuid and authUserId
@@ -44,10 +47,11 @@ function channelsCreateV1(authUserId, name, isPublic) {
 
   //create a new channel object:
   const newChannel = {
-    channelId: uuid(),
+    channelId: fromString(),
     name: name,
     isPublic: isPublic,
-    members: [authUserId],
+    ownerIds: [authUserId],
+    memberIds: [authUserId],
   };
 
   //add a new channel to the data store:
@@ -58,7 +62,8 @@ function channelsCreateV1(authUserId, name, isPublic) {
     channelId: newChannel.channelId,
     name: newChannel.name,
     isPublic: newChannel.isPublic,
-    members: newChannel.members,
+    ownerIds: newChannel.ownerIds,
+    memberIds: newChannel.memberIds,
   };
 
 
