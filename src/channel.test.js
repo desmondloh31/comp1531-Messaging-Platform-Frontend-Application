@@ -9,16 +9,16 @@ describe ("Testing channelDetails", () => {
         channelId: 'channel1',
         name: 'channel1a',
         isPublic: true,
-        memberIds: [authUserId],
-        ownerIds: [ownerMemberId],
+        allMembers: [authUserId],
+        ownerMembers: [ownerMemberId],
     };
 
     const channel2 = {
         channelId: 'channel2',
         name: 'channel2a',
         isPublic: false,
-        memberIds: ['otherUser'],
-        ownerIds: [ownerMemberId],
+        allMembers: ['otherUser'],
+        ownerMembers: [ownerMemberId],
     };
 
     beforeEach (() => {

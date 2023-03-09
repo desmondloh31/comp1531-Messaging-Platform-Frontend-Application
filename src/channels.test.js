@@ -1,6 +1,5 @@
 import {channelsCreateV1, channelsListV1, channelsListAllV1} from './channels.js';
 import {getData, setData } from './dataStore.js';
-//import { uuid } from 'uuidv4';
 
 //testing channelsCreateV1:
 describe ("Testing channelsCreateV1", () => {
@@ -107,14 +106,16 @@ describe ("Testing channelsListAllV1", () => {
         channelId: 'channel1',
         name: 'channel1',
         isPublic: true,
-        members: [authUserId],
+        ownerMembers: [authUserId],
+        allMembers: [authUserId],
     };
 
     const channel2 = {
         channelId: 'channel2',
         name: 'channel2',
         isPublic: false,
-        members: ['otherUser'],
+        ownerMembers: ['otherUser'],
+        allMembers: ['otherUser'],
     };
 
     beforeEach (() => {
