@@ -1,30 +1,8 @@
 // YOU SHOULD MODIFY THIS OBJECT BELOW
 let data = {
-  "users":[{
-    uId: {},
-      nameFirst: {},
-      nameLast: {},
-      email: {},
-      handleStr: {},
-      password: {},
-   }],
-   "channels": [
-    {
-      channelId: {},
-      name: {},
-      isPublic: {},
-      ownerIds: [],
-      memberIds: [],
-      messages: [
-        {
-          messageId: {},
-          senderId: {},
-          message: {},
-          timeSent: {},
-        },
-      ],
-    },
-]
+  users: [],
+  channels: []
+
 };
 
 // YOU SHOULDNT NEED TO MODIFY THE FUNCTIONS BELOW IN ITERATION 1
