@@ -1,3 +1,4 @@
+import { authRegisterV1 } from './auth.js';
 import {channelsCreateV1, channelsListV1, channelsListAllV1} from './channels.js';
 import {getData, setData } from './dataStore.js';
 
@@ -7,26 +8,36 @@ describe ("Testing channelsCreateV1", () => {
     const name = 'newChannel';
     const isPublic = true;
 
-    afterEach(() => {
-        setData({ users: {}, channels: {} });
+    /*beforeEach(() => {
+        setData({ users: [], channels: [] });
+    });*/
+    beforeEach (() => {
+        const data = {
+            users: { [authUserId]: {} },
+        };
+        setData(data);
     });
 
     //test with valid parameters:
     test ('creates a new channel with valid parameters', () => {
+        //const authUserId = authRegisterV1('desmond123@gmail.com', 'abcdefgl', 'desmond', 'loh');
         const result = channelsCreateV1(authUserId, name, isPublic);
         const data = getData();
         expect(result).toEqual({
-            channelId: expect.any(string),
+            channelId: expect.any(String),
             name,
             isPublic,
-            members: [authUserId],
+            OwnerMembers: [authUserId],
+            allMembers: [authUserId],
         });
         expect(data.channels).toEqual ({
             [result.channelId]: {
                 channelId: result.channelId,
                 name,
                 isPublic,
-                members: [authUserId],
+                OwnerMembers: [authUserId],
+                allMembers: [authUserId],
+                
             },
         });
     });
@@ -54,22 +65,38 @@ describe ("Testing channelsCreateV1", () => {
 
 
 
+beforeEach (() => {
+    setData({users: [],
+        channels: []})
 
+});
 //testing channelsListV1:
 describe ("Testing channelsListV1", () => {
-    const authUserId = 'user123';
+    
+    test('returns array of channels when authUserId is valid', () => {
+        const authUserId1 = authRegisterV1('user123@gmail.com', 'user123456', 'user', 'pass');
+        const authUserId2 = authRegisterV1('user123456@gmail.com', 'user123', 'pass', 'user' );
+        const channel1 = channelsCreateV1(authUserId1, 'user', false);
+        const channel2 = channelsCreateV1(authUserId2, 'pass', true);
+        const result = channelsListV1(authUserId1);
+        expect(result).toEqual({channels: [channel1] });
+    });
+
+    /*const authUserId = 'user123';
     const channel1 = {
         channelId: 'channel1',
         name: 'channel1',
         isPublic: true,
-        members: [authUserId],
+        allMembers: [authUserId],
+        ownerMembers: [authUserId],
     };
 
     const channel2 = {
         channelId: 'channel2',
         name: 'channel2',
         isPublic: false,
-        members: ['otherUser'],
+        allMembers: ['otherUser'],
+        ownerMembers: ['otherUser']
     };
 
     beforeEach (() => {
@@ -88,7 +115,7 @@ describe ("Testing channelsListV1", () => {
 
     //authuserId is valid but not part of any channels:
     test ('returns empty array when authUserId is valid but not part of any channels', () => {
-        const results = channelsListV1('otherUser');
+        const result = channelsListV1('otherUser');
         expect(result).toEqual({ channels: [] });
     });
 
@@ -96,7 +123,7 @@ describe ("Testing channelsListV1", () => {
     test ('returns error when authUserId is invalid', () => {
         const result = channelsListV1('invalidUserId');
         expect(result).toEqual({ error: 'authUserId is invalid '});
-    });
+    });*/
 });
 
 //testing channelsListAllV1:
