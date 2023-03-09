@@ -44,11 +44,11 @@ describe ("Testing channelDetails", () => {
     });
     test ('testing if channelId is not valid', () => {
         const result = channelDetailsV1(authUserId,'invalidChannelName');
-        expect(result).toEqual({error: 'Invalid channel Name'});
+        expect(result).toEqual({error: 'User is not a part of the channel or Invalid channel Name'});
     });
     test ('authUser is not a part of the channel', () => {
         const result = channelDetailsV1(authUserId,'channel2');
-        expect(result).toEqual({error: 'User is not a part of the channel'});
+        expect(result).toEqual({error: 'User is not a part of the channel or Invalid channel Name'});
     });
     test ('authUser is a part of the channel', () => {
         const result = channelDetailsV1(authUserId,'channel1');
