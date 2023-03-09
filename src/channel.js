@@ -14,7 +14,7 @@ export function channelDetailsV1(authUserId, channelId){
   //Determine whether the channelId is valid & user is a part of the channel
   for (const currentChannelId in data.channels) {
     const channel = data.channels[currentChannelId];
-    if(currentChannelId == channelId && (channel.ownerIds.includes(authUserId)||channel.memberIds.includes(authUserId))){
+    if(currentChannelId == channelId && (channel.ownerMembers.includes(authUserId)||channel.allMembers.includes(authUserId))){
       return  channel; 
     }
   }
