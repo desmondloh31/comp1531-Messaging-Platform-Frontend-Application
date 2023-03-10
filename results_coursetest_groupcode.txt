@@ -1,0 +1,580 @@
+npm verb cli /import/kamen/3/cs1531/.nvm/versions/node/v18.14.2/bin/node /import/kamen/3/cs1531/.nvm/versions/node/v18.14.2/bin/npm
+npm info using npm@9.6.1
+npm info using node@v18.14.2
+npm verb title npm run test course_tests/
+npm verb argv "run" "test" "--loglevel" "verbose" "course_tests/"
+npm verb logfile logs-max:10 dir:/import/kamen/3/cs1531/.npm/_logs/2023-03-10T12_38_13_593Z-
+npm verb logfile /import/kamen/3/cs1531/.npm/_logs/2023-03-10T12_38_13_593Z-debug-0.log
+
+> test
+> jest course_tests/
+
+npm http fetch GET 200 https://registry.npmjs.org/npm 32ms (cache hit)
+PASS course_tests/tests/auth_tests/authLogin.test.js (6.191 s)
+FAIL course_tests/tests/channels_tests/channelsListall.test.js (6.464 s)
+  ● Test when no channels
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: []
+    Received: undefined
+
+      22 |   uIdBuzz = authRegisterV1('buzz.lightyear@starcommand.com', 'qazwsx@@', 'buzz', 'lightyear').authUserId;
+      23 |   const res = channelsListAllV1(uIdBuzz).channels;
+    > 24 |   expect(res).toStrictEqual([]);
+         |               ^
+      25 | });
+      26 |
+      27 | test('Test when one channel exists private', () => {
+
+      at Object.toStrictEqual (course_tests/tests/channels_tests/channelsListall.test.js:24:15)
+
+  ● Test when one channel exists private
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: ArrayContaining [ObjectContaining {"channelId": undefined, "name": "zergs lair"}]
+    Received: undefined
+
+      28 |   const res = channelsListAllV1(uIdWoody).channels;
+      29 |   const channelDetail = { channelId: chIdZerg, name: 'zergs lair' };
+    > 30 |   expect(res).toEqual(
+         |               ^
+      31 |     expect.arrayContaining([
+      32 |       expect.objectContaining(channelDetail)
+      33 |     ])
+
+      at Object.toEqual (course_tests/tests/channels_tests/channelsListall.test.js:30:15)
+
+  ● Test when one channel exists public
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: ArrayContaining [ObjectContaining {"channelId": undefined, "name": "woodys toybox"}]
+    Received: undefined
+
+      38 |   const res = channelsListAllV1(uIdZerg).channels;
+      39 |   const channelDetail = { channelId: chIdWoody, name: 'woodys toybox' };
+    > 40 |   expect(res).toEqual(
+         |               ^
+      41 |     expect.arrayContaining([
+      42 |       expect.objectContaining(channelDetail)
+      43 |     ])
+
+      at Object.toEqual (course_tests/tests/channels_tests/channelsListall.test.js:40:15)
+
+  ● Test when multiple channels exist
+
+    TypeError: Cannot read properties of undefined (reading 'sort')
+
+      52 |   const res = channelsListAllV1(uIdBuzz).channels;
+      53 |   // sort according to channelId values
+    > 54 |   res.sort((a, b) => (a.channelId - b.channelId));
+         |       ^
+      55 |   expectedChannels.sort((a, b) => (a.channelId - b.channelId));
+      56 |   expect(res).toStrictEqual(expectedChannels);
+      57 | });
+
+      at Object.sort (course_tests/tests/channels_tests/channelsListall.test.js:54:7)
+
+FAIL course_tests/tests/channel_tests/channelInvite.test.js (6.195 s)
+  ● Test inviting global owner 1
+
+    TypeError: Cannot read properties of undefined (reading 'map')
+
+      31 |   const channelDetail = channelDetailsV1(uIdBuzz, chIdWoody);
+      32 |   // buzz should be in all members, not owners
+    > 33 |   const owners = channelDetail.ownerMembers.map(mem => mem.uId);
+         |                                             ^
+      34 |   const allmems = channelDetail.allMembers.map(mem => mem.uId);
+      35 |   expect(owners).toEqual(expect.not.arrayContaining([uIdBuzz]));
+      36 |   expect(allmems).toContain(uIdBuzz);
+
+      at Object.map (course_tests/tests/channel_tests/channelInvite.test.js:33:45)
+
+  ● Test inviting global owner 2
+
+    TypeError: Cannot read properties of undefined (reading 'map')
+
+      42 |   const channelDetail = channelDetailsV1(uIdWoody, chIdZerg);
+      43 |   // buzz should be in all members, not owners
+    > 44 |   const owners = channelDetail.ownerMembers.map(mem => mem.uId);
+         |                                             ^
+      45 |   const allmems = channelDetail.allMembers.map(mem => mem.uId);
+      46 |   expect(owners).toEqual(expect.not.arrayContaining([uIdWoody]));
+      47 |   expect(allmems).toContain(uIdWoody);
+
+      at Object.map (course_tests/tests/channel_tests/channelInvite.test.js:44:45)
+
+FAIL course_tests/tests/channel_tests/channelMessages.test.js (6.447 s)
+  ● Test successful no messages
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: undefined
+
+      18 | test('Test successful no messages', () => {
+      19 |   const res = channelMessagesV1(uIdWoody, chIdWoody, 0);
+    > 20 |   expect(res.start).toBe(0);
+         |                     ^
+      21 |   expect(res.end).toBe(-1);
+      22 |   expect(res.messages).toStrictEqual([]);
+      23 | });
+
+      at Object.toBe (course_tests/tests/channel_tests/channelMessages.test.js:20:21)
+
+FAIL course_tests/tests/channels_tests/channelsList.test.js (6.5 s)
+  ● Test member in no channels
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: []
+    Received: undefined
+
+      16 | test('Test member in no channels', () => {
+      17 |   const res = channelsListV1(uId).channels;
+    > 18 |   expect(res).toStrictEqual([]);
+         |               ^
+      19 | });
+      20 |
+      21 | describe('Test channel owner in channel', () => {
+
+      at Object.toStrictEqual (course_tests/tests/channels_tests/channelsList.test.js:18:15)
+
+  ● Test channel owner in channel › Create channel then list details
+
+    expect(received).toContainEqual(expected) // deep equality
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      25 |       const chId = channelsCreateV1(uId, 'andy', pub).channelId;
+      26 |       const deets = { channelId: chId, name: 'andy' };
+    > 27 |       expect(channelsListV1(uId).channels).toContainEqual(deets);
+         |                                            ^
+      28 |     }
+      29 |   );
+      30 | });
+
+      at toContainEqual (course_tests/tests/channels_tests/channelsList.test.js:27:44)
+
+  ● Test channel owner in channel › Create channel then list details
+
+    expect(received).toContainEqual(expected) // deep equality
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      25 |       const chId = channelsCreateV1(uId, 'andy', pub).channelId;
+      26 |       const deets = { channelId: chId, name: 'andy' };
+    > 27 |       expect(channelsListV1(uId).channels).toContainEqual(deets);
+         |                                            ^
+      28 |     }
+      29 |   );
+      30 | });
+
+      at toContainEqual (course_tests/tests/channels_tests/channelsList.test.js:27:44)
+
+  ● Test channel member in channel › Create channel then list details
+
+    expect(received).toContainEqual(expected) // deep equality
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      37 |       channelInviteV1(uId, chId, uIdWoody);
+      38 |       const deets = { channelId: chId, name: 'andy' };
+    > 39 |       expect(channelsListV1(uId).channels).toContainEqual(deets);
+         |                                            ^
+      40 |     }
+      41 |   );
+      42 | });
+
+      at toContainEqual (course_tests/tests/channels_tests/channelsList.test.js:39:44)
+
+  ● Test channel member in channel › Create channel then list details
+
+    expect(received).toContainEqual(expected) // deep equality
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      37 |       channelInviteV1(uId, chId, uIdWoody);
+      38 |       const deets = { channelId: chId, name: 'andy' };
+    > 39 |       expect(channelsListV1(uId).channels).toContainEqual(deets);
+         |                                            ^
+      40 |     }
+      41 |   );
+      42 | });
+
+      at toContainEqual (course_tests/tests/channels_tests/channelsList.test.js:39:44)
+
+  ● Test user in multiple channels › Create channel then list details
+
+    TypeError: Cannot read properties of undefined (reading 'sort')
+
+      51 |       const expectedDeets = [{ channelId: chId, name: 'andy' }, { channelId: chId2, name: 'ZERG' }];
+      52 |       const deets = channelsListV1(uId).channels;
+    > 53 |       deets.sort((a, b) => (a.channelId - b.channelId));
+         |             ^
+      54 |       expectedDeets.sort((a, b) => (a.channelId - b.channelId));
+      55 |       expect(expectedDeets).toStrictEqual(deets);
+      56 |     }
+
+      at sort (course_tests/tests/channels_tests/channelsList.test.js:53:13)
+
+  ● Test user in multiple channels › Create channel then list details
+
+    TypeError: Cannot read properties of undefined (reading 'sort')
+
+      51 |       const expectedDeets = [{ channelId: chId, name: 'andy' }, { channelId: chId2, name: 'ZERG' }];
+      52 |       const deets = channelsListV1(uId).channels;
+    > 53 |       deets.sort((a, b) => (a.channelId - b.channelId));
+         |             ^
+      54 |       expectedDeets.sort((a, b) => (a.channelId - b.channelId));
+      55 |       expect(expectedDeets).toStrictEqual(deets);
+      56 |     }
+
+      at sort (course_tests/tests/channels_tests/channelsList.test.js:53:13)
+
+PASS course_tests/tests/other_tests/clear.test.js (6.301 s)
+FAIL course_tests/tests/channel_tests/channelJoin.test.js (6.376 s)
+  ● Test global owner can join private channel
+
+    TypeError: Cannot read properties of undefined (reading 'map')
+
+      22 |   channelJoinV1(uIdWoody, chIdZerg);
+      23 |   const chDeets = channelDetailsV1(uIdWoody, chIdZerg);
+    > 24 |   const owners = chDeets.ownerMembers.map(mem => mem.uId);
+         |                                       ^
+      25 |   const allmems = chDeets.allMembers.map(mem => mem.uId);
+      26 |   expect(owners).toEqual(expect.not.arrayContaining([uIdWoody]));
+      27 |   expect(allmems).toContain(uIdWoody);
+
+      at Object.map (course_tests/tests/channel_tests/channelJoin.test.js:24:39)
+
+  ● Test global owner can join public channel
+
+    TypeError: Cannot read properties of undefined (reading 'map')
+
+      31 |   channelJoinV1(uIdBuzz, chIdWoody);
+      32 |   const chDeets = channelDetailsV1(uIdBuzz, chIdWoody);
+    > 33 |   const owners = chDeets.ownerMembers.map(mem => mem.uId);
+         |                                       ^
+      34 |   const allmems = chDeets.allMembers.map(mem => mem.uId);
+      35 |   expect(owners).toEqual(expect.not.arrayContaining([uIdBuzz]));
+      36 |   expect(allmems).toContain(uIdBuzz);
+
+      at Object.map (course_tests/tests/channel_tests/channelJoin.test.js:33:39)
+
+FAIL course_tests/tests/channel_tests/channelDetails.test.js (6.372 s)
+  ● Test handles generated correctly › Should behave correctly for duplicate names
+
+    expect(received).toContainEqual(expected) // deep equality
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      41 |       const expected1 = { uId: uId1, email: email1, nameFirst: first1, nameLast: last1, handleStr: handle1 };
+      42 |       const expected2 = { uId: uId2, email: email2, nameFirst: first2, nameLast: last2, handleStr: handle2 };
+    > 43 |       expect(chDeets.allMembers).toContainEqual(expected1);
+         |                                  ^
+      44 |       expect(chDeets.allMembers).toContainEqual(expected2);
+      45 |     }
+      46 |   );
+
+      at toContainEqual (course_tests/tests/channel_tests/channelDetails.test.js:43:34)
+
+  ● Test handles generated correctly › Should behave correctly for duplicate names
+
+    expect(received).toContainEqual(expected) // deep equality
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      41 |       const expected1 = { uId: uId1, email: email1, nameFirst: first1, nameLast: last1, handleStr: handle1 };
+      42 |       const expected2 = { uId: uId2, email: email2, nameFirst: first2, nameLast: last2, handleStr: handle2 };
+    > 43 |       expect(chDeets.allMembers).toContainEqual(expected1);
+         |                                  ^
+      44 |       expect(chDeets.allMembers).toContainEqual(expected2);
+      45 |     }
+      46 |   );
+
+      at toContainEqual (course_tests/tests/channel_tests/channelDetails.test.js:43:34)
+
+  ● Test handles generated correctly › Should behave correctly for duplicate names
+
+    expect(received).toContainEqual(expected) // deep equality
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      41 |       const expected1 = { uId: uId1, email: email1, nameFirst: first1, nameLast: last1, handleStr: handle1 };
+      42 |       const expected2 = { uId: uId2, email: email2, nameFirst: first2, nameLast: last2, handleStr: handle2 };
+    > 43 |       expect(chDeets.allMembers).toContainEqual(expected1);
+         |                                  ^
+      44 |       expect(chDeets.allMembers).toContainEqual(expected2);
+      45 |     }
+      46 |   );
+
+      at toContainEqual (course_tests/tests/channel_tests/channelDetails.test.js:43:34)
+
+  ● Test handles generated correctly › Should behave correctly for duplicate names
+
+    expect(received).toContainEqual(expected) // deep equality
+
+    Matcher error: received value must not be null nor undefined
+
+    Received has value: undefined
+
+      41 |       const expected1 = { uId: uId1, email: email1, nameFirst: first1, nameLast: last1, handleStr: handle1 };
+      42 |       const expected2 = { uId: uId2, email: email2, nameFirst: first2, nameLast: last2, handleStr: handle2 };
+    > 43 |       expect(chDeets.allMembers).toContainEqual(expected1);
+         |                                  ^
+      44 |       expect(chDeets.allMembers).toContainEqual(expected2);
+      45 |     }
+      46 |   );
+
+      at toContainEqual (course_tests/tests/channel_tests/channelDetails.test.js:43:34)
+
+FAIL course_tests/tests/channels_tests/channelsCreate.test.js (6.459 s)
+  ● Test create channel successful › Created channel info in channel details
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "name"
+    Received: undefined
+
+      19 |       const chId = channelsCreateV1(uId, channelName, true).channelId;
+      20 |       const deets = channelDetailsV1(uId, chId);
+    > 21 |       expect(deets.name).toBe(channelName);
+         |                          ^
+      22 |       // check in owner and all members lists
+      23 |       const owners = deets.ownerMembers.map(mem => mem.uId);
+      24 |       const allmems = deets.allMembers.map(mem => mem.uId);
+
+      at toBe (course_tests/tests/channels_tests/channelsCreate.test.js:21:26)
+
+  ● Test create channel successful › Created channel info in channel details
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "andys room"
+    Received: undefined
+
+      19 |       const chId = channelsCreateV1(uId, channelName, true).channelId;
+      20 |       const deets = channelDetailsV1(uId, chId);
+    > 21 |       expect(deets.name).toBe(channelName);
+         |                          ^
+      22 |       // check in owner and all members lists
+      23 |       const owners = deets.ownerMembers.map(mem => mem.uId);
+      24 |       const allmems = deets.allMembers.map(mem => mem.uId);
+
+      at toBe (course_tests/tests/channels_tests/channelsCreate.test.js:21:26)
+
+FAIL course_tests/tests/user_tests/userProfile.test.js (6.979 s)
+  ● Test valid user profile
+
+    ReferenceError: getData is not defined
+
+      1 | export function userProfileV1(authUserID, uId) {
+      2 |
+    > 3 |     const data = getData();
+        |                  ^
+      4 |     
+      5 |     const user = data.users.find(i => i.authUserId == authUserId);
+      6 |     const guest = data.users.find(i => i.authUserId == uId);
+
+      at getData (src/users.js:3:18)
+      at Object.<anonymous> (course_tests/tests/user_tests/userProfile.test.js:17:28)
+
+  ● Test invalid uID user profile
+
+    ReferenceError: getData is not defined
+
+      1 | export function userProfileV1(authUserID, uId) {
+      2 |
+    > 3 |     const data = getData();
+        |                  ^
+      4 |     
+      5 |     const user = data.users.find(i => i.authUserId == authUserId);
+      6 |     const guest = data.users.find(i => i.authUserId == uId);
+
+      at getData (src/users.js:3:18)
+      at Object.<anonymous> (course_tests/tests/user_tests/userProfile.test.js:23:28)
+
+  ● Test invalid authUserId user profile
+
+    ReferenceError: getData is not defined
+
+      1 | export function userProfileV1(authUserID, uId) {
+      2 |
+    > 3 |     const data = getData();
+        |                  ^
+      4 |     
+      5 |     const user = data.users.find(i => i.authUserId == authUserId);
+      6 |     const guest = data.users.find(i => i.authUserId == uId);
+
+      at getData (src/users.js:3:18)
+      at Object.<anonymous> (course_tests/tests/user_tests/userProfile.test.js:29:28)
+
+FAIL course_tests/tests/auth_tests/authRegister.test.js (6.522 s)
+  ● Test duplicate email register
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 1
+
+      62 |   authRegisterV1('blah@email.com', 'password1', 'name-first-a', 'name-last-a');
+      63 |   const result = authRegisterV1('blah@email.com', 'password1', 'name-first-a', 'name-last-a');
+    > 64 |   expect(result).toStrictEqual({ error: expect.any(String) });
+         |                  ^
+      65 | });
+      66 |
+      67 | test('Test duplicate handles generated correctly', () => {
+
+      at Object.toStrictEqual (course_tests/tests/auth_tests/authRegister.test.js:64:18)
+
+  ● Test duplicate handles generated correctly
+
+    ReferenceError: getData is not defined
+
+      1 | export function userProfileV1(authUserID, uId) {
+      2 |
+    > 3 |     const data = getData();
+        |                  ^
+      4 |     
+      5 |     const user = data.users.find(i => i.authUserId == authUserId);
+      6 |     const guest = data.users.find(i => i.authUserId == uId);
+
+      at getData (src/users.js:3:18)
+      at Object.<anonymous> (course_tests/tests/auth_tests/authRegister.test.js:70:32)
+
+  ● Test successful case auth register
+
+    expect(received).toBeTruthy()
+
+    Received: false
+
+      76 |
+      77 | test('Test successful case auth register', () => {
+    > 78 |   expect(isValid(authRegisterV1(EMAIL, PASSWORD, FIRST, LAST))).toBeTruthy();
+         |                                                                 ^
+      79 | });
+      80 |
+      81 | test('Test a short password auth register', () => {
+
+      at Object.toBeTruthy (course_tests/tests/auth_tests/authRegister.test.js:78:65)
+
+  ● Test a short password auth register
+
+    expect(received).toBeTruthy()
+
+    Received: false
+
+      80 |
+      81 | test('Test a short password auth register', () => {
+    > 82 |   expect(isValid(authRegisterV1(EMAIL, 'a'.repeat(6), FIRST, LAST))).toBeTruthy();
+         |                                                                      ^
+      83 | });
+      84 |
+      85 | test('Test a long password auth register', () => {
+
+      at Object.toBeTruthy (course_tests/tests/auth_tests/authRegister.test.js:82:70)
+
+  ● Test a long password auth register
+
+    expect(received).toBeTruthy()
+
+    Received: false
+
+      84 |
+      85 | test('Test a long password auth register', () => {
+    > 86 |   expect(isValid(authRegisterV1(EMAIL, 'a'.repeat(64), FIRST, LAST))).toBeTruthy();
+         |                                                                       ^
+      87 | });
+      88 |
+      89 | test('Test short names auth register', () => {
+
+      at Object.toBeTruthy (course_tests/tests/auth_tests/authRegister.test.js:86:71)
+
+  ● Test short names auth register
+
+    expect(received).toBeTruthy()
+
+    Received: false
+
+      88 |
+      89 | test('Test short names auth register', () => {
+    > 90 |   expect(isValid(authRegisterV1(EMAIL, PASSWORD, 'F', 'L'))).toBeTruthy();
+         |                                                              ^
+      91 | });
+      92 |
+      93 | test('Test long names auth register', () => {
+
+      at Object.toBeTruthy (course_tests/tests/auth_tests/authRegister.test.js:90:62)
+
+  ● Test long names auth register
+
+    expect(received).toBeTruthy()
+
+    Received: false
+
+      92 |
+      93 | test('Test long names auth register', () => {
+    > 94 |   expect(isValid(authRegisterV1(EMAIL, PASSWORD, 'F'.repeat(50), 'L'.repeat(50)))).toBeTruthy();
+         |                                                                                    ^
+      95 | });
+      96 |
+      97 | test('Test same password auth register', () => {
+
+      at Object.toBeTruthy (course_tests/tests/auth_tests/authRegister.test.js:94:84)
+
+  ● Test same password auth register
+
+    expect(received).toBeTruthy()
+
+    Received: false
+
+       96 |
+       97 | test('Test same password auth register', () => {
+    >  98 |   expect(isValid(authRegisterV1(EMAIL, PASSWORD, FIRST, LAST))).toBeTruthy();
+          |                                                                 ^
+       99 |   expect(isValid(authRegisterV1('second.email@domain.com', PASSWORD, 'F2', 'L2'))).toBeTruthy();
+      100 | });
+      101 |
+
+      at Object.toBeTruthy (course_tests/tests/auth_tests/authRegister.test.js:98:65)
+
+  ● Test same name auth register
+
+    expect(received).toBeTruthy()
+
+    Received: false
+
+      101 |
+      102 | test('Test same name auth register', () => {
+    > 103 |   expect(isValid(authRegisterV1(EMAIL, PASSWORD, FIRST, LAST))).toBeTruthy();
+          |                                                                 ^
+      104 |   expect(isValid(authRegisterV1('second.email@domain.com', PASSWORD, FIRST, LAST))).toBeTruthy();
+      105 | });
+      106 |
+
+      at Object.toBeTruthy (course_tests/tests/auth_tests/authRegister.test.js:103:65)
+
+Test Suites: 9 failed, 2 passed, 11 total
+Tests:       34 failed, 28 passed, 62 total
+Snapshots:   0 total
+Time:        9.403 s
+Ran all test suites matching /course_tests\//i.
+npm verb exit 1
+npm verb code 1

@@ -1,0 +1,24 @@
+npm verb cli /import/kamen/3/cs1531/.nvm/versions/node/v18.14.2/bin/node /import/kamen/3/cs1531/.nvm/versions/node/v18.14.2/bin/npm
+npm info using npm@9.6.1
+npm info using node@v18.14.2
+npm verb title npm run test
+npm verb argv "run" "test" "--loglevel" "verbose"
+npm verb logfile logs-max:10 dir:/import/kamen/3/cs1531/.npm/_logs/2023-03-10T12_38_06_262Z-
+npm verb logfile /import/kamen/3/cs1531/.npm/_logs/2023-03-10T12_38_06_262Z-debug-0.log
+
+> test
+> jest
+
+npm http fetch GET 200 https://registry.npmjs.org/npm 33ms (cache hit)
+PASS src/echo.test.js
+PASS src/channels.test.js
+PASS src/authTest.test.js
+PASS src/channel.test.js
+
+Test Suites: 4 passed, 4 total
+Tests:       38 passed, 38 total
+Snapshots:   0 total
+Time:        4.196 s, estimated 5 s
+Ran all test suites.
+npm verb exit 0
+npm info ok 
