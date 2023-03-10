@@ -62,7 +62,7 @@ function authLoginV1(email, password) {
         //console.log(data.users[user].authUserId);
 
         if (data.users[user].email ==  email){
-            //console.log("Here");
+            //connsole.log("Here");
             if(data.users[user].password == password){
                 console.log(data.users[user].authUserId +  " - result");
                 return data.users[user].authUserId;
@@ -91,5 +91,5 @@ function formatAlias(handleLower, currentMaxNum){
 
 export {authRegisterV1, authLoginV1};
 
-authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
-authLoginV1("example@gmail.com", "abc123")
+//authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
+//authLoginV1("example@gmail.com", "abc123")
