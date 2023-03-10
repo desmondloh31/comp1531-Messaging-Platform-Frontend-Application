@@ -60,6 +60,7 @@ export function channelsCreateV1(authUser, name, isPublic) {
     isPublic: isPublic,
     ownerMembers: [authUser],
     allMembers: [authUser],
+    messages: [],
   });
   setData(data);
 
@@ -70,6 +71,7 @@ export function channelsCreateV1(authUser, name, isPublic) {
       isPublic: isPublic,
       ownerMembers: [authUser],
       allMembers: [authUser],
+      messages: [],
     
   };
 
