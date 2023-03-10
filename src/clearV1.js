@@ -1,6 +1,6 @@
 import { setData } from "./dataStore";
 
-function clearV1(){
+export function clearV1(){
     setData({users: [],
             channels: []})      
 }
