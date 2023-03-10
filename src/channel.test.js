@@ -5,29 +5,6 @@ import { clearV1 } from './clearV1.js';
 import { authRegisterV1 } from './auth.js';
 import { channelsCreateV1 } from './channels.js';
 
-<<<<<<< src/channel.test.js
-
-//testing channelDetails:
-describe ("Testing channelDetails", () => {
-    const authUserId = 'user123';
-    const ownerMemberId = 'owner123'
-    const channel1 = {
-        channelId: 'channel1',
-        name: 'channel1a',
-        isPublic: true,
-        allMembers: [authUserId],
-        ownerMembers: [ownerMemberId],
-    };
-
-    const channel2 = {
-        channelId: 'channel2',
-        name: 'channel2a',
-        isPublic: false,
-        allMembers: ['otherUser'],
-        ownerMembers: [ownerMemberId],
-    };
-=======
->>>>>>> src/channel.test.js
 
 
 
@@ -224,4 +201,4 @@ describe ("Testing channelJoinV1", () => {
 */
 
 
-
+
