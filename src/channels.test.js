@@ -23,7 +23,7 @@ describe ("Testing channelsCreateV1", () => {
 
 
         expect(result).toEqual({
-            channelId: expect.any(String),
+            channelId: 0,
             name,
             isPublic,
             ownerMembers: [authUserId],
