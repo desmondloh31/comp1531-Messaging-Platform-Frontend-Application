@@ -51,18 +51,11 @@ export function channelsCreateV1(authUser, name, isPublic) {
     return { error: "length of name is less than 1 or more than 20 characters"};
   }
 
-  //create a new channel object:
-  const newChannel = {
-    channelId: fromString(authUser + name),
-    name: name,
-    isPublic: isPublic,
-    ownerMembers: [authUser],
-    allMembers: [authUser],
-  };
-
+  let Id = data.channels.length;
+ 
   //add a new channel to the data store:
   data.channels.push({
-    channelId: fromString(authUser + name),
+    channelId: Id,
     name: name,
     isPublic: isPublic,
     ownerMembers: [authUser],
@@ -74,7 +67,7 @@ export function channelsCreateV1(authUser, name, isPublic) {
 
   return{
 
-      channelId: fromString(authUser + name),
+      channelId: Id,
       name: name,
       isPublic: isPublic,
       ownerMembers: [authUser],
