@@ -63,7 +63,6 @@ export function channelInviteV1( authUserId, channelId, uId ) {
   const guest = data.users.find(i => i.authUserId == uId);
 
 
-
   if (!user) {
     return { error: "authUserId is invalid"}; 
   }else if(!channel){
