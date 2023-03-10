@@ -58,12 +58,14 @@ export function channelsCreateV1(authUserId, name, isPublic) {
   data.channels[newChannel.channelId] = newChannel;
   setData(data);
 
+
+
   return {
-    /*channelId: newChannel.channelId,
-    name: newChannel.name,
-    isPublic: newChannel.isPublic,
-    ownerMembers: newChannel.ownerMembers,    
-    allMembers: newChannel.allMembers,*/
+    // channelId: newChannel.channelId,
+    // name: newChannel.name,
+    // isPublic: newChannel.isPublic,
+    // ownerMembers: newChannel.ownerMembers,    
+    // allMembers: newChannel.allMembers,
     newChannel,
   };
 

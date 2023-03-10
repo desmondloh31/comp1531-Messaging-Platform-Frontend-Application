@@ -1,5 +1,8 @@
 import {channelDetailsV1, channelMessagesV1, channelInviteV1,channelJoinV1} from './channel.js';
 import {getData, setData } from './dataStore.js';
+import { clearV1 } from './clearV1.js';
+import { authRegisterV1 } from './auth.js';
+import { channelsCreateV1 } from './channels.js';
 
 //testing channelDetails:
 describe ("Testing channelDetails", () => {
@@ -37,6 +40,7 @@ describe ("Testing channelDetails", () => {
     test ('testing if authUserId is valid', () => {
         const result = channelDetailsV1(authUserId,'channel1');
         expect(result).toEqual(getData().channels.channel1);
+       
     });
     test ('testing if channelId is valid', () => {
         const result = channelDetailsV1(authUserId,'channel1');
@@ -55,4 +59,20 @@ describe ("Testing channelDetails", () => {
         expect(result).toEqual(getData().channels.channel1);
     });
 
+});
+
+describe ("Testing channelDetails Final Test batch", () => {
+    beforeEach (() => {
+        clearV1();
+    });
+    test ('testing if authUserId is not valid', () => {
+        const result = channelDetailsV1('asdas','channel1');
+        expect(result).toEqual({error: "authUserId is invalid"});
+    });
+    test ('testing if authUserId is valid', () => {
+        const userID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith");
+        const channel1 = channelsCreateV1(userID,'channel1', false);
+        const result = channelDetailsV1(userID,'channel1');
+        expect(result).toEqual(channel1);
+    });
 });
