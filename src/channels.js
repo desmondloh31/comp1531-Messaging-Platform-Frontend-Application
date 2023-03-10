@@ -30,13 +30,19 @@ export function channelsListAllV1(authUserId) {
 }
 
 //creating the channel from the uuid and authUserId
-export function channelsCreateV1(authUserId, name, isPublic) {
+export function channelsCreateV1(authUser, name, isPublic) {
 
   const data = getData();
-
   //check if authUserId is valid:
-  const user = data.users[authUserId];
-  if (!user) {
+  let check = false;
+  for (let i = 0; i < data.users.length; i++) {
+    if (data.users[i].authUserId == authUser) {
+      check = true;
+  
+    }
+  }
+
+  if (check == false) {
     return { error: "authUserId is invalid"};
   }
 
@@ -45,55 +51,64 @@ export function channelsCreateV1(authUserId, name, isPublic) {
     return { error: "length of name is less than 1 or more than 20 characters"};
   }
 
-  //create a new channel object:
-  const newChannel = {
-    channelId: fromString(authUserId + name),
+  let Id = data.channels.length;
+ 
+  //add a new channel to the data store:
+  data.channels.push({
+    channelId: Id,
     name: name,
     isPublic: isPublic,
-    ownerMembers: [authUserId],
-    allMembers: [authUserId],
-  };
-
-  //add a new channel to the data store:
-  data.channels[newChannel.channelId] = newChannel;
+    ownerMembers: [authUser],
+    allMembers: [authUser],
+  });
   setData(data);
 
-  return {
-    /*channelId: newChannel.channelId,
-    name: newChannel.name,
-    isPublic: newChannel.isPublic,
-    ownerMembers: newChannel.ownerMembers,    
-    allMembers: newChannel.allMembers,*/
-    newChannel,
-  };
+  return{
 
+      channelId: Id,
+      name: name,
+      isPublic: isPublic,
+      ownerMembers: [authUser],
+      allMembers: [authUser],
+    
+  };
 
 
 }
 
 //Listing the given channels:
-export function channelsListV1(authUserId) {
+export function channelsListV1(authUser) {
 
   const data = getData();
+  let check = false;
+
 
   //check if authUserId is valid:
-  const user = data.users[authUserId];
-  if (!user) {
-    return { error: "authUserId is invalid "};
-  }
-
-  //get array of channels that the user is a member of:
-  const channels = [];
-  for (const channelId in data.channels) {
-    const channel = data.channels[channelId];
-    if (channel.allMembers.includes(authUserId) || channel.ownerMembers.includes(authUserId)) {
-      channels.push(channel);
+  for (let i = 0; i < data.users.length; i++) {
+    if (data.users[i].authUserId == authUser) {
+      check = true;
+  
     }
   }
-  
-  return { channels: channels};
-      
+
+  if (check == false) {
+    return { error: "authUserId is invalid"};
+  }
+
+  check = false;
+  const channels = [];
+  for (let i = 0; i < data.channels.length; i++) {
+    for (let j = 0; j < data.channels[i].allMembers.length; j++) {
+      if (data.channels[i].allMembers[j] == authUser) {
+        check = true;
+        channels.push(data.channels[i]);
+      }
+    }
+  }
+
+  return channels;
 }
+
     
 
 
