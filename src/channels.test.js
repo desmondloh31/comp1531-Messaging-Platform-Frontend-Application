@@ -15,7 +15,7 @@ describe ("Testing channelsCreateV1", () => {
     //test with valid parameters:
     test ('creates a new channel with valid parameters', () => {
         //const authUserId = authRegisterV1('desmond123@gmail.com', 'abcdefgl', 'desmond', 'loh');
-        const authUserId = fromString('user123@gmail.com'+ 'user' + 'pass');
+        const authUserId = 0
         const name = 'newChannel';
         const isPublic = true;
         const result = channelsCreateV1(authUserId, name, isPublic);
@@ -28,6 +28,7 @@ describe ("Testing channelsCreateV1", () => {
             isPublic,
             ownerMembers: [authUserId],
             allMembers: [authUserId],
+            messages: [],
         });
 
         expect(data.channels).toEqual ([{
@@ -37,6 +38,7 @@ describe ("Testing channelsCreateV1", () => {
                 isPublic,
                 ownerMembers: [authUserId],
                 allMembers: [authUserId],
+                messages: [],
                 
         },]
             );
@@ -44,7 +46,7 @@ describe ("Testing channelsCreateV1", () => {
 
     //user Id is invalid:
     test ('returns error when authUserId is invalid', () => {
-        const authUserId = fromString('user123@gmail.com'+ 'user' + 'pass');
+        const authUserId = 0
         const name = 'newChannel';
         const isPublic = true;
         const result = channelsCreateV1('invalidUserId', name, isPublic);
@@ -53,7 +55,7 @@ describe ("Testing channelsCreateV1", () => {
 
     //name is too short:
     test ('returns error when name is too short', () => {
-        const authUserId = fromString('user123@gmail.com'+ 'user' + 'pass');
+        const authUserId = 0
         const name = 'newChannel';
         const isPublic = true;
         const result = channelsCreateV1(authUserId, '', isPublic);
@@ -62,7 +64,7 @@ describe ("Testing channelsCreateV1", () => {
 
     //name is too long:
     test ('returns error when name is too long', () => {
-        const authUserId = fromString('user123@gmail.com'+ 'user' + 'pass');
+        const authUserId = 0
         const name = 'newChannel';
         const isPublic = true;
         const longName = 'abcdefghijklmnopqrstuvwxyz';
