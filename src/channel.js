@@ -24,18 +24,32 @@ export function channelDetailsV1(authUserId, channelId){
 }
 
 function channelMessagesV1( authUserId, channelId, start ) {
-    return {
-        messages: [
-            {
-              messageId: 1,
-              uId: 1,
-              message: 'Hello world',
-              timeSent: 1582426789,
-            }
-          ],
-          start: 0,
-          end: 50,
-    };
+  const data = getData();
+  const user = data.users.find(i => i.authUserId == authUserId);
+  const channel = data.channels.find(i => i.channelId == channelId);
+
+  if (!user) {
+    return { error: "authUserId is invalid"};
+  }else if (!channel) {
+    return { error: "channelId is invalid"};
+  }else if (channel.messages.length <= start) { 
+    return { error: "start is greater than the total number of messages in the channel"};
+  }else if (channel.AllMembers.find(authUserId) == undefined) {
+    return { error: "authUserId is not a member of the channel with ID channelId"};
+  }
+
+  let result = {
+    messages: [],
+    start: start,
+    end: start+50>channel.messages.length?start+50:-1,
+  }
+  for (let i = 0; i < channel.messages.length; i++) {
+    if (i < 50) {
+      result.messages.push(channel.messages[i]);
+    }
+  }
+
+  return result;
 }
 
 
