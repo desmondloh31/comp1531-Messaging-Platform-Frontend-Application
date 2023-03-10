@@ -116,10 +116,10 @@ describe('Error Checking in channel messages v1', () => {
 describe('Error Checking in channel invite v1', () => {
     beforeEach (() => {
         clearV1();
-        authRegister("test@gmail.com", "test", "test", "test");
-        authRegister("test1@gmail.com", "test1", "test1", "test1");
-        authRegister("test2@gmail.com", "test2", "test2", "test2");
-        authRegister("test3@gmail.com", "test3", "test3", "test3");
+        authRegisterV1("test@gmail.com", "test", "test", "test");
+        authRegisterV1("test1@gmail.com", "test1", "test1", "test1");
+        authRegisterV1("test2@gmail.com", "test2", "test2", "test2");
+        authRegisterV1("test3@gmail.com", "test3", "test3", "test3");
         channelsCreateV1(0, "test", true);
         channelJoinV1(1, 0);
     });
