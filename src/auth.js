@@ -1,5 +1,4 @@
 import {getData, setData} from './dataStore.js';
-import { fromString } from 'uuidv4';
 import validator from 'validator';
 
 function authRegisterV1(email, password, nameFirst, nameLast) {
@@ -49,7 +48,7 @@ function authRegisterV1(email, password, nameFirst, nameLast) {
 
     data.users.push(users)
     setData(data)
-    console.log(authUserId);
+    // console.log(authUserId);
     return authUserId
     
   }

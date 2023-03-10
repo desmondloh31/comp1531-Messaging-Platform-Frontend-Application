@@ -1,7 +1,6 @@
 
 import {authRegisterV1, authLoginV1} from './auth'
 import {getData, setData} from './dataStore';
-import { fromString} from 'uuidv4';
 
 /**
  * @module channels
@@ -63,6 +62,8 @@ export function channelsCreateV1(authUser, name, isPublic) {
     messages: [],
   });
   setData(data);
+
+
 
   return{
 
