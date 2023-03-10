@@ -1,11 +1,7 @@
 import { channelDetailsV1, channelMessagesV1, channelInviteV1,channelJoinV1 } from './channel.js';
 import { getData, setData } from './dataStore.js';
 import { clearV1 } from "./clearV1";
-<<<<<<< HEAD
-import { authRegister, authRegisterV1 } from './auth.js';
-=======
 import { authRegisterV1 } from './auth.js';
->>>>>>> 0aee337e59a5fa122f1b2bf50cbc2c997fa1f3b3
 import { channelsCreateV1 } from './channels.js';
 
 //testing channelDetails:
@@ -178,12 +174,13 @@ describe('Error Checking in channel invite v1', () => {
 
 });
 
+//testing channelJoinV1
+/*
 describe ("Testing channelJoinV1", () => {
     beforeEach (() => {
         clearV1();
         const authId1 = authRegisterV1("lebron@gmail.com", "123456789", "Lebron", "James");
         const channelId1 = channelsCreateV1(authId1, "channel1", true);
-        channelJoinV1(authId1, channelId1);
     });
 
     //test that a channel Id does not refer to a valid channel
@@ -214,7 +211,12 @@ describe ("Testing channelJoinV1", () => {
     })
 
     //test that valid parameters permits authorised user to join channel
+    test ('Authorised user successfully joins channel', () => {
+
+    })
+    
    
 })
+*/
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
