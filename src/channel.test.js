@@ -1,68 +1,48 @@
-import { channelDetailsV1, channelMessagesV1, channelInviteV1,channelJoinV1 } from './channel.js';
-import { getData, setData } from './dataStore.js';
-import { clearV1 } from "./clearV1";
+
+import {channelDetailsV1, channelMessagesV1, channelInviteV1,channelJoinV1} from './channel.js';
+import {getData, setData } from './dataStore.js';
+import { clearV1 } from './clearV1.js';
 import { authRegisterV1 } from './auth.js';
 import { channelsCreateV1 } from './channels.js';
 
-//testing channelDetails:
-describe ("Testing channelDetails", () => {
-    const authUserId = 'user123';
-    const ownerMemberId = 'owner123'
-    const channel1 = {
-        channelId: 'channel1',
-        name: 'channel1a',
-        isPublic: true,
-        allMembers: [authUserId],
-        ownerMembers: [ownerMemberId],
-    };
 
-    const channel2 = {
-        channelId: 'channel2',
-        name: 'channel2a',
-        isPublic: false,
-        allMembers: ['otherUser'],
-        ownerMembers: [ownerMemberId],
-    };
 
-    beforeEach (() => {
-        const data = {
-            users: { [authUserId]: {} },
-            channels: { [channel1.channelId]: channel1, [channel2.channelId]: channel2},
-            
-        };
-        setData(data);
-    });
-   
+
+describe ("Testing channelDetails Final Test batch", () => {
     test ('testing if authUserId is not valid', () => {
         const result = channelDetailsV1('asdas','channel1');
         expect(result).toEqual({error: "authUserId is invalid"});
     });
-    test ('testing if authUserId is valid', () => {
-        const result = channelDetailsV1(authUserId,'channel1');
-        expect(result).toEqual(getData().channels.channel1);
-    });
-    test ('testing if channelId is valid', () => {
-        const result = channelDetailsV1(authUserId,'channel1');
-        expect(result).toEqual(getData().channels.channel1);
+    test ('testing if authUserId and channelId are valid', () => {
+        clearV1();
+        let data = getData();
+        const userID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith");
+        const channel1 = channelsCreateV1(userID,'channel1', false);
+        const channel2 = channelsCreateV1(userID,'channel2', false);
+        const result = channelDetailsV1(userID,data.channels[1].channelId);
+        expect(result).toEqual(channel2);
     });
     test ('testing if channelId is not valid', () => {
-        const result = channelDetailsV1(authUserId,'invalidChannelName');
-        expect(result).toEqual({error: 'User is not a part of the channel or Invalid channel Name'});
+        clearV1();
+        let data = getData();
+        const userID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith");
+        const channel1 = channelsCreateV1(userID,'channel1', false);
+        const result = channelDetailsV1(userID,'invalidChannelName');
+        expect(result).toEqual({error: 'User is not a part of the channel or invalid channelId'});
     });
-    test ('authUser is not a part of the channel', () => {
-        const result = channelDetailsV1(authUserId,'channel2');
-        expect(result).toEqual({error: 'User is not a part of the channel or Invalid channel Name'});
+    test ('testing if channelId is valid but authuser is not a part of the channel', () => {
+        clearV1();
+        let data = getData();
+        const userID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith");
+        const userID1a = authRegisterV1("kavish@gmail.com", "abc12asd3", "Kavish", "Smith");
+        const channel1 = channelsCreateV1(userID,'channel1', false);
+        const result = channelDetailsV1(userID1a, data.channels[0].channelId);
+        expect(result).toEqual({error: 'User is not a part of the channel or invalid channelId'});
     });
-    test ('authUser is a part of the channel', () => {
-        const result = channelDetailsV1(authUserId,'channel1');
-        expect(result).toEqual(getData().channels.channel1);
-    });
-
 });
 
+
 //testing channelMessages:
-
-
 
 const ERROR = { error: expect.any(String) };
 
@@ -218,5 +198,6 @@ describe ("Testing channelJoinV1", () => {
    
 })
 */
+
 
 
