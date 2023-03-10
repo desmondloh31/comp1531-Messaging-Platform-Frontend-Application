@@ -1,6 +1,6 @@
 import { channelDetailsV1, channelMessagesV1, channelInviteV1,channelJoinV1 } from './channel.js';
 import { getData, setData } from './dataStore.js';
-import { clearV1 } from "./clearV1";
+import { clearV1 } from "./clearV1.js";
 import { authRegisterV1 } from './auth.js';
 import { channelsCreateV1 } from './channels.js';
 

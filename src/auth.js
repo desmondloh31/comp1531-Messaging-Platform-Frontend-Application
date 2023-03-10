@@ -5,7 +5,7 @@ function authRegisterV1(email, password, nameFirst, nameLast) {
     const users = {};
     const data = getData()
     //const authUserId =  fromString(email + nameFirst + nameLast)
-    const authUserId = data.users.length
+    const authUserId = data.users.length;
     //console.log(authUserId)
 
     if(validator.isEmail(email) == false){
@@ -49,7 +49,7 @@ function authRegisterV1(email, password, nameFirst, nameLast) {
     data.users.push(users)
     setData(data)
     // console.log(authUserId);
-    return authUserId
+    return { authUserId };
     
   }
 

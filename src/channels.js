@@ -1,6 +1,6 @@
 
-import {authRegisterV1, authLoginV1} from './auth'
-import {getData, setData} from './dataStore';
+import {authRegisterV1, authLoginV1} from './auth.js'
+import {getData, setData} from './dataStore.js';
 
 /**
  * @module channels

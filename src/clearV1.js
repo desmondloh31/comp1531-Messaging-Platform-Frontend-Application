@@ -1,4 +1,4 @@
-import { setData } from "./dataStore";
+import { setData } from "./dataStore.js";
 
 export function clearV1(){
     setData({users: [],
