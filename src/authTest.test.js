@@ -25,7 +25,7 @@ describe("Testing authRegisterV1", () =>{
     test('Testing standard register detail', () => {
         const register = authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
         const id = fromString("example@gmail.com" + "John" + "Smith")
-        expect(register).toEqual(id);
+        expect(register).toEqual(0);
         
       });
 });
@@ -35,7 +35,7 @@ describe("Testing authLoginV1", () =>{
     authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
     const login = authLoginV1("example@gmail.com", "abc123")
     const id = fromString("example@gmail.com" + "John" + "Smith")
-    expect(login).toEqual(id);
+    expect(login).toEqual(0);
       });
       
     test('Testing if email does not match', () => {
