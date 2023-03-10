@@ -112,6 +112,43 @@ export function channelInviteV1( authUserId, channelId, uId ) {
 
 
 export function channelJoinV1(authUserId, channelId){
-  return {}
+  const data = getData();
+  //check if authUserId is valid
+  
+  const user = data.users.find(i => i.authUserId == authUserId);
+  if (!user) {
+    return { error: "authUserId is invalid"}; 
+  }
+
+  //check if channelId refers to a valid channel
+  const channel = data.channels.find(i => i.channelId == channelId); 
+  if(!channel){
+    return { error: "channelId is invalid"};
+  }
+
+  //check if user is already a member of a channel
+  let check = false;
+  for (let i = 0; i < data.channels.length; i++) {
+    for (let j = 0; j < data.channels[i].allMembers.length; j++) {
+      if (data.channels[i].channelId == channelId) {
+        if (data.channels[i].allMembers[j] == authUserId) {
+          check = true;
+        }
+      }
+    }
+  }
+
+  if (check == true) {
+    return { error: "User is already a member of channel"}
+  };
+
+  //check if channel is private
+  if (channel.isPublic != true) {
+    return { error: "Channel is private" }
+  };
+
+
+  channel.allMembers.push(authUserId);
+  return {};
 }
 
