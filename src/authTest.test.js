@@ -1,4 +1,4 @@
-import {authRegisterV1, authLoginV1} from './auth'; 
+import {authRegisterV1, authLoginV1} from './auth.js'; 
 
 describe("Testing authRegisterV1", () =>{
     test('Testing an invalid email', () => {
