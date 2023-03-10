@@ -1,5 +1,5 @@
 import {getData, setData} from './dataStore.js';
-import { fromString } from 'uuidv4';
+
 import validator from 'validator';
 
 function authRegisterV1(email, password, nameFirst, nameLast) {

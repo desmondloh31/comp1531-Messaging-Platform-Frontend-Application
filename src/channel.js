@@ -25,25 +25,28 @@ export function channelDetailsV1(authUserId, channelId){
 
 }
 
-function channelMessagesV1( authUserId, channelId, start ) {
+export function channelMessagesV1( authUserId, channelId, start ) {
   const data = getData();
   const user = data.users.find(i => i.authUserId == authUserId);
   const channel = data.channels.find(i => i.channelId == channelId);
+
 
   if (!user) {
     return { error: "authUserId is invalid"};
   }else if (!channel) {
     return { error: "channelId is invalid"};
-  }else if (channel.messages.length <= start) { 
+  }else if (channel.messages.length < start ) { 
     return { error: "start is greater than the total number of messages in the channel"};
-  }else if (channel.AllMembers.find(authUserId) == undefined) {
+  }else if (channel.allMembers.find(i => i == authUserId) == undefined) {
     return { error: "authUserId is not a member of the channel with ID channelId"};
   }
+
+
 
   let result = {
     messages: [],
     start: start,
-    end: start+50>channel.messages.length?start+50:-1,
+    end: start+50<channel.messages.length?start+50:-1,
   }
   for (let i = 0; i < channel.messages.length; i++) {
     if (i < 50) {
@@ -55,17 +58,20 @@ function channelMessagesV1( authUserId, channelId, start ) {
 }
 
 
-function channelInviteV1( authUserId, channelId, uId ) {
+export function channelInviteV1( authUserId, channelId, uId ) {
   ///Determining whether authUserId is valid
   const data = getData();
   const user = data.users.find(i => i.authUserId == authUserId);
   const channel = data.channels.find(i => i.channelId == channelId);
-  const guest = data.users.find(i => i.uId == uId);
+  const guest = data.users.find(i => i.authUserId == uId);
+
+
+
   if (!user) {
     return { error: "authUserId is invalid"}; 
   }else if(!channel){
     return { error: "channelId is invalid"};
-  }else if(!guest){
+  }else if(!guest) {
     return { error: "uId is invalid"};
   }
 
@@ -84,7 +90,7 @@ function channelInviteV1( authUserId, channelId, uId ) {
     return { error: "User is already a member of channel"}
   };
 
-  let check = false;
+  check = false;
   for (let i = 0; i < data.channels.length; i++) {
     for (let j = 0; j < data.channels[i].allMembers.length; j++) {
       if (data.channels[i].channelId == channelId) {
@@ -108,8 +114,8 @@ function channelInviteV1( authUserId, channelId, uId ) {
 }
 
 
-function channelJoinV1(authUserId, channelId){
-    return{};
+export function channelJoinV1(authUserId, channelId){
+  return {}
 }
 
 export {channelJoinV1};
