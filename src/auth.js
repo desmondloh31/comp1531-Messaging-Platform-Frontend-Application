@@ -1,5 +1,4 @@
 import {getData, setData} from './dataStore.js';
-import { fromString } from 'uuidv4';
 import validator from 'validator';
 
 function authRegisterV1(email, password, nameFirst, nameLast) {
@@ -49,7 +48,7 @@ function authRegisterV1(email, password, nameFirst, nameLast) {
 
     data.users.push(users)
     setData(data)
-    console.log(authUserId);
+    // console.log(authUserId);
     return authUserId
     
   }
@@ -63,7 +62,7 @@ function authLoginV1(email, password) {
         //console.log(data.users[user].authUserId);
 
         if (data.users[user].email ==  email){
-            //console.log("Here");
+            //connsole.log("Here");
             if(data.users[user].password == password){
                 //console.log(data.users[user].authUserId +  " - result");
                 return data.users[user].authUserId;
@@ -91,3 +90,5 @@ function formatAlias(handleLower, currentMaxNum){
 } 
 
 export {authRegisterV1, authLoginV1};
+
+

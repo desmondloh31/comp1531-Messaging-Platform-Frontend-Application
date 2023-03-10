@@ -1,7 +1,6 @@
 
-import {authRegisterV1, authLoginV1} from './auth.js'
-import {getData, setData} from './dataStore.js';
-//import { uuid } from 'uuidv4';
+import {authRegisterV1, authLoginV1} from './auth'
+import {getData, setData} from './dataStore';
 
 /**
  * @module channels
@@ -30,13 +29,19 @@ export function channelsListAllV1(authUserId) {
 }
 
 //creating the channel from the uuid and authUserId
-function channelsCreateV1(authUserId, name, isPublic) {
+export function channelsCreateV1(authUser, name, isPublic) {
 
   const data = getData();
-
   //check if authUserId is valid:
-  const user = data.users[authUserId];
-  if (!user) {
+  let check = false;
+  for (let i = 0; i < data.users.length; i++) {
+    if (data.users[i].authUserId == authUser) {
+      check = true;
+  
+    }
+  }
+
+  if (check == false) {
     return { error: "authUserId is invalid"};
   }
 
@@ -45,51 +50,68 @@ function channelsCreateV1(authUserId, name, isPublic) {
     return { error: "length of name is less than 1 or more than 20 characters"};
   }
 
-  //create a new channel object:
-  const newChannel = {
-    channelId: uuid(),
+  let Id = data.channels.length;
+ 
+  //add a new channel to the data store:
+  data.channels.push({
+    channelId: Id,
     name: name,
     isPublic: isPublic,
-    members: [authUserId],
-  };
-
-  //add a new channel to the data store:
-  data.channels[newChannel.channelId] = newChannel;
+    ownerMembers: [authUser],
+    allMembers: [authUser],
+    messages: [],
+  });
   setData(data);
 
-  return {
-    channelId: newChannel.channelId,
-    name: newChannel.name,
-    isPublic: newChannel.isPublic,
-    members: newChannel.members,
+
+
+  return{
+
+      channelId: Id,
+      name: name,
+      isPublic: isPublic,
+      ownerMembers: [authUser],
+      allMembers: [authUser],
+      messages: [],
+    
   };
 
 
 }
 
 //Listing the given channels:
-function channelsListV1(authUserId) {
+export function channelsListV1(authUser) {
 
   const data = getData();
+  let check = false;
+
 
   //check if authUserId is valid:
-  const user = data.users[authUserId];
-  if (!user) {
+  for (let i = 0; i < data.users.length; i++) {
+    if (data.users[i].authUserId == authUser) {
+      check = true;
+  
+    }
+  }
+
+  if (check == false) {
     return { error: "authUserId is invalid"};
   }
 
-  //get array of channels that the user is a member of:
+  check = false;
   const channels = [];
-  for (const channelId in data.channels) {
-    const channel = data.channels[channelId];
-    if (channel.members.includes(authUserId)) {
-      channels.push(channel);
+  for (let i = 0; i < data.channels.length; i++) {
+    for (let j = 0; j < data.channels[i].allMembers.length; j++) {
+      if (data.channels[i].allMembers[j] == authUser) {
+        check = true;
+        channels.push(data.channels[i]);
+      }
     }
   }
-  
-  return { channels: channels};
-      
+
+  return channels;
 }
+
     
 
 
