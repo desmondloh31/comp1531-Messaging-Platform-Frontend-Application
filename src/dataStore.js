@@ -1,13 +1,5 @@
 // YOU SHOULD MODIFY THIS OBJECT BELOW
-let data = {
-  "users":[{ 
-    email: {},
-    password: {},
-    nameFirst: {},
-    nameLast: {},
-    authUserId: {}
-   }]
-};
+let data = {};
 
 // YOU SHOULDNT NEED TO MODIFY THE FUNCTIONS BELOW IN ITERATION 1
 
