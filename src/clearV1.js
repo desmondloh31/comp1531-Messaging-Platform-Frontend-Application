@@ -1,25 +1,6 @@
 import { setData } from "./dataStore";
 
-function clear(){
-    setData(
-        {
-            users: [
-              {    
-              },
-            ],
-          
-            channels: [
-                {
-                  messages: [
-                    {
-                      reactions: [
-                        {
-                        },
-                      ],
-                    },
-                  ],
-                },
-            ]
-        }
-    )      
+function clearV1(){
+    setData({users: [],
+            channels: []})      
 }

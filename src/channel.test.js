@@ -1,134 +1,58 @@
-import { channelMessagesV1 } from './channel.js';
+import {channelDetailsV1, channelMessagesV1, channelInviteV1,channelJoinV1} from './channel.js';
+import {getData, setData } from './dataStore.js';
 
-const ERROR = { error: expect.any(String) };
+//testing channelDetails:
+describe ("Testing channelDetails", () => {
+    const authUserId = 'user123';
+    const ownerMemberId = 'owner123'
+    const channel1 = {
+        channelId: 'channel1',
+        name: 'channel1a',
+        isPublic: true,
+        allMembers: [authUserId],
+        ownerMembers: [ownerMemberId],
+    };
 
-describe('Error Checking in channel invite v1', () => {
+    const channel2 = {
+        channelId: 'channel2',
+        name: 'channel2a',
+        isPublic: false,
+        allMembers: ['otherUser'],
+        ownerMembers: [ownerMemberId],
+    };
+
     beforeEach (() => {
         const data = {
-            users: [
-                {
-                  uId: 1,
-                  nameFirst: 'generic',
-                  nameLast: 'man',
-                  email: 'genericman@unsw.edu.au',
-                  password: 'ilovecomputers',     
-                },
-                {
-                    uId: 2,
-                    nameFirst: 'jacob',
-                    nameLast: 'smith',
-                    email: 'jacobsmith@unsw.edu.au',
-                    password: '12345',     
-                }
-              ],
+            users: { [authUserId]: {} },
+            channels: { [channel1.channelId]: channel1, [channel2.channelId]: channel2},
             
-              channels: [
-                  {
-                    channelId: 1,
-                    name: 'Private Channel',
-                    isPublic: false,
-                    ownerIds: [1],
-                    memberIds: [1],
-                    messages: [
-                      {
-                        messageId: 1,
-                        senderId: 1,
-                        message: 'Hello World!',
-                        timeSent: 1582426789,
-                        reactions: [
-                          {
-                            reactionName: 'Heart',
-                            unicode: 'U+2764',
-                            timesUsed: 3,
-                          },
-                        ],
-                      },
-                    ],
-                  },
-              ],            
         };
         setData(data);
     });
-
-    test('invalid authuser id', () => {
-        expect(channelMessagesV1({ authUserId: -1, channelId: 1, start: 0 })).toStrictEqual(ERROR);
+   
+    test ('testing if authUserId is not valid', () => {
+        const result = channelDetailsV1('asdas','channel1');
+        expect(result).toEqual({error: "authUserId is invalid"});
     });
-
-    test('invalid channel id', () => {
-        expect(channelMessagesV1({ authUserId: 1, channelId: -1, start: 0 })).toStrictEqual(ERROR);
+    test ('testing if authUserId is valid', () => {
+        const result = channelDetailsV1(authUserId,'channel1');
+        expect(result).toEqual(getData().channels.channel1);
     });
-
-    test('invalid start', () => {
-        expect(channelMessagesV1({ authUserId: 1, channelId: 1, start: 9999 })).toStrictEqual(ERROR);
+    test ('testing if channelId is valid', () => {
+        const result = channelDetailsV1(authUserId,'channel1');
+        expect(result).toEqual(getData().channels.channel1);
     });
-
-    test('Authuser not part of channel', () => {
-        expect(channelMessagesV1({ authUserId: 2, channelId: 1, start: 0 })).toStrictEqual(ERROR);
+    test ('testing if channelId is not valid', () => {
+        const result = channelDetailsV1(authUserId,'invalidChannelName');
+        expect(result).toEqual({error: 'User is not a part of the channel or Invalid channel Name'});
     });
-
-});
-
-describe('Valid tests for channel msgs v1', () => {
-    beforeEach (() => {
-        const data = {
-            users: [
-                {
-                  uId: 1,
-                  nameFirst: 'generic',
-                  nameLast: 'man',
-                  email: 'genericman@unsw.edu.au',
-                  password: 'ilovecomputers',     
-                },
-              ],
-            
-              channels: [
-                  {
-                    channelId: 1,
-                    name: 'Private Channel',
-                    isPublic: false,
-                    ownerIds: [1],
-                    memberIds: [1],
-                    messages: [
-                      {
-                        messageId: 1,
-                        senderId: 1,
-                        message: 'Hello World!',
-                        timeSent: 1582426789,
-                        reactions: [],
-                      },
-                      {
-                        messageId: 2,
-                        senderId: 1,
-                        message: 'How is everyone doing?',
-                        timeSent: 1582426790,
-                        reactions: [],
-                      },
-                      
-                    ],
-                  },
-              ],            
-        };
-        setData(data);
+    test ('authUser is not a part of the channel', () => {
+        const result = channelDetailsV1(authUserId,'channel2');
+        expect(result).toEqual({error: 'User is not a part of the channel or Invalid channel Name'});
     });
-
-    test('no more messages to load', () => {
-        expect(channelMessagesV1({ authUserId: 1, channelId: 1, start: 0 })).toStrictEqual([
-            {
-              messageId: 1,
-              senderId: 1,
-              message: 'Hello World!',
-              timeSent: 1582426789,
-              reactions: [],
-            },
-            {
-              messageId: 2,
-              senderId: 1,
-              message: 'How is everyone doing?',
-              timeSent: 1582426790,
-              reactions: [],
-            },
-            
-          ], 0, -1);
+    test ('authUser is a part of the channel', () => {
+        const result = channelDetailsV1(authUserId,'channel1');
+        expect(result).toEqual(getData().channels.channel1);
     });
 
 });
