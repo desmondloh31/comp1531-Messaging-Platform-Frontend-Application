@@ -1,5 +1,8 @@
+import {getData, setData} from './dataStore';
+import { uuid } from 'uuidv4';
 
 import {getData, setData} from './dataStore.js';
+import { channelsCreateV1 } from './channels.js';
 
 export function channelDetailsV1(authUserId, channelId){
   
@@ -10,17 +13,16 @@ export function channelDetailsV1(authUserId, channelId){
     return { error: "authUserId is invalid"}; 
   }
 
- 
+
   //Determine whether the channelId is valid & user is a part of the channel
-  for (const currentChannelId in data.channels) {
-    const channel = data.channels[currentChannelId];
-    if(currentChannelId == channelId && (channel.ownerMembers.includes(authUserId)||channel.allMembers.includes(authUserId))){
+  for (const currentChannel in data.channels) {
+    const channel = data.channels[currentChannel];
+    if(channel.channelId == channelId && (channel.ownerMembers.includes(authUserId)||channel.allMembers.includes(authUserId))){
       return  channel; 
     }
   }
+    return{error: 'User is not a part of the channel or invalid channelId'}
 
-  return{error: 'User is not a part of the channel or Invalid channel Name'}
- 
 }
 
 export function channelMessagesV1( authUserId, channelId, start ) {
@@ -115,3 +117,5 @@ export function channelInviteV1( authUserId, channelId, uId ) {
 export function channelJoinV1(authUserId, channelId){
   return {}
 }
+
+export {channelJoinV1};
