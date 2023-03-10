@@ -4,6 +4,7 @@ import { clearV1 } from "./clearV1";
 import { authRegisterV1 } from './auth.js';
 import { channelsCreateV1 } from './channels.js';
 
+
 //testing channelDetails:
 describe ("Testing channelDetails", () => {
     const authUserId = 'user123';
@@ -70,6 +71,7 @@ describe('Error Checking in channel messages v1', () => {
     beforeEach (() => {
         clearV1();
         authRegisterV1("test@gmail.com", "test1234", "test", "test");
+        authRegisterV1("test1@gmail.com", "test1234", "test1", "test1");
         channelsCreateV1(0, "test", true);
     });
 
@@ -77,28 +79,28 @@ describe('Error Checking in channel messages v1', () => {
         let userid = -1;
         let channelid = 0;
         const result = channelMessagesV1(userid, channelid, 0);
-        expect(result).toStrictEqual(ERROR);
+        expect(result).toStrictEqual({ error: "authUserId is invalid"});
     });
 
     test('invalid channel id', () => {
         let userid = 0;
         let channelid = -1;
         const result = channelMessagesV1(userid, channelid, 0);
-        expect(result).toStrictEqual(ERROR);
+        expect(result).toStrictEqual({ error: "channelId is invalid"});
     });
 
     test('invalid start', () => {
         let userid = 0;
         let channelid = 0;
         const result = channelMessagesV1(userid, channelid, 1);
-        expect(result).toStrictEqual(ERROR);    
+        expect(result).toStrictEqual({ error: "start is greater than the total number of messages in the channel"});    
     });
 
     test('Authuser not part of channel', () => {
         let userid = 1;
         let channelid = 0;
         const result = channelMessagesV1(userid, channelid, 0);
-        expect(result).toStrictEqual(ERROR);
+        expect(result).toStrictEqual({ error: "authUserId is not a member of the channel with ID channelId"});
     });
 
     test('Valid Test', () => {
@@ -116,10 +118,10 @@ describe('Error Checking in channel messages v1', () => {
 describe('Error Checking in channel invite v1', () => {
     beforeEach (() => {
         clearV1();
-        authRegisterV1("test@gmail.com", "test", "test", "test");
-        authRegisterV1("test1@gmail.com", "test1", "test1", "test1");
-        authRegisterV1("test2@gmail.com", "test2", "test2", "test2");
-        authRegisterV1("test3@gmail.com", "test3", "test3", "test3");
+        authRegisterV1("test@gmail.com", "test1234", "test", "test");
+        authRegisterV1("test1@gmail.com", "test1234", "test1", "test1");
+        authRegisterV1("test2@gmail.com", "test2234", "test2", "test2");
+        authRegisterV1("test3@gmail.com", "test3234", "test3", "test3");
         channelsCreateV1(0, "test", true);
         channelJoinV1(1, 0);
     });
@@ -129,7 +131,7 @@ describe('Error Checking in channel invite v1', () => {
         let channelid = -1;
         let uid = 2;
         const result = channelInviteV1(userid, channelid, uid);
-        expect(result).toStrictEqual(ERROR);
+        expect(result).toStrictEqual({ error: "channelId is invalid"});
     });
 
     test('uid already member of channel', () => {
@@ -137,7 +139,7 @@ describe('Error Checking in channel invite v1', () => {
         let channelid = 0;
         let uid = 1;
         const result = channelInviteV1(userid, channelid, uid);
-        expect(result).toStrictEqual(ERROR);
+        expect(result).toStrictEqual({ error: "User is already a member of channel"});
     });
 
     test('invalid uid', () => {
@@ -145,7 +147,7 @@ describe('Error Checking in channel invite v1', () => {
         let channelid = 0;
         let uid = -1;
         const result = channelInviteV1(userid, channelid, uid);
-        expect(result).toStrictEqual(ERROR); 
+        expect(result).toStrictEqual({ error: "uId is invalid"}); 
     });
 
     test('Authuser not part of channel', () => {
@@ -153,15 +155,15 @@ describe('Error Checking in channel invite v1', () => {
         let channelid = 0;
         let uid = 3;
         const result = channelInviteV1(userid, channelid, uid);
-        expect(result).toStrictEqual(ERROR);
+        expect(result).toStrictEqual({ error: "authUser is NOT a member of channel"});
     });
 
     test('authuser is invalid', () => {
-        let userid = 0;
+        let userid = -1;
         let channelid = 0;
-        let uid = -1;
+        let uid = 2;
         const result = channelInviteV1(userid, channelid, uid);
-        expect(result).toStrictEqual(ERROR);
+        expect(result).toStrictEqual({ error: "authUserId is invalid"});
     });
 
     test('valid test', () => {

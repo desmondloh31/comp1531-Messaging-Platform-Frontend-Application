@@ -1,5 +1,5 @@
 import {authRegisterV1, authLoginV1} from './auth'; 
-import {fromString} from "uuidv4";
+
 
 describe("Testing authRegisterV1", () =>{
     test('Testing an invalid email', () => {
