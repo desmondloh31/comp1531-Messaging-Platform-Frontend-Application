@@ -1,7 +1,7 @@
 import {channelDetailsV1, channelMessagesV1, channelInviteV1,channelJoinV1} from './channel.js';
 import {getData, setData } from './dataStore.js';
 import { clearV1 } from "./clearV1";
-import { authRegister } from './auth.js';
+import { authRegisterV1 } from './auth.js';
 import { channelsCreateV1 } from './channels.js';
 
 //testing channelDetails:
@@ -69,7 +69,8 @@ const ERROR = { error: expect.any(String) };
 describe('Error Checking in channel messages v1', () => {
     beforeEach (() => {
         clearV1();
-        authRegister("test@gmail.com", "test", "test", "test");
+        authRegisterV1("test@gmail.com", "test1234", "test", "test");
+        channelsCreateV1(0, "test", true);
     });
 
     test('invalid authuser id', () => {
