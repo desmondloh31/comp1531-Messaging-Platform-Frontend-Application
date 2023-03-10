@@ -1,5 +1,6 @@
 import { authRegisterV1 } from './auth.js';
 import {channelsCreateV1, channelsListV1, channelsListAllV1} from './channels.js';
+import { clearV1 } from './clearV1.js';
 import {getData, setData } from './dataStore.js';
 
 //testing channelsCreateV1:
@@ -161,6 +162,16 @@ describe ("Testing channelsListAllV1", () => {
         const result = channelsListAllV1(authUserId);
         expect(result).toEqual(getData().channels);
         
+    });
+    test('returns array of channels when authUserId is valid', () => {
+        clearV1();
+        const data = getData();
+        const authUserId1 = authRegisterV1('user123@gmail.com', 'user123456', 'user', 'pass');
+        const authUserId2 = authRegisterV1('user123456@gmail.com', 'user123', 'pass', 'user' );
+        const channel1 = channelsCreateV1(authUserId1, 'user', false);
+        const channel2 = channelsCreateV1(authUserId2, 'pass', true);
+        const result = channelsListAllV1(authUserId1);
+        expect(result).toEqual(data.channels);
     });
    
 });

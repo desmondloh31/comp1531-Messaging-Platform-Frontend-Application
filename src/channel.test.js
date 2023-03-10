@@ -63,6 +63,7 @@ describe ("Testing channelDetails", () => {
 
 describe ("Testing channelDetails Final Test batch", () => {
     beforeEach (() => {
+        
         clearV1();
     });
     test ('testing if authUserId is not valid', () => {
@@ -70,9 +71,10 @@ describe ("Testing channelDetails Final Test batch", () => {
         expect(result).toEqual({error: "authUserId is invalid"});
     });
     test ('testing if authUserId is valid', () => {
+        data = getData();
         const userID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith");
         const channel1 = channelsCreateV1(userID,'channel1', false);
-        const result = channelDetailsV1(userID,'channel1');
+        const result = channelDetailsV1(userID,data.channels.channel1[channelId]);
         expect(result).toEqual(channel1);
     });
 });

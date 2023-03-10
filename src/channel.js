@@ -10,9 +10,7 @@ export function channelDetailsV1(authUserId, channelId){
     return { error: "authUserId is invalid"}; 
   }
 
-  
 
- 
   //Determine whether the channelId is valid & user is a part of the channel
   for (const currentChannelId in data.channels) {
     const channel = data.channels[currentChannelId];
