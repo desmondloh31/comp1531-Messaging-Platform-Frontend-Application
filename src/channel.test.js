@@ -175,12 +175,13 @@ describe('Error Checking in channel invite v1', () => {
 });
 
 //testing channelJoinV1
-/*
+
 describe ("Testing channelJoinV1", () => {
     beforeEach (() => {
         clearV1();
         const authId1 = authRegisterV1("lebron@gmail.com", "123456789", "Lebron", "James");
-        const channelId1 = channelsCreateV1(authId1, "channel1", true);
+        channelsCreateV1(authId1, "channel1", true);
+        channelsCreateV1(authId1, "channel2", false);
     });
 
     //test that a channel Id does not refer to a valid channel
@@ -194,29 +195,37 @@ describe ("Testing channelJoinV1", () => {
 
     //test that authorised user is already member of channel
     test ('Authorised user is already a member', () => {
-        const result = channelJoinV1(authId1, channelId1);
+        let channelId1 = 0;
+        const result = channelJoinV1(0, channelId1);
         expect(result).toStrictEqual(ERROR);
 
     })
 
     //test that new authorised user cannot join private channel when not a member
+    test ('Private channel', () => {
+      const result = channelJoinV1(0, 1);
+      expect(result).toStrictEqual(ERROR);
 
+    })
     //test that an authorised user's Id is invalid
     test ('Authorised user Id is invalid', () => {
         let userId = -1;
-        let channelId = 0;
-        const result = channelJoinV1(userId, channelId);
+        let channelId1 = 0;
+        const result = channelJoinV1(userId, channelId1);
         expect(result).toStrictEqual(ERROR);
 
     })
 
     //test that valid parameters permits authorised user to join channel
     test ('Authorised user successfully joins channel', () => {
-
+      let authId2 = authRegisterV1("Kanye@gmail.com", "123456789", "Kanye", "West");
+      let channelId1 = 0;
+      const result = channelJoinV1(authId2, channelId1);
+      expect(result).toStrictEqual({});
     })
     
    
 })
-*/
+
 
 
