@@ -1,3 +1,5 @@
+import {getData, setData} from './dataStore';
+import { uuid } from 'uuidv4';
 
 import {getData, setData} from './dataStore.js';
 import { channelsCreateV1 } from './channels.js';
@@ -109,3 +111,5 @@ function channelInviteV1( authUserId, channelId, uId ) {
 function channelJoinV1(authUserId, channelId){
     return{};
 }
+
+export {channelJoinV1};
