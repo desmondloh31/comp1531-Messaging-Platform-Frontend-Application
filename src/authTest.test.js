@@ -1,4 +1,5 @@
 import {authRegisterV1, authLoginV1} from './auth'; 
+import {fromString} from "uuidv4";
 
 describe("Testing authRegisterV1", () =>{
     test('Testing an invalid email', () => {
@@ -23,17 +24,32 @@ describe("Testing authRegisterV1", () =>{
     
     test('Testing standard register detail', () => {
         const register = authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
-        const login = authLoginV1("example@gmail.com", "abc123")
-        expect(register).toEqual(authUserId);
+        const id = fromString("example@gmail.com" + "John" + "Smith")
+        expect(register).toEqual(id);
         
       });
 });
 
 describe("Testing authLoginV1", () =>{
     test('Testing if login detail is correct', () => {
-        const login = authLoginV1("example@addEventListener.unsw.edu.au", "12345678")
-        expect(login).toEqual({error: "error"});
+    authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
+    const login = authLoginV1("example@gmail.com", "abc123")
+    const id = fromString("example@gmail.com" + "John" + "Smith")
+    expect(login).toEqual(id);
       });
       
+    test('Testing if email does not match', () => {
+    authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
+    const login = authLoginV1("example1@gmail.com", "abc123")
+    const id = fromString("example1@gmail.com" + "John" + "Smith")
+    expect(login).toEqual({error:"error"});
+          });
     
+    test('Testing if password does not match', () => {
+    authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
+    const login = authLoginV1("example@gmail.com", "abc1234")
+    const id = fromString("example@gmail.com" + "John" + "Smith")
+    expect(login).toEqual({error:"error"});
+                });
+          
 });

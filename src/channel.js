@@ -1,28 +1,28 @@
 import {getData, setData} from './dataStore';
 import { uuid } from 'uuidv4';
 
-function channelDetailsV1(authUserId, channelId){
-    return{
-        name: 'Hayden',
-        ownerMembers: [
-          {
-            uId: 1,
-            email: 'example@gmail.com',
-            nameFirst: 'Hayden',
-            nameLast: 'Jacobs',
-            handleStr: 'haydenjacobs',
-          }
-        ],
-        allMembers: [
-          {
-            uId: 1,
-            email: 'example@gmail.com',
-            nameFirst: 'Hayden',
-            nameLast: 'Jacobs',
-            handleStr: 'haydenjacobs',
-          }
-        ],
-      }
+import {getData, setData} from './dataStore.js';
+
+export function channelDetailsV1(authUserId, channelId){
+  
+  //Determining whether authUserId is valid
+  const data = getData();
+  const user = data.users[authUserId];
+  if (!user) {
+    return { error: "authUserId is invalid"}; 
+  }
+
+ 
+  //Determine whether the channelId is valid & user is a part of the channel
+  for (const currentChannelId in data.channels) {
+    const channel = data.channels[currentChannelId];
+    if(currentChannelId == channelId && (channel.ownerMembers.includes(authUserId)||channel.allMembers.includes(authUserId))){
+      return  channel; 
+    }
+  }
+
+  return{error: 'User is not a part of the channel or Invalid channel Name'}
+ 
 }
 
 function channelMessagesV1( authUserId, channelId, start ) {
