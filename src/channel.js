@@ -1,4 +1,4 @@
-import {getData, setData} from './dataStore';
+import {getData, setData} from './dataStore.js';
 import { channelsCreateV1 } from './channels.js';
 
 export function channelDetailsV1(authUserId, channelId){
