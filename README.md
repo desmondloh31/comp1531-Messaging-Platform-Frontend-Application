@@ -882,7 +882,7 @@ If you run the frontend at the same time as your express server is running on th
 Please note: The frontend may have very slight inconsistencies with expected behaviour outlined in the specification. Our automarkers will be running against your compliance to the specification. The frontend is there for further testing and demonstration.
 
 #### 5.8.1. Example implementation
-A working example of the frontend can be used at http://treats-unsw.herokuapp.com/. This is not a gospel implementation that dictates the required behaviour for all possible occurrences. Our implementation will make reasonable assumptions just as yours will, and they might be different, and that's fine. However, you may use this implementation as a guide for how your backend should behave in the case of ambiguities in the spec.
+A working example of the frontend can be used at https://comp1531frontend.gitlab.io/unswmemes. This is not a gospel implementation that dictates the required behaviour for all possible occurrences. Our implementation will make reasonable assumptions just as yours will, and they might be different, and that's fine. However, you may use this implementation as a guide for how your backend should behave in the case of ambiguities in the spec.
 
 The data is reset occasionally, but you can use this link to play around and get a feel for how the application should behave.
 
