@@ -51,10 +51,6 @@ In this iteration, you are expected to:
 
     * Change `.js` file extension to `.ts`.
 
-    * Run `npm run tsc` and incrementally fix all type errors.
-    
-    * Either choose to change one file at a time, or change all file extensions and use `// @ts-nocheck` at the beginning of select files to disable checking on that specific file, omitting errors.
-
     Below shows a sample conversion of auth.js => auth.ts
     ![](node.png)
     ![](typescript.png)
@@ -69,7 +65,7 @@ In this iteration, you are expected to:
 
     * Introduce tokens for session management (see 5.7).
 
-    * You can structure your tests inside a `/tests` folder (or however you choose), as long as they are appended with `.test.js`. For this iteration and iteration 3 we will only be testing your HTTP layer of tests. You may still wish to use your iteration 1 tests and simply wrap up them - that is a design choice up to you. An example of an HTTP test can be found in section 4.4.
+    * You can structure your tests inside a `/tests` folder (or however you choose), as long as they are appended with `.test.ts`. For this iteration and iteration 3 we will only be testing your HTTP layer of tests. You may still wish to use your iteration 1 tests and simply wrap up them - that is a design choice up to you. An example of an HTTP test can be found in section 4.4.
 
     * You do not have to rewrite all of your iteration 1 tests as HTTP tests - the latter can test the system at a higher level. For example, to test a success case for `message/send` via HTTP routes you will need to call `auth/register` and `channels/create`; this means you do not need the success case for those two functions seperately. Your HTTP tests will need to cover all success/error conditions for each endpoint, however.
 
@@ -90,6 +86,16 @@ In this iteration, you are expected to:
     * As for iteration 1, you must be able to demonstrate evidence of regular standups.
 
     * You are required to regularly and thoughtfully make merge requests for the smallest reasonable units, and merge them into `master`.
+
+6. 6. (Recommended) Remove any type errors in your code
+
+    * Run `npm run tsc` and incrementally fix all type errors.
+    
+    * Either choose to change one file at a time, or change all file extensions and use `// @ts-nocheck` at the beginning of select files to disable checking on that specific file, omitting errors.
+
+    * There are no explicit marks this term for completing this step, however:
+      * Groups who ensure their code are type-safe tend to perform much better in the automarker
+      * For iteration 3, if you make your entire code type safe and complete the majority of the implementation, you will receive 10 bonus marks! Starting early makes that easier!
 
 A frontend has been built that you can use in this iteration, and use your backend to power it (note: an incomplete backend will mean the frontend cannot work). You can, if you wish, make changes to the frontend code, but it is not required. The source code for the frontend is only provided for your own fun or curiosity.
 
@@ -238,7 +244,6 @@ To run the dryrun, you should be in the root directory of your project (e.g. `/p
       <li>Correct implementation of specified functions</li>
       <li>Correctly written tests based on the specification requirements</li>
       <li>Correctly linted code</li>
-      <li>Correctly typechecked code</li>
     </ul></td>
   </tr>
   <tr>
@@ -276,14 +281,13 @@ For this and for all future milestones, you should consider the other expectatio
 
 The formula used for automarking in this iteration is:
 
-`Automark = 90*(t * i) + 5*e + 5*f`
-(Mark equals 95% of `t` multiplied by `i` plus 5% of `e` plus 5% of `f`). This formula produces a value between 0 and 1.
+`Automark = 95*(t * i) + 5*e`
+(Mark equals 95% of `t` multiplied by `i` plus 5% of `e`). This formula produces a value between 0 and 1.
 
 Where:
  * `t` is the mark between 0-1 you receive for your tests running against your code (100% = your implementation passes all of your tests)
  * `i` is the mark between 0-1 you receive for our course tests (hidden) running against your code (100% = your implementation passes all of our tests)
  * `e` is the score between 0-1 achieved by running eslint against your code with the provided configuration
- * `f` is the score between 0-1 achieved by running typechecking against your code with the provided configuration
 
 ### 4.11. Submission
 
