@@ -87,7 +87,7 @@ In this iteration, you are expected to:
 
     * You are required to regularly and thoughtfully make merge requests for the smallest reasonable units, and merge them into `master`.
 
-6. 6. (Recommended) Remove any type errors in your code
+6. (Recommended) Remove any type errors in your code
 
     * Run `npm run tsc` and incrementally fix all type errors.
     
@@ -95,7 +95,7 @@ In this iteration, you are expected to:
 
     * There are no explicit marks this term for completing this step, however:
       * Groups who ensure their code are type-safe tend to perform much better in the automarker
-      * For iteration 3, if you make your entire code type safe and complete the majority of the implementation, you will receive 10 bonus marks! Starting early makes that easier!
+      * For iteration 3, if you make your entire code type safe you will receive 10 bonus marks! Starting early makes that easier!
 
 A frontend has been built that you can use in this iteration, and use your backend to power it (note: an incomplete backend will mean the frontend cannot work). You can, if you wish, make changes to the frontend code, but it is not required. The source code for the frontend is only provided for your own fun or curiosity.
 
@@ -499,7 +499,7 @@ All error cases should return <code>{error: 'error'}</code>, where the error mes
     </td>
   </tr>
   <tr>
-    <td><code>/channels/listAll/v2</code><br /><br />Provide a list of all channels, including private channels, (and their associated details)</td>
+    <td><code>/channels/listall/v2</code><br /><br />Provide a list of all channels, including private channels, (and their associated details)</td>
     <td style="font-weight: bold; color: green;">GET</td>
     <td><b>Query Parameters:</b><br /><code>( token )</code><br /><br /><b>Return type if no error:</b><br /><code>{ channels }</code></td>
     <td>
