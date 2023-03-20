@@ -4,11 +4,9 @@ import validator from 'validator';
 function authRegisterV1(email, password, nameFirst, nameLast) {
     const users = {};
     const data = getData()
-    //const authUserId =  fromString(email + nameFirst + nameLast)
     const authUserId = data.users.length
-    //console.log(authUserId)
 
-    if(validator.isEmail(email) == false){
+    if(validator.isEmail(email) === false){
         return{error:"error"}
     }
 
@@ -25,7 +23,7 @@ function authRegisterV1(email, password, nameFirst, nameLast) {
     }
 
     for(const user in data){
-        if(user["email"] == email){
+        if(user["email"] === email){
         return{error:"error"}
         }
     }
@@ -48,8 +46,7 @@ function authRegisterV1(email, password, nameFirst, nameLast) {
 
     data.users.push(users)
     setData(data)
-    // console.log(authUserId);
-    return authUserId
+    return {authUserId}
     
   }
 
@@ -57,15 +54,11 @@ function authRegisterV1(email, password, nameFirst, nameLast) {
 
 function authLoginV1(email, password) {
     const data = getData()
-    //console.log(data.users);
     for (let user = 0; user < data.users.length; user++){
-        //console.log(data.users[user].authUserId);
 
-        if (data.users[user].email ==  email){
-            //connsole.log("Here");
-            if(data.users[user].password == password){
-                //console.log(data.users[user].authUserId +  " - result");
-                return data.users[user].authUserId;
+        if (data.users[user].email ===  email){
+            if(data.users[user].password === password){
+                return {authUserId: data.users[user].authUserId};
             } 
             else{
                 return {error:"error"}
@@ -80,7 +73,7 @@ function authLoginV1(email, password) {
 function formatAlias(handleLower, currentMaxNum){
     const data = getData()
     for(const user in data){
-        if(user["handleLower"] == handleLower){
+        if(user["handleLower"] === handleLower){
            const newHandle = handleLower + currentMaxNum
            currentMaxNum ++ 
            formatAlias(newHandle, currentMaxNum)
