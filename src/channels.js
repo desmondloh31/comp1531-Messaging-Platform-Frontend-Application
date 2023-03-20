@@ -101,7 +101,7 @@ export function channelsListV1(authUser) {
     for (let j = 0; j < data.channels[i].allMembers.length; j++) {
       if (data.channels[i].allMembers[j] === authUser) {
         check = true;
-        channel.push({channelId: data.channels[i].channelId, name: data.channels[i].name});
+        channels.push({channelId: data.channels[i].channelId, name: data.channels[i].name});
         
       }
     }

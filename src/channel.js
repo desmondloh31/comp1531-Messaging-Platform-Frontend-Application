@@ -15,7 +15,7 @@ export function channelDetailsV1(authUserId, channelId){
   for (const currentChannel in data.channels) {
     const channel = data.channels[currentChannel];
     if(channel.channelId === channelId && (channel.ownerMembers.includes(authUserId)||channel.allMembers.includes(authUserId))){
-      return  channel; 
+      return  {name: channel.name, isPublic: channel.isPublic, ownerMembers: channel.ownerMembers, allMembers: channel.allMembers};
     }
   }
     return{error: 'User is not a part of the channel or invalid channelId'}
@@ -47,7 +47,7 @@ export function channelMessagesV1( authUserId, channelId, start ) {
   }
   for (let i = 0; i < channel.messages.length; i++) {
     if (i < 50) {
-      result.messages.push(channel.messages[i]);
+      result.messages.push({messageId: channel.messages[i].messageId, uId:channel.messages[i].senderId, message: channel.messages[i].message, timeSent: channel.messages[i].timeSent});
     }
   }
 
