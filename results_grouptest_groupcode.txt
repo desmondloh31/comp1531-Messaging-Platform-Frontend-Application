@@ -1,0 +1,162 @@
+npm verb cli /import/kamen/3/cs1531/.nvm/versions/node/v18.14.2/bin/node /import/kamen/3/cs1531/.nvm/versions/node/v18.14.2/bin/npm
+npm info using npm@9.6.1
+npm info using node@v18.14.2
+npm verb title npm run test
+npm verb argv "run" "test" "--loglevel" "verbose"
+npm verb logfile logs-max:10 dir:/import/cage/2/z5295293/.npm/_logs/2023-03-20T06_48_13_386Z-
+npm verb logfile /import/cage/2/z5295293/.npm/_logs/2023-03-20T06_48_13_386Z-debug-0.log
+
+> test
+> jest
+
+npm http fetch GET 200 https://registry.npmjs.org/npm 23ms (cache hit)
+PASS src/echo.test.js
+FAIL src/channels.test.js
+  ● Testing channelsCreateV1 › creates a new channel with valid parameters
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 9
+    + Received  + 0
+
+      Object {
+    -   "allMembers": Array [
+    -     0,
+    -   ],
+        "channelId": 0,
+    -   "isPublic": true,
+    -   "messages": Array [],
+    -   "name": "newChannel",
+    -   "ownerMembers": Array [
+    -     0,
+    -   ],
+      }
+
+      22 |
+      23 |
+    > 24 |         expect(result).toEqual({
+         |                        ^
+      25 |             channelId: 0,
+      26 |             name,
+      27 |             isPublic,
+
+      at Object.toEqual (src/channels.test.js:24:24)
+
+  ● Testing channelsListV1 › returns array of channels when authUserId is valid
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: [{"error": "authUserId is invalid"}]
+    Received: {"error": "authUserId is invalid"}
+
+      91 |         const channel2 = channelsCreateV1(authUserId2, 'pass', true);
+      92 |         const result = channelsListV1(authUserId1);
+    > 93 |         expect(result).toEqual( [channel1] );
+         |                        ^
+      94 |     });
+      95 |
+      96 |     //authUserId is invalid:
+
+      at Object.toEqual (src/channels.test.js:93:24)
+
+  ● Testing channelsListAllV1 › returns array of channels when authUserId is valid
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: []
+    Received: {"error": "authUserId is invalid"}
+
+      116 |         const channel2 = channelsCreateV1(authUserId2, 'pass', true);
+      117 |         const result = channelsListAllV1(authUserId1);
+    > 118 |         expect(result).toEqual(data.channels);
+          |                        ^
+      119 |     });
+      120 | });
+
+      at Object.toEqual (src/channels.test.js:118:24)
+
+FAIL src/channel.test.js
+  ● Testing channelDetails Final Test batch › testing if authUserId and channelId are valid
+
+    TypeError: Cannot read properties of undefined (reading 'channelId')
+
+      17 |         const channel1 = channelsCreateV1(userID,'channel1', false);
+      18 |         const channel2 = channelsCreateV1(userID,'channel2', false);
+    > 19 |         const result = channelDetailsV1(userID,data.channels[1].channelId);
+         |                                                                 ^
+      20 |         expect(result).toEqual(channel2);
+      21 |     });
+      22 |     test ('testing if channelId is not valid', () => {
+
+      at Object.channelId (src/channel.test.js:19:65)
+
+  ● Testing channelDetails Final Test batch › testing if channelId is not valid
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "error": "User is not a part of the channel or invalid channelId",
+    +   "error": "authUserId is invalid",
+      }
+
+      26 |         const channel1 = channelsCreateV1(userID,'channel1', false);
+      27 |         const result = channelDetailsV1(userID,'invalidChannelName');
+    > 28 |         expect(result).toEqual({error: 'User is not a part of the channel or invalid channelId'});
+         |                        ^
+      29 |     });
+      30 |     test ('testing if channelId is valid but authuser is not a part of the channel', () => {
+      31 |         clearV1();
+
+      at Object.toEqual (src/channel.test.js:28:24)
+
+  ● Testing channelDetails Final Test batch › testing if channelId is valid but authuser is not a part of the channel
+
+    TypeError: Cannot read properties of undefined (reading 'channelId')
+
+      34 |         const userID1a = authRegisterV1("kavish@gmail.com", "abc12asd3", "Kavish", "Smith");
+      35 |         const channel1 = channelsCreateV1(userID,'channel1', false);
+    > 36 |         const result = channelDetailsV1(userID1a, data.channels[0].channelId);
+         |                                                                    ^
+      37 |         expect(result).toEqual({error: 'User is not a part of the channel or invalid channelId'});
+      38 |     });
+      39 | });
+
+      at Object.channelId (src/channel.test.js:36:68)
+
+  ● Testing channelJoinV1 › Authorised user successfully joins channel
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "error": "authUserId is invalid",
+    + }
+
+      200 |       let channelId1 = 0;
+      201 |       const result = channelJoinV1(authId2, channelId1);
+    > 202 |       expect(result).toStrictEqual({});
+          |                      ^
+      203 |     }) 
+      204 | })
+      205 |
+
+      at Object.toStrictEqual (src/channel.test.js:202:22)
+
+Test Suites: 2 failed, 1 passed, 3 total
+Tests:       7 failed, 23 passed, 30 total
+Snapshots:   0 total
+Time:        3.404 s, estimated 4 s
+Ran all test suites.
+npm notice 
+npm notice New patch version of npm available! 9.6.1 -> 9.6.2
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.6.2>
+npm notice Run `npm install -g npm@9.6.2` to update!
+npm notice 
+npm verb exit 1
+npm verb code 1
