@@ -2,8 +2,8 @@ export function userProfileV1(authUserID, uId) {
 
     const data = getData();
     
-    const user = data.users.find(i => i.authUserId == authUserId);
-    const guest = data.users.find(i => i.authUserId == uId);
+    const user = data.users.find(i => i.authUserId === authUserId);
+    const guest = data.users.find(i => i.authUserId === uId);
   
     if (!user) {
         return { error: "authUserId is invalid"}; 
