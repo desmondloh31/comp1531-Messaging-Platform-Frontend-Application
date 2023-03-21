@@ -68,7 +68,7 @@ function authLoginV1(email: string, password: string ) {
 
 
 
-function formatAlias(handleLower, currentMaxNum){
+function formatAlias(handleLower: string, currentMaxNum: number){
     const data = getData()
     for(const user in data){
         if(user["handleLower"] === handleLower){
