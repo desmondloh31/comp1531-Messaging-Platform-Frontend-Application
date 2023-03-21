@@ -1,8 +1,7 @@
-import {getData, setData} from './dataStore.js';
+import {getData, setData} from './dataStore';
 import validator from 'validator';
 
-function authRegisterV1(email, password, nameFirst, nameLast) {
-    const users = {};
+function authRegisterV1(email: string, password: string, nameFirst: string, nameLast: string) {
     const data = getData()
     const authUserId = data.users.length
 
@@ -35,16 +34,15 @@ function authRegisterV1(email, password, nameFirst, nameLast) {
       }
     
     const formattedHandle = formatAlias(handleLower, 0)
-    
-    users.email = email;
-    users.password = password;
-    users.nameFirst = nameFirst;
-    users.nameLast = nameLast;
-    users.authUserId = authUserId;
-    users.formattedHandle = formattedHandle;
-    
 
-    data.users.push(users)
+    data.users.push({
+        email: email,
+        password: password,
+        nameFirst: nameFirst,
+        nameLast: nameLast,
+        authUserId: authUserId,
+        formattedHandle: formattedHandle
+    })
     setData(data)
     return {authUserId}
     
@@ -52,7 +50,7 @@ function authRegisterV1(email, password, nameFirst, nameLast) {
 
 
 
-function authLoginV1(email, password) {
+function authLoginV1(email: string, password: string ) {
     const data = getData()
     for (let user = 0; user < data.users.length; user++){
 

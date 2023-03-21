@@ -1,8 +1,38 @@
 // YOU SHOULD MODIFY THIS OBJECT BELOW
 
-let data = {
+interface usr {
+  authUserId: number;
+  nameFirst: string;
+  nameLast: string;
+  email: string;
+  formattedHandle: string;
+  password: string;
+}
+
+interface cnl {
+  channelId: number;
+  name: string;
+  isPublic: boolean;
+  allMembers: number[];
+  ownerMembers: number[];
+  messages: msg[],
+}
+
+interface msg {
+  messageId: number;
+  senderId: number;
+  message: string;
+  timeSent: number;
+}
+
+interface db {
+  users: usr[];
+  channels: cnl[];
+}
+
+let data: db = {
   users: [],
-  channels: []
+  channels: [],
 
 };
 
@@ -31,7 +61,7 @@ function getData() {
 // - Only needs to be used if you replace the data store entirely
 // - Javascript uses pass-by-reference for objects... read more here: https://stackoverflow.com/questions/13104494/does-javascript-pass-by-reference
 // Hint: this function might be useful to edit in iteration 2
-function setData(newData) {
+function setData(newData: db) {
   data = newData;
 }
 
