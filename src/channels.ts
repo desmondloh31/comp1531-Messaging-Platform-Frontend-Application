@@ -1,4 +1,4 @@
-import {getData, setData} from './dataStore';
+import {getData,setData} from './dataStore';
 import {authRegisterV1, authLoginV1} from './auth.js'
 
 /**

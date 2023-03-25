@@ -9,10 +9,46 @@ import {port,url} from './config.json';
 
 
 
-
-
 const SERVER_URL = `${url}:${port}`;
+function requestchannelsCreateV1(authUser: number, name: string, isPublic: boolean){
+    return requestHelper('POST','/channels/create/v2',{authUser,name,isPublic});
+}
+function requestClear(){
+    return requestHelper('DELETE','/clear/v1',{})
+}
+function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string){
+    return requestHelper('POST','/channels/create/v2',{email,password,nameFirst,nameLast});
+}
 
+beforeEach (() => {
+    requestClear();
+    requestAuthRegister('user123@gmail.com', 'user123456', 'user', 'pass');       
+});
+
+
+describe('/channels/create', () => {
+    test('Title is an empty string', () => {
+        expect(requestchannelsCreateV1(0,"name",true)).toStrictEqual({ error: 'authUserId is invalid'})
+    });
+    test('returns error when name is too short', () => {
+        expect(requestchannelsCreateV1(0,'',true)).toStrictEqual({ error: 'length of name is less than 1 or more than 20 characters'})
+    });
+
+});
+
+
+function requestHelper(method: HttpVerb, path: string, payload: object) {
+    let qs = {};
+    let json = {};
+    if (['GET', 'DELETE'].includes(method)) {
+        qs = payload;
+    } else {
+        //PUT/POST
+        json = payload;
+    }
+    const res = request(method, SERVER_URL + path, {qs,json,timeout: 20000});
+    return JSON.parse(res.getBody('utf-8'));
+}
 
 
 //testing channelsCreateV1:
