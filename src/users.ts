@@ -1,8 +1,10 @@
-export function userProfileV1(authUserID, uId) {
+import {getData, setData} from './dataStore';
+
+export function userProfileV1(authUserID: number, uId: number) {
 
     const data = getData();
     
-    const user = data.users.find(i => i.authUserId === authUserId);
+    const user = data.users.find(i => i.authUserId === authUserID);
     const guest = data.users.find(i => i.authUserId === uId);
   
     if (!user) {
@@ -12,11 +14,11 @@ export function userProfileV1(authUserID, uId) {
       }
 
     return {
-        uId: guest.uId,
+        uId: guest.authUserId,
         nameFirst: guest.nameFirst,
         nameLast: guest.nameLast,
         email: guest.email,
-        handleStr: guest.handleStr,
+        handleStr: guest.formattedHandle,
 
     }
   }

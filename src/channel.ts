@@ -1,7 +1,7 @@
-import {getData, setData} from './dataStore.js';
+import {getData, setData} from './dataStore';
 import { channelsCreateV1 } from './channels.js';
 
-export function channelDetailsV1(authUserId, channelId){
+export function channelDetailsV1(authUserId: number, channelId: number){
   
   //Determining whether authUserId is valid
   const data = getData();
@@ -22,7 +22,7 @@ export function channelDetailsV1(authUserId, channelId){
 
 }
 
-export function channelMessagesV1( authUserId, channelId, start ) {
+export function channelMessagesV1(authUserId: number, channelId: number, start: number ) {
   const data = getData();
   const user = data.users.find(i => i.authUserId === authUserId);
   const channel = data.channels.find(i => i.channelId === channelId);
@@ -34,14 +34,13 @@ export function channelMessagesV1( authUserId, channelId, start ) {
     return { error: "channelId is invalid"};
   }else if (channel.messages.length < start ) { 
     return { error: "start is greater than the total number of messages in the channel"};
-  }else if (channel.allMembers.find(i => i === authUserId) === undefined) {
+  }else if (channel.allMembers.find((i: number) => i === authUserId) === undefined) {
     return { error: "authUserId is not a member of the channel with ID channelId"};
   }
 
 
-
   let result = {
-    messages: [],
+    messages: [] as object[],
     start: start,
     end: start+50<channel.messages.length?start+50:-1,
   }
@@ -55,7 +54,7 @@ export function channelMessagesV1( authUserId, channelId, start ) {
 }
 
 
-export function channelInviteV1( authUserId, channelId, uId ) {
+export function channelInviteV1(authUserId: number, channelId: number, uId: number) {
   ///Determining whether authUserId is valid
   const data = getData();
   const user = data.users.find(i => i.authUserId === authUserId);
@@ -110,7 +109,7 @@ export function channelInviteV1( authUserId, channelId, uId ) {
 }
 
 
-export function channelJoinV1(authUserId, channelId){
+export function channelJoinV1(authUserId: number, channelId: number){
   const data = getData();
   //check if authUserId is valid
   
