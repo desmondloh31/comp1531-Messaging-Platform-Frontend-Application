@@ -154,9 +154,10 @@ export function channelJoinV1(authUserId: number, channelId: number){
 
 
 //IT2 channel leave implementation:
-export function channelLeaveV1(token: number, channelId: number) {
+export function channelLeaveV1(token: string, channelId: number) {
 
   const data = getData();
+
   const authUserId = tokenVerify(token);
 
   const findChannelId = data.channels.find((i) => i.channelId === channelId);
@@ -186,7 +187,7 @@ export function channelLeaveV1(token: number, channelId: number) {
   
 }
 
-export function channelAddOwnerV1(token: number, channelId: number, uId: number) {
+export function channelAddOwnerV1(token: string, channelId: number, uId: number) {
 
   const data = getData();
   const authUserId = tokenVerify(token);
@@ -195,9 +196,9 @@ export function channelAddOwnerV1(token: number, channelId: number, uId: number)
 
   const allMembersId = findChannelId.allMembers.includes(uId);
 
-  if (typeof authUserId === 'object') {
+  /*if (typeof authUserId === 'object') {
     return {error: authUserId.error}
-  }
+  }*/
 
   if (!findUser) {
     return { error: "user is not valid"}
@@ -231,7 +232,7 @@ export function channelAddOwnerV1(token: number, channelId: number, uId: number)
 
 }
 
-export function channelRemoveOwner(token: number, channelId: number, uId: number) {
+export function channelRemoveOwner(token: string, channelId: number, uId: number) {
 
   const data = getData();
   const authUserId = tokenVerify(token);
@@ -240,9 +241,9 @@ export function channelRemoveOwner(token: number, channelId: number, uId: number
 
   const allMembersId = findChannelId.allMembers.includes(uId);
 
-  if (typeof authUserId === 'object') {
+  /*if (typeof authUserId === 'object') {
     return {error: authUserId.error}
-  }
+  }*/
 
   if (!findUser) {
     return { error: "user is not valid"}
