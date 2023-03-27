@@ -7,6 +7,7 @@ interface usr {
   email: string;
   formattedHandle: string;
   password: string;
+  token: string[];
 }
 
 interface cnl {
@@ -25,14 +26,22 @@ interface msg {
   timeSent: number;
 }
 
+interface dm {
+  name: string[];
+  creator: number;
+  allMembers: number[];
+}
+
 interface db {
   users: usr[];
   channels: cnl[];
+  dms: dm[];
 }
 
 let data: db = {
   users: [],
   channels: [],
+  dms: [],
 
 };
 
