@@ -7,6 +7,7 @@ interface usr {
   email: string;
   formattedHandle: string;
   password: string;
+  token: string[];
 }
 
 interface cnl {
@@ -33,7 +34,6 @@ interface db {
 let data: db = {
   users: [],
   channels: [],
-
 };
 
 // YOU SHOULDNT NEED TO MODIFY THE FUNCTIONS BELOW IN ITERATION 1
