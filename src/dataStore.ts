@@ -16,7 +16,7 @@ interface cnl {
   isPublic: boolean;
   allMembers: number[];
   ownerMembers: number[];
-  messages: msg[],
+  messages: msg[];
 }
 
 interface msg {
@@ -30,6 +30,7 @@ interface dm {
   name: string[];
   creator: number;
   allMembers: number[];
+  messages: msg[];
 }
 
 interface db {
