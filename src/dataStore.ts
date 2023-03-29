@@ -16,7 +16,7 @@ interface cnl {
   isPublic: boolean;
   allMembers: number[];
   ownerMembers: number[];
-  messages: msg[];
+  messages: msg[],
 }
 
 interface msg {
@@ -26,25 +26,30 @@ interface msg {
   timeSent: number;
 }
 
+
 interface dm {
+  dmId: number;
   name: string[];
   creator: number;
   allMembers: number[];
   messages: msg[];
 }
 
+
 interface db {
   users: usr[];
   channels: cnl[];
   dms: dm[];
+  msgcount: number;
 }
 
 let data: db = {
   users: [],
   channels: [],
   dms: [],
-
+  msgcount: 0,
 };
+
 
 // YOU SHOULDNT NEED TO MODIFY THE FUNCTIONS BELOW IN ITERATION 1
 
