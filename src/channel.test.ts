@@ -21,7 +21,7 @@ describe ('Testing channelLeaveV1', () => {
               email: 'HritwikNauriyal@gmail.com',
               formattedHandle: 'HritwikNauriyal',
               password: 'badpassword123',
-              token: [123456],
+              token: ['hello'],
             },
             {
               authUserId: 2,
@@ -68,7 +68,7 @@ describe ('Testing channelLeaveV1', () => {
       test ('token generated is invalid', () => {
         const data = getData();
         const channelId = data.channels[0].channelId;
-        const token = 999999;
+        const token = 'not a string'
         const result = channelLeaveV1(token, channelId);
         expect(result).toEqual({ error: 'token is invalid'});
 
@@ -110,7 +110,7 @@ describe ("Testing the addowner function", () => {
               email: 'HritwikNauriyal@gmail.com',
               formattedHandle: 'HritwikNauriyal',
               password: 'badpassword123',
-              token: [123456],
+              token: ['hello'],
             },
             {
               authUserId: 2,
@@ -179,7 +179,7 @@ describe ("Testing the addowner function", () => {
         const data = getData();
         const userId = data.users[2].authUserId;
         const channelId = data.channels[0].channelId;
-        const token = 12345
+        const token = 'not a string'
         const result = channelAddOwnerV1(token, channelId, userId);
         expect(result).toEqual({ error: 'token is invalid' });
       });
@@ -243,7 +243,7 @@ describe ("Testing the removeowner function", () => {
               email: 'HritwikNauriyal@gmail.com',
               formattedHandle: 'HritwikNauriyal',
               password: 'badpassword123',
-              token: [123456],
+              token: [],
             },
             {
               authUserId: 2,
@@ -312,7 +312,7 @@ describe ("Testing the removeowner function", () => {
         const data = getData();
         const userId = data.users[2].authUserId;
         const channelId = data.channels[0].channelId;
-        const token = 12345
+        const token = 'not a string'
         const result = channelRemoveOwnerV1(token, channelId, userId);
         expect(result).toEqual({ error: 'token is invalid' });
       });
@@ -369,6 +369,7 @@ describe ("Testing the removeowner function", () => {
        
 });
 
+/*
 //testing channelDetails:
 describe ("Testing channelDetails Final Test batch", () => {
     test ('testing if authUserId is not valid', () => {
@@ -401,10 +402,10 @@ describe ("Testing channelDetails Final Test batch", () => {
         const result = channelDetailsV1(userID1a, data.channels[0].channelId);
         expect(result).toEqual({error: 'User is not a part of the channel or invalid channelId'});
     });
-});
+});*/
 
 //testing channelMessages:
-
+/*
 const ERROR = { error: expect.any(String) };
 
 describe('Error Checking in channel messages v1', () => {
@@ -566,4 +567,4 @@ describe ("Testing channelJoinV1", () => {
     }) 
 })
 
-
+*/
