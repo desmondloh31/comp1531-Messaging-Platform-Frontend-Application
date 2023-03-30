@@ -1,5 +1,6 @@
 import {getData, setData} from './dataStore';
 import validator from 'validator';
+import {tokenCreate, tokenVerify, tokenDelete, tokenExists} from './token' 
 
 function authRegisterV1(email: string, password: string, nameFirst: string, nameLast: string) {
     const data = getData()
@@ -41,28 +42,33 @@ function authRegisterV1(email: string, password: string, nameFirst: string, name
         nameFirst: nameFirst,
         nameLast: nameLast,
         authUserId: authUserId,
-        formattedHandle: formattedHandle
+        formattedHandle: formattedHandle,
+        token: []
     })
     setData(data)
-    return {authUserId}
+    const token = tokenCreate(email) //place this in server.ts
+
+    return {authUserId, token}
     
   }
 
-
+//const test = authRegisterV1("example@gmail.com", "abc123", "John", "Smith")
+//console.log(test)
 
 function authLoginV1(email: string, password: string ) {
     const data = getData()
     for (let user = 0; user < data.users.length; user++){
-
         if (data.users[user].email ===  email){
             if(data.users[user].password === password){
-                return {authUserId: data.users[user].authUserId};
+                const token = tokenCreate(email) 
+                return {authUserId: data.users[user].authUserId, token};
             } 
             else{
                 return {error:"error"}
             }
         }
     }
+    
     return {error:"error"}
 }
 
@@ -83,3 +89,12 @@ function formatAlias(handleLower: string, currentMaxNum: number){
 export {authRegisterV1, authLoginV1};
 
 
+export function authLogoutV1(token: string){
+    if (!tokenExists(token)){
+        return {error:'error'}
+    }
+    tokenDelete(token)
+
+    //console.log(getData());
+    return {}
+}
