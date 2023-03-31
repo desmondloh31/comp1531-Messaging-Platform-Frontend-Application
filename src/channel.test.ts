@@ -30,14 +30,14 @@ describe ("Testing channelDetails Final Test batch", () => {
         let data = getData();
         const userID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith").authUserId;
         const channel1 = channelsCreateV1(userID,'channel1', false);
-        const result = channelDetailsV1(userID, 'invalidChannelName');
+        const result = channelDetailsV1(userID, -1);
         expect(result).toEqual({error: 'User is not a part of the channel or invalid channelId'});
     });
     test ('testing if channelId is valid but authuser is not a part of the channel', () => {
         clearV1();
         let data = getData();
-        const userID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith");
-        const userID1a = authRegisterV1("kavish@gmail.com", "abc12asd3", "Kavish", "Smith");
+        const userID = authRegisterV1("example@gmail.com", "abc123", "John", "Smith").authUserId;
+        const userID1 = authRegisterV1("kavish@gmail.com", "abc12asd3", "Kavish", "Smith").authUserId;
         const channel1 = channelsCreateV1(userID,'channel1', false);
         const result = channelDetailsV1(userID1, data.channels[0].channelId);
         expect(result).toEqual({error: 'User is not a part of the channel or invalid channelId'});
