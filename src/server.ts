@@ -9,13 +9,13 @@ channelRemoveOwnerV1 } from './channel';
 
 
 import { dmCreate,dmList } from './dm';
-import { authRegisterV1 } from './auth';
 
 import { clearV1 } from './other';
 
 import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
 import { tokenCreate, tokenVerify } from './token';
 import { userProfileV1, usersAllV1 } from './users';
+import { channelsCreateV1, channelsListV1 } from './channels';
 
 // Set up web app
 const app = express();
@@ -56,11 +56,14 @@ app.post('/auth/register/v2',(req: Request, res: Response) => {
 
 app.post('/channels/create/v2',(req: Request, res: Response) => {
   const { token, name, isPublic } = req.body;
+  res.json(channelsCreateV1(token, name, isPublic));
   
 });
 
 app.get('/channels/list/v2',(req: Request, res: Response) => {
-  const { token, name, isPublic } = req.body;
+  const token = req.query.token as string;
+  const result = channelsListV1(token);
+  res.json(result);
   
 });
 
@@ -110,16 +113,17 @@ app.post('/auth/logout/v1',(req: Request, res: Response) => {
 
 app.post('/channel/leave/v1',(req: Request, res: Response) => {
   const { token, channelId } = req.body;
-  
+  res.json(channelLeaveV1(token, channelId));
 });
 
 app.post('/channel/addowner/v1',(req: Request, res: Response) => {
   const { token, channelId, uId } = req.body;
-  
+  res.json(channelAddOwnerV1(token, channelId, uId));
 });
 
 app.post('/channel/removeowner/v1',(req: Request, res: Response) => {
   const { token, channelId, uId } = req.body;
+  res.json(channelRemoveOwnerV1(token, channelId, uId));
   
 });
 
