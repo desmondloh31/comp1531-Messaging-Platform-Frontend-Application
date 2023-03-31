@@ -8,7 +8,7 @@ interface usr {
   email: string;
   formattedHandle: string;
   password: string;
-  token: string[]
+  token: string[];
 }
 
 interface cnl {
