@@ -4,6 +4,8 @@ import {tokenCreate, tokenVerify, tokenDelete} from './token'
 import request, {HttpVerb} from 'sync-request';
 import {port,url} from './config.json';
 import {requestAuthRegister} from './authTest.test'
+import {getData, setData} from './dataStore';
+
 const SERVER_URL = `${url}:${port}`;
 
 function requestUserProfile(token: string, uId: number){
@@ -42,11 +44,21 @@ describe("Testing userProfileV2", () =>{
     })
 })
 
-/*describe("Testing usersAllV1", () =>{
+describe("Testing usersAllV1", () =>{
     test('Testing if userProfileV2 is returning all the correct values',() =>{
         const profile1 = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") as {token:string, authUserId: number}
         const profile2 = requestAuthRegister("ihatethis@cse.com", "nomore", "Freaking", "Done") as {token:string, authUserId: number}
-        const check = requestUserAll(profile1.token)
-        expect(check).toEqual({});
+        const data = requestUserAll(profile1.token)
+        let tempData = ""
+        for(let user = 0; user < data.users.length; user++ ){
+            if(user = data.users.length -2){
+                tempData += data.users[user].email
+            }
+            if(user = data.users.length -1){
+                tempData += data.users[user].email
+            }
+
+        }
+        expect(tempData).toEqual("example@gmail.comihatethis@cse.com");
     })
-})*/
+})
