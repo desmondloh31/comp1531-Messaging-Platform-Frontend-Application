@@ -1,5 +1,5 @@
 import {getData, setData} from './dataStore';
-import {authRegisterV1, authLoginV1} from './auth.js'
+import { tokenVerify } from './token';
 
 /**
  * @module channels
@@ -15,9 +15,10 @@ import {authRegisterV1, authLoginV1} from './auth.js'
 
 
 //parameters and returrn
-export function channelsListAllV1(authUserId: number) {
+export function channelsListAllV1(token: string) {
   const data = getData();
-  const user = data.users.find(i => i.authUserId == authUserId);
+  const authUser = tokenVerify(token);
+  const user = data.users.find((i: any) => i.authUserId === authUser);
   if (!user) {
     return { error: "authUserId is invalid"}; 
   }
@@ -36,9 +37,11 @@ export function channelsListAllV1(authUserId: number) {
 }
 
 //creating the channel from the uuid and authUserId
-export function channelsCreateV1(authUser: number, name: string, isPublic: boolean) {
+export function channelsCreateV1(token: string, name: string, isPublic: boolean) {
 
   const data = getData();
+
+  const authUser = tokenVerify(token);
   //check if authUserId is valid:
   let check = false;
   for (let i = 0; i < data.users.length; i++) {
@@ -76,9 +79,10 @@ export function channelsCreateV1(authUser: number, name: string, isPublic: boole
 }
 
 //Listing the given channels:
-export function channelsListV1(authUser: number) {
+export function channelsListV1(token: string) {
 
   const data = getData();
+  const authUser = tokenVerify(token);
   let check = false;
 
 
