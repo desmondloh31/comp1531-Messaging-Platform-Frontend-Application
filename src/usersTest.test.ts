@@ -4,6 +4,8 @@ import {tokenCreate, tokenVerify, tokenDelete} from './token'
 import request, {HttpVerb} from 'sync-request';
 import {port,url} from './config.json';
 import {requestAuthRegister} from './authTest.test'
+import {getData, setData} from './dataStore';
+
 const SERVER_URL = `${url}:${port}`;
 
 function requestUserProfile(token: string, uId: number){
