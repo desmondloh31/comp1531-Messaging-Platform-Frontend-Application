@@ -67,10 +67,13 @@ Example usage
 */
 
 // Use get() to access the data
+const dataStorePath = './storage.json'
 function getData() {
   
-  const dbstr = fs.readFileSync('storage.json')
-  data = JSON.parse(String(dbstr))
+  data = JSON.parse(String(fs.readFileSync(dataStorePath)))
+  
+  //const dbstr = fs.readFileSync('storage.json')
+  //data = JSON.parse(String(dbstr))
   
   return data;
 }
@@ -81,8 +84,10 @@ function getData() {
 // Hint: this function might be useful to edit in iteration 2
 function setData(newData: db) {
   data = newData;
-  const jsonstr = JSON.stringify(data)
-  fs.writeFileSync('storage.json', jsonstr, {flag: 'w'})
+  fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
+  
+  //const jsonstr = JSON.stringify(data)
+  //fs.writeFileSync('storage.json', jsonstr, {flag: 'w'})
 }
 
 
