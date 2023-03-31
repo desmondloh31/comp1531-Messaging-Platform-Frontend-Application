@@ -32,6 +32,15 @@ export function tokenVerify(token: string){
     return user.authUserId;
 }
 
+export function tokenExists(token: string): boolean {
+    const data = getData();
+    const user = data.users.find(i => i.token.includes(token));
+    if(!user){
+        return false
+    }
+    return true;
+}
+
 export function tokenDelete(token: string){
     const data = getData();
     const user = data.users.find(i => i.token.includes(token));
