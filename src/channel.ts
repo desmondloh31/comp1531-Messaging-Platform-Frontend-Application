@@ -1,12 +1,12 @@
-
 import {getData, setData} from './dataStore';
 import { tokenVerify } from './token';
 
-export function channelDetailsV1(authUserId: number, channelId: number){
-  
+
+export function channelDetailsV1(token: string, channelId: number){
+  const authUser = tokenVerify(token);
   //Determining whether authUserId is valid
   const data = getData();
-  const user = data.users.find(i => i.authUserId === authUserId);
+  const user = data.users.find(i => i.authUserId === authUser);
   if (!user) {
     return { error: "authUserId is invalid"}; 
   }
@@ -15,7 +15,7 @@ export function channelDetailsV1(authUserId: number, channelId: number){
   //Determine whether the channelId is valid & user is a part of the channel
   for (const currentChannel in data.channels) {
     const channel = data.channels[currentChannel];
-    if(channel.channelId === channelId && (channel.ownerMembers.includes(authUserId)||channel.allMembers.includes(authUserId))){
+    if(channel.channelId === channelId && (channel.ownerMembers.includes(authUser)||channel.allMembers.includes(authUser))){
       return  {name: channel.name, isPublic: channel.isPublic, ownerMembers: channel.ownerMembers, allMembers: channel.allMembers};
     }
   }
