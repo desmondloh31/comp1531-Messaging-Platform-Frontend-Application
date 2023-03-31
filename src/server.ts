@@ -6,6 +6,11 @@ import cors from 'cors';
 import { channelDetailsV1, channelJoinV1, channelInviteV1, 
 channelMessagesV1, channelLeaveV1, channelAddOwnerV1, 
 channelRemoveOwnerV1 } from './channel';
+
+import { dmCreate,dmList } from './dm';
+import { authRegisterV1 } from './auth';
+import { tokenCreate } from './token';
+import { clearV1 } from './other';
 // Set up web app
 const app = express();
 // Use middleware that allows us to access the JSON body of requests
@@ -15,8 +20,9 @@ app.use(cors());
 // for logging errors (print to terminal)
 app.use(morgan('dev'));
 
+
 const PORT: number = parseInt(process.env.PORT || config.port);
-const HOST: string = process.env.IP || 'localhost';
+const HOST: string = process.env.IP || '127.0.0.1';
 
 // Example get request
 app.get('/echo', (req: Request, res: Response, next) => {
@@ -32,7 +38,10 @@ app.post('/auth/login/v2',(req: Request, res: Response) => {
 
 app.post('/auth/register/v2',(req: Request, res: Response) => {
   const { email, password, nameFirst, nameLast} = req.body;
-  
+  let authid = authRegisterV1(email,password,nameFirst,nameLast);
+  //let token = tokenCreate(email);
+
+  return res.json(authid);
 });
 
 app.post('/channels/create/v2',(req: Request, res: Response) => {
@@ -77,6 +86,7 @@ app.get('/user/profile/v2',(req: Request, res: Response) => {
 
 app.delete('/clear/v1',(req: Request, res: Response) => {
   const {} = req;
+  return res.json(clearV1())
 });
 
 app.post('/auth/logout/v1',(req: Request, res: Response) => {
@@ -116,12 +126,14 @@ app.delete('/message/remove/v1',(req: Request, res: Response) => {
 
 app.post('/dm/create/v1',(req: Request, res: Response) => {
   const { token, uIds } = req.body;
-  
+  res.json(dmCreate(token,uIds));
 });
 
 app.get('/dm/list/v1',(req: Request, res: Response) => {
-  const { token } = req.query;
-  
+  const token = req.query.token as string;
+  const function2 = dmList(token)
+  res.json(function2)
+
 });
 
 app.delete('/dm/remove/v1',(req: Request, res: Response) => {
