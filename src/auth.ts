@@ -1,6 +1,7 @@
 import { getData, setData } from './dataStore';
 import { tokenCreate } from './token';
 import validator from 'validator';
+import {tokenCreate, tokenVerify, tokenDelete, tokenExists} from './token' 
 
 function authRegisterV1(email: string, password: string, nameFirst: string, nameLast: string) {
   const data = getData();
@@ -76,4 +77,13 @@ function formatAlias(handleLower: string, currentMaxNum: number) {
   return handleLower;
 }
 
-export { authRegisterV1, authLoginV1 };
+export function authLogoutV1(token: string){
+    if (!tokenExists(token)){
+        return {error:'error'}
+    }
+    tokenDelete(token)
+
+    //console.log(getData());
+    return {}
+}
+

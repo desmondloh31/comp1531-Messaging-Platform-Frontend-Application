@@ -3,15 +3,19 @@ import { echo } from './echo';
 import morgan from 'morgan';
 import config from './config.json';
 import cors from 'cors';
-import { tokenCreate, tokenDelete, tokenVerify } from './token';
-import {
-  channelDetailsV1, channelJoinV1, channelInviteV1,
-  channelMessagesV1, messageSendV1, messageEditV1, messageDeleteV1, dmMessagesV1
-} from './channel';
-import { channelsCreateV1, channelsListV1, channelsListAllV1 } from './channels';
-import { authRegisterV1, authLoginV1 } from './auth';
-import { getData } from './dataStore';
+import { channelDetailsV1, channelJoinV1, channelInviteV1, 
+channelMessagesV1, channelLeaveV1, channelAddOwnerV1, 
+channelRemoveOwnerV1 } from './channel';
+
+
+import { dmCreate,dmList } from './dm';
+import { authRegisterV1 } from './auth';
+
 import { clearV1 } from './other';
+
+import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
+import { tokenCreate, tokenVerify } from './token';
+import { userProfileV1, usersAllV1 } from './users';
 
 // channelLeaveV1, channelAddOwnerV1, channelRemoveOwnerV1
 // Set up web app
@@ -23,8 +27,9 @@ app.use(cors());
 // for logging errors (print to terminal)
 app.use(morgan('dev'));
 
+
 const PORT: number = parseInt(process.env.PORT || config.port);
-const HOST: string = process.env.IP || 'localhost';
+const HOST: string = process.env.IP || '127.0.0.1';
 
 // Example get request
 app.get('/echo', (req: Request, res: Response, next) => {
@@ -32,141 +37,164 @@ app.get('/echo', (req: Request, res: Response, next) => {
   return res.json(echo(data));
 });
 
-// All http function wrappers for All Functions:
-app.post('/auth/login/v2', (req: Request, res: Response) => {
+//All http function wrappers for All Functions:
+app.post('/auth/login/v2',(req: Request, res: Response) => {
   const { email, password } = req.body;
+  let authid = authLoginV1(email,password);
+  res.json(authid);
+  
 });
 
-app.post('/auth/register/v2', (req: Request, res: Response) => {
-  const { email, password, nameFirst, nameLast } = req.body;
-  const authid = authRegisterV1(email, password, nameFirst, nameLast);
+app.post('/auth/register/v2',(req: Request, res: Response) => {
+  const { email, password, nameFirst, nameLast} = req.body;
+  let authid = authRegisterV1(email,password,nameFirst,nameLast);
+  //let token = tokenCreate(email);
+
+  return res.json(authid);
+
   res.json(authid);
 });
 
-app.post('/channels/create/v2', (req: Request, res: Response) => {
+app.post('/channels/create/v2',(req: Request, res: Response) => {
   const { token, name, isPublic } = req.body;
-  return res.json(channelsCreateV1(tokenVerify(token) as number, name, isPublic));
+  
 });
 
-app.get('/channels/list/v2', (req: Request, res: Response) => {
+app.get('/channels/list/v2',(req: Request, res: Response) => {
   const { token, name, isPublic } = req.body;
+  
 });
 
-app.get('/channels/listall/v2', (req: Request, res: Response) => {
+app.get('/channels/listall/v2',(req: Request, res: Response) => {
   const { token } = req.query;
+  
 });
 
-app.get('/channel/details/v2', (req: Request, res: Response) => {
+app.get('/channel/details/v2',(req: Request, res: Response) => {
   const { token, channelId } = req.query;
+  
 });
 
-app.post('/channel/join/v2', (req: Request, res: Response) => {
+app.post('/channel/join/v2',(req: Request, res: Response) => {
   const { token, channelId } = req.body;
-  return res.json(channelJoinV1(tokenVerify(token) as number, channelId));
+  
 });
 
-app.post('/channel/invite/v2', (req: Request, res: Response) => {
+app.post('/channel/invite/v2',(req: Request, res: Response) => {
   const { token, channelId, uId } = req.body;
-  const temp: number | {error: string} = tokenVerify(token);
-  let authId: number;
-  if (typeof temp === 'number') {
-    authId = temp;
-  } else {
-    return { error: 'Invalid Token' };
-  }
-
-  return res.json(channelInviteV1(authId, channelId, uId));
+  
 });
 
-app.get('/channel/messages/v2', (req: Request, res: Response) => {
+app.get('/channel/messages/v2',(req: Request, res: Response) => {
   const { token, channelId, start } = req.query;
-  const result = channelMessagesV1(tokenVerify(token as string) as number, parseInt(channelId as string), parseInt(start as string));
-  return res.json(result);
+  
 });
 
-app.get('/user/profile/v2', (req: Request, res: Response) => {
-  const { token, uId } = req.query;
+app.get('/user/profile/v2',(req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const uId = parseInt(req.query.uId as string);
+  let authid = tokenVerify(token)
+  let function1 = userProfileV1(token,uId)
+  res.json(function1)
 });
 
-app.delete('/clear/v1', (req: Request, res: Response) => {
-  return res.json(clearV1());
+app.delete('/clear/v1',(req: Request, res: Response) => {
+  const {} = req;
+  return res.json(clearV1())
 });
 
-app.post('/auth/logout/v1', (req: Request, res: Response) => {
+app.post('/auth/logout/v1',(req: Request, res: Response) => {
   const { token } = req.body;
+  let authid = authLogoutV1(token);
+  res.json(authid);
 });
 
-app.post('/channel/leave/v1', (req: Request, res: Response) => {
+app.post('/channel/leave/v1',(req: Request, res: Response) => {
   const { token, channelId } = req.body;
+  
 });
 
-app.post('/channel/addowner/v1', (req: Request, res: Response) => {
+app.post('/channel/addowner/v1',(req: Request, res: Response) => {
   const { token, channelId, uId } = req.body;
+  
 });
 
-app.post('/channel/removeowner/v1', (req: Request, res: Response) => {
+app.post('/channel/removeowner/v1',(req: Request, res: Response) => {
   const { token, channelId, uId } = req.body;
+  
 });
 
-app.post('/message/send/v1', (req: Request, res: Response) => {
+app.post('/message/send/v1',(req: Request, res: Response) => {
   const { token, channelId, message } = req.body;
-  return res.json(messageSendV1(tokenVerify(token) as number, channelId, -1, message));
+  
 });
 
-app.put('/message/edit/v1', (req: Request, res: Response) => {
+app.put('/message/edit/v1',(req: Request, res: Response) => {
   const { token, messageId, message } = req.body;
-  return res.json(messageEditV1(tokenVerify(token) as number, messageId, message));
+  
 });
 
-app.delete('/message/remove/v1', (req: Request, res: Response) => {
-  const { token, messageId } = req.query;
-  return res.json(messageDeleteV1(tokenVerify(token as string) as number, parseInt(messageId as string)));
+app.delete('/message/remove/v1',(req: Request, res: Response) => {
+  const { token, messageId } = req.body;
+  
 });
 
-app.post('/dm/create/v1', (req: Request, res: Response) => {
+app.post('/dm/create/v1',(req: Request, res: Response) => {
   const { token, uIds } = req.body;
+  res.json(dmCreate(token,uIds));
 });
 
-app.get('/dm/list/v1', (req: Request, res: Response) => {
-  const { token } = req.query;
+app.get('/dm/list/v1',(req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const function2 = dmList(token)
+  res.json(function2)
+
 });
 
-app.delete('/dm/remove/v1', (req: Request, res: Response) => {
+app.delete('/dm/remove/v1',(req: Request, res: Response) => {
   const { token, dmId } = req.query;
+  
 });
 
-app.get('/dm/details/v1', (req: Request, res: Response) => {
+app.get('/dm/details/v1',(req: Request, res: Response) => {
   const { token, dmId } = req.query;
+  
 });
 
-app.post('/dm/leave/v1', (req: Request, res: Response) => {
+app.post('/dm/leave/v1',(req: Request, res: Response) => {
   const { token, dmId } = req.body;
+  
 });
 
-app.get('/dm/messages/v1', (req: Request, res: Response) => {
+app.get('/dm/messages/v1',(req: Request, res: Response) => {
   const { token, dmId, start } = req.query;
-  return res.json(dmMessagesV1(tokenVerify(token as string) as number, parseInt(dmId as string), parseInt(start as string)));
+  
 });
 
-app.post('/message/senddm/v1', (req: Request, res: Response) => {
+app.post('/message/senddm/v1',(req: Request, res: Response) => {
   const { token, dmId, message } = req.body;
-  return res.json(messageSendV1(tokenVerify(token as string) as number, -1, dmId, message));
+  
 });
 
-app.get('/users/all/v1', (req: Request, res: Response) => {
-  const { token } = req.query;
+app.get('/users/all/v1',(req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const function2 = usersAllV1(token)
+  res.json(function2)
 });
 
-app.put('/user/profile/setname/v1', (req: Request, res: Response) => {
+app.put('/user/profile/setname/v1',(req: Request, res: Response) => {
   const { token, nameFirst, nameLast } = req.body;
+  
 });
 
-app.put('/user/profile/setemail/v1', (req: Request, res: Response) => {
+app.put('/user/profile/setemail/v1',(req: Request, res: Response) => {
   const { token, email } = req.body;
+  
 });
 
-app.put('/user/profile/sethandle/v1', (req: Request, res: Response) => {
+app.put('/user/profile/sethandle/v1',(req: Request, res: Response) => {
   const { token, handleStr } = req.body;
+  
 });
 
 // start server

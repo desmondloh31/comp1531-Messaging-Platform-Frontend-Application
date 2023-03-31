@@ -34,6 +34,14 @@ interface dm {
   messages: msg[];
 }
 
+interface dm {
+  name: string[];
+  dmId: number;
+  creator: number;
+  allMembers: number[];
+  messages: msg[];
+}
+
 interface db {
   users: usr[];
   channels: cnl[];
