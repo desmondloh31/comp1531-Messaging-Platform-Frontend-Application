@@ -1,4 +1,5 @@
 // YOU SHOULD MODIFY THIS OBJECT BELOW
+import fs from 'fs'
 
 interface usr {
   authUserId: number;
@@ -7,6 +8,7 @@ interface usr {
   email: string;
   formattedHandle: string;
   password: string;
+  token: string[]
 }
 
 interface cnl {
@@ -54,6 +56,10 @@ Example usage
 
 // Use get() to access the data
 function getData() {
+  
+  const dbstr = fs.readFileSync('storage.json')
+  data = JSON.parse(String(dbstr))
+  
   return data;
 }
 
@@ -63,6 +69,9 @@ function getData() {
 // Hint: this function might be useful to edit in iteration 2
 function setData(newData: db) {
   data = newData;
+  const jsonstr = JSON.stringify(data)
+  fs.writeFileSync('storage.json', jsonstr, {flag: 'w'})
 }
+
 
 export { getData, setData };
