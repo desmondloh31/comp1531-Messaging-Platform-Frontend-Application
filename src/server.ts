@@ -7,10 +7,16 @@ import { channelDetailsV1, channelJoinV1, channelInviteV1,
 channelMessagesV1, channelLeaveV1, channelAddOwnerV1, 
 channelRemoveOwnerV1 } from './channel';
 
+
 import { dmCreate,dmList } from './dm';
 import { authRegisterV1 } from './auth';
-import { tokenCreate } from './token';
+
 import { clearV1 } from './other';
+
+import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
+import { tokenCreate, tokenVerify } from './token';
+import { userProfileV1, usersAllV1 } from './users';
+
 // Set up web app
 const app = express();
 // Use middleware that allows us to access the JSON body of requests
@@ -33,6 +39,8 @@ app.get('/echo', (req: Request, res: Response, next) => {
 //All http function wrappers for All Functions:
 app.post('/auth/login/v2',(req: Request, res: Response) => {
   const { email, password } = req.body;
+  let authid = authLoginV1(email,password);
+  res.json(authid);
   
 });
 
@@ -42,6 +50,8 @@ app.post('/auth/register/v2',(req: Request, res: Response) => {
   //let token = tokenCreate(email);
 
   return res.json(authid);
+
+  res.json(authid);
 });
 
 app.post('/channels/create/v2',(req: Request, res: Response) => {
@@ -80,8 +90,11 @@ app.get('/channel/messages/v2',(req: Request, res: Response) => {
 });
 
 app.get('/user/profile/v2',(req: Request, res: Response) => {
-  const { token, uId } = req.query;
-  
+  const token = req.query.token as string;
+  const uId = parseInt(req.query.uId as string);
+  let authid = tokenVerify(token)
+  let function1 = userProfileV1(token,uId)
+  res.json(function1)
 });
 
 app.delete('/clear/v1',(req: Request, res: Response) => {
@@ -91,7 +104,8 @@ app.delete('/clear/v1',(req: Request, res: Response) => {
 
 app.post('/auth/logout/v1',(req: Request, res: Response) => {
   const { token } = req.body;
-  
+  let authid = authLogoutV1(token);
+  res.json(authid);
 });
 
 app.post('/channel/leave/v1',(req: Request, res: Response) => {
@@ -162,8 +176,9 @@ app.post('/message/senddm/v1',(req: Request, res: Response) => {
 });
 
 app.get('/users/all/v1',(req: Request, res: Response) => {
-  const { token } = req.query;
-  
+  const token = req.query.token as string;
+  const function2 = usersAllV1(token)
+  res.json(function2)
 });
 
 app.put('/user/profile/setname/v1',(req: Request, res: Response) => {
