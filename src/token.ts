@@ -1,5 +1,6 @@
 import {getData, setData} from './dataStore';
 import validator from 'validator';
+import { token } from 'morgan';
 
 export function tokenCreate(email: string){
     const data = getData();
@@ -25,11 +26,18 @@ export function tokenCreate(email: string){
 
 export function tokenVerify(token: string){
     const data = getData();
-    const user = data.users.find(i => i.token.includes(token));
-    if(!user){
+    let user: number = -1;
+    for (let i = 0; i < data.users.length; i++){
+        for (let j = 0; j < data.users[i].token.length; j++){
+            if (data.users[i].token[j] === token){
+                user = data.users[i].authUserId
+            }
+        }
+    }
+    if(user == -1){
         return {error: "token is invalid"}
     }
-    return user.authUserId;
+    return user;
 }
 
 export function tokenDelete(token: string){

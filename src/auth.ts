@@ -1,4 +1,5 @@
 import {getData, setData} from './dataStore';
+import {tokenCreate} from './token';
 import validator from 'validator';
 
 function authRegisterV1(email: string, password: string, nameFirst: string, nameLast: string) {
@@ -42,11 +43,13 @@ function authRegisterV1(email: string, password: string, nameFirst: string, name
         nameLast: nameLast,
         authUserId: authUserId,
         formattedHandle: formattedHandle,
-        token: [],
+        token: []
     })
     setData(data)
-    return {authUserId}
-    
+    const token = tokenCreate(email) //place this in server.ts
+
+    return {authUserId, token}
+
   }
 
 

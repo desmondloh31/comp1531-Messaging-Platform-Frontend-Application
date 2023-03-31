@@ -6,77 +6,82 @@ import { tokenCreate, tokenDelete, tokenVerify } from '../token';
 const ERROR = { error: expect.any(String) };
 
 describe('Error Checking in tokenCreate', () => {
-    const data = getData();
+    let email = "test@gmail.com";
     beforeEach (() => {
         clearV1();
-        authRegisterV1("test@gmail.com", "test1234", "test", "test");
+        authRegisterV1(email, "test1234", "test", "test");
         
     });
 
     test('invalid email', () => {
-        let email = "-1";
-        const result = tokenCreate(email);
+        const result = tokenCreate("testing");
         expect(result).toStrictEqual(ERROR);
     });
 
     test('email not found', () => {
-        let email = "test";
-        let channelid = -1;
-        const result = tokenCreate(email);
+        const result = tokenCreate("test123@gmail.com");
         expect(result).toStrictEqual(ERROR);
     });
 
     test('Valid Test', () => {
-        let correctEmail = data.users[0].email; //check with tutor
-        const result = tokenCreate(correctEmail);
-        expect(result).toStrictEqual(ERROR);//change to success
+        const result = tokenCreate(email);
+        expect(result).toStrictEqual(expect.any(String));//change to success
     });
 
 });
 
 
 describe('Error Checking in tokenVerify', () => {
-    const data = getData();
+    //const data = getData();
+    interface user {
+        authUserId: number;
+        token: string;
+    }
+    let user: user;
+    let email = "test@gmail.com";
+    let token: string | { error:string };
     beforeEach (() => {
         clearV1();
-        authRegisterV1("test@gmail.com", "test1234", "test", "test");
-        tokenCreate(data.users[0].email);
+        user = authRegisterV1("test@gmail.com", "test1234", "test", "test") as user;
+        token = tokenCreate(email);
         
     });
 
     test('token not found', () => {
-        let token = data.users[0].token[0];
-        const result = tokenVerify(token);
+        const result = tokenVerify("-1");
         expect(result).toStrictEqual(ERROR);
     });
 
     test('Valid Test', () => {
-        let token = data.users[0].token[0];
-        const result = tokenVerify(token);
-        expect(result).toStrictEqual(ERROR);//change to success
+        const result = tokenVerify(token as string);
+        expect(result).toStrictEqual(user.authUserId);//change to success
     });
 
 });
 
 describe('Error Checking in tokenDelete', () => {
-    const data = getData();
+    interface user {
+        authUserId: number;
+        token: string;
+    }
+    let user: user;
+    let email = "test@gmail.com"
+    let token: string;
     beforeEach (() => {
         clearV1();
-        authRegisterV1("test@gmail.com", "test1234", "test", "test");
-        tokenCreate(data.users[0].email);
+        user = authRegisterV1("test@gmail.com", "test1234", "test", "test") as user;
+        token = tokenCreate(email) as string;
         
     });
 
     test('token not found', () => {
-        let token = data.users[0].token[0];
-        const result = tokenVerify(token);
+        const result = tokenVerify("-1");
         expect(result).toStrictEqual(ERROR);
     });
 
     test('Valid Test', () => {
-        let token = data.users[0].token[0];
         const result = tokenVerify(token);
-        expect(result).toStrictEqual(ERROR);//change to success
+        expect(result).toStrictEqual(user.authUserId);//change to success
     });
 
 });

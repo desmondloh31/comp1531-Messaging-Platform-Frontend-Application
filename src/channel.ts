@@ -1,5 +1,6 @@
 import {getData, setData} from './dataStore';
 import { channelsCreateV1 } from './channels.js';
+import { channel } from 'diagnostics_channel';
 
 export function channelDetailsV1(authUserId: number, channelId: number){
   
@@ -53,6 +54,161 @@ export function channelMessagesV1(authUserId: number, channelId: number, start: 
   return result;
 }
 
+
+export function dmMessagesV1(authUserId: number, dmId: number, start: number ) {
+  const data = getData();
+  const user = data.users.find(i => i.authUserId === authUserId);
+  const dm = data.dms.find(i => i.dmId === dmId);
+
+
+  if (!user) {
+    return { error: "authUserId is invalid"};
+  }else if (!dm) {
+    return { error: "channelId is invalid"};
+  }else if (dm.messages.length < start ) { 
+    return { error: "start is greater than the total number of messages in the channel"};
+  }else if (dm.allMembers.find((i: number) => i === authUserId) === undefined) {
+    return { error: "authUserId is not a member of the channel with ID channelId"};
+  }
+
+  ///may need to reverse order of msgs in result
+  let result = {
+    messages: [] as object[],
+    start: start,
+    end: start+50<dm.messages.length?start+50:-1,
+  }
+  for (let i = 0; i < dm.messages.length; i++) {
+    if (i < 50) {
+      result.messages.push({messageId: dm.messages[i].messageId, uId:dm.messages[i].senderId, message: dm.messages[i].message, timeSent: dm.messages[i].timeSent});
+    }
+  }
+
+  return result;
+}
+
+
+export function messageSendV1(authUserId: number, channelId: number, dmId: number, message: string) {
+  const data = getData();
+  const user = data.users.find(i => i.authUserId === authUserId);
+  const channel = data.channels.find(i => i.channelId === channelId);
+  const dm = data.dms.find(i => i.dmId === dmId);
+
+  let ischannel = false
+  if (dmId === -1) {
+    ischannel = true
+    if (!channel) {
+      return { error: "channelId is invalid"};
+    }
+  }else if (!dm) {
+    return { error: "dmId is invalid"};
+  }
+
+  if (!user) {
+    return { error: "authUserId is invalid"};
+  }else if (channel.allMembers.find((i: number) => i === authUserId) === undefined) {
+    return { error: "authUserId is not a member of the channel with ID channelId"};
+  }else if (message.length > 1000) {
+    return { error: "message length is greater than 1000 characters"};
+  }else if (message.length === 0) {
+    return { error: "message length is 0"};
+  }
+
+  let Id = data.msgcount;
+  data.msgcount++;
+
+  if (ischannel) {
+    channel.messages.push({
+      messageId: Id,
+      senderId: authUserId,
+      message: message,
+      timeSent: Date.now(),
+    });
+  } else {
+    dm.messages.push({
+      messageId: Id,
+      senderId: authUserId,
+      message: message,
+      timeSent: Date.now(),
+    });
+  }
+
+  setData(data);
+
+  return {messageId: Id};
+}
+
+export function messageDeleteV1(authUserId: number, messageId: number) {
+  const data = getData();
+  const user = data.users.find(i => i.authUserId === authUserId);
+  if (!user) {
+    return { error: "authUserId is invalid"};
+  }
+
+  const channelmsg = data.channels.find(i => i.messages.find(j => j.messageId === messageId) !== undefined);
+  const DMmsg = data.dms.find(i => i.messages.find(j => j.messageId === messageId) !== undefined);
+  if (!channelmsg && !DMmsg) {
+    return { error: "messageId is invalid"};
+  }
+
+  if (channelmsg.messages.find(i => i.messageId === messageId).senderId !== authUserId) {
+    return { error: "authUserId is not the sender of the message with ID messageId"};
+  }
+
+  if (!channelmsg) {
+    DMmsg.messages = DMmsg.messages.filter(i => i.messageId !== messageId);
+    
+  } else if (!DMmsg) {
+    channelmsg.messages = channelmsg.messages.filter(i => i.messageId !== messageId);
+  }
+  setData(data);
+  return {};
+}
+
+export function messageEditV1(authUserId: number, messageId: number, message: string) {
+  const data = getData();
+  const user = data.users.find(i => i.authUserId === authUserId);
+  if (!user) {
+    return { error: "authUserId is invalid"};
+  }else if (message.length > 1000) {
+    return { error: "message length is greater than 1000 characters"};
+  }
+
+
+  const channelmsg = data.channels.find(i => i.messages.find(j => j.messageId === messageId));
+  const DMmsg = data.dms.find(i => i.messages.find(j => j.messageId === messageId));
+
+  if (!channelmsg && !DMmsg) {
+    return { error: "messageId is invalid"};
+  }
+
+  if (message.length === 0) {
+    messageDeleteV1(authUserId, messageId);
+    return {message: ""};
+  } else {
+    let response;
+    if (!channelmsg) {
+      response = DMmsg.messages.find(i => i.messageId === messageId)
+      if (response.senderId !== authUserId) {
+        return { error: "authUserId is not the sender of the message with ID messageId"};
+      }
+      response.message = message;
+      
+      setData(data);
+      return {};
+    
+    } else if (!DMmsg) {
+      response = channelmsg.messages.find(i => i.messageId === messageId)
+      if (response.senderId !== authUserId) {
+        return { error: "authUserId is not the sender of the message with ID messageId"};
+      }
+      response.message = message;
+      
+      setData(data);
+      return {};
+    }
+    
+  }
+}
 
 export function channelInviteV1(authUserId: number, channelId: number, uId: number) {
   ///Determining whether authUserId is valid
@@ -112,7 +268,6 @@ export function channelInviteV1(authUserId: number, channelId: number, uId: numb
 export function channelJoinV1(authUserId: number, channelId: number){
   const data = getData();
   //check if authUserId is valid
-  
   const user = data.users.find(i => i.authUserId === authUserId);
   if (!user) {
     return { error: "authUserId is invalid"}; 
