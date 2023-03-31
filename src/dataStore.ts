@@ -10,6 +10,13 @@ interface usr {
   token: string[];
 }
 
+interface msg {
+  messageId: number;
+  senderId: number;
+  message: string;
+  timeSent: number;
+}
+
 interface cnl {
   channelId: number;
   name: string;
@@ -19,14 +26,6 @@ interface cnl {
   messages: msg[],
 }
 
-interface msg {
-  messageId: number;
-  senderId: number;
-  message: string;
-  timeSent: number;
-}
-
-
 interface dm {
   dmId: number;
   name: string[];
@@ -34,7 +33,6 @@ interface dm {
   allMembers: number[];
   messages: msg[];
 }
-
 
 interface db {
   users: usr[];
