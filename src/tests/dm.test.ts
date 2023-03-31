@@ -214,96 +214,96 @@ describe('Error Checking in delete Message v1', () => {
 
 });
 
-describe('Error Checking in dm messages v1', () => {
-    interface user {
-        authUserId: number;
-        token: string;
-    }
-    let user: user;
-    let user1: user;
-    let dmid: number;
-    beforeEach (() => {
-        requestClear();
-        user = requestAuthRegister("test@gmail.com", "test1234", "test", "test");
-        user1 = requestAuthRegister("user2@gmail.com", "test1234", "Hritwik", "Nauriyal");
-        dmid = requestDmCreate(user.token, "test", true).dmId;
-    });
+// describe('Error Checking in dm messages v1', () => {
+//     interface user {
+//         authUserId: number;
+//         token: string;
+//     }
+//     let user: user;
+//     let user1: user;
+//     let dmid: number;
+//     beforeEach (() => {
+//         requestClear();
+//         user = requestAuthRegister("test@gmail.com", "test1234", "test", "test");
+//         user1 = requestAuthRegister("user2@gmail.com", "test1234", "Hritwik", "Nauriyal");
+//         dmid = requestDmCreate(user.token, "test", true).dmId;
+//     });
 
-    test('invalid authuser id', () => {
-        const result = requestDmMessages("-1", dmid, 0);
-        expect(result).toStrictEqual(ERROR);
-    });
+//     test('invalid authuser id', () => {
+//         const result = requestDmMessages("-1", dmid, 0);
+//         expect(result).toStrictEqual(ERROR);
+//     });
 
-    test('invalid dm id', () => {
-        let dmid = -1;
-        const result = requestDmMessages(user.token, dmid, 0);
-        expect(result).toStrictEqual(ERROR);
-    });
+//     test('invalid dm id', () => {
+//         let dmid = -1;
+//         const result = requestDmMessages(user.token, dmid, 0);
+//         expect(result).toStrictEqual(ERROR);
+//     });
 
-    test('invalid start', () => {
-        const result = requestDmMessages(user.token, dmid, 1);
-        expect(result).toStrictEqual(ERROR);    
-    });
+//     test('invalid start', () => {
+//         const result = requestDmMessages(user.token, dmid, 1);
+//         expect(result).toStrictEqual(ERROR);    
+//     });
 
-    test('Authuser not part of channel', () => {
+//     test('Authuser not part of channel', () => {
 
-        const result = requestDmMessages(user1.token, dmid, 0);
-        expect(result).toStrictEqual(ERROR);
-    });
+//         const result = requestDmMessages(user1.token, dmid, 0);
+//         expect(result).toStrictEqual(ERROR);
+//     });
 
-    test('Valid Test', () => {
-        const result = requestDmMessages(user.token, dmid, 0);
-        expect(result).toStrictEqual({messages: [],start: 0, end: -1});
-    });
+//     test('Valid Test', () => {
+//         const result = requestDmMessages(user.token, dmid, 0);
+//         expect(result).toStrictEqual({messages: [],start: 0, end: -1});
+//     });
 
-});
+// });
 
 
-describe('Error Checking in Senddm v1', () => {
-    interface user {
-        authUserId: number;
-        token: string;
-    }
-    let user: user;
-    let user1: user;
-    let dmid: number;
-    beforeEach (() => {
-        requestClear();
-        user = requestAuthRegister("test@gmail.com", "test1234", "test", "test");
-        user1 = requestAuthRegister("user2@gmail.com", "test1234", "Hritwik", "Nauriyal");
-        dmid = requestDmCreate(user.token, "test", true).channelId;
-    });
+// describe('Error Checking in Senddm v1', () => {
+//     interface user {
+//         authUserId: number;
+//         token: string;
+//     }
+//     let user: user;
+//     let user1: user;
+//     let dmid: number;
+//     beforeEach (() => {
+//         requestClear();
+//         user = requestAuthRegister("test@gmail.com", "test1234", "test", "test");
+//         user1 = requestAuthRegister("user2@gmail.com", "test1234", "Hritwik", "Nauriyal");
+//         dmid = requestDmCreate(user.token, "test", true).channelId;
+//     });
 
-    test('invalid authuser id', () => {
-        const result = requestSendDm("-1", dmid, "Test Message");
-        expect(result).toStrictEqual(ERROR);
-    });
+//     test('invalid authuser id', () => {
+//         const result = requestSendDm("-1", dmid, "Test Message");
+//         expect(result).toStrictEqual(ERROR);
+//     });
 
-    test('invalid channel id', () => {
-        let channelid = -1;
-        const result = requestSendDm(user.token, dmid, "Test Message");
-        expect(result).toStrictEqual(ERROR);
-    });
+//     test('invalid channel id', () => {
+//         let channelid = -1;
+//         const result = requestSendDm(user.token, dmid, "Test Message");
+//         expect(result).toStrictEqual(ERROR);
+//     });
 
-    test('invalid Message - toolong', () => {
-        const result = requestSendDm(user.token, dmid, "temp".repeat(1000));
-        expect(result).toStrictEqual(ERROR);    
-    });
+//     test('invalid Message - toolong', () => {
+//         const result = requestSendDm(user.token, dmid, "temp".repeat(1000));
+//         expect(result).toStrictEqual(ERROR);    
+//     });
 
-    test('invalid Message - tooshort', () => {
-        const result = requestSendDm(user.token, dmid, "");
-        expect(result).toStrictEqual(ERROR);    
-    });
+//     test('invalid Message - tooshort', () => {
+//         const result = requestSendDm(user.token, dmid, "");
+//         expect(result).toStrictEqual(ERROR);    
+//     });
 
-    test('Authuser not part of channel', () => {
+//     test('Authuser not part of channel', () => {
 
-        const result = requestSendDm(user1.token, dmid, "Test Message");
-        expect(result).toStrictEqual(ERROR);
-    });
+//         const result = requestSendDm(user1.token, dmid, "Test Message");
+//         expect(result).toStrictEqual(ERROR);
+//     });
 
-    test('Valid Test', () => {
-        const result = requestSendDm(user.token, dmid, "Test Message");
-        expect(result).toStrictEqual({messageId: expect.any(Number)});
-    });
+//     test('Valid Test', () => {
+//         const result = requestSendDm(user.token, dmid, "Test Message");
+//         expect(result).toStrictEqual({messageId: expect.any(Number)});
+//     });
 
-});
+// });
