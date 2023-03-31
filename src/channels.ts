@@ -1,6 +1,7 @@
 
-import {authRegisterV1, authLoginV1} from './auth.js'
-import {getData, setData} from './dataStore.js';
+
+import {getData, setData} from './dataStore';
+import { tokenVerify } from './token';
 
 /**
  * @module channels
@@ -16,34 +17,43 @@ import {getData, setData} from './dataStore.js';
 
 
 //parameters and returrn
-export function channelsListAllV1(authUserId: number) {
+export function channelsListAllV1(token: string) {
   const data = getData();
-  const user = data.users[authUserId];
+  const authUser = tokenVerify(token);
+  const user = data.users.find((i: any) => i.authUserId === authUser);
   if (!user) {
     return { error: "authUserId is invalid"}; 
   }
   else{
-    //setData(data.channels)
-
-    return data.channels
+    
+    const channels = [];
+    for (let i = 0; i < data.channels.length; i++) {
+      for (let j = 0; j < data.channels[i].allMembers.length; j++) {
+          
+        channels.push({channelId: data.channels[i].channelId, name: data.channels[i].name});
+      }
+    }
+    return channels;
   }
 
 }
 
 //creating the channel from the uuid and authUserId
-export function channelsCreateV1(authUser: number, name: string, isPublic: boolean) {
+export function channelsCreateV1(token: string, name: string, isPublic: boolean) {
 
   const data = getData();
+
+  const authUser = tokenVerify(token);
   //check if authUserId is valid:
   let check = false;
   for (let i = 0; i < data.users.length; i++) {
-    if (data.users[i].authUserId == authUser) {
+    if (data.users[i].authUserId === authUser) {
       check = true;
   
     }
   }
 
-  if (check == false) {
+  if (check === false) {
     return { error: "authUserId is invalid"};
   }
 
@@ -52,8 +62,8 @@ export function channelsCreateV1(authUser: number, name: string, isPublic: boole
     return { error: "length of name is less than 1 or more than 20 characters"};
   }
 
-  const Id = data.channels.length;
-  
+  let Id = data.channels.length;
+ 
   //add a new channel to the data store:
   data.channels.push({
     channelId: Id,
@@ -61,33 +71,26 @@ export function channelsCreateV1(authUser: number, name: string, isPublic: boole
     isPublic: isPublic,
     ownerMembers: [authUser],
     allMembers: [authUser],
-    messages: {},
+    messages: [],
   });
   setData(data);
 
-  return{
-
-      channelId: Id,
-      name: name,
-      isPublic: isPublic,
-      ownerMembers: [authUser],
-      allMembers: [authUser],
-      messages: {},
-    
-  };
+  return {channelId: Id};
 
 
 }
 
 //Listing the given channels:
-export function channelsListV1(authUser: number) {
+export function channelsListV1(token: string) {
 
   const data = getData();
+  const authUser = tokenVerify(token);
   let check = false;
+
 
   //check if authUserId is valid:
   for (let i = 0; i < data.users.length; i++) {
-    if (data.users[i].authUserId == authUser) {
+    if (data.users[i].authUserId === authUser) {
       check = true;
   
     }
@@ -101,14 +104,16 @@ export function channelsListV1(authUser: number) {
   const channels = [];
   for (let i = 0; i < data.channels.length; i++) {
     for (let j = 0; j < data.channels[i].allMembers.length; j++) {
-      if (data.channels[i].allMembers[j] == authUser) {
+      if (data.channels[i].allMembers[j] === authUser) {
         check = true;
-        channels.push(data.channels[i]);
+        channels.push({channelId: data.channels[i].channelId, name: data.channels[i].name});
+        
       }
     }
   }
 
-  return channels;
+  return {channels};
+    
 }
 
     
