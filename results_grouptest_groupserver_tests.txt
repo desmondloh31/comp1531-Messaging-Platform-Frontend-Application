@@ -1,0 +1,164 @@
+
+> test
+> jest **/?(*.)+(test).ts
+
+  Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
+  Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
+PASS src/authTest.test.ts
+FAIL src/channel.test.ts
+  ● Test suite failed to run
+
+    [96msrc/channel.test.ts[0m:[93m76[0m:[93m48[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | { error: string; }' is not assignable to parameter of type 'string'.
+      Type '{ error: string; }' is not assignable to type 'string'.
+
+    [7m76[0m         const channel1 = requestChannelscreate(token1, 'test',true).channelId;
+    [7m  [0m [91m                                               ~~~~~~[0m
+    [96msrc/channel.test.ts[0m:[93m77[0m:[93m46[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | { error: string; }' is not assignable to parameter of type 'string'.
+      Type '{ error: string; }' is not assignable to type 'string'.
+
+    [7m77[0m         const result = requestChannelleavev1(token1, channel1);
+    [7m  [0m [91m                                             ~~~~~~[0m
+
+PASS src/dm.test.ts
+FAIL src/channels.test.ts (42.604 s)
+  ● Testing channelsCreateV1 › creates a new channel with valid parameters
+
+    SyntaxError: Unexpected token o in JSON at position 1
+        at JSON.parse (<anonymous>)
+
+      54 |         const result = requestChannelscreate(user1.token, name, isPublic);
+      55 |
+    > 56 |         expect(JSON.parse(result)).toEqual({
+         |                     ^
+      57 |             channelId: 0,
+      58 |             name,
+      59 |             isPublic,
+
+      at Object.<anonymous> (src/channels.test.ts:56:21)
+
+  ● Testing channelsCreateV1 › returns error when authUserId is invalid
+
+    SyntaxError: Unexpected token o in JSON at position 1
+        at JSON.parse (<anonymous>)
+
+      71 |         const isPublic = true;
+      72 |         const result = requestChannelscreate(authUserId, name, isPublic);
+    > 73 |         expect(JSON.parse(result)).toEqual({ error: 'authUserId is invalid'});
+         |                     ^
+      74 |     });
+      75 |
+      76 |     //name is too short:
+
+      at Object.<anonymous> (src/channels.test.ts:73:21)
+
+  ● Testing channelsCreateV1 › returns error when name is too short
+
+    SyntaxError: Unexpected token o in JSON at position 1
+        at JSON.parse (<anonymous>)
+
+      81 |         const isPublic = true;
+      82 |         const result = requestChannelscreate(user1.token, name, isPublic);
+    > 83 |         expect(JSON.parse(result)).toEqual({ error: 'length of name is less than 1 or more than 20 characters'});
+         |                     ^
+      84 |     });
+      85 |
+      86 |     //name is too long:
+
+      at Object.<anonymous> (src/channels.test.ts:83:21)
+
+  ● Testing channelsCreateV1 › returns error when name is too long
+
+    SyntaxError: Unexpected token o in JSON at position 1
+        at JSON.parse (<anonymous>)
+
+      91 |         const longName = 'abcdefghijklmnopqrstuvwxyz';
+      92 |         const result = requestChannelscreate(user1.token, longName, isPublic);
+    > 93 |         expect(JSON.parse(result)).toEqual({ error: 'length of name is less than 1 or more than 20 characters'});
+         |                     ^
+      94 |     });
+      95 |
+      96 | });
+
+      at Object.<anonymous> (src/channels.test.ts:93:21)
+
+  ● Testing channelsListV1 › returns array of channels when authUserId is valid
+
+    SyntaxError: Unexpected token o in JSON at position 1
+        at JSON.parse (<anonymous>)
+
+      109 |         const channel1 = requestChannelscreate(user1.token, 'test',true).channelId;
+      110 |         const result = requestChannelslist(user1.token);
+    > 111 |         expect(JSON.parse(result)).toEqual( [channel1] );
+          |                     ^
+      112 |     });
+      113 |
+      114 |     //authUserId is invalid:
+
+      at Object.<anonymous> (src/channels.test.ts:111:21)
+
+  ● Testing channelsListV1 › returns error when authUserId is invalid
+
+    SyntaxError: Unexpected token o in JSON at position 1
+        at JSON.parse (<anonymous>)
+
+      117 |
+      118 |         const result = requestChannelslist(user2.token);
+    > 119 |         expect(JSON.parse(result)).toEqual({ error: 'authUserId is invalid'});
+          |                     ^
+      120 |     });
+      121 |
+      122 | });
+
+      at Object.<anonymous> (src/channels.test.ts:119:21)
+
+  ● Testing channelsListAllV1 › testing if authUserId is not valid
+
+    Request timed out after 20002ms
+
+      35 |         json = payload;
+      36 |     }
+    > 37 |     const res = request(method, SERVER_URL + path, {qs,json,timeout: 20000});
+         |                        ^
+      38 |     return JSON.parse(res.getBody('utf-8'));
+      39 |   }
+      40 |   
+
+      at extractValue (node_modules/sync-rpc/lib/index.js:165:19)
+      at node_modules/sync-rpc/lib/index.js:175:12
+      at request (node_modules/sync-request/lib/index.js:28:15)
+      at requestHelper (src/channels.test.ts:37:24)
+      at requestChannelsListAll (src/channels.test.ts:15:12)
+      at Object.<anonymous> (src/channels.test.ts:132:24)
+
+  ● Testing channelsListAllV1 › returns array of channels when authUserId is valid
+
+    Request timed out after 20001ms
+
+      35 |         json = payload;
+      36 |     }
+    > 37 |     const res = request(method, SERVER_URL + path, {qs,json,timeout: 20000});
+         |                        ^
+      38 |     return JSON.parse(res.getBody('utf-8'));
+      39 |   }
+      40 |   
+
+      at extractValue (node_modules/sync-rpc/lib/index.js:165:19)
+      at node_modules/sync-rpc/lib/index.js:175:12
+      at request (node_modules/sync-request/lib/index.js:28:15)
+      at requestHelper (src/channels.test.ts:37:24)
+      at requestChannelsListAll (src/channels.test.ts:15:12)
+      at Object.<anonymous> (src/channels.test.ts:139:24)
+
+PASS src/echo.test.ts
+PASS src/usersTest.test.ts
+
+Test Suites: 2 failed, 4 passed, 6 total
+Tests:       8 failed, 28 passed, 36 total
+Snapshots:   0 total
+Time:        53.709 s, estimated 54 s
+Ran all test suites.
+npm notice 
+npm notice New patch version of npm available! 9.6.1 -> 9.6.3
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.6.3>
+npm notice Run `npm install -g npm@9.6.3` to update!
+npm notice 
