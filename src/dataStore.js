@@ -17,7 +17,7 @@ Example usage
     setData(store)
 */
 
-// Use get() to access the data
+// Use getData() to access the data
 function getData() {
   return data;
 }
