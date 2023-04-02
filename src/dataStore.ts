@@ -70,7 +70,7 @@ Example usage
 const dataStorePath = './storage.json'
 function getData() {
   
-  //data = JSON.parse(String(fs.readFileSync(dataStorePath)))
+  JSON.parse(String(fs.readFileSync(dataStorePath)))
   
   //const dbstr = fs.readFileSync('storage.json')
   //data = JSON.parse(String(dbstr))
@@ -84,7 +84,7 @@ function getData() {
 // Hint: this function might be useful to edit in iteration 2
 function setData(newData: db) {
   data = newData;
-  //fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
+  fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
   
   //const jsonstr = JSON.stringify(data)
   //fs.writeFileSync('storage.json', jsonstr, {flag: 'w'})
