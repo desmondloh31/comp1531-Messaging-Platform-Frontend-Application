@@ -7,6 +7,13 @@ export function channelDetailsV1(token: string, channelId: number){
   const data = getData();
   const authUser = tokenVerify(token) as number;
   const user = data.users.find(i => i.authUserId === authUser);
+  const channel = data.channels.find(i => i.channelId === channelId);
+  
+
+  if (!channel) {
+    return { error: "channelId is invalid"};
+  }
+
   if (!user) {
     return { error: "authUserId is invalid"}; 
   }
