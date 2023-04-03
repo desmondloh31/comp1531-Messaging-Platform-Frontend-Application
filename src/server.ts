@@ -47,7 +47,6 @@ app.post('/auth/login/v2',(req: Request, res: Response) => {
 app.post('/auth/register/v2',(req: Request, res: Response) => {
   const { email, password, nameFirst, nameLast} = req.body;
   let authid = authRegisterV1(email,password,nameFirst,nameLast);
-  //let token = tokenCreate(email);
 
   return res.json(authid);
 
@@ -79,7 +78,7 @@ app.get('/channel/details/v2',(req: Request, res: Response) => {
 
 app.post('/channel/join/v2',(req: Request, res: Response) => {
   const { token, channelId } = req.body;
-  
+  res.json(channelJoinV1(token, channelId));
 });
 
 app.post('/channel/invite/v2',(req: Request, res: Response) => {

@@ -41,7 +41,7 @@ export function channelsCreateV1(token: string, name: string, isPublic: boolean)
 
   const data = getData();
 
-  const authUser = tokenVerify(token);
+  const authUser = tokenVerify(token) as number;
   //check if authUserId is valid:
   let check = false;
   for (let i = 0; i < data.users.length; i++) {
