@@ -1,8 +1,4 @@
 
-import {channelLeaveV1, channelAddOwnerV1, channelRemoveOwnerV1 } from './channel';
-import { tokenCreate, tokenDelete, tokenVerify } from './token';
-import { channel } from 'diagnostics_channel';
-import { clear } from 'console';
 import request, {HttpVerb} from 'sync-request';
 import {port,url} from './config.json';
  
@@ -248,7 +244,7 @@ describe ("Testing channelDetails Final Test batch", () => {
          const channel1 = requestChannelscreate(userID.token,'channel1', false);
          const channel2 = requestChannelscreate(userID.token,'channel2', false);
          const result = requestChannelDetails(userID.token,channel1.channelId);
-         expect(result).toEqual({});
+         expect(result).toEqual({allMembers: [0], isPublic: false, name: "channel1", ownerMembers: [0]});
      });
      test ('testing if channelId is not valid', () => {
          const user = requestAuthRegister("desmondloh@gmail.com", "sdfsdfsdf", "desmond", "loh");
