@@ -205,7 +205,7 @@ Now that we've established our *problem* (described as requirements), it's time 
 
 Now that you have a sense of the problem to solve, and what capabilities you will need to provide to solve it, add at least ONE state diagram to your PDF to show how the state of the application would change based on user actions. The aim of this diagram is to help a developer understand the different states of the application.
 
-### 5.8. Marking Criteria
+### 5.7. Marking Criteria
 
 <table>
   <tr>
@@ -293,15 +293,15 @@ Where:
  * `c` is the score achieved by running coverage on your entire codebase. Note that 99% coverage is enough to give you full marks for this part.
  * `e` is the score between 0-1 achieved by running <code>eslint</code> against your code and the provided configuration.
 
-### 5.9. Submission
+### 5.8. Submission
 
 This iteration's due date described in section 7. Note there will be no demonstration for iteration 3.
 
-### 5.10. Typescript
+### 5.9. Typescript
 
 You can gain 10 bonus marks by ensuring your code is Typescript compliant. You can run `npm run tsc` to check this: if no output is produced, then all your files are typechecked correctly.
 
-### 5.11. Peer Assessment
+### 5.10. Peer Assessment
 
 Reference 8.5.
 
@@ -1508,9 +1508,7 @@ In the days preceding iterations 1, 2, and 3's due date, we will be running your
 
 You must have the code you wish to be tested in your `master` branch by **10pm** the night before leaderboard runs.
 
-You must have the code you wish to be tested in master by **9am** on the day of leaderboard runs.  
-
-The leaderboard will be updated on Monday, Wednesday, and Friday morning during the week that the iteration is due.
+The leaderboard will be updated on Wednesday, Friday, and Monday morning during the week that the iteration is due.
 
 Your position and mark on the leaderboard will be referenced against an alias for your group (for privacy). This alias will be emailed to your group in week 3. You are welcome to share your alias with others if you choose! (Up to you.)
 
