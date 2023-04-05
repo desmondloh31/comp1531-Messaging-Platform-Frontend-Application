@@ -1,5 +1,6 @@
 import request, {HttpVerb} from 'sync-request';
 import {port,url} from './config.json';
+import { isNumberObject } from 'util/types';
 
 const SERVER_URL = `${url}:${port}`;
 
@@ -16,7 +17,7 @@ function requestChannelsListAll(token: string) {
 }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: String) {
-    return requestHelper('POST', '/auth/register/v2', {email, password, nameFirst, nameLast}).authUserId;
+    return requestHelper('POST', '/auth/register/v2', {email, password, nameFirst, nameLast});
 }
 
 function requestClear() {
@@ -54,12 +55,7 @@ describe ("Testing channelsCreateV1", () => {
         const result = requestChannelscreate(user1.token, name, isPublic);
 
         expect((result)).toEqual({
-            channelId: 0,
-            name,
-            isPublic,
-            ownerMembers: [],
-            allMembers: [],
-            messages: [],
+            channelId: expect.any(Number)
         });
 
     });
@@ -77,7 +73,7 @@ describe ("Testing channelsCreateV1", () => {
     test ('returns error when name is too short', () => {
         const user1 = requestAuthRegister('fakemail@gmail.com', 'badpassword@123', 'fake', 'email');
 
-        const name = 'newChannel';
+        const name = '';
         const isPublic = true;
         const result = requestChannelscreate(user1.token, name, isPublic);
         expect((result)).toEqual({ error: 'length of name is less than 1 or more than 20 characters'});
@@ -108,14 +104,14 @@ describe ("Testing channelsListV1", () => {
         const user1 = requestAuthRegister('fakemail@gmail.com', 'badpassword@123', 'fake', 'email');
         const channel1 = requestChannelscreate(user1.token, 'test',true).channelId;
         const result = requestChannelslist(user1.token);
-        expect((result)).toEqual( [channel1] );
+        expect((result)).toEqual( {"channels": [{"channelId": channel1, "name": 'test'}]} );
     });
 
     //authUserId is invalid:
     test ('returns error when authUserId is invalid', () => {
         const user2 = requestAuthRegister('desmondloh@gmail.com', 'notapassword@123', 'desmond', 'loh');
 
-        const result = requestChannelslist(user2.token);
+        const result = requestChannelslist('-1');
         expect((result)).toEqual({ error: 'authUserId is invalid'});
     });
 
@@ -129,7 +125,7 @@ describe ("Testing channelsListAllV1", () => {
     });
     test ('testing if authUserId is not valid', () => {
         const user1 = requestAuthRegister('fakemail@gmail.com', 'badpassword@123', 'fake', 'email');
-        const result = requestChannelsListAll(user1.token);
+        const result = requestChannelsListAll('-1');
         expect(result).toEqual({error: "authUserId is invalid"});
     });
     test('returns array of channels when authUserId is valid', () => {
@@ -137,7 +133,7 @@ describe ("Testing channelsListAllV1", () => {
         const authUserId2 = requestAuthRegister('desmondloh@gmail.com', 'notapassword@123', 'desmond', 'loh');
         const channel2 = requestChannelscreate(authUserId2.token, 'pass', true);
         const result = requestChannelsListAll(authUserId1.token);
-        expect((result)).toEqual( [channel2] );
+        expect((result)).toEqual( {"channels": [{"channelId": channel2.channelId, "name": 'pass'}]} );
     });
 });
 
