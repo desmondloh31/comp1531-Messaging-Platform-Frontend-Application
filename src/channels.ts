@@ -31,7 +31,7 @@ export function channelsListAllV1(token: string) {
         channels.push({channelId: data.channels[i].channelId, name: data.channels[i].name});
       }
     }
-    return channels;
+    return {channels: channels};
   }
 
 }
@@ -41,17 +41,11 @@ export function channelsCreateV1(token: string, name: string, isPublic: boolean)
 
   const data = getData();
 
-  const authUser = tokenVerify(token);
+  const authUserId = tokenVerify(token) as number;
   //check if authUserId is valid:
-  let check = false;
-  for (let i = 0; i < data.users.length; i++) {
-    if (data.users[i].authUserId === authUser) {
-      check = true;
-  
-    }
-  }
 
-  if (check === false) {
+  const authUser = data.users.find(i => i.authUserId === authUserId);
+  if (!authUser) {
     return { error: "authUserId is invalid"};
   }
 
@@ -67,8 +61,8 @@ export function channelsCreateV1(token: string, name: string, isPublic: boolean)
     channelId: Id,
     name: name,
     isPublic: isPublic,
-    ownerMembers: [authUser],
-    allMembers: [authUser],
+    ownerMembers: [authUserId],
+    allMembers: [authUserId],
     messages: [],
   });
   setData(data);
@@ -82,35 +76,28 @@ export function channelsCreateV1(token: string, name: string, isPublic: boolean)
 export function channelsListV1(token: string) {
 
   const data = getData();
-  const authUser = tokenVerify(token);
-  let check = false;
+  const authUserId = tokenVerify(token);
 
 
   //check if authUserId is valid:
-  for (let i = 0; i < data.users.length; i++) {
-    if (data.users[i].authUserId === authUser) {
-      check = true;
-  
-    }
-  }
-
-  if (check == false) {
+  const authUser = data.users.find(i => i.authUserId === authUserId);
+  if (!authUser) {
     return { error: "authUserId is invalid"};
   }
 
-  check = false;
-  const channels = [];
+  let check = false;
+  const channel = [];
   for (let i = 0; i < data.channels.length; i++) {
     for (let j = 0; j < data.channels[i].allMembers.length; j++) {
-      if (data.channels[i].allMembers[j] === authUser) {
+      if (data.channels[i].allMembers[j] === authUserId) {
         check = true;
-        channels.push({channelId: data.channels[i].channelId, name: data.channels[i].name});
+        channel.push({channelId: data.channels[i].channelId, name: data.channels[i].name});
         
       }
     }
   }
 
-  return {channels};
+  return {channels: channel};
     
 }
 

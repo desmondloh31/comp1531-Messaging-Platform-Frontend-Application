@@ -46,7 +46,7 @@ function authRegisterV1(email: string, password: string, nameFirst: string, name
         token: []
     })
     setData(data)
-    const token = tokenCreate(email) //place this in server.ts
+    const token = tokenCreate(email) 
 
     return {authUserId, token}
     
