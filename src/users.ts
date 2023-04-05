@@ -10,11 +10,11 @@ export function userProfileV1(token: string, uId: number) {
     const user = data.users.find(i => i.authUserId === authid);
     const guest = data.users.find(i => i.authUserId === uId); //add to server.ts
     
-    /*if (!user) {
+    if (!user) {
         return { error: "authUserId is invalid"}; 
       }else if(!guest) {
         return { error: "uId is invalid"};
-      }*/
+      }
     
     return {
         uId: guest.authUserId,
