@@ -1,0 +1,215 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-6.2.2, py-1.10.0, pluggy-0.13.1 -- /usr/bin/python3
+cachedir: .pytest_cache
+hypothesis profile 'default' -> database=DirectoryBasedExampleDatabase('/import/kamen/3/cs1531/project-automarking/tempstore/.hypothesis/examples')
+metadata: {'Python': '3.9.2', 'Platform': 'Linux-5.10.0-20-amd64-x86_64-with-glibc2.31', 'Packages': {'pytest': '6.2.2', 'py': '1.10.0', 'pluggy': '0.13.1'}, 'Plugins': {'jest': '0.3.0', 'hypothesis': '6.1.1', 'timeout': '1.4.2', 'snapshottest': '0.6.0', 'metadata': '2.0.1', 'flask': '0.15.1'}}
+rootdir: /import/kamen/3/cs1531/project-automarking/tempstore
+plugins: jest-0.3.0, hypothesis-6.1.1, timeout-1.4.2, snapshottest-0.6.0, metadata-2.0.1, flask-0.15.1
+collecting ... collected 378 items
+
+httpTests/authTests/test_auth_login.py::testSuccessfulLogin PASSED       [  5%]
+httpTests/authTests/test_auth_login.py::testCanHaveTwoSessions PASSED    [  5%]
+httpTests/authTests/test_auth_login.py::testUnregisteredUser PASSED      [  6%]
+httpTests/authTests/test_auth_login.py::testRegisteredButIncorrectPassword PASSED [  6%]
+httpTests/authTests/test_auth_logout.py::testSuccessfulLogout PASSED     [  6%]
+httpTests/authTests/test_auth_logout.py::testForbidden403WhenAlreadyLoggedOut PASSED [  6%]
+httpTests/authTests/test_auth_register.py::testInvalidEmail[@gmail.com] PASSED [  7%]
+httpTests/authTests/test_auth_register.py::testInvalidEmail[bob] PASSED  [  7%]
+httpTests/authTests/test_auth_register.py::testInvalidEmail[bob@bob@bob.com] PASSED [  7%]
+httpTests/authTests/test_auth_register.py::testInvalidPassword[12345] PASSED [  7%]
+httpTests/authTests/test_auth_register.py::testInvalidPassword[] PASSED  [  8%]
+httpTests/authTests/test_auth_register.py::testInvalidNameFirst[] PASSED [  8%]
+httpTests/authTests/test_auth_register.py::testInvalidNameFirst[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] PASSED [  8%]
+httpTests/authTests/test_auth_register.py::testInvalidNameLast[] PASSED  [  8%]
+httpTests/authTests/test_auth_register.py::testInvalidNameLast[bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb] PASSED [  9%]
+httpTests/authTests/test_auth_register.py::testDuplicateEmail FAILED     [  9%]
+httpTests/authTests/test_auth_register.py::testRemovedUserName FAILED    [  9%]
+httpTests/authTests/test_auth_register.py::testSuccessfulRegistration FAILED [ 10%]
+httpTests/authTests/test_auth_register.py::testBasicHandleGeneratedCorrectly[Bob-Smith-bobsmith] FAILED [ 10%]
+httpTests/authTests/test_auth_register.py::testBasicHandleGeneratedCorrectly[ababababab-cdcdcdcdcdcd-abababababcdcdcdcdcd] FAILED [ 10%]
+httpTests/authTests/test_auth_register.py::testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrs-abcdefghijklmnopqrs-abcdefghij-klmnopqrs-abcdefghijklmnopqrs0] FAILED [ 10%]
+httpTests/authTests/test_auth_register.py::testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrst-abcdefghijklmnopqrst-abcdefghij-klmnopqrst-abcdefghijklmnopqrst0] FAILED [ 11%]
+httpTests/authTests/test_auth_register.py::testDuplicateHandlesGeneratedCorrectly[@bcdefgh!j-klmn opqrst-bcdefghjklmnopqrst-bcdefghj-klmnopqrst-bcdefghjklmnopqrst0] FAILED [ 11%]
+httpTests/authTests/test_auth_register.py::testDuplicateHandlesGeneratedCorrectly[abc-def0-abcdef0-abc-def-abcdef1] FAILED [ 11%]
+httpTests/channelTests/test_channel_addowner.py::testChannelOwnerCanAddownerWhenMember 
+
+====== Marks recorded: 14.50 ======
+
+
+=================================== FAILURES ===================================
+______________________________ testDuplicateEmail ______________________________
+
+ctx = None
+
+    def testDuplicateEmail(ctx):
+        authRegister('ab@gmail.com', 'password1', 'name-first-a', 'name-last-a', ctx)
+        with pytest.raises(BadRequest400):
+>           authRegister('ab@gmail.com', 'password2', 'name-first-b', 'name-last-b', ctx)
+E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
+
+httpTests/authTests/test_auth_register.py:50: Failed
+_____________________________ testRemovedUserName ______________________________
+
+ctx = None
+
+    def testRemovedUserName(ctx):
+        session = authRegister('abc@gmail.com', 'password1', 'Removed', 'user', ctx)
+>       profile = userProfile(session['token'], session['authUserId'], ctx)['user']
+E       KeyError: 'user'
+
+httpTests/authTests/test_auth_register.py:55: KeyError
+__________________________ testSuccessfulRegistration __________________________
+
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='218631840', handleStr='')
+ctx = None
+
+    def testSuccessfulRegistration(userWoody, ctx):
+>       woodyProf = userProfile(userWoody.token, userWoody.uId, ctx)['user']
+E       KeyError: 'user'
+
+httpTests/authTests/test_auth_register.py:62: KeyError
+____________ testBasicHandleGeneratedCorrectly[Bob-Smith-bobsmith] _____________
+
+nameFirst = 'Bob', nameLast = 'Smith', expectedHandle = 'bobsmith', ctx = None
+
+    @pytest.mark.parametrize('nameFirst, nameLast, expectedHandle', [
+        ('Bob', 'Smith', 'bobsmith'),
+        ('ab' * 5, 'cd' * 6, f'{"ab" * 5}{"cd" * 5}')
+    ])
+    def testBasicHandleGeneratedCorrectly(nameFirst, nameLast, expectedHandle, ctx):
+        session = authRegister('bob.jane@gmail.com', '~~qazwsx', nameFirst, nameLast, ctx)
+    
+>       actualHandle = userProfile(session['token'], session['authUserId'], ctx)['user']['handleStr']
+E       KeyError: 'user'
+
+httpTests/authTests/test_auth_register.py:78: KeyError
+_ testBasicHandleGeneratedCorrectly[ababababab-cdcdcdcdcdcd-abababababcdcdcdcdcd] _
+
+nameFirst = 'ababababab', nameLast = 'cdcdcdcdcdcd'
+expectedHandle = 'abababababcdcdcdcdcd', ctx = None
+
+    @pytest.mark.parametrize('nameFirst, nameLast, expectedHandle', [
+        ('Bob', 'Smith', 'bobsmith'),
+        ('ab' * 5, 'cd' * 6, f'{"ab" * 5}{"cd" * 5}')
+    ])
+    def testBasicHandleGeneratedCorrectly(nameFirst, nameLast, expectedHandle, ctx):
+        session = authRegister('bob.jane@gmail.com', '~~qazwsx', nameFirst, nameLast, ctx)
+    
+>       actualHandle = userProfile(session['token'], session['authUserId'], ctx)['user']['handleStr']
+E       KeyError: 'user'
+
+httpTests/authTests/test_auth_register.py:78: KeyError
+_ testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrs-abcdefghijklmnopqrs-abcdefghij-klmnopqrs-abcdefghijklmnopqrs0] _
+
+first1 = 'abcdefghij', last1 = 'klmnopqrs', handle1 = 'abcdefghijklmnopqrs'
+first2 = 'abcdefghij', last2 = 'klmnopqrs', handle2 = 'abcdefghijklmnopqrs0'
+woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='946134678', handleStr='')
+ctx = None
+
+    @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
+        ('abcdefghij', 'klmnopqrs', 'abcdefghijklmnopqrs', 'abcdefghij', 'klmnopqrs', 'abcdefghijklmnopqrs0'),
+        ('abcdefghij', 'klmnopqrst', 'abcdefghijklmnopqrst', 'abcdefghij', 'klmnopqrst', 'abcdefghijklmnopqrst0'),
+        ('@bcdefgh!j', 'klmn opqrst', 'bcdefghjklmnopqrst', 'bcdefghj', 'klmnopqrst', 'bcdefghjklmnopqrst0'),
+        ('abc', 'def0', 'abcdef0', 'abc', 'def', 'abcdef1'),
+    ])
+    def testDuplicateHandlesGeneratedCorrectly(first1, last1, handle1, first2, last2, handle2, woodysPublicToybox, userWoody, ctx):
+        email1 = 'blah1@email.com'
+        email2 = 'blah2@email.com'
+    
+        authRegister('blah3@email.com', 'password1', 'abc', 'def', ctx)
+    
+        user1 = authRegister(email1, 'password1', first1, last1, ctx)
+>       assert handle1 == userProfile(user1['token'], user1['authUserId'], ctx)['user']['handleStr']
+E       KeyError: 'user'
+
+httpTests/authTests/test_auth_register.py:96: KeyError
+_ testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrst-abcdefghijklmnopqrst-abcdefghij-klmnopqrst-abcdefghijklmnopqrst0] _
+
+first1 = 'abcdefghij', last1 = 'klmnopqrst', handle1 = 'abcdefghijklmnopqrst'
+first2 = 'abcdefghij', last2 = 'klmnopqrst', handle2 = 'abcdefghijklmnopqrst0'
+woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='658333118', handleStr='')
+ctx = None
+
+    @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
+        ('abcdefghij', 'klmnopqrs', 'abcdefghijklmnopqrs', 'abcdefghij', 'klmnopqrs', 'abcdefghijklmnopqrs0'),
+        ('abcdefghij', 'klmnopqrst', 'abcdefghijklmnopqrst', 'abcdefghij', 'klmnopqrst', 'abcdefghijklmnopqrst0'),
+        ('@bcdefgh!j', 'klmn opqrst', 'bcdefghjklmnopqrst', 'bcdefghj', 'klmnopqrst', 'bcdefghjklmnopqrst0'),
+        ('abc', 'def0', 'abcdef0', 'abc', 'def', 'abcdef1'),
+    ])
+    def testDuplicateHandlesGeneratedCorrectly(first1, last1, handle1, first2, last2, handle2, woodysPublicToybox, userWoody, ctx):
+        email1 = 'blah1@email.com'
+        email2 = 'blah2@email.com'
+    
+        authRegister('blah3@email.com', 'password1', 'abc', 'def', ctx)
+    
+        user1 = authRegister(email1, 'password1', first1, last1, ctx)
+>       assert handle1 == userProfile(user1['token'], user1['authUserId'], ctx)['user']['handleStr']
+E       KeyError: 'user'
+
+httpTests/authTests/test_auth_register.py:96: KeyError
+_ testDuplicateHandlesGeneratedCorrectly[@bcdefgh!j-klmn opqrst-bcdefghjklmnopqrst-bcdefghj-klmnopqrst-bcdefghjklmnopqrst0] _
+
+first1 = '@bcdefgh!j', last1 = 'klmn opqrst', handle1 = 'bcdefghjklmnopqrst'
+first2 = 'bcdefghj', last2 = 'klmnopqrst', handle2 = 'bcdefghjklmnopqrst0'
+woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='941972955', handleStr='')
+ctx = None
+
+    @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
+        ('abcdefghij', 'klmnopqrs', 'abcdefghijklmnopqrs', 'abcdefghij', 'klmnopqrs', 'abcdefghijklmnopqrs0'),
+        ('abcdefghij', 'klmnopqrst', 'abcdefghijklmnopqrst', 'abcdefghij', 'klmnopqrst', 'abcdefghijklmnopqrst0'),
+        ('@bcdefgh!j', 'klmn opqrst', 'bcdefghjklmnopqrst', 'bcdefghj', 'klmnopqrst', 'bcdefghjklmnopqrst0'),
+        ('abc', 'def0', 'abcdef0', 'abc', 'def', 'abcdef1'),
+    ])
+    def testDuplicateHandlesGeneratedCorrectly(first1, last1, handle1, first2, last2, handle2, woodysPublicToybox, userWoody, ctx):
+        email1 = 'blah1@email.com'
+        email2 = 'blah2@email.com'
+    
+        authRegister('blah3@email.com', 'password1', 'abc', 'def', ctx)
+    
+        user1 = authRegister(email1, 'password1', first1, last1, ctx)
+>       assert handle1 == userProfile(user1['token'], user1['authUserId'], ctx)['user']['handleStr']
+E       KeyError: 'user'
+
+httpTests/authTests/test_auth_register.py:96: KeyError
+___ testDuplicateHandlesGeneratedCorrectly[abc-def0-abcdef0-abc-def-abcdef1] ___
+
+first1 = 'abc', last1 = 'def0', handle1 = 'abcdef0', first2 = 'abc'
+last2 = 'def', handle2 = 'abcdef1'
+woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='599479730', handleStr='')
+ctx = None
+
+    @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
+        ('abcdefghij', 'klmnopqrs', 'abcdefghijklmnopqrs', 'abcdefghij', 'klmnopqrs', 'abcdefghijklmnopqrs0'),
+        ('abcdefghij', 'klmnopqrst', 'abcdefghijklmnopqrst', 'abcdefghij', 'klmnopqrst', 'abcdefghijklmnopqrst0'),
+        ('@bcdefgh!j', 'klmn opqrst', 'bcdefghjklmnopqrst', 'bcdefghj', 'klmnopqrst', 'bcdefghjklmnopqrst0'),
+        ('abc', 'def0', 'abcdef0', 'abc', 'def', 'abcdef1'),
+    ])
+    def testDuplicateHandlesGeneratedCorrectly(first1, last1, handle1, first2, last2, handle2, woodysPublicToybox, userWoody, ctx):
+        email1 = 'blah1@email.com'
+        email2 = 'blah2@email.com'
+    
+        authRegister('blah3@email.com', 'password1', 'abc', 'def', ctx)
+    
+        user1 = authRegister(email1, 'password1', first1, last1, ctx)
+>       assert handle1 == userProfile(user1['token'], user1['authUserId'], ctx)['user']['handleStr']
+E       KeyError: 'user'
+
+httpTests/authTests/test_auth_register.py:96: KeyError
+=========================== short test summary info ============================
+FAILED httpTests/authTests/test_auth_register.py::testDuplicateEmail - Failed...
+FAILED httpTests/authTests/test_auth_register.py::testRemovedUserName - KeyEr...
+FAILED httpTests/authTests/test_auth_register.py::testSuccessfulRegistration
+FAILED httpTests/authTests/test_auth_register.py::testBasicHandleGeneratedCorrectly[Bob-Smith-bobsmith]
+FAILED httpTests/authTests/test_auth_register.py::testBasicHandleGeneratedCorrectly[ababababab-cdcdcdcdcdcd-abababababcdcdcdcdcd]
+FAILED httpTests/authTests/test_auth_register.py::testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrs-abcdefghijklmnopqrs-abcdefghij-klmnopqrs-abcdefghijklmnopqrs0]
+FAILED httpTests/authTests/test_auth_register.py::testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrst-abcdefghijklmnopqrst-abcdefghij-klmnopqrst-abcdefghijklmnopqrst0]
+FAILED httpTests/authTests/test_auth_register.py::testDuplicateHandlesGeneratedCorrectly[@bcdefgh!j-klmn opqrst-bcdefghjklmnopqrst-bcdefghj-klmnopqrst-bcdefghjklmnopqrst0]
+FAILED httpTests/authTests/test_auth_register.py::testDuplicateHandlesGeneratedCorrectly[abc-def0-abcdef0-abc-def-abcdef1]
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! KeyboardInterrupt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/usr/lib/python3.9/socket.py:704: KeyboardInterrupt
+(to show a full traceback on KeyboardInterrupt use --full-trace)
+============= 9 failed, 15 passed, 23 skipped in 229.48s (0:03:49) =============
