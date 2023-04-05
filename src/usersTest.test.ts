@@ -51,10 +51,10 @@ describe("Testing usersAllV1", () =>{
         const data = requestUserAll(profile1.token)
         let tempData = ""
         for(let user = 0; user < data.users.length; user++ ){
-            if(user = data.users.length -2){
+            if(user == data.users.length -2){
                 tempData += data.users[user].email
             }
-            if(user = data.users.length -1){
+            if(user == data.users.length -1){
                 tempData += data.users[user].email
             }
 
