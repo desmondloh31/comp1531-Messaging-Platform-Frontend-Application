@@ -17,6 +17,10 @@ function requestAuthLogout(token: string){
   return requestHelper('POST','/auth/logout/v1',{token});
 }
 
+function requestClear() {
+  return requestHelper('DELETE', '/clear/v1', {});
+}
+
 // Helper Function
 function requestHelper(method: HttpVerb, path: string, payload: object) {
   let qs = {};
@@ -34,6 +38,11 @@ function requestHelper(method: HttpVerb, path: string, payload: object) {
 
 
 describe("Testing authRegisterV1", () =>{
+
+    beforeEach (() => {
+        requestClear();
+
+    });
     test('Testing an invalid email', () => {
         const register = requestAuthRegister("oeihoashfoiahnfqo", "123456", "John", "Smith")
         expect(register).toEqual({error: "error"});
@@ -55,13 +64,19 @@ describe("Testing authRegisterV1", () =>{
       });
     
     test('Testing standard register detail', () => {
-        const register = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith")
+        const register = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") 
         expect(register).toEqual({"authUserId": expect.any(Number), token: expect.any(String)});
         
       });
 });
 
 describe("Testing authLoginV1", () =>{
+
+    beforeEach (() => {
+        requestClear();
+
+    });
+
     test('Testing if login detail is correct', () => {
         const { token } = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith")
         const login = requestAuthLogin("example@gmail.com", "abc123")
@@ -84,6 +99,12 @@ describe("Testing authLoginV1", () =>{
 });
 
 describe("Testing authLogoutV1", () =>{
+
+    beforeEach (() => {
+        requestClear();
+
+    });
+
     test('Testing if it will return nothing',() =>{
       requestAuthRegister("example@gmail.com", "abc123", "John", "Smith")
         const login = requestAuthLogin("example@gmail.com", "abc123") as {token:string, authUserId: number}
