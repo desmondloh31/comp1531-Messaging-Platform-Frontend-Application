@@ -14,8 +14,8 @@ import { clearV1 } from './other';
 
 import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
 import { tokenCreate, tokenVerify } from './token';
-import { userProfileSetemailV1, userProfileSethandleV1, userProfileSetnameV1, userProfileV1, usersAllV1 } from './users';
-import { channelsCreateV1, channelsListV1 } from './channels';
+import { userProfileV1, usersAllV1 } from './users';
+import { channelsCreateV1, channelsListV1, channelsListAllV1 } from './channels';
 
 // Set up web app
 const app = express();
@@ -47,7 +47,6 @@ app.post('/auth/login/v2',(req: Request, res: Response) => {
 app.post('/auth/register/v2',(req: Request, res: Response) => {
   const { email, password, nameFirst, nameLast} = req.body;
   let authid = authRegisterV1(email,password,nameFirst,nameLast);
-  //let token = tokenCreate(email);
 
   return res.json(authid);
 
@@ -68,27 +67,36 @@ app.get('/channels/list/v2',(req: Request, res: Response) => {
 });
 
 app.get('/channels/listall/v2',(req: Request, res: Response) => {
-  const { token } = req.query;
+  const token = req.query.token as string;
+  const result = channelsListAllV1(token);
+  res.json(result);
   
 });
 
 app.get('/channel/details/v2',(req: Request, res: Response) => {
-  const { token, channelId } = req.query;
+  const token = req.query.token as string;
+  const channelId = parseInt(req.query.channelId as string);
+  res.json(channelDetailsV1(token, channelId));
   
 });
 
 app.post('/channel/join/v2',(req: Request, res: Response) => {
   const { token, channelId } = req.body;
-  
+  res.json(channelJoinV1(token, channelId));
 });
 
 app.post('/channel/invite/v2',(req: Request, res: Response) => {
   const { token, channelId, uId } = req.body;
+  res.json(channelInviteV1(token, channelId, uId));
   
 });
 
 app.get('/channel/messages/v2',(req: Request, res: Response) => {
-  const { token, channelId, start } = req.query;
+  //const { token, channelId, start } = req.query;
+  const token = req.query.token as string;
+  const channelId = parseInt(req.query.channelId as string);
+  const start = parseInt(req.query.start as string);
+  res.json(channelMessagesV1(token, channelId, start))
   
 });
 
