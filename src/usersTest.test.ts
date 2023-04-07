@@ -5,7 +5,7 @@ import request, {HttpVerb} from 'sync-request';
 import {port,url} from './config.json';
 import {requestAuthRegister} from './authTest.test'
 import {getData, setData} from './dataStore';
-import { uuid } from 'uuidv4';
+
 
 const SERVER_URL = `${url}:${port}`;
 
