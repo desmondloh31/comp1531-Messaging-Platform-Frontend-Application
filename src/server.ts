@@ -14,7 +14,7 @@ import { clearV1 } from './other';
 
 import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
 import { tokenCreate, tokenVerify } from './token';
-import { userProfileV1, usersAllV1 } from './users';
+import { userProfileSetemailV1, userProfileSethandleV1, userProfileSetnameV1, userProfileV1, usersAllV1 } from './users';
 import { channelsCreateV1, channelsListV1 } from './channels';
 
 // Set up web app
@@ -187,17 +187,20 @@ app.get('/users/all/v1',(req: Request, res: Response) => {
 
 app.put('/user/profile/setname/v1',(req: Request, res: Response) => {
   const { token, nameFirst, nameLast } = req.body;
-  
+  let function1 = userProfileSetnameV1(token, nameFirst, nameLast)
+  res.json(function1)
 });
 
 app.put('/user/profile/setemail/v1',(req: Request, res: Response) => {
   const { token, email } = req.body;
-  
+  let function1 = userProfileSetemailV1(token, email)
+  res.json (function1)
 });
 
 app.put('/user/profile/sethandle/v1',(req: Request, res: Response) => {
   const { token, handleStr } = req.body;
-  
+  let function1 = userProfileSethandleV1(token, handleStr)
+  res.json(function1)
 });
 
 // start server
