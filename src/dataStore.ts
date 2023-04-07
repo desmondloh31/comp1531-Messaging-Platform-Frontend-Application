@@ -70,7 +70,7 @@ Example usage
 const dataStorePath = './storage.json'
 function getData() {
   
-  JSON.parse(String(fs.readFileSync(dataStorePath)))
+  data = JSON.parse(String(fs.readFileSync(dataStorePath)))
   
   //const dbstr = fs.readFileSync('storage.json')
   //data = JSON.parse(String(dbstr))

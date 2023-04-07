@@ -22,8 +22,8 @@ function authRegisterV1(email: string, password: string, nameFirst: string, name
         return{error:"error"}
     }
 
-    for(const user in data){
-        if(user["email"] === email){
+    for(const user of data.users){
+        if(user.email === email){
         return{error:"error"}
         }
     }
@@ -76,8 +76,8 @@ function authLoginV1(email: string, password: string ) {
 
 function formatAlias(handleLower: string, currentMaxNum: number){
     const data = getData()
-    for(const user in data){
-        if(user["handleLower"] === handleLower){
+    for(const user of data.users){
+        if(user.formattedHandle === handleLower){
            const newHandle = handleLower + currentMaxNum
            currentMaxNum ++ 
            formatAlias(newHandle, currentMaxNum)

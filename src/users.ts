@@ -1,5 +1,6 @@
 import {getData, setData} from './dataStore';
 import {tokenCreate, tokenVerify, tokenDelete, tokenExists} from './token' 
+import validator from 'validator';
 
 export function userProfileV1(token: string, uId: number) {
 
@@ -34,15 +35,69 @@ export function usersAllV1(token: string){
   const data = getData()
   let users = []
   for(const userData of data.users){
-    const alan = {
+    const fdone = {
       uId: userData.authUserId, 
       email: userData.email, 
       nameFirst: userData.nameFirst, 
       nameLast: userData.nameLast, 
       handleStr: userData.formattedHandle
     } 
-    users.push(alan)
+    users.push(fdone)
     
   }
   return {users: users};
+}
+
+export function userProfileSetnameV1(token: string, nameFirst: string, nameLast: string){
+  const data = getData()
+
+
+  if(nameFirst.length < 1 || nameFirst.length > 50){
+    return{error:"error"}
+  }
+
+  if(nameLast.length < 1 || nameLast.length >50){
+    return{error:"error"}
+  }
+
+  for(const userData of data.users){
+    if(token === userData.token[0]){
+      userData.nameFirst = nameFirst
+      userData.nameLast = nameLast
+      break
+    }
+
+    }
+  return {}
+}
+
+export function userProfileSetemailV1(token: string, email: string){
+  const data = getData()
+  if(validator.isEmail(email) === false){
+    return{error:"error"}
+  }
+
+  for(const user in data){
+    if(user["email"] === email){
+    return{error:"error"}
+    }
+  }
+  for(const userData of data.users){
+    if(token === userData.token[0]){
+      userData.email = email
+      break
+    }
+    }
+  return {}
+}
+
+export function userProfileSethandleV1(token: string, handleStr: string){
+  const data = getData()
+  for(const userData of data.users){
+    if(token === userData.token[0]){
+      userData.formattedHandle = handleStr
+      break
+    }
+    }
+  return {}
 }
