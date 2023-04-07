@@ -7,22 +7,28 @@ export function userProfileV1(token: string, uId: number) {
     let authid = tokenVerify(token);
 
     const data = getData();
-    
-    const user = data.users.find(i => i.authUserId === authid);
-    const guest = data.users.find(i => i.authUserId === uId); //add to server.ts
-    
+    let userExists = false
+    let user = null
+    //const user = data.users.find(i => i.authUserId === authid);
+    //const guest = data.users.find(i => i.authUserId === uId); //add to server.ts
+    for(const userData of data.users){
+      if(uId === userData.authUserId){
+        user = userData
+        userExists = true
+      }
+
+    }
+
     if (!user) {
         return { error: "authUserId is invalid"}; 
-      }else if(!guest) {
-        return { error: "uId is invalid"};
       }
     
     return {
-        uId: guest.authUserId,
-        nameFirst: guest.nameFirst,
-        nameLast: guest.nameLast,
-        email: guest.email,
-        handleStr: guest.formattedHandle,
+        uId: user.authUserId,
+        nameFirst: user.nameFirst,
+        nameLast: user.nameLast,
+        email: user.email,
+        handleStr: user.formattedHandle,
 
     }
   }
@@ -67,7 +73,7 @@ export function userProfileSetnameV1(token: string, nameFirst: string, nameLast:
       setData(data)
       break
     }
-
+  
     }
   return {}
 }
