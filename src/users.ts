@@ -64,6 +64,7 @@ export function userProfileSetnameV1(token: string, nameFirst: string, nameLast:
     if(token === userData.token[0]){
       userData.nameFirst = nameFirst
       userData.nameLast = nameLast
+      setData(data)
       break
     }
 
@@ -85,6 +86,7 @@ export function userProfileSetemailV1(token: string, email: string){
   for(const userData of data.users){
     if(token === userData.token[0]){
       userData.email = email
+      setData(data)
       break
     }
     }
@@ -96,6 +98,7 @@ export function userProfileSethandleV1(token: string, handleStr: string){
   for(const userData of data.users){
     if(token === userData.token[0]){
       userData.formattedHandle = handleStr
+      setData(data)
       break
     }
     }
