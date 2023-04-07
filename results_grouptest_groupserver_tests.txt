@@ -1,0 +1,23 @@
+
+> test
+> jest **/?(*.)+(test).ts
+
+  Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
+  Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
+PASS src/authTest.test.ts (5.1 s)
+PASS src/channel.test.ts (20.04 s)
+PASS src/dm.test.ts
+PASS src/channels.test.ts
+PASS src/echo.test.ts
+PASS src/usersTest.test.ts
+
+Test Suites: 6 passed, 6 total
+Tests:       73 passed, 73 total
+Snapshots:   0 total
+Time:        33.365 s, estimated 58 s
+Ran all test suites.
+npm notice 
+npm notice New patch version of npm available! 9.6.3 -> 9.6.4
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.6.4>
+npm notice Run `npm install -g npm@9.6.4` to update!
+npm notice 
