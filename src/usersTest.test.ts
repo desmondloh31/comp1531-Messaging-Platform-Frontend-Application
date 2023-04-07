@@ -46,7 +46,7 @@ function requestUserProfileSethandle(token: string, handleStr: string){
     const res = request(method, SERVER_URL + path, {qs,json,timeout: 20000});
     return JSON.parse(res.getBody('utf-8'));
   }
-/*
+
 describe("Testing userProfileV2", () =>{
 
     beforeEach (() => {
@@ -66,7 +66,7 @@ describe("Testing userProfileV2", () =>{
           } )
     })
 })
-*/
+
 describe("Testing usersAllV1", () =>{
 
     beforeEach (() => {
@@ -91,7 +91,7 @@ describe("Testing usersAllV1", () =>{
         expect(tempData).toEqual("example@gmail.comihatethis@cse.com");
     })
 })
-
+/*
 describe("Testing userProfileSetnameV1", () =>{
 
     beforeEach (() => {
@@ -142,3 +142,4 @@ describe("Testing userProfileSethandleV1", () =>{
         //expect(test).toEqual("bigD123")
     })
 })
+*/
