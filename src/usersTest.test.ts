@@ -5,7 +5,7 @@ import request, {HttpVerb} from 'sync-request';
 import {port,url} from './config.json';
 import {requestAuthRegister} from './authTest.test'
 import {getData, setData} from './dataStore';
-import { uuid } from 'uuidv4';
+
 
 const SERVER_URL = `${url}:${port}`;
 
@@ -91,7 +91,7 @@ describe("Testing usersAllV1", () =>{
         expect(tempData).toEqual("example@gmail.comihatethis@cse.com");
     })
 })
-/*
+
 describe("Testing userProfileSetnameV1", () =>{
 
     beforeEach (() => {
@@ -104,7 +104,8 @@ describe("Testing userProfileSetnameV1", () =>{
         requestUserProfileSetname(user.token, "Big", "D")
         const data = getData()
         expect(data.users[0].nameFirst + data.users[0].nameLast).toEqual("BigD")
-        //const newUser = requestUserProfile(user.token, user.uId)
+        //expect(test).toEqual("BigD")
+        //const newUser = requestUserProfile(user.token, user.uId) as {nameFirst: string, nameLast: string}
         //expect(newUser.nameFirst + newUser.nameLast).toEqual("BigD")
     })
 
@@ -135,9 +136,9 @@ describe("Testing userProfileSethandleV1", () =>{
 
     test('Testing if userProfileSethandleV1 is changing handle',() =>{
         const user = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") as {token: string}
-        requestUserProfileSetemail(user.token, "bigD123")
+        requestUserProfileSethandle(user.token, "bigD123")
         const data = getData()
-        expect(data.users[0].email).toEqual("bigD123")
+        expect(data.users[0].formattedHandle).toEqual("bigD123")
+        //expect(test).toEqual("bigD123")
     })
 })
-*/
