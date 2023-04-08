@@ -207,219 +207,214 @@ describe('Error Checking in delete Message v1', () => {
 });
 
 describe('Error Checking in dm messages v1', () => {
-    interface user {
+    interface usr {
         authUserId: number;
         token: string;
     }
-    let user: user;
-    let user1: user;
-    let user2: user;
-    let user3: user;
+    let user: usr;
+    let user1: usr;
+    let user2: usr;
+    let user3: usr;
     let dmid: number;
-    beforeEach (() => {
-        requestClear();
-        user = requestAuthRegister("test@gmail.com", "test1234", "test", "test");
-        user1 = requestAuthRegister("user2@gmail.com", "test1234", "Hritwik", "Nauriyal");
-        user2 = requestAuthRegister("user3@gmail.com", "test12344", "asd", "asd");
-        user3 = requestAuthRegister("user4@gmail.com", "test12344", "assd", "assd");
-        dmid = requestDmCreate(user.token , [user2.authUserId, user1.authUserId]).dmId;
+    beforeEach(() => {
+      requestClear();
+      user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+      user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+      user2 = requestAuthRegister('user3@gmail.com', 'test12344', 'asd', 'asd');
+      user3 = requestAuthRegister('user4@gmail.com', 'test12344', 'assd', 'assd');
+      dmid = requestDmCreate(user.token, [user2.authUserId, user1.authUserId]).dmId;
     });
 
     test('invalid authuser id', () => {
-        const result = requestDmMessages("-1", dmid, 0);
-        expect(result).toStrictEqual(ERROR);
+      const result = requestDmMessages('-1', dmid, 0);
+      expect(result).toStrictEqual(ERROR);
     });
 
     test('invalid dm id', () => {
-        let dmid = -1;
-        const result = requestDmMessages(user.token, dmid, 0);
-        expect(result).toStrictEqual(ERROR);
+      const dmid = -1;
+      const result = requestDmMessages(user.token, dmid, 0);
+      expect(result).toStrictEqual(ERROR);
     });
 
     test('invalid start', () => {
-        const result = requestDmMessages(user.token, dmid, 1);
-        expect(result).toStrictEqual(ERROR);
+      const result = requestDmMessages(user.token, dmid, 1);
+      expect(result).toStrictEqual(ERROR);
     });
 
     test('Authuser not part of channel', () => {
-
-        const result = requestDmMessages(user3.token, dmid, 0);
-        expect(result).toStrictEqual(ERROR);
+      const result = requestDmMessages(user3.token, dmid, 0);
+      expect(result).toStrictEqual(ERROR);
     });
 
     test('Valid Test', () => {
-        const result = requestDmMessages(user1.token, dmid, 0);
-        expect(result).toStrictEqual({messages: [],start: 0, end: -1});
+      const result = requestDmMessages(user1.token, dmid, 0);
+      expect(result).toStrictEqual({ messages: [], start: 0, end: -1 });
     });
-
 });
 
 describe('Error Checking in Senddm v1', () => {
-    interface user {
+    interface usr {
       authUserId: number;
       token: string;
     }
-    let user: user;
-    let user1: user;
-    let user2: user;
-    let user3: user;
+    let user: usr;
+    let user1: usr;
+    let user2: usr;
+    let user3: usr;
     let dmid: number;
-    beforeEach (() => {
-        requestClear();
-        user = requestAuthRegister("test@gmail.com", "test1234", "test", "test");
-        user1 = requestAuthRegister("user2@gmail.com", "test1234", "Hritwik", "Nauriyal");
-        user2 = requestAuthRegister("user3@gmail.com", "test12344", "asd", "asd");
-        user3 = requestAuthRegister("user4@gmail.com", "test12344", "assd", "assd");
-        dmid = requestDmCreate(user.token , [user2.authUserId, user1.authUserId]).dmId;
+    beforeEach(() => {
+      requestClear();
+      user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+      user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+      user2 = requestAuthRegister('user3@gmail.com', 'test12344', 'asd', 'asd');
+      user3 = requestAuthRegister('user4@gmail.com', 'test12344', 'assd', 'assd');
+      dmid = requestDmCreate(user.token, [user2.authUserId, user1.authUserId]).dmId;
     });
 
     test('invalid authuser id', () => {
-        const result = requestSendDm("-1", dmid, "Test Message");
-        expect(result).toStrictEqual(ERROR);
+      const result = requestSendDm('-1', dmid, 'Test Message');
+      expect(result).toStrictEqual(ERROR);
     });
 
     test('invalid dm id', () => {
-        const result = requestSendDm(user1.token, -1, "Test Message");
-        expect(result).toStrictEqual(ERROR);
+      const result = requestSendDm(user1.token, -1, 'Test Message');
+      expect(result).toStrictEqual(ERROR);
     });
 
     test('invalid Message - toolong', () => {
-        const result = requestSendDm(user1.token, dmid, "temp".repeat(1000));
-        expect(result).toStrictEqual(ERROR);
+      const result = requestSendDm(user1.token, dmid, 'temp'.repeat(1000));
+      expect(result).toStrictEqual(ERROR);
     });
 
     test('invalid Message - tooshort', () => {
-        const result = requestSendDm(user1.token, dmid, "");
-        expect(result).toStrictEqual(ERROR);
+      const result = requestSendDm(user1.token, dmid, '');
+      expect(result).toStrictEqual(ERROR);
     });
 
     test('Authuser not part of channel', () => {
-
-        const result = requestSendDm(user3.token, dmid, "Test Message");
-        expect(result).toStrictEqual(ERROR);
+      const result = requestSendDm(user3.token, dmid, 'Test Message');
+      expect(result).toStrictEqual(ERROR);
     });
 
     test('Valid Test', () => {
-      const result = requestSendDm(user1.token, dmid, "Test Message");
-      expect(result).toStrictEqual({messageId: expect.any(Number)});
+      const result = requestSendDm(user1.token, dmid, 'Test Message');
+      expect(result).toStrictEqual({ messageId: expect.any(Number) });
     });
-
 });
 
-describe('Error Checking in dmDelete v1', () => { 
-  interface user {
+describe('Error Checking in dmDelete v1', () => {
+  interface usr {
     authUserId: number;
     token: string;
   }
-  let user: user;
-  let user1: user;
-  let user2: user;
-  let user3: user;
+  let user: usr;
+  let user1: usr;
+  let user2: usr;
+  let user3: usr;
   let dmid: number;
-  beforeEach (() => {
-      requestClear();
-      user = requestAuthRegister("test@gmail.com", "test1234", "test", "test");
-      user1 = requestAuthRegister("user2@gmail.com", "test1234", "Hritwik", "Nauriyal");
-      user2 = requestAuthRegister("user3@gmail.com", "test12344", "asd", "asd");
-      user3 = requestAuthRegister("user4@gmail.com", "test12344", "assd", "assd");
-      dmid = requestDmCreate(user.token , [user2.authUserId, user1.authUserId]).dmId;
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    user2 = requestAuthRegister('user3@gmail.com', 'test12344', 'asd', 'asd');
+    user3 = requestAuthRegister('user4@gmail.com', 'test12344', 'assd', 'assd');
+    dmid = requestDmCreate(user.token, [user2.authUserId, user1.authUserId]).dmId;
   });
 
   test('invalid authuser id', () => {
-    const result = requestdmDelete("-1", dmid);
+    const result = requestdmDelete('-1', dmid);
     expect(result).toStrictEqual(ERROR);
   });
 
   test('invalid dm id', () => {
     const result = requestdmDelete(user1.token, -1);
     expect(result).toStrictEqual(ERROR);
-  })
+  });
 
   test('Authuser not part of channel', () => {
     const result = requestdmDelete(user3.token, dmid);
     expect(result).toStrictEqual(ERROR);
-  })
+  });
 
   test('Authuser is not owner of DM', () => {
     const result = requestdmDelete(user1.token, dmid);
     expect(result).toStrictEqual(ERROR);
-  })
+  });
 
   test('Valid Test', () => {
     const result = requestdmDelete(user.token, dmid);
     expect(result).toStrictEqual({});
   });
-})
+});
 
 describe('Error Checking in dmDetails v1', () => {
-  interface user {
+  interface usr {
     authUserId: number;
     token: string;
   }
-  let user: user;
-  let user1: user;
-  let user2: user;
-  let user3: user;
+  let user: usr;
+  let user1: usr;
+  let user2: usr;
+  let user3: usr;
   let dmid: number;
-  beforeEach (() => {
-      requestClear();
-      user = requestAuthRegister("test@gmail.com", "test1234", "test", "test");
-      user1 = requestAuthRegister("user2@gmail.com", "test1234", "Hritwik", "Nauriyal");
-      user2 = requestAuthRegister("user3@gmail.com", "test12344", "asd", "asd");
-      user3 = requestAuthRegister("user4@gmail.com", "test12344", "assd", "assd");
-      dmid = requestDmCreate(user.token , [user2.authUserId, user1.authUserId]).dmId;
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    user2 = requestAuthRegister('user3@gmail.com', 'test12344', 'asd', 'asd');
+    user3 = requestAuthRegister('user4@gmail.com', 'test12344', 'assd', 'assd');
+    dmid = requestDmCreate(user.token, [user2.authUserId, user1.authUserId]).dmId;
   });
 
   test('invalid authuser id', () => {
-    const result = requestdmDetails("-1", dmid);
+    const result = requestdmDetails('-1', dmid);
     expect(result).toStrictEqual(ERROR);
   });
 
   test('invalid dm id', () => {
     const result = requestdmDetails(user1.token, -1);
     expect(result).toStrictEqual(ERROR);
-  })
+  });
 
   test('Authuser not part of channel', () => {
     const result = requestdmDetails(user3.token, dmid);
     expect(result).toStrictEqual(ERROR);
-  })
+  });
 
   test('Valid Test', () => {
     const result = requestdmDetails(user.token, dmid);
-    expect(result).toStrictEqual({name: expect.any(String), members: expect.any(Array)});
+    expect(result).toStrictEqual({ name: expect.any(String), members: expect.any(Array) });
   });
+});
 
-})
-
-describe ('Error Checking in dmLeave v1', () => {
-  interface user {
+describe('Error Checking in dmLeave v1', () => {
+  interface usr {
     authUserId: number;
     token: string;
   }
-  let user: user;
-  let user1: user;
-  let user2: user;
-  let user3: user;
+  let user: usr;
+  let user1: usr;
+  let user2: usr;
+  let user3: usr;
   let dmid: number;
-  beforeEach (() => {
-      requestClear();
-      user = requestAuthRegister("test@gmail.com", "test1234", "test", "test");
-      user1 = requestAuthRegister("user2@gmail.com", "test1234", "Hritwik", "Nauriyal");
-      user2 = requestAuthRegister("user3@gmail.com", "test12344", "asd", "asd");
-      user3 = requestAuthRegister("user4@gmail.com", "test12344", "assd", "assd");
-      dmid = requestDmCreate(user.token , [user2.authUserId, user1.authUserId]).dmId;
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    user2 = requestAuthRegister('user3@gmail.com', 'test12344', 'asd', 'asd');
+    user3 = requestAuthRegister('user4@gmail.com', 'test12344', 'assd', 'assd');
+    dmid = requestDmCreate(user.token, [user2.authUserId, user1.authUserId]).dmId;
   });
 
   test('invalid authuser id', () => {
-    const result = requestdmLeave("-1", dmid);
+    const result = requestdmLeave('-1', dmid);
     expect(result).toStrictEqual(ERROR);
   });
 
   test('invalid dm id', () => {
     const result = requestdmLeave(user1.token, -1);
     expect(result).toStrictEqual(ERROR);
-  })
+  });
 
   test('Authuser not part of channel', () => {
     const result = requestdmLeave(user3.token, dmid);
@@ -430,5 +425,4 @@ describe ('Error Checking in dmLeave v1', () => {
     const result = requestdmLeave(user1.token, dmid);
     expect(result).toStrictEqual({});
   });
-  
-})
+});

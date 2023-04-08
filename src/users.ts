@@ -1,106 +1,106 @@
-import {getData, setData} from './dataStore';
-import {tokenCreate, tokenVerify, tokenDelete, tokenExists} from './token' 
+import { getData, setData } from './dataStore';
+import { tokenVerify, tokenExists } from './token';
 import validator from 'validator';
 
 export function userProfileV1(token: string, uId: number) {
+  const authid = tokenVerify(token);
 
-    let authid = tokenVerify(token);
+  const data = getData();
 
-    const data = getData();
-    
-    const user = data.users.find(i => i.authUserId === authid);
-    const guest = data.users.find(i => i.authUserId === uId); //add to server.ts
-    
-    if (!user) {
-        return { error: "authUserId is invalid"}; 
-      }else if(!guest) {
-        return { error: "uId is invalid"};
-      }
-    
-    return {
-        uId: guest.authUserId,
-        nameFirst: guest.nameFirst,
-        nameLast: guest.nameLast,
-        email: guest.email,
-        handleStr: guest.formattedHandle,
+  const user = data.users.find(i => i.authUserId === authid);
+  const guest = data.users.find(i => i.authUserId === uId); // add to server.ts
 
-    }
+  if (!user) {
+    return { error: 'authUserId is invalid' };
+  } else if (!guest) {
+    return { error: 'uId is invalid' };
   }
 
-export function usersAllV1(token: string){
+  return {
+    uId: guest.authUserId,
+    nameFirst: guest.nameFirst,
+    nameLast: guest.nameLast,
+    email: guest.email,
+    handleStr: guest.formattedHandle,
+
+  };
+}
+
+export function usersAllV1(token: string) {
   // check that token is valid
-  if(!tokenExists){
-    return {error:"error"}
+  if (!tokenExists) {
+    return { error: 'error' };
   }
-  const data = getData()
-  let users = []
-  for(const userData of data.users){
+  const data = getData();
+  const users = [];
+  for (const userData of data.users) {
     const alan = {
-      uId: userData.authUserId, 
-      email: userData.email, 
-      nameFirst: userData.nameFirst, 
-      nameLast: userData.nameLast, 
+      uId: userData.authUserId,
+      email: userData.email,
+      nameFirst: userData.nameFirst,
+      nameLast: userData.nameLast,
       handleStr: userData.formattedHandle
-    } 
-    users.push(alan)
-    
+    };
+    users.push(alan);
   }
-  return {users: users};
+  return { users: users };
 }
 
-export function userProfileSetnameV1(token: string, nameFirst: string, nameLast: string){
-  const data = getData()
+export function userProfileSetnameV1(token: string, nameFirst: string, nameLast: string) {
+  const data = getData();
 
-
-  if(nameFirst.length < 1 || nameFirst.length > 50){
-    return{error:"error"}
+  if (nameFirst.length < 1 || nameFirst.length > 50) {
+    return { error: 'error' };
   }
 
-  if(nameLast.length < 1 || nameLast.length >50){
-    return{error:"error"}
+  if (nameLast.length < 1 || nameLast.length > 50) {
+    return { error: 'error' };
   }
 
-  for(const userData of data.users){
-    if(token === userData.token[0]){
-      userData.nameFirst = nameFirst
-      userData.nameLast = nameLast
-      setData(data)
-      break
+  for (const userData of data.users) {
+    if (token === userData.token[0]) {
+      userData.nameFirst = nameFirst;
+      userData.nameLast = nameLast;
+      setData(data);
+      break;
     }
-  
-    }
-  return {}
+  }
+  return {};
 }
 
-export function userProfileSetemailV1(token: string, email: string){
-  const data = getData()
-  if(validator.isEmail(email) === false){
-    return{error:"error"}
+export function userProfileSetemailV1(token: string, email: string) {
+  const data = getData();
+  if (validator.isEmail(email) === false) {
+    return { error: 'error' };
   }
 
-  for(const user in data){
-    if(user["email"] === email){
-    return{error:"error"}
-    }
+  const authUserId = tokenVerify(token) as number;
+  const authUser = data.users.find(i => i.authUserId === authUserId);
+
+  if (!authUser) {
+    return { error: 'Invalid Token' };
   }
-  for(const userData of data.users){
-    if(token === userData.token[0]){
-      userData.email = email
-      setData(data)
-      break
-    }
-    }
-  return {}
+
+  // check if email is already being used by another user
+  const check = data.users.find(i => i.email === email);
+
+  if (check) {
+    return { error: 'email already in use' };
+  }
+
+  authUser.email = email;
+
+  return {};
 }
 
-export function userProfileSethandleV1(token: string, handleStr: string){
-  const data = getData()
-  for(const userData of data.users){
-    if(token === userData.token[0]){
-      userData.formattedHandle = handleStr
-      setData(data)
-      break
+export function userProfileSethandleV1(token: string, handleStr: string) {
+  const data = getData();
+  for (const userData of data.users) {
+    if (token === userData.token[0]) {
+      userData.formattedHandle = handleStr;
+      setData(data);
+      break;
     }
-    }
-  return {}
+  }
+  return {};
 }
