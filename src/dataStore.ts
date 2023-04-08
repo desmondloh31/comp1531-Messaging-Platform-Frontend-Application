@@ -5,7 +5,7 @@ interface usr {
   nameFirst: string;
   nameLast: string;
   email: string;
-  formattedHandle: string;
+  handleStr: string;
   password: string;
   token: string[];
 }

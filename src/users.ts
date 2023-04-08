@@ -3,28 +3,35 @@ import { tokenVerify, tokenExists } from './token';
 import validator from 'validator';
 
 export function userProfileV1(token: string, uId: number) {
-  const authid = tokenVerify(token);
 
-  const data = getData();
+    let authid = tokenVerify(token);
 
-  const user = data.users.find(i => i.authUserId === authid);
-  const guest = data.users.find(i => i.authUserId === uId); // add to server.ts
+    const data = getData();
+    let userExists = false
+    let user = null
+    //const user = data.users.find(i => i.authUserId === authid);
+    //const guest = data.users.find(i => i.authUserId === uId); //add to server.ts
+    for(const userData of data.users){
+      if(uId === userData.authUserId){
+        user = userData
+        userExists = true
+      }
 
-  if (!user) {
-    return { error: 'authUserId is invalid' };
-  } else if (!guest) {
-    return { error: 'uId is invalid' };
+    }
+
+    if (!user) {
+        return { error: "authUserId is invalid"}; 
+      }
+    
+    return {
+        uId: user.authUserId,
+        nameFirst: user.nameFirst,
+        nameLast: user.nameLast,
+        email: user.email,
+        handleStr: user.handleStr,
+
+    }
   }
-
-  return {
-    uId: guest.authUserId,
-    nameFirst: guest.nameFirst,
-    nameLast: guest.nameLast,
-    email: guest.email,
-    handleStr: guest.formattedHandle,
-
-  };
-}
 
 export function usersAllV1(token: string) {
   // check that token is valid
@@ -39,7 +46,7 @@ export function usersAllV1(token: string) {
       email: userData.email,
       nameFirst: userData.nameFirst,
       nameLast: userData.nameLast,
-      handleStr: userData.formattedHandle
+      handleStr: userData.handleStr
     };
     users.push(alan);
   }
@@ -97,7 +104,7 @@ export function userProfileSethandleV1(token: string, handleStr: string) {
   const data = getData();
   for (const userData of data.users) {
     if (token === userData.token[0]) {
-      userData.formattedHandle = handleStr;
+      userData.handleStr = handleStr;
       setData(data);
       break;
     }

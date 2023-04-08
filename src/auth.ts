@@ -33,7 +33,7 @@ function authRegisterV1(email: string, password: string, nameFirst: string, name
   if (handleLower.length > 20) {
     handleLower = handleLower.slice(0, 20);
   }
-  const formattedHandle = formatAlias(handleLower, 0);
+  const handleStr = formatAlias(handleLower, 0);
 
   data.users.push({
     email: email,
@@ -41,7 +41,7 @@ function authRegisterV1(email: string, password: string, nameFirst: string, name
     nameFirst: nameFirst,
     nameLast: nameLast,
     authUserId: authUserId,
-    formattedHandle: formattedHandle,
+    handleStr: handleStr,
     token: []
   });
   setData(data);
@@ -72,7 +72,7 @@ function authLoginV1(email: string, password: string) {
 function formatAlias(handleLower: string, currentMaxNum: number) {
   const data = getData();
   for (const user of data.users) {
-    if (user.formattedHandle === handleLower) {
+    if (user.handleStr === handleLower) {
       const newHandle = handleLower + currentMaxNum;
       currentMaxNum++;
       formatAlias(newHandle, currentMaxNum);

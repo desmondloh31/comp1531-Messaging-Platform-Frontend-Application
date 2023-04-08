@@ -127,7 +127,7 @@ describe("Testing userProfileSethandleV1", () =>{
         const user = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") as {token: string}
         requestUserProfileSethandle(user.token, "bigD123")
         const data = getData()
-        expect(data.users[0].formattedHandle).toEqual("bigD123")
+        expect(data.users[0].handleStr).toEqual("bigD123")
         //expect(test).toEqual("bigD123")
     })
 })
