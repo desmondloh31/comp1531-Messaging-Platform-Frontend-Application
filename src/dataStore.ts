@@ -1,4 +1,5 @@
 // YOU SHOULD MODIFY THIS OBJECT BELOW
+import fs from 'fs'
 
 interface usr {
   authUserId: number;
@@ -64,11 +65,11 @@ Example usage
     console.log(store) # Prints { 'names': ['Hayden', 'Tam', 'Rani', 'Giuliana', 'Jake'] }
     setData(store)
 */
-
+const dataStorePath = './storage.json'
 // Use get() to access the data
 function getData() {
   // data = JSON.parse(String(fs.readFileSync(dataStorePath)))
-
+  data = JSON.parse(String(fs.readFileSync(dataStorePath)))
   // const dbstr = fs.readFileSync('storage.json')
   // data = JSON.parse(String(dbstr))
 
@@ -82,7 +83,7 @@ function getData() {
 function setData(newData: db) {
   data = newData;
   // fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
-
+  fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
   // const jsonstr = JSON.stringify(data)
   // fs.writeFileSync('storage.json', jsonstr, {flag: 'w'})
 }
