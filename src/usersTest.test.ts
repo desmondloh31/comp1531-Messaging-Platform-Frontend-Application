@@ -1,96 +1,87 @@
-import {userProfileSetemailV1, userProfileSetnameV1, userProfileSethandleV1, userProfileV1, usersAllV1} from './users' 
-import {authRegisterV1, authLoginV1, authLogoutV1} from './auth'; 
-import {tokenCreate, tokenVerify, tokenDelete} from './token' 
-import request, {HttpVerb} from 'sync-request';
-import {port,url} from './config.json';
-import {requestAuthRegister} from './authTest.test'
-import {getData, setData} from './dataStore';
 
+import request, { HttpVerb } from 'sync-request';
+import { port, url } from './config.json';
+import { requestAuthRegister } from './authTest.test';
 
 const SERVER_URL = `${url}:${port}`;
 
-function requestUserProfile(token: string, uId: number){
-    return requestHelper('GET','/user/profile/v2',{token, uId});
-  }
+function requestUserProfile(token: string, uId: number) {
+  return requestHelper('GET', '/user/profile/v2', { token, uId });
+}
 
-function requestUserAll(token: string){
-    return requestHelper('GET','/users/all/v1',{token});
-  }
+function requestUserAll(token: string) {
+  return requestHelper('GET', '/users/all/v1', { token });
+}
 
 function requestClear() {
-    return requestHelper('DELETE', '/clear/v1', {});
+  return requestHelper('DELETE', '/clear/v1', {});
 }
 
-function requestUserProfileSetname(token: string, nameFirst: string, nameLast: string){
-    return requestHelper('PUT', '/user/profile/setname/v1', {token, nameFirst, nameLast})
-}
-  
-function requestUserProfileSetemail(token: string, email: string){
-    return requestHelper('PUT', '/user/profile/setemail/v1', {token, email})
+function requestUserProfileSetname(token: string, nameFirst: string, nameLast: string) {
+  return requestHelper('PUT', '/user/profile/setname/v1', { token, nameFirst, nameLast });
 }
 
-function requestUserProfileSethandle(token: string, handleStr: string){
-    return requestHelper('PUT', '/user/profile/sethandle/v1', {token, handleStr})
+function requestUserProfileSetemail(token: string, email: string) {
+  return requestHelper('PUT', '/user/profile/setemail/v1', { token, email });
 }
 
-  // Helper Function
-  function requestHelper(method: HttpVerb, path: string, payload: object) {
-    let qs = {};
-    let json = {};
-    if (['GET', 'DELETE'].includes(method)) {
-        qs = payload;
-    } else {
-        //PUT/POST
-        json = payload;
-    }
-    const res = request(method, SERVER_URL + path, {qs,json,timeout: 20000});
-    return JSON.parse(res.getBody('utf-8'));
+function requestUserProfileSethandle(token: string, handleStr: string) {
+  return requestHelper('PUT', '/user/profile/sethandle/v1', { token, handleStr });
+}
+
+// Helper Function
+function requestHelper(method: HttpVerb, path: string, payload: object) {
+  let qs = {};
+  let json = {};
+  if (['GET', 'DELETE'].includes(method)) {
+    qs = payload;
+  } else {
+    // PUT/POST
+    json = payload;
   }
+  const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
+  return JSON.parse(res.getBody('utf-8'));
+}
 
-describe("Testing userProfileV2", () =>{
+describe('Testing userProfileV2', () => {
+  beforeEach(() => {
+    requestClear();
+  });
 
-    beforeEach (() => {
-        requestClear();
-
+  test('Testing if userProfileV2 is returning all the correct values', () => {
+    const profile = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith') as {token:string, authUserId: number};
+    const user = requestUserProfile(profile.token, profile.authUserId);
+    expect(user).toEqual({
+      uId: expect.any(Number),
+      email: 'example@gmail.com',
+      nameFirst: 'John',
+      nameLast: 'Smith',
+      handleStr: 'johnsmith'
     });
+  });
+});
 
-    test('Testing if userProfileV2 is returning all the correct values',() =>{
-        const profile = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") as {token:string, authUserId: number}
-        const user = requestUserProfile(profile.token, profile.authUserId)
-        expect(user).toEqual({
-            uId: expect.any(Number), 
-            email: "example@gmail.com", 
-            nameFirst: "John", 
-            nameLast: "Smith", 
-            handleStr: "johnsmith"
-          } )
-    })
-})
+describe('Testing usersAllV1', () => {
+  beforeEach(() => {
+    requestClear();
+  });
 
-describe("Testing usersAllV1", () =>{
-
-    beforeEach (() => {
-        requestClear();
-
-    });
-
-    test('Testing if usersAllV1 is returning all the correct values',() =>{
-        const profile1 = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") as {token:string, authUserId: number}
-        const profile2 = requestAuthRegister("ihatethis@cse.com", "nomore", "Freaking", "Done") as {token:string, authUserId: number}
-        const data = requestUserAll(profile1.token)
-        let tempData = ""
-        for(let user = 0; user < data.users.length; user++ ){
-            if(user == data.users.length -2){
-                tempData += data.users[user].email
-            }
-            if(user == data.users.length -1){
-                tempData += data.users[user].email
-            }
-
-        }
-        expect(tempData).toEqual("example@gmail.comihatethis@cse.com");
-    })
-})
+  test('Testing if usersAllV1 is returning all the correct values', () => {
+    const profile1 = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith') as {token:string, authUserId: number};
+    const profile2 = requestAuthRegister('ihatethis@cse.com', 'nomore', 'Freaking', 'Done') as {token:string, authUserId: number};
+    const data = requestUserAll(profile1.token);
+    let tempData = '';
+    for (let user = 0; user < data.users.length; user++) {
+      if (user === data.users.length - 2) {
+        tempData += data.users[user].email;
+      }
+      if (user === data.users.length - 1) {
+        tempData += data.users[user].email;
+      }
+    }
+    expect(tempData).toEqual('example@gmail.comihatethis@cse.com');
+  });
+});
 /*
 describe("Testing userProfileSetnameV1", () =>{
 
@@ -123,7 +114,7 @@ describe("Testing userProfileSetemailV1", () =>{
         requestUserProfileSetemail(user.token, "mybd@yourmoms.com")
         const data = getData()
         expect(data.users[0].email).toEqual("mybd@yourmoms.com")
-  
+
     })
 })
 
