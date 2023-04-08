@@ -5,10 +5,10 @@ import config from './config.json';
 import cors from 'cors';
 import { channelDetailsV1, channelJoinV1, channelInviteV1, 
 channelMessagesV1, channelLeaveV1, channelAddOwnerV1, 
-channelRemoveOwnerV1 } from './channel';
+channelRemoveOwnerV1, messageDeleteV1, messageEditV1, messageSendV1, dmMessagesV1 } from './channel';
 
 
-import { dmCreate,dmList } from './dm';
+import { dmCreate,dmList, dmRemoveV1, dmDetailsV1, dmLeaveV1 } from './dm';
 
 import { clearV1 } from './other';
 
@@ -47,23 +47,18 @@ app.post('/auth/login/v2',(req: Request, res: Response) => {
 app.post('/auth/register/v2',(req: Request, res: Response) => {
   const { email, password, nameFirst, nameLast} = req.body;
   let authid = authRegisterV1(email,password,nameFirst,nameLast);
-
   return res.json(authid);
-
-  res.json(authid);
 });
 
 app.post('/channels/create/v2',(req: Request, res: Response) => {
   const { token, name, isPublic } = req.body;
   res.json(channelsCreateV1(token, name, isPublic));
-  
 });
 
 app.get('/channels/list/v2',(req: Request, res: Response) => {
   const token = req.query.token as string;
   const result = channelsListV1(token);
   res.json(result);
-  
 });
 
 app.get('/channels/listall/v2',(req: Request, res: Response) => {
@@ -87,16 +82,16 @@ app.post('/channel/join/v2',(req: Request, res: Response) => {
 
 app.post('/channel/invite/v2',(req: Request, res: Response) => {
   const { token, channelId, uId } = req.body;
-  res.json(channelInviteV1(token, channelId, uId));
+
+  return res.json(channelInviteV1(tokenVerify(token as string) as number, channelId, uId));
   
 });
 
 app.get('/channel/messages/v2',(req: Request, res: Response) => {
   //const { token, channelId, start } = req.query;
-  const token = req.query.token as string;
-  const channelId = parseInt(req.query.channelId as string);
-  const start = parseInt(req.query.start as string);
-  res.json(channelMessagesV1(token, channelId, start))
+  const { token, channelId, start } = req.query;
+  return res.json(channelMessagesV1(tokenVerify(token as string) as number, parseInt(channelId as string), parseInt(start as string)));
+
   
 });
 
@@ -137,17 +132,17 @@ app.post('/channel/removeowner/v1',(req: Request, res: Response) => {
 
 app.post('/message/send/v1',(req: Request, res: Response) => {
   const { token, channelId, message } = req.body;
-  
+  return res.json(messageSendV1(tokenVerify(token) as number, channelId, -1, message));
 });
 
 app.put('/message/edit/v1',(req: Request, res: Response) => {
   const { token, messageId, message } = req.body;
-  
+  return res.json(messageEditV1(token, messageId, message));
 });
 
 app.delete('/message/remove/v1',(req: Request, res: Response) => {
-  const { token, messageId } = req.body;
-  
+  const { token, messageId } = req.query;
+  return res.json(messageDeleteV1(token as string, parseInt(messageId as string)));
 });
 
 app.post('/dm/create/v1',(req: Request, res: Response) => {
@@ -164,27 +159,28 @@ app.get('/dm/list/v1',(req: Request, res: Response) => {
 
 app.delete('/dm/remove/v1',(req: Request, res: Response) => {
   const { token, dmId } = req.query;
-  
+  return res.json(dmRemoveV1(token as string, parseInt(dmId as string)));
 });
 
 app.get('/dm/details/v1',(req: Request, res: Response) => {
   const { token, dmId } = req.query;
-  
+  return res.json(dmDetailsV1(token as string, parseInt(dmId as string)));
 });
 
 app.post('/dm/leave/v1',(req: Request, res: Response) => {
   const { token, dmId } = req.body;
-  
+  return res.json(dmLeaveV1(token, dmId));
 });
 
 app.get('/dm/messages/v1',(req: Request, res: Response) => {
   const { token, dmId, start } = req.query;
-  
+  return res.json(dmMessagesV1(token as string, parseInt(dmId as string), parseInt(start as string)));
+
 });
 
 app.post('/message/senddm/v1',(req: Request, res: Response) => {
   const { token, dmId, message } = req.body;
-  
+  return res.json(messageSendV1(tokenVerify(token) as number, -1, dmId, message));
 });
 
 app.get('/users/all/v1',(req: Request, res: Response) => {
