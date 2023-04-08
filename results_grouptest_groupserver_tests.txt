@@ -4,17 +4,43 @@
 
   Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
   Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
-PASS src/authTest.test.ts (5.1 s)
-PASS src/channel.test.ts (20.04 s)
-PASS src/dm.test.ts
+PASS src/channel.test.ts (16.959 s)
+PASS src/tests/channelhttp.test.ts (5.332 s)
 PASS src/channels.test.ts
-PASS src/echo.test.ts
 PASS src/usersTest.test.ts
+FAIL src/authTest.test.ts
+  ● Testing authRegisterV1 › Testing standard register detail
 
-Test Suites: 6 passed, 6 total
-Tests:       73 passed, 73 total
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "authUserId": Any<Number>,
+    -   "token": Any<String>,
+    +   "error": "error",
+      }
+
+      52 |   test('Testing standard register detail', () => {
+      53 |     const register = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith');
+    > 54 |     expect(register).toEqual({ authUserId: expect.any(Number), token: expect.any(String) });
+         |                      ^
+      55 |   });
+      56 | });
+      57 |
+
+      at Object.<anonymous> (src/authTest.test.ts:54:22)
+
+PASS src/dm.test.ts
+PASS src/tests/dm.test.ts (17.645 s)
+PASS src/echo.test.ts
+PASS src/tests/token.test.ts
+
+Test Suites: 1 failed, 8 passed, 9 total
+Tests:       1 failed, 129 passed, 130 total
 Snapshots:   0 total
-Time:        33.365 s, estimated 58 s
+Time:        49.961 s
 Ran all test suites.
 npm notice 
 npm notice New patch version of npm available! 9.6.3 -> 9.6.4
