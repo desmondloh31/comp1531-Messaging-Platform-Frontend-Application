@@ -49,12 +49,12 @@ describe('/dm/create/v1', () => {
         const user3 = requestAuthRegister('lames.sdcth@live.com.au', 'passeasd23$%', 'Lames', 'Smoth');
         const user4 = requestAuthRegister('singsong.sdcth@live.com.au', 'passeasd23$%', 'ding', 'Dong');
         //const user4tok = requestAuthRegister('singsong.sdcth@live.com.au', 'passeasd23$%', 'ding', 'Dong').token
-        
-        expect(requestdmCreate( user4.token,[user1.authUserId,user2.authUserId, user3.authUserId])).toStrictEqual({ dmId: expect.any(Number)})
+        const result = requestdmCreate( user4.token,[user1.authUserId,user2.authUserId, user3.authUserId]);
+        expect(result).toStrictEqual({ dmId: expect.any(Number)})
     });
     
     test('Invalid Token', () => {
-        expect(requestdmCreate("Invalid Token",[8,4])).toStrictEqual({error: 'Invalid Token or duplicate user Ids'})
+        expect(requestdmCreate("Invalid Token",[-1,-2])).toStrictEqual({error: 'Invalid Token'})
     });
     test('Duplicate User Ids', () => {
         const user1a = requestAuthRegister('kaviasdh.reddsdy@live.com.au', 'passwsdd123$%', 'Kavasdh', 'Resdy');
@@ -62,7 +62,7 @@ describe('/dm/create/v1', () => {
         const user3a = requestAuthRegister('kavasdh.reasddy@live.com.au', 'paasdord123$%', 'Kavfsdssh', 'Reasddy');
         
         //const user2 = requestAuthRegister('john.smith@live.com.au', 'passer123$%', 'John', 'Smith');
-        expect(requestdmCreate(user3a.token,[8123,832])).toStrictEqual({error: 'authUserId is invalid'})
+        expect(requestdmCreate(user3a.token,[user1a.authUserId,user1a.authUserId, user2a.authUserId])).toStrictEqual({error: 'Duplicate User Ids'})
     });
 });
 
