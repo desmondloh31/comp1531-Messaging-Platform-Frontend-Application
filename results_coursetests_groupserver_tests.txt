@@ -7,7 +7,7 @@ plugins: hypothesis-6.1.1, timeout-1.4.2, flask-0.15.1
 collecting ... collected 378 items
 
 httpTests/authTests/test_auth_login.py::testSuccessfulLogin PASSED       [  5%]
-httpTests/authTests/test_auth_login.py::testCanHaveTwoSessions PASSED    [  5%]
+httpTests/authTests/test_auth_login.py::testCanHaveTwoSessions FAILED    [  5%]
 httpTests/authTests/test_auth_login.py::testUnregisteredUser PASSED      [  6%]
 httpTests/authTests/test_auth_login.py::testRegisteredButIncorrectPassword PASSED [  6%]
 httpTests/authTests/test_auth_logout.py::testSuccessfulLogout PASSED     [  6%]
@@ -45,7 +45,7 @@ httpTests/channelTests/test_channel_details.py::testMemberSuccessful FAILED [ 15
 httpTests/channelTests/test_channel_details.py::testNonMemberNotSuccessful PASSED [ 15%]
 httpTests/channelTests/test_channel_details.py::testInvalidChannelId PASSED [ 16%]
 httpTests/channelTests/test_channel_details.py::testInvalidToken PASSED  [ 16%]
-httpTests/channelTests/test_channel_invite.py::testDuplicateInvite PASSED [ 16%]
+httpTests/channelTests/test_channel_invite.py::testDuplicateInvite FAILED [ 16%]
 httpTests/channelTests/test_channel_invite.py::testInviteGlobalOwner FAILED [ 16%]
 httpTests/channelTests/test_channel_invite.py::testInviteGlobalMember FAILED [ 17%]
 httpTests/channelTests/test_channel_invite.py::testInvitationFromNonChannelMember PASSED [ 17%]
@@ -74,7 +74,7 @@ httpTests/channelTests/test_channel_messages.py::testBadRequest400WhenChannelIdI
 httpTests/channelTests/test_channel_messages.py::testForbidden403WhenInvalidTokenGiven PASSED [ 23%]
 httpTests/channelTests/test_channel_removeowner.py::testOwnerCanRemoveOwner FAILED [ 23%]
 httpTests/channelTests/test_channel_removeowner.py::testGlobalOwnerMmberCanRemoveOwner FAILED [ 24%]
-httpTests/channelTests/test_channel_removeowner.py::testGlobalOwnerNonmemberCannotRemoveOwner PASSED [ 24%]
+httpTests/channelTests/test_channel_removeowner.py::testGlobalOwnerNonmemberCannotRemoveOwner FAILED [ 24%]
 httpTests/channelTests/test_channel_removeowner.py::testNonmemberCannotRemoveOwner PASSED [ 24%]
 httpTests/channelTests/test_channel_removeowner.py::testMmberCannotRemoveOwner PASSED [ 24%]
 httpTests/channelTests/test_channel_removeowner.py::testCannotRemoveLastOwner FAILED [ 25%]
@@ -97,7 +97,7 @@ httpTests/channels_tests/test_channels_list.py::testWhenInMultipleChannels[False
 httpTests/channels_tests/test_channels_list.py::testWhenInMultipleChannels[False-False-ZERG-andy] PASSED [ 29%]
 httpTests/channels_tests/test_channels_list.py::testWhenInMultipleChannels[True-True-ZERG-andy] PASSED [ 29%]
 httpTests/channels_tests/test_channels_list.py::testWhenInMultipleChannels[True-False-ZERG-andy] PASSED [ 30%]
-httpTests/channels_tests/test_channels_list.py::testListAfterLeaveChannel PASSED [ 30%]
+httpTests/channels_tests/test_channels_list.py::testListAfterLeaveChannel FAILED [ 30%]
 httpTests/channels_tests/test_channels_list.py::testInvalidatedToken PASSED [ 30%]
 httpTests/channels_tests/test_channels_listall.py::testWhenNoChannels PASSED [ 30%]
 httpTests/channels_tests/test_channels_listall.py::testWhenOneChannelExistsPrivate PASSED [ 31%]
@@ -135,20 +135,20 @@ httpTests/dmTests/test_dm_messages.py::testForbidden403WhenInvalidTokenGiven PAS
 httpTests/dmTests/test_dm_remove.py::testSuccessfulDmRemoval FAILED      [ 39%]
 httpTests/dmTests/test_dm_remove.py::testNonownerCannotRemoveDm PASSED   [ 40%]
 httpTests/dmTests/test_dm_remove.py::testOwnerNonmemberCannotRemoveDm FAILED [ 40%]
-httpTests/dmTests/test_dm_remove.py::testInvalidDmId PASSED              [ 40%]
+httpTests/dmTests/test_dm_remove.py::testInvalidDmId FAILED              [ 40%]
 httpTests/dmTests/test_dm_remove.py::testInvalidToken PASSED             [ 41%]
 httpTests/messageTests/test_message_edit.py::testOriginalPosterCanEditMessageChannel PASSED [ 41%]
-httpTests/messageTests/test_message_edit.py::testOriginalPosterCanEditMessageDm PASSED [ 41%]
+httpTests/messageTests/test_message_edit.py::testOriginalPosterCanEditMessageDm FAILED [ 41%]
 httpTests/messageTests/test_message_edit.py::testOwnerCanEditMembersMessageChannel FAILED [ 41%]
 httpTests/messageTests/test_message_edit.py::testOwnerCanEditMembersMessageDm FAILED [ 42%]
 httpTests/messageTests/test_message_edit.py::testGlobalOwnerCanEditMembersMessageChannel FAILED [ 42%]
-httpTests/messageTests/test_message_edit.py::testGlobalOwnerCantEditMembersMessageDm PASSED [ 42%]
+httpTests/messageTests/test_message_edit.py::testGlobalOwnerCantEditMembersMessageDm FAILED [ 42%]
 httpTests/messageTests/test_message_edit.py::testEmptyEditDeletesMessage PASSED [ 42%]
 httpTests/messageTests/test_message_edit.py::testInvalidMessageLength PASSED [ 43%]
 httpTests/messageTests/test_message_edit.py::testCannotEditDeletedMessage PASSED [ 43%]
 httpTests/messageTests/test_message_edit.py::testNonownerNonposterCantEdit PASSED [ 43%]
 httpTests/messageTests/test_message_edit.py::testInvalidToken PASSED     [ 43%]
-httpTests/messageTests/test_message_meta.py::testMessageIdsUnique PASSED [ 44%]
+httpTests/messageTests/test_message_meta.py::testMessageIdsUnique FAILED [ 44%]
 httpTests/messageTests/test_message_remove.py::testOriginalPosterCanRemoveMessage PASSED [ 49%]
 httpTests/messageTests/test_message_remove.py::testOwnerCanRemoveMembersMessage FAILED [ 49%]
 httpTests/messageTests/test_message_remove.py::testGlobalOwnerCanRemoveMembersMessageChannel FAILED [ 50%]
@@ -162,7 +162,7 @@ httpTests/messageTests/test_message_send.py::testInvalidChannel PASSED   [ 51%]
 httpTests/messageTests/test_message_send.py::testInvalidMessage[] PASSED [ 52%]
 httpTests/messageTests/test_message_send.py::testInvalidMessage[mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm] PASSED [ 52%]
 httpTests/messageTests/test_message_send.py::testInvalidToken PASSED     [ 52%]
-httpTests/messageTests/test_message_senddm.py::testValidMessage PASSED   [ 52%]
+httpTests/messageTests/test_message_senddm.py::testValidMessage FAILED   [ 52%]
 httpTests/messageTests/test_message_senddm.py::testNonmemberPost PASSED  [ 53%]
 httpTests/messageTests/test_message_senddm.py::testInvalidDm PASSED      [ 53%]
 httpTests/messageTests/test_message_senddm.py::testInvalidMessage[] PASSED [ 53%]
@@ -173,7 +173,7 @@ httpTests/otherTests/test_users_all.py::testSuccessfulUsersAll FAILED    [ 75%]
 httpTests/otherTests/test_users_all.py::testInvalidToken FAILED          [ 75%]
 httpTests/userTests/test_user_profile.py::testUserProfileValid FAILED    [ 90%]
 httpTests/userTests/test_user_profile.py::testInvalidUser PASSED         [ 90%]
-httpTests/userTests/test_user_profile.py::testInvalidToken PASSED        [ 91%]
+httpTests/userTests/test_user_profile.py::testInvalidToken FAILED        [ 91%]
 httpTests/userTests/test_user_profile_setemail.py::testSuccessfulEmailChange FAILED [ 91%]
 httpTests/userTests/test_user_profile_setemail.py::testCannotChangeToTakenEmail PASSED [ 91%]
 httpTests/userTests/test_user_profile_setemail.py::testInvalidEmail[] PASSED [ 91%]
@@ -198,10 +198,30 @@ httpTests/userTests/test_user_profile_setname.py::testInvalidName[PPPPPPPPPPPPPP
 httpTests/userTests/test_user_profile_setname.py::testInvalidName[PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM] PASSED [ 96%]
 httpTests/userTests/test_user_profile_setname.py::testInvalidToken FAILED [ 97%]
 
-====== Marks recorded: 72.86 ======
+====== Marks recorded: 65.95 ======
 
 
 =================================== FAILURES ===================================
+____________________________ testCanHaveTwoSessions ____________________________
+
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='358952271', handleStr='')
+ctx = None
+
+    @pytest.mark.overrideMarks(2)
+    def testCanHaveTwoSessions(userWoody, ctx):
+        session2 = authLogin(userWoody.email, userWoody.password, ctx)
+    
+        # succeeds
+        assert userProfile(session2['token'], userWoody.uId, ctx) == userProfile(userWoody.token, userWoody.uId, ctx)
+    
+        assert authLogout(session2['token'], ctx) == {}
+    
+        with pytest.raises(Forbidden403):
+            # should now fail...
+>           userProfile(session2['token'], userWoody.uId, ctx)
+E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
+
+httpTests/authTests/test_auth_login.py:32: Failed
 _____________________________ testRemovedUserName ______________________________
 
 ctx = None
@@ -214,7 +234,7 @@ E       KeyError: 'user'
 httpTests/authTests/test_auth_register.py:55: KeyError
 __________________________ testSuccessfulRegistration __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='249603985', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='863050455', handleStr='')
 ctx = None
 
     def testSuccessfulRegistration(userWoody, ctx):
@@ -258,7 +278,7 @@ _ testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrs-abcdefghijklmnopqr
 first1 = 'abcdefghij', last1 = 'klmnopqrs', handle1 = 'abcdefghijklmnopqrs'
 first2 = 'abcdefghij', last2 = 'klmnopqrs', handle2 = 'abcdefghijklmnopqrs0'
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='846143059', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='967747415', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
@@ -283,7 +303,7 @@ _ testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrst-abcdefghijklmnopq
 first1 = 'abcdefghij', last1 = 'klmnopqrst', handle1 = 'abcdefghijklmnopqrst'
 first2 = 'abcdefghij', last2 = 'klmnopqrst', handle2 = 'abcdefghijklmnopqrst0'
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='428354933', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='493519531', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
@@ -308,7 +328,7 @@ _ testDuplicateHandlesGeneratedCorrectly[@bcdefgh!j-klmn opqrst-bcdefghjklmnopqr
 first1 = '@bcdefgh!j', last1 = 'klmn opqrst', handle1 = 'bcdefghjklmnopqrst'
 first2 = 'bcdefghj', last2 = 'klmnopqrst', handle2 = 'bcdefghjklmnopqrst0'
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='994121191', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='190253802', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
@@ -333,7 +353,7 @@ ___ testDuplicateHandlesGeneratedCorrectly[abc-def0-abcdef0-abc-def-abcdef1] ___
 first1 = 'abc', last1 = 'def0', handle1 = 'abcdef0', first2 = 'abc'
 last2 = 'def', handle2 = 'abcdef1'
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='791935504', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='245537573', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
@@ -355,9 +375,9 @@ E       KeyError: 'user'
 httpTests/authTests/test_auth_register.py:96: KeyError
 ____________________ testChannelOwnerCanAddownerWhenMember _____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='75673319', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='938618452', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='453998247', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='271222071', handleStr='')
 ctx = None
 
     def testChannelOwnerCanAddownerWhenMember(userWoody, woodysPublicToybox, userBuzz, ctx):
@@ -372,7 +392,7 @@ ctx = None
 httpTests/channelTests/test_channel_addowner.py:22: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-.0 = <list_iterator object at 0x7fb743d38460>
+.0 = <list_iterator object at 0x7fdf6bd93d00>
 
 >   assert userBuzz.uId in [k['uId'] for k in chDeets['allMembers']]
 E   TypeError: 'int' object is not subscriptable
@@ -380,7 +400,7 @@ E   TypeError: 'int' object is not subscriptable
 httpTests/channelTests/test_channel_addowner.py:22: TypeError
 _______________________ testGlobalOwnerMemberCanAddowner _______________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='342505954', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='630156168', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
 
@@ -412,8 +432,8 @@ httpTests/fakepi/util.py:139: BadRequest400
 _____________________________ testMemberSuccessful _____________________________
 
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='392513966', handleStr='')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='81076775', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='368521907', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='500679263', handleStr='')
 ctx = None
 
     def testMemberSuccessful(woodysPublicToybox, userWoody, userBuzz, ctx):
@@ -433,61 +453,93 @@ ctx = None
 httpTests/channelTests/test_channel_details.py:26: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-.0 = <list_iterator object at 0x7fb743ee2bb0>
+.0 = <list_iterator object at 0x7fdf6bd04cd0>
 
 >   assert userWoody.uId in [k['uId'] for k in chDeets_1['allMembers']]
 E   TypeError: 'int' object is not subscriptable
 
 httpTests/channelTests/test_channel_details.py:26: TypeError
+_____________________________ testDuplicateInvite ______________________________
+
+woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='665604182', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='31050946', handleStr='')
+ctx = None
+
+    def testDuplicateInvite(woodysPublicToybox, userWoody, userBuzz, ctx):
+        channelInvite(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
+        with pytest.raises(BadRequest400):
+>           channelInvite(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
+E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
+
+httpTests/channelTests/test_channel_invite.py:19: Failed
 ____________________________ testInviteGlobalOwner _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='510463017', handleStr='')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='454119637', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='303948864', handleStr='')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='725163692', handleStr='')
 zergsPrivateLair = Channel(name='zergs lair', isPublic=False, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
 
     def testInviteGlobalOwner(userWoody, userZerg, zergsPrivateLair, ctx):
         channelInvite(userZerg.token, zergsPrivateLair.channelId, userWoody.uId, ctx)
     
-        chDeets = channelDetails(userWoody.token, zergsPrivateLair.channelId, ctx)
-    
->       assert userWoody.uId in [k['uId'] for k in chDeets['allMembers']]
+>       chDeets = channelDetails(userWoody.token, zergsPrivateLair.channelId, ctx)
 
-httpTests/channelTests/test_channel_invite.py:27: 
+httpTests/channelTests/test_channel_invite.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/channel.py:25: in channelDetails
+    return util.parseResponse(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-.0 = <list_iterator object at 0x7fb743d2c7c0>
+res = <Response [200]>
 
->   assert userWoody.uId in [k['uId'] for k in chDeets['allMembers']]
-E   TypeError: 'int' object is not subscriptable
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
 
-httpTests/channelTests/test_channel_invite.py:27: TypeError
+httpTests/fakepi/util.py:139: BadRequest400
+----------------------------- Captured stdout call -----------------------------
+{'error': 'User is not a part of the channel or invalid channelId'}
 ____________________________ testInviteGlobalMember ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='689342174', handleStr='')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='21832179', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='825822013', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='852478382', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
     def testInviteGlobalMember(userWoody, userBuzz, woodysPublicToybox, ctx):
         channelInvite(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
     
-        chDeets = channelDetails(userBuzz.token, woodysPublicToybox.channelId, ctx)
-    
->       assert userBuzz.uId in [k['uId'] for k in chDeets['allMembers']]
+>       chDeets = channelDetails(userBuzz.token, woodysPublicToybox.channelId, ctx)
 
-httpTests/channelTests/test_channel_invite.py:36: 
+httpTests/channelTests/test_channel_invite.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/channel.py:25: in channelDetails
+    return util.parseResponse(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-.0 = <list_iterator object at 0x7fb743d4a460>
+res = <Response [200]>
 
->   assert userBuzz.uId in [k['uId'] for k in chDeets['allMembers']]
-E   TypeError: 'int' object is not subscriptable
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
 
-httpTests/channelTests/test_channel_invite.py:36: TypeError
+httpTests/fakepi/util.py:139: BadRequest400
+----------------------------- Captured stdout call -----------------------------
+{'error': 'User is not a part of the channel or invalid channelId'}
 _______________________ testGlobalOwnerJoinChannelPublic _______________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='622518897', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='26885862', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
 
@@ -501,7 +553,7 @@ ctx = None
 httpTests/channelTests/test_channel_join.py:19: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-.0 = <list_iterator object at 0x7fb743fd2d30>
+.0 = <list_iterator object at 0x7fdf6bc2bbb0>
 
 >   assert userBuzz.uId in [k['uId'] for k in chDeets['allMembers']]
 E   TypeError: 'int' object is not subscriptable
@@ -509,7 +561,7 @@ E   TypeError: 'int' object is not subscriptable
 httpTests/channelTests/test_channel_join.py:19: TypeError
 ______________________ testGlobalOwnerJoinChannelPrivate _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='80357621', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='737616632', handleStr='')
 zergsPrivateLair = Channel(name='zergs lair', isPublic=False, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
 
@@ -539,7 +591,7 @@ httpTests/fakepi/util.py:139: BadRequest400
 __________________________ testGlobalMemberJoinPublic __________________________
 
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='408112350', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='255943567', handleStr='')
 ctx = None
 
     def testGlobalMemberJoinPublic(woodysPublicToybox, userBuzz, ctx):
@@ -552,7 +604,7 @@ ctx = None
 httpTests/channelTests/test_channel_join.py:37: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-.0 = <list_iterator object at 0x7fb743d38dc0>
+.0 = <list_iterator object at 0x7fdf6bc92b80>
 
 >   assert userBuzz.uId in [k['uId'] for k in chDeets['allMembers']]
 E   TypeError: 'int' object is not subscriptable
@@ -561,7 +613,7 @@ httpTests/channelTests/test_channel_join.py:37: TypeError
 _____________________________ testMessageTimestamp _____________________________
 
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='666044234', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='39055627', handleStr='')
 ctx = None
 
     def testMessageTimestamp(woodysPublicToybox, userWoody, ctx):
@@ -569,14 +621,14 @@ ctx = None
         messageSend(userWoody.token, woodysPublicToybox.channelId, 'you are a toy', ctx)
         chMsgs = channelMessages(userWoody.token, woodysPublicToybox.channelId, 0, ctx)
 >       assert abs(chMsgs['messages'][0]['timeSent'] - expectedTime) <= 2
-E       assert 1679249506066 <= 2
-E        +  where 1679249506066 = abs((1680930436502 - 1680930436))
+E       assert 1679261840530 <= 2
+E        +  where 1679261840530 = abs((1680942783313 - 1680942783))
 
 httpTests/channelTests/test_channel_messages.py:19: AssertionError
 __________________________ testUnderFiftyMessagesSent __________________________
 
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='415077142', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='423716033', handleStr='')
 ctx = None
 
     def testUnderFiftyMessagesSent(woodysPublicToybox, userWoody, ctx):
@@ -600,7 +652,7 @@ httpTests/channelTests/test_channel_messages.py:32: AssertionError
 __________________________ testOverFiftyMessagesSent ___________________________
 
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='406761486', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='307192464', handleStr='')
 ctx = None
 
     def testOverFiftyMessagesSent(woodysPublicToybox, userWoody, ctx):
@@ -723,49 +775,19 @@ E           ]
 httpTests/channelTests/test_channel_messages.py:45: AssertionError
 ___________________________ testOwnerCanRemoveOwner ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='536922248', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='287802474', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='1579405', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='6220497', handleStr='')
 ctx = None
 
     def testOwnerCanRemoveOwner(userWoody, woodysPublicToybox, userBuzz, ctx):
         channelInvite(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
     
-        channelAddowner(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
-    
-        channelRemoveowner(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
-    
-        chDeets = channelDetails(userBuzz.token, woodysPublicToybox.channelId, ctx)
-    
->       assert userBuzz.uId in [k['uId'] for k in chDeets['allMembers']]
+>       channelAddowner(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
 
-httpTests/channelTests/test_channel_removeowner.py:23: 
+httpTests/channelTests/test_channel_removeowner.py:17: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-
-.0 = <list_iterator object at 0x7fb743d31dc0>
-
->   assert userBuzz.uId in [k['uId'] for k in chDeets['allMembers']]
-E   TypeError: 'int' object is not subscriptable
-
-httpTests/channelTests/test_channel_removeowner.py:23: TypeError
-______________________ testGlobalOwnerMmberCanRemoveOwner ______________________
-
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='532978416', handleStr='')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='674489157', handleStr='')
-woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=2, token='520587996', handleStr='')
-ctx = None
-
-    def testGlobalOwnerMmberCanRemoveOwner(userZerg, userWoody, woodysPublicToybox, userBuzz, ctx):
-        channelInvite(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
-        channelInvite(userWoody.token, woodysPublicToybox.channelId, userZerg.uId, ctx)
-    
-        channelAddowner(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
->       channelRemoveowner(userZerg.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
-
-httpTests/channelTests/test_channel_removeowner.py:32: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-httpTests/fakepi/channel.py:90: in channelRemoveowner
+httpTests/fakepi/channel.py:77: in channelAddowner
     return util.parseResponse(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
@@ -782,10 +804,77 @@ E               httpTests.error.BadRequest400: 400 Bad Request: None
 
 httpTests/fakepi/util.py:139: BadRequest400
 ----------------------------- Captured stdout call -----------------------------
-{'error': 'channelId is valid, but user is not an owner of the channel'}
+{'error': 'user is not a member of the channel'}
+______________________ testGlobalOwnerMmberCanRemoveOwner ______________________
+
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='141891172', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='265377807', handleStr='')
+woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=2, token='152681142', handleStr='')
+ctx = None
+
+    def testGlobalOwnerMmberCanRemoveOwner(userZerg, userWoody, woodysPublicToybox, userBuzz, ctx):
+        channelInvite(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
+        channelInvite(userWoody.token, woodysPublicToybox.channelId, userZerg.uId, ctx)
+    
+>       channelAddowner(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
+
+httpTests/channelTests/test_channel_removeowner.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/channel.py:77: in channelAddowner
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+----------------------------- Captured stdout call -----------------------------
+{'error': 'user is not a member of the channel'}
+__________________ testGlobalOwnerNonmemberCannotRemoveOwner ___________________
+
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='207526721', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='442011640', handleStr='')
+woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=2, token='272072196', handleStr='')
+ctx = None
+
+    def testGlobalOwnerNonmemberCannotRemoveOwner(userZerg, userWoody, woodysPublicToybox, userBuzz, ctx):
+        channelInvite(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
+    
+>       channelAddowner(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
+
+httpTests/channelTests/test_channel_removeowner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/channel.py:77: in channelAddowner
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+----------------------------- Captured stdout call -----------------------------
+{'error': 'user is not a member of the channel'}
 __________________________ testCannotRemoveLastOwner ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='116800580', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='548150104', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -798,8 +887,8 @@ httpTests/channelTests/test_channel_removeowner.py:62: Failed
 ______________________ testCreateChannel[True-andys room] ______________________
 
 name = 'andys room', isPublic = True
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='175551880', handleStr='')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='68709428', handleStr='')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='400564913', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='134727542', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('name', ['andys room'])
@@ -814,7 +903,7 @@ ctx = None
 httpTests/channels_tests/test_channels_create.py:22: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-.0 = <list_iterator object at 0x7fb743d4aa60>
+.0 = <list_iterator object at 0x7fdf6bd046d0>
 
 >   assert userZerg.uId in [memb['uId'] for memb in deets['ownerMembers']]
 E   TypeError: 'int' object is not subscriptable
@@ -823,8 +912,8 @@ httpTests/channels_tests/test_channels_create.py:22: TypeError
 _____________________ testCreateChannel[False-andys room] ______________________
 
 name = 'andys room', isPublic = False
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='440645015', handleStr='')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='710373142', handleStr='')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='619615060', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='949581302', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('name', ['andys room'])
@@ -839,16 +928,47 @@ ctx = None
 httpTests/channels_tests/test_channels_create.py:22: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-.0 = <list_iterator object at 0x7fb743cd16d0>
+.0 = <list_iterator object at 0x7fdf6bb89430>
 
 >   assert userZerg.uId in [memb['uId'] for memb in deets['ownerMembers']]
 E   TypeError: 'int' object is not subscriptable
 
 httpTests/channels_tests/test_channels_create.py:22: TypeError
+__________________________ testListAfterLeaveChannel ___________________________
+
+woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='291581203', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='325511772', handleStr='')
+ctx = None
+
+    def testListAfterLeaveChannel(woodysPublicToybox, userWoody, userBuzz, ctx):
+        channelInvite(userWoody.token, woodysPublicToybox.channelId, userBuzz.uId, ctx)
+>       channelLeave(userBuzz.token, woodysPublicToybox.channelId, ctx)
+
+httpTests/channels_tests/test_channels_list.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/channel.py:51: in channelLeave
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+----------------------------- Captured stdout call -----------------------------
+{'error': 'channelId is valid, but the user is not a member of the channel'}
 ___________________________ testSuccessfulDmCreation ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='838628454', handleStr='')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='523301844', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='127017626', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='335421658', handleStr='')
 ctx = None
 
     def testSuccessfulDmCreation(userWoody, userBuzz, ctx):
@@ -863,77 +983,128 @@ E       TypeError: list indices must be integers or slices, not str
 httpTests/dmTests/test_dm_create.py:20: TypeError
 ___________________________ testDmNameCreationSingle ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='7999219', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='181861085', handleStr='')
 ctx = None
 
     def testDmNameCreationSingle(userWoody, ctx):
         theDm = dmCreate(userWoody.token, [], ctx)
-        dmDeets = dmDetails(userWoody.token, theDm['dmId'], ctx)
-    
->       assert dmDeets['name'] == userWoody.handleStr
-E       AssertionError: assert 'sheriffwoody' == ''
-E         + sheriffwoody
+>       dmDeets = dmDetails(userWoody.token, theDm['dmId'], ctx)
 
-httpTests/dmTests/test_dm_create.py:27: AssertionError
+httpTests/dmTests/test_dm_create.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/dm.py:13: in dmDetails
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 __________________________ testDmNameCreationMultiple __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='761118921', handleStr='')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='583334366', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='174172442', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='653253274', handleStr='')
 ctx = None
 
     def testDmNameCreationMultiple(userWoody, userBuzz, ctx):
         theDm = dmCreate(userWoody.token, [userBuzz.uId], ctx)
-        dmDeets = dmDetails(userWoody.token, theDm['dmId'], ctx)
-    
->       assert dmDeets['name'] == ', '.join(sorted([userWoody.handleStr, userBuzz.handleStr]))
-E       AssertionError: assert 'buzzlightyear, sheriffwoody' == ', '
-E         - , 
-E         + buzzlightyear, sheriffwoody
+>       dmDeets = dmDetails(userWoody.token, theDm['dmId'], ctx)
 
-httpTests/dmTests/test_dm_create.py:34: AssertionError
-_____________________________ testMemberSuccessful _____________________________
-
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='974148938', handleStr='')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='477361541', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
-
-    def testMemberSuccessful(userWoody, userBuzz, woodyAndBuzzDm, ctx):
-        dmDeets = dmDetails(userBuzz.token, woodyAndBuzzDm.dmId, ctx)
-    
-        assert dmDeets['name'] == woodyAndBuzzDm.name
-    
->       sortedMembers = sorted(dmDeets['members'], key=lambda m: m['handleStr'])
-
-httpTests/dmTests/test_dm_details.py:19: 
+httpTests/dmTests/test_dm_create.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/dm.py:13: in dmDetails
+    return util.parseResponse(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-m = 1
+res = <Response [200]>
 
->   sortedMembers = sorted(dmDeets['members'], key=lambda m: m['handleStr'])
-E   TypeError: 'int' object is not subscriptable
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
 
-httpTests/dmTests/test_dm_details.py:19: TypeError
+httpTests/fakepi/util.py:139: BadRequest400
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
+_____________________________ testMemberSuccessful _____________________________
+
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='481386271', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='565457871', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
+
+    def testMemberSuccessful(userWoody, userBuzz, woodyAndBuzzDm, ctx):
+>       dmDeets = dmDetails(userBuzz.token, woodyAndBuzzDm.dmId, ctx)
+
+httpTests/dmTests/test_dm_details.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/dm.py:13: in dmDetails
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 ________________________ testMemberLeaveDmSuccessfully _________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='216756949', handleStr='')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='267314253', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='873925153', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='878250551', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
 
     def testMemberLeaveDmSuccessfully(userWoody, userBuzz, woodyAndBuzzDm, ctx):
-        dmLeave(userBuzz.token, woodyAndBuzzDm.dmId, ctx)
-    
-        buzzsDms = dmList(userBuzz.token, ctx)
-        dmDeets = dmDetails(userWoody.token, woodyAndBuzzDm.dmId, ctx)
-    
->       assert buzzsDms['dms'] == []
-E       TypeError: list indices must be integers or slices, not str
+>       dmLeave(userBuzz.token, woodyAndBuzzDm.dmId, ctx)
 
-httpTests/dmTests/test_dm_leave.py:20: TypeError
+httpTests/dmTests/test_dm_leave.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/dm.py:65: in dmLeave
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 _______________________________ testWhenInNoDms ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='401105594', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='986811467', handleStr='')
 ctx = None
 
     def testWhenInNoDms(userWoody, ctx):
@@ -943,26 +1114,27 @@ E       TypeError: list indices must be integers or slices, not str
 httpTests/dmTests/test_dm_list.py:15: TypeError
 _______________________________ testWhenInOneDm ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='20115302', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='873106538', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
 
     def testWhenInOneDm(userWoody, woodyAndBuzzDm, ctx):
         dms = dmList(userWoody.token, ctx)
     
 >       assert dms == {'dms': [{'name': woodyAndBuzzDm.name, 'dmId': woodyAndBuzzDm.dmId}]}
-E       AssertionError: assert [{'a': 'buzzlightyear, sheriffwoody', 'b': 0}] == {'dms': [{'dmId': 0, 'name': 'buzzlightyear, sheriffwoody'}]}
-E         +[{'b': 0, 'a': 'buzzlightyear, sheriffwoody'}]
-E         -{'dms': [{'name': 'buzzlightyear, sheriffwoody', 'dmId': 0}]}
+E       AssertionError: assert [] == {'dms': [{'dmId': 0, 'name': ''}]}
+E         +[]
+E         -{'dms': [{'name': '', 'dmId': 0}]}
 E         Full diff:
-E         - {'dms': [{'dmId': 0, 'name': 'buzzlightyear, sheriffwoody'}]}
-E         + [{'a': 'buzzlightyear, sheriffwoody', 'b': 0}]
+E         - {'dms': [{'dmId': 0, 'name': ''}]}
+E         + []
 
 httpTests/dmTests/test_dm_list.py:21: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
 ____________________________ testWhenInMultipleDms _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='664393296', handleStr='')
-dmFactory = <function dmFactory.<locals>.makeDm at 0x7fb743d21ca0>, ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='232814539', handleStr='')
+dmFactory = <function dmFactory.<locals>.makeDm at 0x7fdf6bc7aca0>, ctx = None
 
     def testWhenInMultipleDms(userWoody, dmFactory, ctx):
         dm_1 = dmFactory(userWoody, [])
@@ -973,22 +1145,42 @@ dmFactory = <function dmFactory.<locals>.makeDm at 0x7fb743d21ca0>, ctx = None
 E       TypeError: list indices must be integers or slices, not str
 
 httpTests/dmTests/test_dm_list.py:29: TypeError
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
+{'error': 'dmId is invalid'}
 _____________________________ testListAfterLeaveDm _____________________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='301320390', handleStr='')
-woodyAndBuzzDm = DM(owner=1, members=[0], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='323261308', handleStr='')
+woodyAndBuzzDm = DM(owner=1, members=[0], name='', dmId=0), ctx = None
 
     def testListAfterLeaveDm(userBuzz, woodyAndBuzzDm, ctx):
-        dmLeave(userBuzz.token, woodyAndBuzzDm.dmId, ctx)
-    
->       assert dmList(userBuzz.token, ctx)['dms'] == []
-E       TypeError: list indices must be integers or slices, not str
+>       dmLeave(userBuzz.token, woodyAndBuzzDm.dmId, ctx)
 
-httpTests/dmTests/test_dm_list.py:37: TypeError
+httpTests/dmTests/test_dm_list.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/dm.py:65: in dmLeave
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 _____________________________ testInvalidatedToken _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='327417518', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='33390730', handleStr='')
 ctx = None
 
     def testInvalidatedToken(userWoody, ctx):
@@ -1000,175 +1192,89 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/dmTests/test_dm_list.py:43: Failed
 __________________________ testUnderFiftyMessagesSent __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='73558498', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='138321972', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
 
     def testUnderFiftyMessagesSent(userWoody, woodyAndBuzzDm, ctx):
-        messageIds = [
+>       messageIds = [
             messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, 'you are a toy', ctx)['messageId'] for x in
             range(10)
         ]
-    
-        dmMsgs = dmMessages(userWoody.token, woodyAndBuzzDm.dmId, 0, ctx)
-    
-        assert dmMsgs['start'] == 0
-        assert dmMsgs['end'] == -1
->       assert messageIds[::-1] == [m['messageId'] for m in dmMsgs['messages']]
-E       assert [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-E         At index 0 diff: 10 != 1
-E         Full diff:
-E         - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-E         + [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
-httpTests/dmTests/test_dm_messages.py:25: AssertionError
+httpTests/dmTests/test_dm_messages.py:16: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/dmTests/test_dm_messages.py:17: in <listcomp>
+    messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, 'you are a toy', ctx)['messageId'] for x in
+httpTests/fakepi/message.py:115: in messageSenddm
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 __________________________ testOverFiftyMessagesSent ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='3632740', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='634274750', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
 
     def testOverFiftyMessagesSent(userWoody, woodyAndBuzzDm, ctx):
-        messageIds = [
+>       messageIds = [
             messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, 'you are a toy', ctx)['messageId'] for x in
             range(51)
         ]
-        messageIds.reverse()
-    
-        dmMsgs = dmMessages(userWoody.token, woodyAndBuzzDm.dmId, 0, ctx)
-        assert dmMsgs['start'] == 0
-        assert dmMsgs['end'] == 50
->       assert messageIds[0: 50] == [m['messageId'] for m in dmMsgs['messages']]
-E       assert [51,\n 50,\n 49,\n 48,\n 47,\n 46,\n 45,\n 44,\n 43,\n 42,\n 41,\n 40,\n 39,\n 38,\n 37,\n 36,\n 35,\n 34,\n 33,\n 32,\n 31,\n 30,\n 29,\n 28,\n 27,\n 26,\n 25,\n 24,\n 23,\n 22,\n 21,\n 20,\n 19,\n 18,\n 17,\n 16,\n 15,\n 14,\n 13,\n 12,\n 11,\n 10,\n 9,\n 8,\n 7,\n 6,\n 5,\n 4,\n 3,\n 2] == [1,\n 2,\n 3,\n 4,\n 5,\n 6,\n 7,\n 8,\n 9,\n 10,\n 11,\n 12,\n 13,\n 14,\n 15,\n 16,\n 17,\n 18,\n 19,\n 20,\n 21,\n 22,\n 23,\n 24,\n 25,\n 26,\n 27,\n 28,\n 29,\n 30,\n 31,\n 32,\n 33,\n 34,\n 35,\n 36,\n 37,\n 38,\n 39,\n 40,\n 41,\n 42,\n 43,\n 44,\n 45,\n 46,\n 47,\n 48,\n 49,\n 50]
-E         At index 0 diff: 51 != 1
-E         Full diff:
-E           [
-E         -  1,
-E         +  51,
-E         ?  +
-E         +  50,
-E         +  49,
-E         +  48,
-E         +  47,
-E         +  46,
-E         +  45,
-E         +  44,
-E         +  43,
-E         +  42,
-E         +  41,
-E         +  40,
-E         +  39,
-E         +  38,
-E         +  37,
-E         +  36,
-E         +  35,
-E         +  34,
-E         +  33,
-E         +  32,
-E         +  31,
-E         +  30,
-E         +  29,
-E         +  28,
-E         +  27,
-E         +  26,
-E         +  25,
-E         +  24,
-E         +  23,
-E         +  22,
-E         +  21,
-E         +  20,
-E         +  19,
-E         +  18,
-E         +  17,
-E         +  16,
-E         +  15,
-E         +  14,
-E         +  13,
-E         +  12,
-E         +  11,
-E         +  10,
-E         +  9,
-E         +  8,
-E         +  7,
-E         +  6,
-E         +  5,
-E         +  4,
-E         +  3,
-E            2,
-E         -  3,
-E         -  4,
-E         -  5,
-E         -  6,
-E         -  7,
-E         -  8,
-E         -  9,
-E         -  10,
-E         -  11,
-E         -  12,
-E         -  13,
-E         -  14,
-E         -  15,
-E         -  16,
-E         -  17,
-E         -  18,
-E         -  19,
-E         -  20,
-E         -  21,
-E         -  22,
-E         -  23,
-E         -  24,
-E         -  25,
-E         -  26,
-E         -  27,
-E         -  28,
-E         -  29,
-E         -  30,
-E         -  31,
-E         -  32,
-E         -  33,
-E         -  34,
-E         -  35,
-E         -  36,
-E         -  37,
-E         -  38,
-E         -  39,
-E         -  40,
-E         -  41,
-E         -  42,
-E         -  43,
-E         -  44,
-E         -  45,
-E         -  46,
-E         -  47,
-E         -  48,
-E         -  49,
-E         -  50,
-E           ]
 
-httpTests/dmTests/test_dm_messages.py:38: AssertionError
+httpTests/dmTests/test_dm_messages.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/dmTests/test_dm_messages.py:30: in <listcomp>
+    messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, 'you are a toy', ctx)['messageId'] for x in
+httpTests/fakepi/message.py:115: in messageSenddm
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 __________________________ testRemovalByEditReflected __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='232476743', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='35680329', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
 
     def testRemovalByEditReflected(userWoody, woodyAndBuzzDm, ctx):
-        msg = messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, 'you are a toy maybe?', ctx)['messageId']
-    
-        dmMsgs = dmMessages(userWoody.token, woodyAndBuzzDm.dmId, 0, ctx)
-        assert dmMsgs['start'] == 0
-        assert dmMsgs['end'] == -1
-        assert msg in [m['messageId'] for m in dmMsgs['messages']]
-    
->       messageEdit(userWoody.token, msg, '', ctx)
+>       msg = messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, 'you are a toy maybe?', ctx)['messageId']
 
-httpTests/dmTests/test_dm_messages.py:54: 
+httpTests/dmTests/test_dm_messages.py:47: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-httpTests/fakepi/message.py:37: in messageEdit
+httpTests/fakepi/message.py:115: in messageSenddm
     return util.parseResponse(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-res = <Response [500]>
+res = <Response [200]>
 
     def parseResponse(res):
         if res.status_code in [200, 201]:
@@ -1176,37 +1282,29 @@ res = <Response [500]>
             # error handling for iteration 2, without exceptions
             if 'error' in data:
                 print(data)
-                raise error.BadRequest400()
-            else:
-                return res.json()
-        else:
->           raise Exception(res)
-E           Exception: <Response [500]>
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
 
-httpTests/fakepi/util.py:143: Exception
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 ________________________ testRemovalByDeletionReflected ________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='431451879', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='508979142', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
 
     def testRemovalByDeletionReflected(userWoody, woodyAndBuzzDm, ctx):
-        msg = messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, 'you are a toy maybe?', ctx)['messageId']
-    
-        chMsgs = dmMessages(userWoody.token, woodyAndBuzzDm.dmId, 0, ctx)
-        assert chMsgs['start'] == 0
-        assert chMsgs['end'] == -1
-        assert msg in [m['messageId'] for m in chMsgs['messages']]
-    
->       messageRemove(userWoody.token, msg, ctx)
+>       msg = messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, 'you are a toy maybe?', ctx)['messageId']
 
-httpTests/dmTests/test_dm_messages.py:69: 
+httpTests/dmTests/test_dm_messages.py:62: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-httpTests/fakepi/message.py:24: in messageRemove
+httpTests/fakepi/message.py:115: in messageSenddm
     return util.parseResponse(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-res = <Response [500]>
+res = <Response [200]>
 
     def parseResponse(res):
         if res.status_code in [200, 201]:
@@ -1214,47 +1312,146 @@ res = <Response [500]>
             # error handling for iteration 2, without exceptions
             if 'error' in data:
                 print(data)
-                raise error.BadRequest400()
-            else:
-                return res.json()
-        else:
->           raise Exception(res)
-E           Exception: <Response [500]>
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
 
-httpTests/fakepi/util.py:143: Exception
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 ___________________________ testSuccessfulDmRemoval ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='766843719', handleStr='')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='326814133', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='28820902', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='949927686', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
 
     def testSuccessfulDmRemoval(userWoody, userBuzz, woodyAndBuzzDm, ctx):
-        assert dmRemove(userWoody.token, woodyAndBuzzDm.dmId, ctx) == {}
-    
->       assert dmList(userWoody.token, ctx)['dms'] == []
-E       TypeError: list indices must be integers or slices, not str
+>       assert dmRemove(userWoody.token, woodyAndBuzzDm.dmId, ctx) == {}
 
-httpTests/dmTests/test_dm_remove.py:17: TypeError
+httpTests/dmTests/test_dm_remove.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/dm.py:52: in dmRemove
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 _______________________ testOwnerNonmemberCannotRemoveDm _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='111922161', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='558022914', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
 
     def testOwnerNonmemberCannotRemoveDm(userWoody, woodyAndBuzzDm, ctx):
-        dmLeave(userWoody.token, woodyAndBuzzDm.dmId, ctx)
-        with pytest.raises(Forbidden403):
->           dmRemove(userWoody.token, woodyAndBuzzDm.dmId, ctx)
-E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
+>       dmLeave(userWoody.token, woodyAndBuzzDm.dmId, ctx)
 
-httpTests/dmTests/test_dm_remove.py:42: Failed
+httpTests/dmTests/test_dm_remove.py:40: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/dm.py:65: in dmLeave
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
+_______________________________ testInvalidDmId ________________________________
+
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='763037836', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
+
+    def testInvalidDmId(userWoody, woodyAndBuzzDm, ctx):
+        # should succeed
+>       dmRemove(userWoody.token, woodyAndBuzzDm.dmId, ctx)
+
+httpTests/dmTests/test_dm_remove.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/dm.py:52: in dmRemove
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
+______________________ testOriginalPosterCanEditMessageDm ______________________
+
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='235231653', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0)
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fdf6bb2ab80>
+ctx = None
+
+    def testOriginalPosterCanEditMessageDm(userWoody, woodyAndBuzzDm, messageFactory, ctx):
+>       aMsg = messageFactory(userWoody, woodyAndBuzzDm)
+
+httpTests/messageTests/test_message_edit.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fixtures.py:114: in makeMessage
+    msgId = message.messageSenddm(poster.token, location.dmId, content, ctx)['messageId']
+httpTests/fakepi/message.py:115: in messageSenddm
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 ____________________ testOwnerCanEditMembersMessageChannel _____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='298145787', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='669866805', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='258446331', handleStr='')
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fb743e03af0>
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='304166612', handleStr='')
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fdf6bc401f0>
 ctx = None
 
     def testOwnerCanEditMembersMessageChannel(userWoody, woodysPublicToybox, userBuzz, messageFactory, ctx):
@@ -1285,20 +1482,20 @@ httpTests/fakepi/util.py:139: BadRequest400
 {'error': 'authUserId is not the sender of the message with ID messageId'}
 _______________________ testOwnerCanEditMembersMessageDm _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='965488788', handleStr='')
-woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='578961626', handleStr='')
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fb743d07160>
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='498770427', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0)
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='526065672', handleStr='')
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fdf6bc9c670>
 ctx = None
 
     def testOwnerCanEditMembersMessageDm(userWoody, woodyAndBuzzDm, userBuzz, messageFactory, ctx):
-        buzzsMsg = messageFactory(userBuzz, woodyAndBuzzDm)
-    
->       messageEdit(userWoody.token, buzzsMsg.messageId, 'hi', ctx)
+>       buzzsMsg = messageFactory(userBuzz, woodyAndBuzzDm)
 
-httpTests/messageTests/test_message_edit.py:53: 
+httpTests/messageTests/test_message_edit.py:51: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-httpTests/fakepi/message.py:37: in messageEdit
+httpTests/fixtures.py:114: in makeMessage
+    msgId = message.messageSenddm(poster.token, location.dmId, content, ctx)['messageId']
+httpTests/fakepi/message.py:115: in messageSenddm
     return util.parseResponse(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
@@ -1314,14 +1511,16 @@ res = <Response [200]>
 E               httpTests.error.BadRequest400: 400 Bad Request: None
 
 httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
 ----------------------------- Captured stdout call -----------------------------
-{'error': 'authUserId is not the sender of the message with ID messageId'}
+{'error': 'dmId is invalid'}
 _________________ testGlobalOwnerCanEditMembersMessageChannel __________________
 
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='571540706', handleStr='')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='909642688', handleStr='')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='677228966', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='633675162', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fb743d29820>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fdf6bd0e0d0>
 ctx = None
 
     def testGlobalOwnerCanEditMembersMessageChannel(userZerg, userWoody, woodysPublicToybox, messageFactory, ctx):
@@ -1349,12 +1548,84 @@ E               httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:139: BadRequest400
 ----------------------------- Captured stdout call -----------------------------
 {'error': 'authUserId is not the sender of the message with ID messageId'}
+___________________ testGlobalOwnerCantEditMembersMessageDm ____________________
+
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='207317141', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='395847671', handleStr='')
+woodyAndBuzzDm = DM(owner=1, members=[0], name='', dmId=0)
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fdf6bb3aaf0>
+ctx = None
+
+    def testGlobalOwnerCantEditMembersMessageDm(userBuzz, userWoody, woodyAndBuzzDm, messageFactory, ctx):
+>       woodysMsg = messageFactory(userWoody, woodyAndBuzzDm)
+
+httpTests/messageTests/test_message_edit.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fixtures.py:114: in makeMessage
+    msgId = message.messageSenddm(poster.token, location.dmId, content, ctx)['messageId']
+httpTests/fakepi/message.py:115: in messageSenddm
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
+_____________________________ testMessageIdsUnique _____________________________
+
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='191187628', handleStr='')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='520202892', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[2], name='', dmId=0)
+zergsPrivateLair = Channel(name='zergs lair', isPublic=False, channelId=0, ownerMembers=[1], allMembers=[])
+ctx = None
+
+    @pytest.mark.marks(0.5)
+    def testMessageIdsUnique(userWoody, userZerg, woodyAndBuzzDm, zergsPrivateLair, ctx):
+        msg1 = messageSend(userZerg.token, zergsPrivateLair.channelId, 'hi', ctx)
+    
+        # cross
+>       msg2 = messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, 'hi again', ctx)
+
+httpTests/messageTests/test_message_meta.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/message.py:115: in messageSenddm
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 _______________________ testOwnerCanRemoveMembersMessage _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='889641848', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='727411336', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='997521944', handleStr='')
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fb743e03790>
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='529350480', handleStr='')
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fdf6bb134c0>
 ctx = None
 
     def testOwnerCanRemoveMembersMessage(userWoody, woodysPublicToybox, userBuzz, messageFactory, ctx):
@@ -1385,10 +1656,10 @@ httpTests/fakepi/util.py:139: BadRequest400
 {'error': 'authUserId is not the sender of the message with ID messageId'}
 ________________ testGlobalOwnerCanRemoveMembersMessageChannel _________________
 
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='731496173', handleStr='')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='768829048', handleStr='')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='990587800', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='259545710', handleStr='')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fb743d6bdc0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fdf6bba6430>
 ctx = None
 
     def testGlobalOwnerCanRemoveMembersMessageChannel(userZerg, userWoody, woodysPublicToybox, messageFactory, ctx):
@@ -1418,24 +1689,24 @@ httpTests/fakepi/util.py:139: BadRequest400
 {'error': 'authUserId is not the sender of the message with ID messageId'}
 __________________ testGlobalOwnerCantRemoveMembersMessageDm ___________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='805023514', handleStr='')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='332156583', handleStr='')
-woodyAndBuzzDm = DM(owner=1, members=[0], name='buzzlightyear, sheriffwoody', dmId=0)
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fb743d07040>
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='926830449', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='128809280', handleStr='')
+woodyAndBuzzDm = DM(owner=1, members=[0], name='', dmId=0)
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fdf6bc9cdc0>
 ctx = None
 
     def testGlobalOwnerCantRemoveMembersMessageDm(userBuzz, userWoody, woodyAndBuzzDm, messageFactory, ctx):
-        woodysMsg = messageFactory(userWoody, woodyAndBuzzDm)
-        with pytest.raises(Forbidden403):
->           messageRemove(userBuzz.token, woodysMsg.messageId, ctx)
+>       woodysMsg = messageFactory(userWoody, woodyAndBuzzDm)
 
-httpTests/messageTests/test_message_remove.py:49: 
+httpTests/messageTests/test_message_remove.py:47: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-httpTests/fakepi/message.py:24: in messageRemove
+httpTests/fixtures.py:114: in makeMessage
+    msgId = message.messageSenddm(poster.token, location.dmId, content, ctx)['messageId']
+httpTests/fakepi/message.py:115: in messageSenddm
     return util.parseResponse(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-res = <Response [500]>
+res = <Response [200]>
 
     def parseResponse(res):
         if res.status_code in [200, 201]:
@@ -1443,18 +1714,49 @@ res = <Response [500]>
             # error handling for iteration 2, without exceptions
             if 'error' in data:
                 print(data)
-                raise error.BadRequest400()
-            else:
-                return res.json()
-        else:
->           raise Exception(res)
-E           Exception: <Response [500]>
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
 
-httpTests/fakepi/util.py:143: Exception
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
+_______________________________ testValidMessage _______________________________
+
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='771608148', handleStr='')
+woodyAndBuzzDm = DM(owner=0, members=[1], name='', dmId=0), ctx = None
+
+    def testValidMessage(userWoody, woodyAndBuzzDm, ctx):
+        msgText = 'hello, world'
+>       msg = messageSenddm(userWoody.token, woodyAndBuzzDm.dmId, msgText, ctx)
+
+httpTests/messageTests/test_message_senddm.py:18: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+httpTests/fakepi/message.py:115: in messageSenddm
+    return util.parseResponse(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+res = <Response [200]>
+
+    def parseResponse(res):
+        if res.status_code in [200, 201]:
+            data = json.loads(res.text)
+            # error handling for iteration 2, without exceptions
+            if 'error' in data:
+                print(data)
+>               raise error.BadRequest400()
+E               httpTests.error.BadRequest400: 400 Bad Request: None
+
+httpTests/fakepi/util.py:139: BadRequest400
+---------------------------- Captured stdout setup -----------------------------
+{'error': 'dmId is invalid'}
+----------------------------- Captured stdout call -----------------------------
+{'error': 'dmId is invalid'}
 ________________________________ testClearWorks ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='861457403', handleStr='')
-userFactory = <function userFactory.<locals>.makeUser at 0x7fb743d07670>
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='582308997', handleStr='')
+userFactory = <function userFactory.<locals>.makeUser at 0x7fdf6bc9c430>
 ctx = None
 
     def testClearWorks(userWoody, userFactory, ctx):
@@ -1471,8 +1773,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/otherTests/test_clear.py:23: Failed
 ____________________________ testSuccessfulUsersAll ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='586809456', handleStr='')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='962120620', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='721123463', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='90893772', handleStr='')
 ctx = None
 
     def testSuccessfulUsersAll(userWoody, userBuzz, ctx):
@@ -1491,7 +1793,7 @@ E             + buzzlightyear
 httpTests/otherTests/test_users_all.py:23: AssertionError
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='293548127', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='808088466', handleStr='')
 ctx = None
 
     def testInvalidToken(userWoody, ctx):
@@ -1503,7 +1805,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/otherTests/test_users_all.py:29: Failed
 _____________________________ testUserProfileValid _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='134024098', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='973239913', handleStr='')
 ctx = None
 
     def testUserProfileValid(userWoody, ctx):
@@ -1511,9 +1813,21 @@ ctx = None
 E       KeyError: 'user'
 
 httpTests/userTests/test_user_profile.py:15: KeyError
+_______________________________ testInvalidToken _______________________________
+
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='758273975', handleStr='')
+ctx = None
+
+    def testInvalidToken(userWoody, ctx):
+        authLogout(userWoody.token, ctx)
+        with pytest.raises(Forbidden403):
+>           userProfile(userWoody.token, userWoody.uId, ctx)
+E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
+
+httpTests/userTests/test_user_profile.py:32: Failed
 __________________________ testSuccessfulEmailChange ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='220117787', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='438805898', handleStr='')
 ctx = None
 
     def testSuccessfulEmailChange(userWoody, ctx):
@@ -1526,7 +1840,7 @@ E       KeyError: 'user'
 httpTests/userTests/test_user_profile_setemail.py:18: KeyError
 __________________________ testSuccessfulHandleChange __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='430342940', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='296714918', handleStr='')
 ctx = None
 
     def testSuccessfulHandleChange(userWoody, ctx):
@@ -1539,8 +1853,8 @@ E       KeyError: 'user'
 httpTests/userTests/test_user_profile_sethandle.py:18: KeyError
 ________________________ testCannotChangeToTakenHandle _________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='887848255', handleStr='')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='590971958', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='906013550', handleStr='')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='187956525', handleStr='')
 ctx = None
 
     def testCannotChangeToTakenHandle(userWoody, userBuzz, ctx):
@@ -1552,7 +1866,7 @@ httpTests/userTests/test_user_profile_sethandle.py:25: Failed
 _____________________________ testInvalidHandle[] ______________________________
 
 handleStr = ''
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='210952789', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='605324781', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('handleStr', ['', 'a', 'aa', 'a' * 21, 'new handle', 'newh@ndle'])
@@ -1565,7 +1879,7 @@ httpTests/userTests/test_user_profile_sethandle.py:31: Failed
 _____________________________ testInvalidHandle[a] _____________________________
 
 handleStr = 'a'
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='741532219', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='467726691', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('handleStr', ['', 'a', 'aa', 'a' * 21, 'new handle', 'newh@ndle'])
@@ -1578,7 +1892,7 @@ httpTests/userTests/test_user_profile_sethandle.py:31: Failed
 ____________________________ testInvalidHandle[aa] _____________________________
 
 handleStr = 'aa'
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='474595421', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='870424413', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('handleStr', ['', 'a', 'aa', 'a' * 21, 'new handle', 'newh@ndle'])
@@ -1591,7 +1905,7 @@ httpTests/userTests/test_user_profile_sethandle.py:31: Failed
 ___________________ testInvalidHandle[aaaaaaaaaaaaaaaaaaaaa] ___________________
 
 handleStr = 'aaaaaaaaaaaaaaaaaaaaa'
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='931271453', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='714937224', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('handleStr', ['', 'a', 'aa', 'a' * 21, 'new handle', 'newh@ndle'])
@@ -1604,7 +1918,7 @@ httpTests/userTests/test_user_profile_sethandle.py:31: Failed
 ________________________ testInvalidHandle[new handle] _________________________
 
 handleStr = 'new handle'
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='240688403', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='546909796', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('handleStr', ['', 'a', 'aa', 'a' * 21, 'new handle', 'newh@ndle'])
@@ -1617,7 +1931,7 @@ httpTests/userTests/test_user_profile_sethandle.py:31: Failed
 _________________________ testInvalidHandle[newh@ndle] _________________________
 
 handleStr = 'newh@ndle'
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='684341727', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='748248042', handleStr='')
 ctx = None
 
     @pytest.mark.parametrize('handleStr', ['', 'a', 'aa', 'a' * 21, 'new handle', 'newh@ndle'])
@@ -1629,7 +1943,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/userTests/test_user_profile_sethandle.py:31: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='233732898', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='57567267', handleStr='')
 ctx = None
 
     def testInvalidToken(userWoody, ctx):
@@ -1641,7 +1955,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/userTests/test_user_profile_sethandle.py:37: Failed
 _______________________ testUserProfileSetnameValidName ________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='960981891', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='886650005', handleStr='')
 ctx = None
 
     def testUserProfileSetnameValidName(userWoody, ctx):
@@ -1654,7 +1968,7 @@ E       KeyError: 'user'
 httpTests/userTests/test_user_profile_setname.py:18: KeyError
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='481936774', handleStr='')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='157436743', handleStr='')
 ctx = None
 
     def testInvalidToken(userWoody, ctx):
@@ -1665,6 +1979,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 
 httpTests/userTests/test_user_profile_setname.py:34: Failed
 =========================== short test summary info ============================
+FAILED httpTests/authTests/test_auth_login.py::testCanHaveTwoSessions - Faile...
 FAILED httpTests/authTests/test_auth_register.py::testRemovedUserName - KeyEr...
 FAILED httpTests/authTests/test_auth_register.py::testSuccessfulRegistration
 FAILED httpTests/authTests/test_auth_register.py::testBasicHandleGeneratedCorrectly[Bob-Smith-bobsmith]
@@ -1676,6 +1991,7 @@ FAILED httpTests/authTests/test_auth_register.py::testDuplicateHandlesGeneratedC
 FAILED httpTests/channelTests/test_channel_addowner.py::testChannelOwnerCanAddownerWhenMember
 FAILED httpTests/channelTests/test_channel_addowner.py::testGlobalOwnerMemberCanAddowner
 FAILED httpTests/channelTests/test_channel_details.py::testMemberSuccessful
+FAILED httpTests/channelTests/test_channel_invite.py::testDuplicateInvite - F...
 FAILED httpTests/channelTests/test_channel_invite.py::testInviteGlobalOwner
 FAILED httpTests/channelTests/test_channel_invite.py::testInviteGlobalMember
 FAILED httpTests/channelTests/test_channel_join.py::testGlobalOwnerJoinChannelPublic
@@ -1686,35 +2002,43 @@ FAILED httpTests/channelTests/test_channel_messages.py::testUnderFiftyMessagesSe
 FAILED httpTests/channelTests/test_channel_messages.py::testOverFiftyMessagesSent
 FAILED httpTests/channelTests/test_channel_removeowner.py::testOwnerCanRemoveOwner
 FAILED httpTests/channelTests/test_channel_removeowner.py::testGlobalOwnerMmberCanRemoveOwner
+FAILED httpTests/channelTests/test_channel_removeowner.py::testGlobalOwnerNonmemberCannotRemoveOwner
 FAILED httpTests/channelTests/test_channel_removeowner.py::testCannotRemoveLastOwner
 FAILED httpTests/channels_tests/test_channels_create.py::testCreateChannel[True-andys room]
 FAILED httpTests/channels_tests/test_channels_create.py::testCreateChannel[False-andys room]
+FAILED httpTests/channels_tests/test_channels_list.py::testListAfterLeaveChannel
 FAILED httpTests/dmTests/test_dm_create.py::testSuccessfulDmCreation - TypeEr...
-FAILED httpTests/dmTests/test_dm_create.py::testDmNameCreationSingle - Assert...
-FAILED httpTests/dmTests/test_dm_create.py::testDmNameCreationMultiple - Asse...
-FAILED httpTests/dmTests/test_dm_details.py::testMemberSuccessful - TypeError...
-FAILED httpTests/dmTests/test_dm_leave.py::testMemberLeaveDmSuccessfully - Ty...
+FAILED httpTests/dmTests/test_dm_create.py::testDmNameCreationSingle - httpTe...
+FAILED httpTests/dmTests/test_dm_create.py::testDmNameCreationMultiple - http...
+FAILED httpTests/dmTests/test_dm_details.py::testMemberSuccessful - httpTests...
+FAILED httpTests/dmTests/test_dm_leave.py::testMemberLeaveDmSuccessfully - ht...
 FAILED httpTests/dmTests/test_dm_list.py::testWhenInNoDms - TypeError: list i...
 FAILED httpTests/dmTests/test_dm_list.py::testWhenInOneDm - AssertionError: a...
 FAILED httpTests/dmTests/test_dm_list.py::testWhenInMultipleDms - TypeError: ...
-FAILED httpTests/dmTests/test_dm_list.py::testListAfterLeaveDm - TypeError: l...
+FAILED httpTests/dmTests/test_dm_list.py::testListAfterLeaveDm - httpTests.er...
 FAILED httpTests/dmTests/test_dm_list.py::testInvalidatedToken - Failed: DID ...
-FAILED httpTests/dmTests/test_dm_messages.py::testUnderFiftyMessagesSent - as...
-FAILED httpTests/dmTests/test_dm_messages.py::testOverFiftyMessagesSent - ass...
-FAILED httpTests/dmTests/test_dm_messages.py::testRemovalByEditReflected - Ex...
+FAILED httpTests/dmTests/test_dm_messages.py::testUnderFiftyMessagesSent - ht...
+FAILED httpTests/dmTests/test_dm_messages.py::testOverFiftyMessagesSent - htt...
+FAILED httpTests/dmTests/test_dm_messages.py::testRemovalByEditReflected - ht...
 FAILED httpTests/dmTests/test_dm_messages.py::testRemovalByDeletionReflected
-FAILED httpTests/dmTests/test_dm_remove.py::testSuccessfulDmRemoval - TypeErr...
+FAILED httpTests/dmTests/test_dm_remove.py::testSuccessfulDmRemoval - httpTes...
 FAILED httpTests/dmTests/test_dm_remove.py::testOwnerNonmemberCannotRemoveDm
+FAILED httpTests/dmTests/test_dm_remove.py::testInvalidDmId - httpTests.error...
+FAILED httpTests/messageTests/test_message_edit.py::testOriginalPosterCanEditMessageDm
 FAILED httpTests/messageTests/test_message_edit.py::testOwnerCanEditMembersMessageChannel
 FAILED httpTests/messageTests/test_message_edit.py::testOwnerCanEditMembersMessageDm
 FAILED httpTests/messageTests/test_message_edit.py::testGlobalOwnerCanEditMembersMessageChannel
+FAILED httpTests/messageTests/test_message_edit.py::testGlobalOwnerCantEditMembersMessageDm
+FAILED httpTests/messageTests/test_message_meta.py::testMessageIdsUnique - ht...
 FAILED httpTests/messageTests/test_message_remove.py::testOwnerCanRemoveMembersMessage
 FAILED httpTests/messageTests/test_message_remove.py::testGlobalOwnerCanRemoveMembersMessageChannel
 FAILED httpTests/messageTests/test_message_remove.py::testGlobalOwnerCantRemoveMembersMessageDm
+FAILED httpTests/messageTests/test_message_senddm.py::testValidMessage - http...
 FAILED httpTests/otherTests/test_clear.py::testClearWorks - Failed: DID NOT R...
 FAILED httpTests/otherTests/test_users_all.py::testSuccessfulUsersAll - Asser...
 FAILED httpTests/otherTests/test_users_all.py::testInvalidToken - Failed: DID...
 FAILED httpTests/userTests/test_user_profile.py::testUserProfileValid - KeyEr...
+FAILED httpTests/userTests/test_user_profile.py::testInvalidToken - Failed: D...
 FAILED httpTests/userTests/test_user_profile_setemail.py::testSuccessfulEmailChange
 FAILED httpTests/userTests/test_user_profile_sethandle.py::testSuccessfulHandleChange
 FAILED httpTests/userTests/test_user_profile_sethandle.py::testCannotChangeToTakenHandle
@@ -1727,4 +2051,4 @@ FAILED httpTests/userTests/test_user_profile_sethandle.py::testInvalidHandle[new
 FAILED httpTests/userTests/test_user_profile_sethandle.py::testInvalidToken
 FAILED httpTests/userTests/test_user_profile_setname.py::testUserProfileSetnameValidName
 FAILED httpTests/userTests/test_user_profile_setname.py::testInvalidToken - F...
-================= 62 failed, 129 passed, 187 skipped in 6.08s ==================
+================= 72 failed, 119 passed, 187 skipped in 6.88s ==================

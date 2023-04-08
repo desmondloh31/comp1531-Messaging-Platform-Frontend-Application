@@ -4,8 +4,122 @@
 
   Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
   Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
-PASS src/channel.test.ts (16.959 s)
-PASS src/tests/channelhttp.test.ts (5.332 s)
+PASS src/channel.test.ts (18.977 s)
+FAIL src/tests/dm.test.ts (18.622 s)
+  ● Error Checking in dm messages v1 › Valid Test
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 1
+
+      Object {
+    -   "end": -1,
+    -   "messages": Array [],
+    -   "start": 0,
+    +   "error": "dmID is invalid",
+      }
+
+      249 |     test('Valid Test', () => {
+      250 |       const result = requestDmMessages(user1.token, dmid, 0);
+    > 251 |       expect(result).toStrictEqual({ messages: [], start: 0, end: -1 });
+          |                      ^
+      252 |     });
+      253 | });
+      254 |
+
+      at Object.<anonymous> (src/tests/dm.test.ts:251:22)
+
+  ● Error Checking in Senddm v1 › Valid Test
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "messageId": Any<Number>,
+    +   "error": "dmId is invalid",
+      }
+
+      299 |     test('Valid Test', () => {
+      300 |       const result = requestSendDm(user1.token, dmid, 'Test Message');
+    > 301 |       expect(result).toStrictEqual({ messageId: expect.any(Number) });
+          |                      ^
+      302 |     });
+      303 | });
+      304 |
+
+      at Object.<anonymous> (src/tests/dm.test.ts:301:22)
+
+  ● Error Checking in dmDelete v1 › Valid Test
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "error": "dmId is invalid",
+    + }
+
+      344 |   test('Valid Test', () => {
+      345 |     const result = requestdmDelete(user.token, dmid);
+    > 346 |     expect(result).toStrictEqual({});
+          |                    ^
+      347 |   });
+      348 | });
+      349 |
+
+      at Object.<anonymous> (src/tests/dm.test.ts:346:20)
+
+  ● Error Checking in dmDetails v1 › Valid Test
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 1
+
+      Object {
+    -   "members": Any<Array>,
+    -   "name": Any<String>,
+    +   "error": "dmId is invalid",
+      }
+
+      384 |   test('Valid Test', () => {
+      385 |     const result = requestdmDetails(user.token, dmid);
+    > 386 |     expect(result).toStrictEqual({ name: expect.any(String), members: expect.any(Array) });
+          |                    ^
+      387 |   });
+      388 | });
+      389 |
+
+      at Object.<anonymous> (src/tests/dm.test.ts:386:20)
+
+  ● Error Checking in dmLeave v1 › Valid Test
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "error": "dmId is invalid",
+    + }
+
+      424 |   test('Valid Test', () => {
+      425 |     const result = requestdmLeave(user1.token, dmid);
+    > 426 |     expect(result).toStrictEqual({});
+          |                    ^
+      427 |   });
+      428 | });
+      429 |
+
+      at Object.<anonymous> (src/tests/dm.test.ts:426:20)
+
+PASS src/tests/channelhttp.test.ts (6.319 s)
 PASS src/channels.test.ts
 PASS src/usersTest.test.ts
 FAIL src/authTest.test.ts
@@ -33,14 +147,13 @@ FAIL src/authTest.test.ts
       at Object.<anonymous> (src/authTest.test.ts:54:22)
 
 PASS src/dm.test.ts
-PASS src/tests/dm.test.ts (17.645 s)
-PASS src/echo.test.ts
 PASS src/tests/token.test.ts
+PASS src/echo.test.ts
 
-Test Suites: 1 failed, 8 passed, 9 total
-Tests:       1 failed, 129 passed, 130 total
+Test Suites: 2 failed, 7 passed, 9 total
+Tests:       6 failed, 124 passed, 130 total
 Snapshots:   0 total
-Time:        49.961 s
+Time:        54.523 s
 Ran all test suites.
 npm notice 
 npm notice New patch version of npm available! 9.6.3 -> 9.6.4
