@@ -6,6 +6,10 @@
 
 [[_TOC_]]
 
+## Change Log
+
+* 10/04: Section 6.9 has been updated to elaborate more generally on the methods of satisfying these requirements. There is no constraint on requirements (as in if you've already done the work, your work is fine), but the explanations will help students understand more generally the different ways they can solve the problems.
+
 ## 0. Aims:
 
 1. Demonstrate effective use of software development tools to build full-stack end-user applications.
@@ -1216,8 +1220,6 @@ A token (to represent a session) for iteration 2 can be as simple a randomly gen
 
 In this structure, this also means it's possible to "log out" a particular user's session without logging out other sessions. I.e. One user can log in on two different browser tabs, click logout on tab 1, but still functionally use the website on tab 2.
 
-Don't worry about creating a secure method of session storage in iteration 2 - that is for iteration 3.
-
 ### 6.8. Working with the frontend
 There is a SINGLE repository available for all students at https://gitlab.cse.unsw.edu.au/COMP1531/23T1/project-frontend. You can clone this frontend locally. If you'd like to modify the frontend repo (i.e. teach yourself some frontend), please FORK the repository.
 
@@ -1251,10 +1253,33 @@ There has also been a middleware handler added to your `server.ts` file to take 
 app.use(errorHandler());
 ```
 
-### 6.9. Secure Sessions & Passwords
-Passwords must be stored in an **encrypted** form.
+### 6.9. Safer Sessions and Secure Passwords
 
-You must **hash** tokens in iteration 3, and pass them through a custom `token` HTTP Header (rather than passing them plainly as `GET/DELETE` parameters).
+#### 6.9.1. Secure Passwords
+
+For iteration 3, we require that passwords must be stored in a **hashed** form.
+
+##### Background
+
+Hashes are one-way encryption where you can convert raw text (e.g. a password like `password123`) to a hash (e.g. a sha256 hash `ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f`).
+
+If we store passwords as the hash of the plain text password, as opposed to the plain text password itself, it means that if our data store is compromised that attackers would not know the plain text passwords of our users.
+
+#### 6.9.2. More random session IDs
+
+We require that you protect your sessions by using obfuscation. You can do this one of two ways:
+ 1. Using a randomly generated session ID (rather than incremental session IDs, such as 3492, 485845, 49030); or
+ 2. Returning a hash of a sequentially generated session ID (e.g. session IDs are 1, 2, 3, 4, but then you return the hash of it)
+
+You may already be doing (1) depending on your implementation from the previous iteration.
+
+##### Background
+
+If we don't have some kind of randomness in our session IDs, then it's possible for users to potentially just change the session ID and trivially use someone elses session.
+
+If you'd like to explore more tamper-proof tokens, then we suggest looking into and implementing a [JWT](https://jwt.io/)-like approach for the next iteration.
+
+#### 6.9.3. Avoiding tokens being exposed in the URL
 
 In this model, you will replace `token` query and body parameters with a `token` HTTP header when dealing with requests/routes only. You shouldn't remove `token` parameters from backend functions, as they must perform the validity checks.
 
@@ -1263,28 +1288,26 @@ You can access HTTP headers like so:
 const token = req.header('token');
 ```
 
-A sample flow logging a user in might be as follows (other flows exist too):
-1. Client makes a valid `auth/login` call
-2. Server generates `token` and `hashOf(token+secret)`
-3. Server returns the hash as the `token` value in the response's body.
+##### Background
 
-A sample flow creating a channel might be as follows:
-1. Client makes a valid `channel/create` call
-2. Server gets `token` hash in th request's HTTP header
-3. Server passes `token` hash to the relevant backend function to compare to the stored `token`, determining if it's a valid session.
-
-**Why hash tokens?**
-If we hash tokens (combined with a global secret) before storing them, and an attacker gets access to our backend of active sessions (i.e. our list of valid tokens), they won't be able to determine the client-side token (as they don't know the hash function or secret added to the token). 
-
-**Why pass tokens as a HTTP header?**
 Any query parameters (those used by `GET/DELETE` functions) can be read in plaintext by an eavesdropper spying on your HTTP requests. Hence, by passing an authentication token as a query parameter, we're allowing an attacker to intercept our request, steal our token and impersonate other users! On the other hand, HTTP headers are encrypted (as long as you use HTTPS protocol), meaning an eavesdropper won't be able to read token values.
 
-While this safely protects sessions from server-side attacks (accessing our persistent data) and man-in-the-middle attacks (intercepting our HTTP requests), it doesn't protect against client-side attacks (stealing a token on the client-side, after the HTTP header has been decoded and received by the user). 
+Note: While this safely protects sessions from server-side attacks (accessing our persistent data) and man-in-the-middle attacks (intercepting our HTTP requests), it doesn't protect against client-side attacks (stealing a token on the client-side, after the HTTP header has been decoded and received by the user). **You do not need to worry about mitigating client-side attacks**, but you can read more about industry-standard session management <a href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#secure-attribute">here</a>.
 
-**You do not need to worry about mitigating client-side attacks**, but you can read more about industry-standard session management <a href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#secure-attribute">here</a>.
+#### 6.9.4. Summary
 
+The following describes one potential way of implementing:
+
+```text
+A sample flow logging a user in might be as follows (other flows exist too):
+1. Client makes a valid `auth/register` call
+2. Server stores the hash of the plain text password that was provided over the request, but does not store the plain text password
+3. Server generates an incremental session ID (e.g. 1, 2, 3) and then stores a hash of that session ID to create something obfuscated
+4. Server returns that hash of the session ID as a token to the user in the response body
+```
 
 ### 6.10. Notifications and tagging users
+
 #### 6.10.1 Notifications
 If an action triggering a notification has been 'undone' (e.g. a message has been unreacted, or a tagged message has been edited/removed), the original notification should not be affected and will remain.
 
