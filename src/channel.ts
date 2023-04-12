@@ -1,6 +1,26 @@
 import { getData, setData } from './dataStore';
 import { tokenVerify } from './token';
 
+function usersAll(target: any) {
+  // check that token is valid
+  console.log('target', target);
+  const data = getData();
+  const users = [];
+  for (const userData of data.users) {
+    if (target.includes(userData.authUserId)) {
+      const alan = {
+        uId: userData.authUserId,
+        email: userData.email,
+        nameFirst: userData.nameFirst,
+        nameLast: userData.nameLast,
+        handleStr: userData.handleStr
+      };
+      users.push(alan);
+    }
+  }
+  return users;
+}
+
 export function channelDetailsV1(token: string, channelId: number) {
   // Determining whether authUserId is valid
   const data = getData();
@@ -20,7 +40,8 @@ export function channelDetailsV1(token: string, channelId: number) {
   for (const currentChannel in data.channels) {
     const channel = data.channels[currentChannel];
     if (channel.channelId === channelId && (channel.ownerMembers.includes(authUser) || channel.allMembers.includes(authUser))) {
-      return { name: channel.name, isPublic: channel.isPublic, ownerMembers: channel.ownerMembers, allMembers: channel.allMembers };
+      console.log({ name: channel.name, isPublic: channel.isPublic, ownerMembers: usersAll(channel.ownerMembers), allMembers: usersAll(channel.allMembers) });
+      return { name: channel.name, isPublic: channel.isPublic, ownerMembers: usersAll(channel.ownerMembers), allMembers: usersAll(channel.allMembers) };
     }
   }
   return { error: 'User is not a part of the channel or invalid channelId' };
@@ -51,7 +72,7 @@ export function channelMessagesV1(authUserId: number, channelId: number, start: 
       result.messages.push({ messageId: channel.messages[i].messageId, uId: channel.messages[i].senderId, message: channel.messages[i].message, timeSent: channel.messages[i].timeSent });
     }
   }
-
+  console.log(result);
   return result;
 }
 
@@ -142,7 +163,7 @@ export function messageSendV1(authUserId: number, channelId: number, dmId: numbe
   }
 
   setData(data);
-
+  console.log({ messageId: Id });
   return { messageId: Id };
 }
 

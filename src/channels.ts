@@ -26,6 +26,7 @@ export function channelsListAllV1(token: string) {
         channels.push({ channelId: data.channels[i].channelId, name: data.channels[i].name });
       }
     }
+    console.log({ channels: channels });
     return { channels: channels };
   }
 }
@@ -82,6 +83,8 @@ export function channelsListV1(token: string) {
       }
     }
   }
+
+  console.log({ channels: channel });
 
   return { channels: channel };
 }

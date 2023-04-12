@@ -27,7 +27,7 @@ export function dmCreate(token:string, uIds: number[]) {
   // Find the creators user handle by the token
   // Push their user handle to handleArray
   const creator = data.users.find(i => i.authUserId === authUserId);
-  handleArray.push(creator.formattedHandle);
+  handleArray.push(creator.handleStr);
 
   if (duplicates.length === 0) {
     // Checking if uIds are registered to a valid user
@@ -37,7 +37,7 @@ export function dmCreate(token:string, uIds: number[]) {
       if (!user) {
         return { error: 'authUserId is invalid' };
       } else {
-        handleArray.push(user.formattedHandle);
+        handleArray.push(user.handleStr);
       }
     }
 
@@ -75,38 +75,18 @@ export function dmCreate(token:string, uIds: number[]) {
  */
 
 export function dmList(token: string) {
-  const data = getData();
   const dmlists = [];
+  const authid = tokenVerify(token) as number;
+  const data = getData();
 
-  // Check token in users to check what to authUser id is
-  //
-  let uId: number;
-  for (const user of data.users) {
-    if (user.token[0] === token) {
-      uId = user.authUserId;
+  for (const dm in data.dms) {
+    if (data.dms[dm].allMembers.find(i => i === authid)) {
+      dmlists.push({ dmId: data.dms[dm].dmId, name: data.dms[dm].name });
     }
   }
 
-  // Now check for uId in dms in creator and allMembers
-  const dmCreator = data.dms.find(i => i.creator === uId);
-
-  if (!dmCreator) {
-    let namesis: string;
-    let dmids: number;
-    for (const dm in data.dms) {
-      if (data.dms[dm].allMembers.find(i => i === uId)) {
-        namesis = data.dms[dm].name;
-        dmids = data.dms[dm].dmId;
-        dmlists.push({ dmids, namesis });
-      }
-    }
-  } else {
-    const b = dmCreator.dmId;
-    const a = dmCreator.name;
-    dmlists.push({ b, a });
-  }
-
-  return dmlists;
+  console.log({ dms: dmlists });
+  return { dms: dmlists };
 }
 
 // /dm/remove/v1Remove an existing DM, so all members are no longer in the DM.
@@ -135,6 +115,25 @@ export function dmRemoveV1(token: string, dmId: number) {
 
 // /dm/details/v1Given a DM with ID dmId that the authorised user is a member of,
 // provide basic details about the DM.
+function usersAll(target: any) {
+  // check that token is valid
+  console.log('target', target);
+  const data = getData();
+  const users = [];
+  for (const userData of data.users) {
+    if (target.includes(userData.authUserId)) {
+      const alan = {
+        uId: userData.authUserId,
+        email: userData.email,
+        nameFirst: userData.nameFirst,
+        nameLast: userData.nameLast,
+        handleStr: userData.handleStr
+      };
+      users.push(alan);
+    }
+  }
+  return users;
+}
 
 export function dmDetailsV1(token: string, dmId: number) {
   const data = getData();
@@ -152,7 +151,8 @@ export function dmDetailsV1(token: string, dmId: number) {
   }
 
   if (dm.allMembers.includes(authUserId)) {
-    return { name: dm.name, members: dm.allMembers };
+    console.log({ name: dm.name, members: usersAll(dm.allMembers) });
+    return { name: dm.name, members: usersAll(dm.allMembers) };
   } else {
     return { error: 'User is not a member of the DM' };
   }
