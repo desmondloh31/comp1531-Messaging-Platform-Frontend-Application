@@ -7,24 +7,24 @@ function authRegisterV1(email: string, password: string, nameFirst: string, name
   const authUserId = data.users.length;
 
   if (validator.isEmail(email) === false) {
-    return { error: 'error' };
+    return { error: 'error1' };
   }
 
   if (password.length < 6) {
-    return { error: 'error' };
+    return { error: 'error2' };
   }
 
   if (nameFirst.length < 1 || nameFirst.length > 50) {
-    return { error: 'error' };
+    return { error: 'error3' };
   }
 
   if (nameLast.length < 1 || nameLast.length > 50) {
-    return { error: 'error' };
+    return { error: 'error4' };
   }
 
   for (const user of data.users) {
     if (user.email === email) {
-      return { error: 'error' };
+      return { error: 'error5' };
     }
   }
 

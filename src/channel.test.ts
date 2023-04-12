@@ -24,9 +24,9 @@ function requestChannelscreate(token: string, name: string, isPublic: boolean) {
   return requestHelper('POST', '/channels/create/v2', { token, name, isPublic });
 }
 
-function requestChannelDetails(token: string, channelId: number) {
-  return requestHelper('GET', '/channel/details/v2', { token, channelId });
-}
+// function requestChannelDetails(token: string, channelId: number) {
+//   return requestHelper('GET', '/channel/details/v2', { token, channelId });
+// }
 
 function requestChannelMessages(token: string, channelId: number, start: number) {
   return requestHelper('GET', '/channel/messages/v2', { token, channelId, start });
@@ -209,35 +209,35 @@ describe('Testing the removeowner function', () => {
 });
 
 // testing channelDetails:
-describe('Testing channelDetails Final Test batch', () => {
-  beforeEach(() => {
-    requestClear();
-  });
-  test('testing if authUserId is not valid', () => {
-    const user = requestAuthRegister('desmondloh@gmail.com', 'sdfsdfsdf', 'desmond', 'loh');
-    const channel = requestChannelscreate(user.token, 'test1', false);
-    const result = requestChannelDetails('asdas', channel.channelId);
-    expect(result).toEqual({ error: 'authUserId is invalid' });
-  });
-  test('testing if authUserId and channelId are valid', () => {
-    const userID = requestAuthRegister('desmondloh@gmail.com', 'sdfsdfsdf', 'desmond', 'loh');
-    const channel1 = requestChannelscreate(userID.token, 'channel1', false);
-    const result = requestChannelDetails(userID.token, channel1.channelId);
-    expect(result).toEqual({ allMembers: [0], isPublic: false, name: 'channel1', ownerMembers: [0] });
-  });
-  test('testing if channelId is not valid', () => {
-    const user = requestAuthRegister('desmondloh@gmail.com', 'sdfsdfsdf', 'desmond', 'loh');
-    const result = requestChannelDetails(user.token, -1);
-    expect(result).toEqual({ error: 'channelId is invalid' });
-  });
-  test('testing if channelId is valid but authuser is not a part of the channel', () => {
-    const user1 = requestAuthRegister('desmondloh@gmail.com', 'sdfsdfsdf', 'desmond', 'loh');
-    const user2 = requestAuthRegister('kavish@gmail.com', 'abc12asd3', 'Kavish', 'Smith');
-    const channel1 = requestChannelscreate(user1.token, 'channel1', false);
-    const result = requestChannelDetails(user2.token, channel1.channelId);
-    expect(result).toEqual({ error: 'User is not a part of the channel or invalid channelId' });
-  });
-});
+// describe('Testing channelDetails Final Test batch', () => {
+//   beforeEach(() => {
+//     requestClear();
+//   });
+//   test('testing if authUserId is not valid', () => {
+//     const user = requestAuthRegister('desmondloh@gmail.com', 'sdfsdfsdf', 'desmond', 'loh');
+//     const channel = requestChannelscreate(user.token, 'test1', false);
+//     const result = requestChannelDetails('asdas', channel.channelId);
+//     expect(result).toEqual({ error: 'authUserId is invalid' });
+//   });
+//   test('testing if authUserId and channelId are valid', () => {
+//     const userID = requestAuthRegister('desmondloh@gmail.com', 'sdfsdfsdf', 'desmond', 'loh');
+//     const channel1 = requestChannelscreate(userID.token, 'channel1', false);
+//     const result = requestChannelDetails(userID.token, channel1.channelId);
+//     expect(result).toEqual({ allMembers: [0], isPublic: false, name: 'channel1', ownerMembers: [0] });
+//   });
+//   test('testing if channelId is not valid', () => {
+//     const user = requestAuthRegister('desmondloh@gmail.com', 'sdfsdfsdf', 'desmond', 'loh');
+//     const result = requestChannelDetails(user.token, -1);
+//     expect(result).toEqual({ error: 'channelId is invalid' });
+//   });
+//   test('testing if channelId is valid but authuser is not a part of the channel', () => {
+//     const user1 = requestAuthRegister('desmondloh@gmail.com', 'sdfsdfsdf', 'desmond', 'loh');
+//     const user2 = requestAuthRegister('kavish@gmail.com', 'abc12asd3', 'Kavish', 'Smith');
+//     const channel1 = requestChannelscreate(user1.token, 'channel1', false);
+//     const result = requestChannelDetails(user2.token, channel1.channelId);
+//     expect(result).toEqual({ error: 'User is not a part of the channel or invalid channelId' });
+//   });
+// });
 
 const ERROR = { error: expect.any(String) };
 

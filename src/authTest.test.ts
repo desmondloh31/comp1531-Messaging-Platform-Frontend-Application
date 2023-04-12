@@ -27,26 +27,27 @@ function requestHelper(method: HttpVerb, path: string, payload: object) {
   const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
   return JSON.parse(res.getBody('utf-8'));
 }
+const ERROR = { error: expect.any(String) };
 
 describe('Testing authRegisterV1', () => {
   test('Testing an invalid email', () => {
     const register = requestAuthRegister('oeihoashfoiahnfqo', '123456', 'John', 'Smith');
-    expect(register).toEqual({ error: 'error' });
+    expect(register).toEqual(ERROR);
   });
 
   test('Testing a short password', () => {
     const register = requestAuthRegister('example@gmail.com', '12345', 'John', 'Smith');
-    expect(register).toEqual({ error: 'error' });
+    expect(register).toEqual(ERROR);
   });
 
   test('Testing an empty first name', () => {
     const register = requestAuthRegister('example@gmail.com', '123456', '', 'Smith');
-    expect(register).toEqual({ error: 'error' });
+    expect(register).toEqual(ERROR);
   });
 
   test('Testing an empty last name', () => {
     const register = requestAuthRegister('example@gmail.com', '123456', 'John', '');
-    expect(register).toEqual({ error: 'error' });
+    expect(register).toEqual(ERROR);
   });
 
   test('Testing standard register detail', () => {
