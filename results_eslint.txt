@@ -18,12 +18,7 @@
   [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/dataStore.ts[24m
-   [2m2:20[22m  [31merror[39m  Missing semicolon              [2msemi[22m
-  [2m68:39[22m  [31merror[39m  Missing semicolon              [2msemi[22m
-  [2m72:60[22m  [31merror[39m  Missing semicolon              [2msemi[22m
-  [2m86:57[22m  [31merror[39m  A space is required after ','  [2mcomma-spacing[22m
-  [2m86:62[22m  [31merror[39m  A space is required after ','  [2mcomma-spacing[22m
-  [2m86:66[22m  [31merror[39m  Missing semicolon              [2msemi[22m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/dm.test.ts[24m
   [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
@@ -47,53 +42,10 @@
   [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/users.ts[24m
-   [2m5:59[22m  [31merror[39m  Block must not be padded by blank lines            [2mpadded-blocks[22m
-   [2m7:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-   [2m7:9[22m   [31merror[39m  'authid' is assigned a value but never used        [2m@typescript-eslint/no-unused-vars[22m
-   [2m7:9[22m   [31merror[39m  'authid' is never reassigned. Use 'const' instead  [2mprefer-const[22m
-   [2m9:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m10:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m10:27[22m  [31merror[39m  Missing semicolon                                  [2msemi[22m
-  [2m11:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m11:20[22m  [31merror[39m  Missing semicolon                                  [2msemi[22m
-  [2m12:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m12:5[22m   [31merror[39m  Expected space or tab after '//' in comment        [2mspaced-comment[22m
-  [2m13:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m13:5[22m   [31merror[39m  Expected space or tab after '//' in comment        [2mspaced-comment[22m
-  [2m14:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m14:5[22m   [31merror[39m  Expected space(s) after "for"                      [2mkeyword-spacing[22m
-  [2m14:38[22m  [31merror[39m  Missing space before opening brace                 [2mspace-before-blocks[22m
-  [2m15:1[22m   [31merror[39m  Expected indentation of 4 spaces but found 6       [2mindent[22m
-  [2m15:7[22m   [31merror[39m  Expected space(s) after "if"                       [2mkeyword-spacing[22m
-  [2m15:38[22m  [31merror[39m  Missing space before opening brace                 [2mspace-before-blocks[22m
-  [2m16:1[22m   [31merror[39m  Expected indentation of 6 spaces but found 8       [2mindent[22m
-  [2m16:24[22m  [31merror[39m  Missing semicolon                                  [2msemi[22m
-  [2m17:1[22m   [31merror[39m  Expected indentation of 6 spaces but found 8       [2mindent[22m
-  [2m17:9[22m   [31merror[39m  'userExists' is assigned a value but never used    [2m@typescript-eslint/no-unused-vars[22m
-  [2m17:26[22m  [31merror[39m  Missing semicolon                                  [2msemi[22m
-  [2m18:1[22m   [31merror[39m  Expected indentation of 4 spaces but found 6       [2mindent[22m
-  [2m18:8[22m   [31merror[39m  Block must not be padded by blank lines            [2mpadded-blocks[22m
-  [2m20:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m22:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m23:1[22m   [31merror[39m  Expected indentation of 4 spaces but found 8       [2mindent[22m
-  [2m23:25[22m  [31merror[39m  Strings must use singlequote                       [2mquotes[22m
-  [2m23:48[22m  [31merror[39m  A space is required before '}'                     [2mobject-curly-spacing[22m
-  [2m23:50[22m  [31merror[39m  Trailing spaces not allowed                        [2mno-trailing-spaces[22m
-  [2m24:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 6       [2mindent[22m
-  [2m25:1[22m   [31merror[39m  Trailing spaces not allowed                        [2mno-trailing-spaces[22m
-  [2m26:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m27:1[22m   [31merror[39m  Expected indentation of 4 spaces but found 8       [2mindent[22m
-  [2m28:1[22m   [31merror[39m  Expected indentation of 4 spaces but found 8       [2mindent[22m
-  [2m29:1[22m   [31merror[39m  Expected indentation of 4 spaces but found 8       [2mindent[22m
-  [2m30:1[22m   [31merror[39m  Expected indentation of 4 spaces but found 8       [2mindent[22m
-  [2m31:1[22m   [31merror[39m  Expected indentation of 4 spaces but found 8       [2mindent[22m
-  [2m33:1[22m   [31merror[39m  Expected indentation of 2 spaces but found 4       [2mindent[22m
-  [2m33:6[22m   [31merror[39m  Missing semicolon                                  [2msemi[22m
-  [2m34:1[22m   [31merror[39m  Expected indentation of 0 spaces but found 2       [2mindent[22m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/usersTest.test.ts[24m
   [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
-[31m[1m✖ 49 problems (49 errors, 0 warnings)[22m[39m
-[31m[1m[22m[39m[31m[1m  47 errors, 0 warnings potentially fixable with the `--fix` option.[22m[39m
-[31m[1m[22m[39m
+[32m[1m✔ 16 files successfully linted.[22m[39m
+[32m[1m[22m[39m
