@@ -1,4 +1,4 @@
-import {getData, setData} from './dataStore';
+import { getData, setData } from './dataStore';
 import { tokenVerify } from './token';
 
 /**
@@ -6,57 +6,51 @@ import { tokenVerify } from './token';
  */
 
 /**
- * 
+ *
  * @param {integer} authUserId - user id explantation
- * 
- * @returns {object} channels - channels explanation 
+ *
+ * @returns {object} channels - channels explanation
  */
 
-
-
-//parameters and returrn
+// parameters and returrn
 export function channelsListAllV1(token: string) {
   const data = getData();
   const authUser = tokenVerify(token);
   const user = data.users.find((i: any) => i.authUserId === authUser);
   if (!user) {
-    return { error: "authUserId is invalid"}; 
-  }
-  else{
-    
+    return { error: 'authUserId is invalid' };
+  } else {
     const channels = [];
     for (let i = 0; i < data.channels.length; i++) {
       for (let j = 0; j < data.channels[i].allMembers.length; j++) {
-          
-        channels.push({channelId: data.channels[i].channelId, name: data.channels[i].name});
+        channels.push({ channelId: data.channels[i].channelId, name: data.channels[i].name });
       }
     }
-    return {channels: channels};
+    console.log({ channels: channels });
+    return { channels: channels };
   }
-
 }
 
-//creating the channel from the uuid and authUserId
+// creating the channel from the uuid and authUserId
 export function channelsCreateV1(token: string, name: string, isPublic: boolean) {
-
   const data = getData();
 
   const authUserId = tokenVerify(token) as number;
-  //check if authUserId is valid:
+  // check if authUserId is valid:
 
   const authUser = data.users.find(i => i.authUserId === authUserId);
   if (!authUser) {
-    return { error: "authUserId is invalid"};
+    return { error: 'authUserId is invalid' };
   }
 
-  //check if name is valid:
+  // check if name is valid:
   if (name.length < 1 || name.length > 20) {
-    return { error: "length of name is less than 1 or more than 20 characters"};
+    return { error: 'length of name is less than 1 or more than 20 characters' };
   }
 
-  let Id = data.channels.length;
- 
-  //add a new channel to the data store:
+  const Id = data.channels.length;
+
+  // add a new channel to the data store:
   data.channels.push({
     channelId: Id,
     name: name,
@@ -67,43 +61,30 @@ export function channelsCreateV1(token: string, name: string, isPublic: boolean)
   });
   setData(data);
 
-  return {channelId: Id};
-
-
+  return { channelId: Id };
 }
 
-//Listing the given channels:
+// Listing the given channels:
 export function channelsListV1(token: string) {
-
   const data = getData();
   const authUserId = tokenVerify(token);
 
-
-  //check if authUserId is valid:
+  // check if authUserId is valid:
   const authUser = data.users.find(i => i.authUserId === authUserId);
   if (!authUser) {
-    return { error: "authUserId is invalid"};
+    return { error: 'authUserId is invalid' };
   }
 
-  let check = false;
   const channel = [];
   for (let i = 0; i < data.channels.length; i++) {
     for (let j = 0; j < data.channels[i].allMembers.length; j++) {
       if (data.channels[i].allMembers[j] === authUserId) {
-        check = true;
-        channel.push({channelId: data.channels[i].channelId, name: data.channels[i].name});
-        
+        channel.push({ channelId: data.channels[i].channelId, name: data.channels[i].name });
       }
     }
   }
 
-  return {channels: channel};
-    
+  console.log({ channels: channel });
+
+  return { channels: channel };
 }
-
-    
-
-
-
-
-

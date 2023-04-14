@@ -1,14 +1,21 @@
 // YOU SHOULD MODIFY THIS OBJECT BELOW
-import fs from 'fs'
+// import fs from 'fs'
 
 interface usr {
   authUserId: number;
   nameFirst: string;
   nameLast: string;
   email: string;
-  formattedHandle: string;
+  handleStr: string;
   password: string;
   token: string[];
+}
+
+interface msg {
+  messageId: number;
+  senderId: number;
+  message: string;
+  timeSent: number;
 }
 
 interface cnl {
@@ -20,15 +27,8 @@ interface cnl {
   messages: msg[],
 }
 
-interface msg {
-  messageId: number;
-  senderId: number;
-  message: string;
-  timeSent: number;
-}
-
 interface dm {
-  name: string[];
+  name: string;
   dmId: number;
   creator: number;
   allMembers: number[];
@@ -65,16 +65,14 @@ Example usage
     console.log(store) # Prints { 'names': ['Hayden', 'Tam', 'Rani', 'Giuliana', 'Jake'] }
     setData(store)
 */
-
+// const dataStorePath = './storage.json';
 // Use get() to access the data
-const dataStorePath = './storage.json'
 function getData() {
-  
-  data = JSON.parse(String(fs.readFileSync(dataStorePath)))
-  
-  //const dbstr = fs.readFileSync('storage.json')
-  //data = JSON.parse(String(dbstr))
-  
+  // data = JSON.parse(String(fs.readFileSync(dataStorePath)))
+  // data = JSON.parse(String(fs.readFileSync(dataStorePath)));
+  // const dbstr = fs.readFileSync('storage.json')
+  // data = JSON.parse(String(dbstr))
+
   return data;
 }
 
@@ -84,11 +82,10 @@ function getData() {
 // Hint: this function might be useful to edit in iteration 2
 function setData(newData: db) {
   data = newData;
-  fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
-  
-  //const jsonstr = JSON.stringify(data)
-  //fs.writeFileSync('storage.json', jsonstr, {flag: 'w'})
+  // fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
+  // fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
+  // const jsonstr = JSON.stringify(data)
+  // fs.writeFileSync('storage.json', jsonstr, {flag: 'w'})
 }
-
 
 export { getData, setData };
