@@ -47,37 +47,41 @@ export function channelDetailsV1(token: string, channelId: number) {
   return { error: 'User is not a part of the channel or invalid channelId' };
 }
 
-export function channelMessagesV1(authUserId: number, channelId: number, start: number) {
+export function channelMessagesV1(token: string, channelId: number, start: number ) {
   const data = getData();
-  const user = data.users.find(i => i.authUserId === authUserId);
+  const authUser = tokenVerify(token);
+  const user = data.users.find(i => i.authUserId === authUser);
   const channel = data.channels.find(i => i.channelId === channelId);
 
+
   if (!user) {
-    return { error: 'authUserId is invalid' };
-  } else if (!channel) {
-    return { error: 'channelId is invalid' };
-  } else if (channel.messages.length < start) {
-    return { error: 'start is greater than the total number of messages in the channel' };
-  } else if (channel.allMembers.find((i: number) => i === authUserId) === undefined) {
-    return { error: 'authUserId is not a member of the channel with ID channelId' };
+    return { error: "authUserId is invalid"};
+  }else if (!channel) {
+    return { error: "channelId is invalid"};
+  }else if (channel.messages.length < start ) { 
+    return { error: "start is greater than the total number of messages in the channel"};
+  }else if (channel.allMembers.find((i: number) => i === authUser) === undefined) {
+    return { error: "authUserId is not a member of the channel with ID channelId"};
   }
 
-  const result = {
+
+  let result = {
     messages: [] as object[],
     start: start,
-    end: start + 50 < channel.messages.length ? start + 50 : -1,
-  };
+    end: start+50<channel.messages.length?start+50:-1,
+  }
   for (let i = 0; i < channel.messages.length; i++) {
     if (i < 50) {
-      result.messages.push({ messageId: channel.messages[i].messageId, uId: channel.messages[i].senderId, message: channel.messages[i].message, timeSent: channel.messages[i].timeSent });
+      result.messages.push({messageId: channel.messages[i].messageId, uId:channel.messages[i].senderId, message: channel.messages[i].message, timeSent: channel.messages[i].timeSent});
     }
   }
   console.log(result);
   return result;
 }
 
-export function dmMessagesV1(token: string, dmId: number, start: number) {
-  const authUserId = tokenVerify(token) as number;
+
+export function channelInviteV1(token: string, channelId: number, uId: number) {
+  ///Determining whether authUserId is valid
   const data = getData();
   const user = data.users.find(i => i.authUserId === authUserId);
   const dm = data.dms.find(i => i.dmId === dmId);
@@ -245,12 +249,13 @@ export function channelInviteV1(authUserId: number, channelId: number, uId: numb
   const channel = data.channels.find(i => i.channelId === channelId);
   const guest = data.users.find(i => i.authUserId === uId);
 
+
   if (!user) {
-    return { error: 'authUserId is invalid' };
-  } else if (!channel) {
-    return { error: 'channelId is invalid' };
-  } else if (!guest) {
-    return { error: 'uId is invalid' };
+    return { error: "authUserId is invalid"}; 
+  }else if(!channel){
+    return { error: "channelId is invalid"};
+  }else if(!guest) {
+    return { error: "uId is invalid"};
   }
 
   let check = false;
@@ -265,14 +270,14 @@ export function channelInviteV1(authUserId: number, channelId: number, uId: numb
   }
 
   if (check === true) {
-    return { error: 'User is already a member of channel' };
-  }
+    return { error: "User is already a member of channel"}
+  };
 
   check = false;
   for (let i = 0; i < data.channels.length; i++) {
     for (let j = 0; j < data.channels[i].allMembers.length; j++) {
       if (data.channels[i].channelId === channelId) {
-        if (data.channels[i].allMembers[j] === authUserId) {
+        if (data.channels[i].allMembers[j] === authUser) {
           check = true;
         }
       }
@@ -280,8 +285,8 @@ export function channelInviteV1(authUserId: number, channelId: number, uId: numb
   }
 
   if (check === false) {
-    return { error: 'authUser is NOT a member of channel' };
-  }
+    return { error: "authUser is NOT a member of channel"}
+  };
 
   for (let i = 0; i < data.channels.length; i++) {
     if (data.channels[i].channelId === channelId) {

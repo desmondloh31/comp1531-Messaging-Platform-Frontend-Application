@@ -28,7 +28,7 @@ interface cnl {
 }
 
 interface dm {
-  name: string;
+  name: string[];
   dmId: number;
   creator: number;
   allMembers: number[];

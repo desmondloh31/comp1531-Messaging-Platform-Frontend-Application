@@ -14,6 +14,10 @@ function requestAuthLogout(token: string) {
   return requestHelper('POST', '/auth/logout/v1', { token });
 }
 
+function requestClear() {
+  return requestHelper('DELETE', '/clear/v1', {});
+}
+
 // Helper Function
 function requestHelper(method: HttpVerb, path: string, payload: object) {
   let qs = {};
