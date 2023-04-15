@@ -42,7 +42,7 @@ app.get('/echo', (req: Request, res: Response, next) => {
 // All http function wrappers for All Functions:
 app.post('/auth/login/v2', (req: Request, res: Response) => {
   const { email, password } = req.body;
-  const authid = authLoginV1(email, password);
+  let authid = authLoginV1(email, password);
   res.json(authid);
 });
 

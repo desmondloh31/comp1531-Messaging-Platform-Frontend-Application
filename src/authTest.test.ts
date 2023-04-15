@@ -87,6 +87,6 @@ describe('Testing authLogoutV1', () => {
   test('Testing if it will return error', () => {
     requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith');
     const logout2 = requestAuthLogout('-1');
-    expect(logout2).toEqual({ error: 'token does not exist' });
+    expect(logout2).toEqual({ error: 'error' });
   });
 });
