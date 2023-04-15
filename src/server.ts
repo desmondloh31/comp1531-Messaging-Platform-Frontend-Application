@@ -20,6 +20,7 @@ import {
   userProfileSetnameV1
 } from './users';
 import { channelsCreateV1, channelsListAllV1, channelsListV1 } from './channels';
+import { getNotificationsV1, searchV1, standupActiveV1, standupSendV1, standupStartV1 } from './standup';
 
 // Set up web app
 const app = express();
@@ -197,6 +198,35 @@ app.put('/user/profile/sethandle/v1', (req: Request, res: Response) => {
   const { token, handleStr } = req.body;
   const function1 = userProfileSethandleV1(token, handleStr);
   res.json(function1);
+});
+
+app.get('/notifications/get/v1',(req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const oldestNotificationId = parseInt(req.query.notificationId as string);
+  res.json(getNotificationsV1(token, oldestNotificationId));
+});
+
+app.get('/search/v1', (req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const queryStr = req.query.message as string;
+  res.json(searchV1(token, queryStr));
+
+});
+
+app.post('/standup/start/v1', (req: Request, res: Response) => {
+  const { token, channelId, length } = req.body;
+  res.json(standupStartV1(token, channelId, length));
+});
+
+app.get('/standup/active/v1', (req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const channelId = parseInt(req.query.channelId as string);
+  res.json(standupActiveV1(token, channelId));
+});
+
+app.post('/standup/send/v1', (req: Request, res: Response) => {
+  const { token, channelId, message } = req.body;
+  res.json(standupSendV1(token, channelId, message));
 });
 
 // start server

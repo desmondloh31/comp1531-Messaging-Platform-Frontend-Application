@@ -9,9 +9,17 @@ interface usr {
   handleStr: string;
   password: string;
   token: string[];
+  notifications: notification[];
 }
 
-interface msg {
+interface notification {
+  notificationId: number;
+  message: string;
+  timestamp: number;
+}
+
+
+export interface msg {
   messageId: number;
   senderId: number;
   message: string;
@@ -25,6 +33,9 @@ interface cnl {
   allMembers: number[];
   ownerMembers: number[];
   messages: msg[],
+  standupActive: boolean;
+  standupTimeFinish?: number;
+  standupBuffer?: { message: string, user: number }[];
 }
 
 interface dm {
