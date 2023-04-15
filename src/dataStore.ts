@@ -19,7 +19,7 @@ interface notification {
 }
 
 
-export interface msg {
+interface msg {
   messageId: number;
   senderId: number;
   message: string;
