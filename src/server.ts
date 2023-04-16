@@ -12,13 +12,15 @@ import {
 } from './channel';
 import { dmCreate, dmList, dmRemoveV1, dmDetailsV1, dmLeaveV1 } from './dm';
 import { clearV1 } from './other';
-import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
+
+import { authRegisterV1, authLoginV1, authLogoutV1, authPasswordResetRequestV1, authPasswordResetResetV1 } from './auth';
 import { tokenVerify } from './token';
 import {
   userProfileV1, usersAllV1, userProfileSetemailV1, userProfileSethandleV1,
   userProfileSetnameV1
 } from './users';
 import { channelsCreateV1, channelsListAllV1, channelsListV1 } from './channels';
+import { adminUserRemoveV1 } from './admin';
 
 // Set up web app
 const app = express();
@@ -40,8 +42,7 @@ app.get('/echo', (req: Request, res: Response, next) => {
 
 // Keep this BENEATH route definitions
 // handles errors nicely
-app.use(errorHandler());
-
+//app.use(errorHandler());
 // All http function wrappers for All Functions:
 app.post('/auth/login/v2', (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -50,7 +51,11 @@ app.post('/auth/login/v2', (req: Request, res: Response) => {
 });
 
 app.post('/auth/register/v2', (req: Request, res: Response) => {
-  const { email, password, nameFirst, nameLast } = req.body;
+  //const { email, password, nameFirst, nameLast } = req.body
+  const email = req.body.email as string
+  const password = req.body.password as string
+  const nameFirst = req.body.nameFirst as string
+  const nameLast = req.body.nameLast as string
   const authid = authRegisterV1(email, password, nameFirst, nameLast);
   return res.json(authid);
 });
@@ -220,6 +225,24 @@ app.put('/user/profile/sethandle/v1', (req: Request, res: Response) => {
   res.json(function1);
 });
 
+app.delete('/admin/user/remove/v1', (req: Request, res: Response) => {
+  const uId = parseInt(req.query.uId as string);
+  const function1 = adminUserRemoveV1(uId)
+  res.json(function1);
+});
+
+app.post('auth/passwordreset/request/v1', (req: Request, res: Response) => {
+  const { email} = req.body;
+  const authid = authPasswordResetRequestV1(email);
+  res.json(authid);
+});
+
+app.post('auth/passwordreset/reset/v1', (req: Request, res: Response) => {
+  const { resetCode, newPassword} = req.body;
+  const authid = authPasswordResetResetV1(resetCode, newPassword);
+  res.json(authid);
+});
+
 // start server
 const server = app.listen(PORT, HOST, () => {
   // DO NOT CHANGE THIS LINE
@@ -230,3 +253,4 @@ const server = app.listen(PORT, HOST, () => {
 process.on('SIGINT', () => {
   server.close(() => console.log('Shutting down server gracefully.'));
 });
+app.use(errorHandler());

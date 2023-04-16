@@ -6,6 +6,10 @@
 
 [[_TOC_]]
 
+## Change Log
+
+* 10/04: Section 6.9 has been updated to elaborate more generally on the methods of satisfying these requirements. There is no constraint on requirements (as in if you've already done the work, your work is fine), but the explanations will help students understand more generally the different ways they can solve the problems.
+
 ## 0. Aims:
 
 1. Demonstrate effective use of software development tools to build full-stack end-user applications.
