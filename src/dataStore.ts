@@ -12,6 +12,13 @@ interface usr {
   resetCode: number
   deletedEmail: string
   deletedHandle: string
+  notifications: notification[]
+}
+
+interface notification{
+  notificationId: number
+  message: string
+  timestamp: number
 }
 
 interface msg {
