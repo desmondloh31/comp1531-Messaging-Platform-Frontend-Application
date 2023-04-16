@@ -152,6 +152,11 @@ export function messageSendV1(authUserId: number, channelId: number, dmId: numbe
       senderId: authUserId,
       message: message,
       timeSent: Date.now(),
+      reacts: {
+        reactId: 1,
+        uids: [],
+      },
+      pinned: false,
     });
   } else {
     dm.messages.push({
@@ -159,6 +164,11 @@ export function messageSendV1(authUserId: number, channelId: number, dmId: numbe
       senderId: authUserId,
       message: message,
       timeSent: Date.now(),
+      reacts: {
+        reactId: 1,
+        uids: [],
+      },
+      pinned: false,
     });
   }
 

@@ -11,6 +11,7 @@ import {
   channelRemoveOwnerV1, messageDeleteV1, messageEditV1, messageSendV1, dmMessagesV1
 } from './channel';
 import { dmCreate, dmList, dmRemoveV1, dmDetailsV1, dmLeaveV1 } from './dm';
+import { messagePinV1, messageReactV1, messageUnreactV1 } from './message';
 import { clearV1 } from './other';
 import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
 import { tokenVerify } from './token';
@@ -191,6 +192,25 @@ app.post('/message/senddm/v1', (req: Request, res: Response) => {
   const { dmId, message } = req.body;
   const token = req.header('token');
   return res.json(messageSendV1(tokenVerify(token) as number, -1, dmId, message));
+});
+
+app.post('/message/react/v1', (req: Request, res: Response) => {
+  const { messageId, reactId } = req.body;
+  const token = req.header('token');
+  return res.json(messageReactV1(token, messageId, reactId));
+});
+
+app.post('/message/unreact/v1', (req: Request, res: Response) => {
+  const { messageId, reactId } = req.body;
+  const token = req.header('token');
+  return res.json(messageUnreactV1(token, messageId, reactId));
+});
+
+app.post('/message/pin/v1', (req: Request, res: Response) => {
+  const { messageId } = req.body;
+  const token = req.header('token');
+  console.log('here');
+  return res.json(messagePinV1(token, messageId));
 });
 
 app.get('/users/all/v1', (req: Request, res: Response) => {

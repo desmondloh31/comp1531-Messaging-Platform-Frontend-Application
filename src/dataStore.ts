@@ -11,11 +11,18 @@ interface usr {
   token: string[];
 }
 
+interface react {
+  reactId: number;
+  uids: number[];
+}
+
 interface msg {
   messageId: number;
   senderId: number;
   message: string;
   timeSent: number;
+  reacts: react;
+  pinned: boolean;
 }
 
 interface cnl {
