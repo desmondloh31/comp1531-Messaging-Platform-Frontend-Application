@@ -135,3 +135,41 @@ export function messagePinV1(token: string, messageId: number) {
     return {};
   }
 }
+
+export function messageUnpinV1(token: string, messageId: number) {
+  const data = getData();
+  const authUserId = tokenVerify(token) as number;
+  const channel = data.channels.find(i => i.messages.find(j => j.messageId === messageId) !== undefined);
+  const dm = data.dms.find(i => i.messages.find(j => j.messageId === messageId) !== undefined);
+  let isdm = false;
+  if (!channel) {
+    if (!dm) {
+      throw HttpError(400, 'messageId is invalid');
+    }
+    isdm = true;
+  }
+
+  if (isdm) {
+    if (dm.creator !== authUserId) {
+      throw HttpError(403, 'User does not have permission');
+    }
+    const message = dm.messages.find(i => i.messageId === messageId);
+    if (!message.pinned) {
+      throw HttpError(400, 'Message is not already pinned');
+    }
+    message.pinned = false;
+    return {};
+  }
+
+  if (!isdm) {
+    if (!channel.ownerMembers.includes(authUserId)) {
+      throw HttpError(403, 'User does not have permission');
+    }
+    const message = channel.messages.find(i => i.messageId === messageId);
+    if (!message.pinned) {
+      throw HttpError(400, 'Message is not already pinned');
+    }
+    message.pinned = false;
+    return {};
+  }
+}
