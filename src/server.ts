@@ -3,16 +3,15 @@ import { echo } from './echo';
 import morgan from 'morgan';
 import config from './config.json';
 import cors from 'cors';
+import errorHandler from 'middleware-http-errors';
+
 import {
   channelDetailsV1, channelJoinV1, channelInviteV1,
   channelMessagesV1, channelLeaveV1, channelAddOwnerV1,
   channelRemoveOwnerV1, messageDeleteV1, messageEditV1, messageSendV1, dmMessagesV1
 } from './channel';
-
 import { dmCreate, dmList, dmRemoveV1, dmDetailsV1, dmLeaveV1 } from './dm';
-
 import { clearV1 } from './other';
-
 import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
 import { tokenVerify } from './token';
 import {
@@ -31,13 +30,17 @@ app.use(cors());
 app.use(morgan('dev'));
 
 const PORT: number = parseInt(process.env.PORT || config.port);
-const HOST: string = process.env.IP || '127.0.0.1';
+const HOST: string = process.env.IP || 'localhost';
 
 // Example get request
 app.get('/echo', (req: Request, res: Response, next) => {
   const data = req.query.echo as string;
   return res.json(echo(data));
 });
+
+// Keep this BENEATH route definitions
+// handles errors nicely
+app.use(errorHandler());
 
 // All http function wrappers for All Functions:
 app.post('/auth/login/v2', (req: Request, res: Response) => {
