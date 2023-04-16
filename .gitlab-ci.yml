@@ -22,4 +22,3 @@ tests with coverage:
       - coverage/
     expose_as: Coverage Report
     expire_in: 1 week
-

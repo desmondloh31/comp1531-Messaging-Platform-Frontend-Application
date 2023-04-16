@@ -21,6 +21,13 @@ interface notification{
   timestamp: number
 }
 
+interface msg {
+  messageId: number;
+  senderId: number;
+  message: string;
+  timeSent: number;
+}
+
 interface cnl {
   channelId: number;
   name: string;
@@ -30,12 +37,7 @@ interface cnl {
   messages: msg[],
 }
 
-interface msg {
-  messageId: number;
-  senderId: number;
-  message: string;
-  timeSent: number;
-}
+
 
 interface dm {
   name: string[];
