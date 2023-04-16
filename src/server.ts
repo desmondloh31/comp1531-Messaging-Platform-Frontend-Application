@@ -226,8 +226,6 @@ app.post('auth/passwordreset/reset/v1', (req: Request, res: Response) => {
   res.json(authid);
 });
 
-
-
 // start server
 const server = app.listen(PORT, HOST, () => {
   // DO NOT CHANGE THIS LINE
