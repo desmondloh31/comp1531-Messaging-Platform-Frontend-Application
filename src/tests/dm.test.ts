@@ -428,3 +428,126 @@ describe('Error Checking in dmLeave v1', () => {
     expect(result).toStrictEqual({});
   });
 });
+
+describe('Error Checking in message/react/v1', () => {
+  interface usr {
+    authUserId: number;
+    token: string;
+  }
+  let user: usr;
+  let user1: usr;
+  let dmid: number;
+  let msgId: number;
+
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    dmid = requestDmCreate(user.token, [user1.authUserId]).dmId;
+    msgId = requestSendDm(user.token, dmid, 'Test Message').messageId;
+  });
+
+  test('invalid messageId', () => {
+    const result = requestMessageReact(-1, 1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('invalid reactId', () => {
+    const result = requestMessageReact(msgId, -1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('msg already has react', () => {
+    requestMessageReact(msgId, 1);
+    const result = requestMessageReact(msgId, 1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('Valid Test', () => {
+    const result = requestMessageReact(msgId, 1, user1.token);
+    expect(result).toStrictEqual({});
+  });
+});
+
+describe('Error Checking in message/unreact/v1', () => {
+  interface usr {
+    authUserId: number;
+    token: string;
+  }
+  let user: usr;
+  let user1: usr;
+  let dmid: number;
+  let msgId: number;
+
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    dmid = requestDmCreate(user.token, [user1.authUserId]).dmId;
+    msgId = requestSendDm(user.token, dmid, 'Test Message').messageId;
+    requestMessageReact(msgId, 1, user1.token);
+  });
+
+  test('invalid messageId', () => {
+    const result = requestMessageUnreact(-1, 1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('invalid reactId', () => {
+    const result = requestMessageUnreact(msgId, -1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('msg already has react', () => {
+    requestMessageUnreact(msgId, 1);
+    const result = requestMessageUnreact(msgId, 1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('Valid Test', () => {
+    const result = requestMessageUnreact(msgId, 1, user1.token);
+    expect(result).toStrictEqual({});
+  });
+});
+
+describe('Error Checking in message/pin/v1', () => {
+  interface usr {
+    authUserId: number;
+    token: string;
+  }
+  let user: usr;
+  let user1: usr;
+  let dmid: number;
+  let msgId: number;
+  let msgId2: number;
+
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    dmid = requestDmCreate(user.token, [user1.authUserId]).dmId;
+    msgId = requestSendDm(user.token, dmid, 'Test Message').messageId;
+    msgId2 = requestSendDm(user1.token, dmid, 'bruh').messageId;
+  });
+
+  test('invalid messageId', () => {
+    const result = requestMessagePin(-1, user1.token);
+    expect(result).toStrictEqual(404);
+  });
+
+  test('msg already has pin', () => {
+    requestMessagePin(msgId, user1.token);
+    const result = requestMessagePin(msgId, user1.token);
+    expect(result).toStrictEqual(404);
+  });
+
+  test('user does not have permission', () => {
+    const result = requestMessagePin(msgId1, user1.token);
+    expect(result).toStrictEqual(403);
+  });
+
+  test('Valid Test', () => {
+    const result = requestMessagePin(msgId, user1.token);
+    expect(result).toStrictEqual({});
+  });
+});
