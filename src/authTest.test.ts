@@ -15,15 +15,15 @@ function requestAuthLogout(token: string) {
   return requestHelper('POST', '/auth/logout/v1', { }, token);
 }
 function requestClear() {
-  return requestHelper('DELETE', '/clear/v1', {});
+  return requestHelper('DELETE', '/clear/v1', {}, '-1');
 }
 
 function requestAuthPasswordResetRequest(email: string){
-  return requestHelper('POST', 'auth/passwordreset/request/v1', {email})
+  return requestHelper('POST', 'auth/passwordreset/request/v1', {email}, '-1')
 }
 
 function requestAuthPasswordResetReset(resetCode: number, newPassword: string){
-  return requestHelper('POST', 'auth/passwordreset/reset/v1', {resetCode, newPassword})
+  return requestHelper('POST', 'auth/passwordreset/reset/v1', {resetCode, newPassword}, '-1')
 }
 
 // Helper Function
