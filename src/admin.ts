@@ -1,4 +1,3 @@
-
 import {getData, setData} from './dataStore';
 import validator from 'validator';
 import {tokenCreate, tokenVerify, tokenDelete, tokenExists} from './token' 
