@@ -3,79 +3,81 @@ import { port, url } from '../config.json';
 const SERVER_URL = `${url}:${port}`;
 
 export function requestChannelInvite(token: string, channelId: number, uId: number) {
-  return requestHelper('POST', '/channel/invite/v2', { token, channelId, uId });
+  return requestHelper('POST', '/channel/invite/v2', { channelId, uId }, token);
 }
 
 export function requestClear() {
-  return requestHelper('DELETE', '/clear/v1', {});
+  return requestHelper('DELETE', '/clear/v1', {}, '-1');
 }
 
 export function requestdmLeave(token: string, dmId: number) {
-  return requestHelper('POST', '/dm/leave/v1', { token, dmId });
+  return requestHelper('POST', '/dm/leave/v1', { dmId }, token);
 }
 
 export function requestDeleteMessage(token: string, messageId: number) {
-  return requestHelper('DELETE', '/message/remove/v1', { token, messageId });
+  return requestHelper('DELETE', '/message/remove/v1', { messageId }, token);
 }
 
 export function requestdmDelete(token: string, dmId: number) {
-  return requestHelper('DELETE', '/dm/remove/v1', { token, dmId });
+  return requestHelper('DELETE', '/dm/remove/v1', { dmId }, token);
 }
 
 export function requestChannelMessages(token: string, channelId: number, start: number) {
-  return requestHelper('GET', '/channel/messages/v2', { token, channelId, start });
+  return requestHelper('GET', '/channel/messages/v2', { channelId, start }, token);
 }
 
 export function requestDmMessages(token: string, dmId: number, start: number) {
-  return requestHelper('GET', '/dm/messages/v1', { token, dmId, start });
+  return requestHelper('GET', '/dm/messages/v1', { dmId, start }, token);
 }
 
 export function requestdmDetails(token: string, dmId: number) {
-  return requestHelper('GET', '/dm/details/v1', { token, dmId });
+  return requestHelper('GET', '/dm/details/v1', { dmId }, token);
 }
 
 export function requestEditMessage(token: string, messageId: number, message: string) {
-  return requestHelper('PUT', '/message/edit/v1', { token, messageId, message });
+  return requestHelper('PUT', '/message/edit/v1', { messageId, message }, token);
 }
 
 export function requestSendMessages(token: string, channelId: number, message: string) {
-  return requestHelper('POST', '/message/send/v1', { token, channelId, message });
+  return requestHelper('POST', '/message/send/v1', { channelId, message }, token);
 }
 
 export function requestSendDm(token: string, dmId: number, message: string) {
-  return requestHelper('POST', '/message/senddm/v1', { token, dmId, message });
+  return requestHelper('POST', '/message/senddm/v1', { dmId, message }, token);
 }
 
 export function requestDmCreate(token: string, uIds: number[]) {
-  return requestHelper('POST', '/dm/create/v1', { token, uIds });
+  return requestHelper('POST', '/dm/create/v1', { uIds }, token);
 }
 
 export function requestChannelCreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v2', { token, name, isPublic });
+  return requestHelper('POST', '/channels/create/v2', { name, isPublic }, token);
 }
 
 export function requestChannelJoin(token: string, channelId: number) {
-  return requestHelper('POST', '/channel/join/v2', { token, channelId });
+  return requestHelper('POST', '/channel/join/v2', { channelId }, token);
 }
 
 export function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast });
+  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
 }
 
 // Helper Function
-function requestHelper(method: HttpVerb, path: string, payload: object) {
+function requestHelper(method: HttpVerb, path: string, payload: object, tkn: string) {
   let qs = {};
   let json = {};
+  let headers = {};
   if (['GET', 'DELETE'].includes(method)) {
+    headers = { token: tkn };
     qs = payload;
   } else {
     // PUT/POST
+    headers = { token: tkn };
     json = payload;
   }
-  const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
+  const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
   return JSON.parse(res.getBody('utf-8'));
 }
-
 const ERROR = { error: expect.any(String) };
 
 describe('Error Checking in Send Message v1', () => {
