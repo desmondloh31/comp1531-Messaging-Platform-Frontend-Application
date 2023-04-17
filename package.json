@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "test": "jest --testMatch '**/?(*.)+(test).ts'",
+        "test": "jest",
         "tsc": "tsc --project tsconfig.json",
         "lint": "eslint src/**/*.{ts,js}",
         "lint-fix": "eslint --fix src/**/*.{ts,js}",

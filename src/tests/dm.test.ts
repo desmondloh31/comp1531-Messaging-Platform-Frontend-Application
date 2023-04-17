@@ -1,3 +1,4 @@
+
 import request, { HttpVerb } from 'sync-request';
 import { port, url } from '../config.json';
 const SERVER_URL = `${url}:${port}`;
@@ -62,6 +63,22 @@ export function requestAuthRegister(email: string, password: string, nameFirst: 
   return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
 }
 
+export function requestMessageReact(messageId: number, reactId: number, token: string) {
+  return requestHelper('POST', '/message/react/v1', { messageId, reactId }, token);
+}
+
+export function requestMessageUnreact(messageId: number, reactId: number, token: string) {
+  return requestHelper('POST', '/message/unreact/v1', { messageId, reactId }, token);
+}
+
+export function requestMessagePin(messageId: number, token: string) {
+  return requestHelper('POST', '/message/pin/v1', { messageId }, token);
+}
+
+export function requestMessageUnpin(messageId: number, token: string) {
+  return requestHelper('POST', '/message/unpin/v1', { messageId }, token);
+}
+
 // Helper Function
 function requestHelper(method: HttpVerb, path: string, payload: object, tkn: string) {
   let qs = {};
@@ -76,6 +93,9 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
     json = payload;
   }
   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+  if (res.statusCode !== 200) {
+    return res.statusCode;
+  }
   return JSON.parse(res.getBody('utf-8'));
 }
 const ERROR = { error: expect.any(String) };
@@ -425,6 +445,172 @@ describe('Error Checking in dmLeave v1', () => {
 
   test('Valid Test', () => {
     const result = requestdmLeave(user1.token, dmid);
+    expect(result).toStrictEqual({});
+  });
+});
+
+describe('Error Checking in message/react/v1', () => {
+  interface usr {
+    authUserId: number;
+    token: string;
+  }
+  let user: usr;
+  let user1: usr;
+  let dmid: number;
+  let msgId: number;
+
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    dmid = requestChannelCreate(user.token, 'hello', true).channelId;
+    requestChannelInvite(user.token, dmid, user1.authUserId);
+    msgId = requestSendMessages(user.token, dmid, 'Test Message').messageId;
+  });
+
+  test('invalid messageId', () => {
+    const result = requestMessageReact(-1, 1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('invalid reactId', () => {
+    const result = requestMessageReact(msgId, -1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('msg already has react', () => {
+    requestMessageReact(msgId, 1, user1.token);
+    const result = requestMessageReact(msgId, 1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('Valid Test', () => {
+    const result = requestMessageReact(msgId, 1, user1.token);
+    expect(result).toStrictEqual({});
+  });
+});
+
+describe('Error Checking in message/unreact/v1', () => {
+  interface usr {
+    authUserId: number;
+    token: string;
+  }
+  let user: usr;
+  let user1: usr;
+  let dmid: number;
+  let msgId: number;
+
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    dmid = requestChannelCreate(user.token, 'hello', true).channelId;
+    requestChannelInvite(user.token, dmid, user1.authUserId);
+    msgId = requestSendMessages(user.token, dmid, 'Test Message').messageId;
+    requestMessageReact(msgId, 1, user.token);
+  });
+
+  test('invalid messageId', () => {
+    const result = requestMessageUnreact(-1, 1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('invalid reactId', () => {
+    const result = requestMessageUnreact(msgId, -1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('msg already has react', () => {
+    requestMessageUnreact(msgId, 1, user1.token);
+    const result = requestMessageUnreact(msgId, 1, user1.token);
+    expect(result).toEqual(400);
+  });
+
+  test('Valid Test', () => {
+    const result = requestMessageUnreact(msgId, 1, user.token);
+    expect(result).toStrictEqual({});
+  });
+});
+
+describe('Error Checking in message/pin/v1', () => {
+  interface usr {
+    authUserId: number;
+    token: string;
+  }
+  let user: usr;
+  let user1: usr;
+  let dmid: number;
+  let msgId: number;
+
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    dmid = requestChannelCreate(user.token, 'hello', true).channelId;
+    requestChannelInvite(user.token, dmid, user1.authUserId);
+    msgId = requestSendMessages(user.token, dmid, 'Test Message').messageId;
+  });
+
+  test('invalid messageId', () => {
+    const result = requestMessagePin(-1, user.token);
+    expect(result).toStrictEqual(400);
+  });
+
+  test('msg already has pin', () => {
+    requestMessagePin(msgId, user.token);
+    const result = requestMessagePin(msgId, user.token);
+    expect(result).toStrictEqual(400);
+  });
+
+  test('user does not have permission', () => {
+    const result = requestMessagePin(msgId, user1.token);
+    expect(result).toStrictEqual(403);
+  });
+
+  test('Valid Test', () => {
+    const result = requestMessagePin(msgId, user.token);
+    expect(result).toStrictEqual({});
+  });
+});
+
+describe('Error Checking in message/unpin/v1', () => {
+  interface usr {
+    authUserId: number;
+    token: string;
+  }
+  let user: usr;
+  let user1: usr;
+  let dmid: number;
+  let msgId: number;
+
+  beforeEach(() => {
+    requestClear();
+    user = requestAuthRegister('test@gmail.com', 'test1234', 'test', 'test');
+    user1 = requestAuthRegister('user2@gmail.com', 'test1234', 'Hritwik', 'Nauriyal');
+    dmid = requestChannelCreate(user.token, 'hello', true).channelId;
+    requestChannelInvite(user.token, dmid, user1.authUserId);
+    msgId = requestSendMessages(user.token, dmid, 'Test Message').messageId;
+    requestMessagePin(msgId, user.token);
+  });
+
+  test('invalid messageId', () => {
+    const result = requestMessageUnpin(-1, user.token);
+    expect(result).toStrictEqual(400);
+  });
+
+  test('msg already has pin', () => {
+    requestMessageUnpin(msgId, user.token);
+    const result = requestMessageUnpin(msgId, user.token);
+    expect(result).toStrictEqual(400);
+  });
+
+  test('user does not have permission', () => {
+    const result = requestMessageUnpin(msgId, user1.token);
+    expect(result).toStrictEqual(403);
+  });
+
+  test('Valid Test', () => {
+    const result = requestMessageUnpin(msgId, user.token);
     expect(result).toStrictEqual({});
   });
 });

@@ -1,5 +1,5 @@
 // YOU SHOULD MODIFY THIS OBJECT BELOW
-import fs from 'fs'
+//import fs from 'fs'
 
 interface usr {
   authUserId: number;
@@ -15,6 +15,11 @@ interface usr {
   notifications: notification[];
 }
 
+interface react {
+  reactId: number;
+  uids: number[];
+}
+
 interface notification {
   notificationId: number;
   message: string;
@@ -28,6 +33,8 @@ interface msg {
   senderId: number;
   message: string;
   timeSent: number;
+  reacts: react;
+  pinned: boolean;
 }
 
 interface cnl {
