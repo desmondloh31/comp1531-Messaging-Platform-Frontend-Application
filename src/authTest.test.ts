@@ -1,4 +1,4 @@
-import { STATUS_CODES } from 'http';
+// import { STATUS_CODES } from 'http';
 import request, { HttpVerb } from 'sync-request';
 import { port, url } from './config.json';
 const SERVER_URL = `${url}:${port}`;
@@ -11,20 +11,21 @@ function requestAuthLogin(email: string, password: string) {
   return requestHelper('POST', '/auth/login/v2', { email, password }, '-1');
 }
 
-function requestAuthLogout(token: string) {
-  return requestHelper('POST', '/auth/logout/v1', { }, token);
-}
+// function requestAuthLogout(token: string) {
+//   return requestHelper('POST', '/auth/logout/v1', { }, token);
+// }
+
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {}, '-1');
 }
 
-function requestAuthPasswordResetRequest(email: string){
-  return requestHelper('POST', '/auth/passwordreset/request/v1', {email}, "")
-}
+// function requestAuthPasswordResetRequest(email: string) {
+//   return requestHelper('POST', '/auth/passwordreset/request/v1', { email }, '');
+// }
 
-function requestAuthPasswordResetReset(resetCode: number, newPassword: string){
-  return requestHelper('POST', '/auth/passwordreset/reset/v1', {resetCode, newPassword},"")
-}
+// function requestAuthPasswordResetReset(resetCode: number, newPassword: string) {
+//   return requestHelper('POST', '/auth/passwordreset/reset/v1', { resetCode, newPassword }, '');
+// }
 
 // Helper Function
 function requestHelper(method: HttpVerb, path: string, payload: object, tkn: string) {
@@ -39,24 +40,24 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
     headers = { token: tkn };
     json = payload;
   }
-  const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
-  if(res.statusCode !== 200){
-    return res.statusCode
+  const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+  if (res.statusCode !== 200) {
+    return res.statusCode;
   }
   return JSON.parse(res.body as string);
 }
-const ERROR = { error: expect.any(String) };
+
+// const ERROR = { error: expect.any(String) };
 
 describe('Testing authRegisterV1', () => {
   beforeEach(() => {
     requestClear();
   });
-  
+
   test('Testing an invalid email', () => {
     const register = requestAuthRegister('oeihoashfoiahnfqo', '123456', 'John', 'Smith');
-    //requestAuthRegister('oeihoashfoiahnfqo', '123456', 'John', 'Smith')
+    // requestAuthRegister('oeihoashfoiahnfqo', '123456', 'John', 'Smith')
     expect(register).toBe(400);
-
   });
 
   test('Testing a short password', () => {
@@ -80,12 +81,11 @@ describe('Testing authRegisterV1', () => {
   });
 });
 
-
 describe('Testing authLoginV1', () => {
   beforeEach(() => {
     requestClear();
   });
-  
+
   test('Testing if login detail is correct', () => {
     requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith');
     const login = requestAuthLogin('example@gmail.com', 'abc123');
@@ -111,7 +111,7 @@ describe('Testing authLogoutV1', () => {
   beforeEach(() => {
     requestClear();
   });
-  
+
   test('Testing if it will return nothing', () => {
     requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith');
     const login = requestAuthLogin('example@gmail.com', 'abc123') as {token:string, authUserId: number};
@@ -126,28 +126,25 @@ describe('Testing authLogoutV1', () => {
   });
 });
 
-
 describe('Testing authPasswordResetRequest', () => {
   beforeEach(() => {
     requestClear();
   });
-  
+
   test('Testing if it will return nothing', () => {
     const user = requestAuthRegister('keyon.vonrueden92@ethereal.email', 'abc123', 'John', 'Smith');
     const function1 = requestAuthPasswordResetRequest(user.email)
-    
+
     expect(function1).toEqual({});
   });
 
-
 });
-
 
 describe('Testing authPasswordResetReset', () => {
   beforeEach(() => {
     requestClear();
   });
-  
+
   test('Testing if it will return error', () => {
     const function1 = requestAuthPasswordResetReset(123, "abcd1234")
     expect(function1).toEqual(400);

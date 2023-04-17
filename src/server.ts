@@ -13,7 +13,7 @@ import {
 import { dmCreate, dmList, dmRemoveV1, dmDetailsV1, dmLeaveV1 } from './dm';
 import {
   messageUnpinV1, messagePinV1, messageReactV1, messageUnreactV1,
-  messageShareV1, messageSendLaterV1, messageSendLaterDmV1 
+  messageShareV1, messageSendLaterV1, messageSendLaterDmV1
 } from './message';
 import { clearV1 } from './other';
 
@@ -47,7 +47,7 @@ app.get('/echo', (req: Request, res: Response, next) => {
 
 // Keep this BENEATH route definitions
 // handles errors nicely
-//app.use(errorHandler());
+// app.use(errorHandler());
 // All http function wrappers for All Functions:
 app.post('/auth/login/v2', (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -56,11 +56,11 @@ app.post('/auth/login/v2', (req: Request, res: Response) => {
 });
 
 app.post('/auth/register/v2', (req: Request, res: Response) => {
-  //const { email, password, nameFirst, nameLast } = req.body
-  const email = req.body.email as string
-  const password = req.body.password as string
-  const nameFirst = req.body.nameFirst as string
-  const nameLast = req.body.nameLast as string
+  // const { email, password, nameFirst, nameLast } = req.body
+  const email = req.body.email as string;
+  const password = req.body.password as string;
+  const nameFirst = req.body.nameFirst as string;
+  const nameLast = req.body.nameLast as string;
   const authid = authRegisterV1(email, password, nameFirst, nameLast);
   return res.json(authid);
 });
@@ -272,18 +272,16 @@ app.put('/user/profile/sethandle/v1', (req: Request, res: Response) => {
   res.json(function1);
 });
 
-
-app.get('/notifications/get/v1',(req: Request, res: Response) => {
+app.get('/notifications/get/v1', (req: Request, res: Response) => {
   const token = req.query.token as string;
-  const oldestNotificationId = parseInt(req.query.notificationId as string);
+  // const oldestNotificationId = parseInt(req.query.notificationId as string);
   res.json(getNotificationsV1(token));
 });
 
 app.get('/search/v1', (req: Request, res: Response) => {
-  const token = req.query.token as string;
+  // const token = req.query.token as string;
   const queryStr = req.query.message as string;
   res.json(searchV1(queryStr));
-
 });
 
 app.post('/standup/start/v1', (req: Request, res: Response) => {
@@ -305,27 +303,27 @@ app.use(errorHandler());
 
 app.delete('/admin/user/remove/v1', (req: Request, res: Response) => {
   const uId = parseInt(req.query.uId as string);
-  const function1 = adminUserRemoveV1(uId)
+  const function1 = adminUserRemoveV1(uId);
   res.json(function1);
 });
 
 app.post('auth/passwordreset/request/v1', (req: Request, res: Response) => {
-  const { email} = req.body;
+  const { email } = req.body;
   const authid = authPasswordResetRequestV1(email);
   res.json(authid);
 });
 
 app.post('auth/passwordreset/reset/v1', (req: Request, res: Response) => {
-  const { resetCode, newPassword} = req.body;
+  const { resetCode, newPassword } = req.body;
   const authid = authPasswordResetResetV1(resetCode, newPassword);
   res.json(authid);
 });
 
 app.post('user/profile/uploadphoto/v1', (req: Request, res: Response) => {
-  const {imgUrl, xStart, yStart, xEnd, yEnd} = req.body;
+  const { imgUrl, xStart, yStart, xEnd, yEnd } = req.body;
   const authid = uploadPhotoV1(imgUrl, xStart, yStart, xEnd, yEnd);
   res.json(authid);
-})
+});
 
 // start server
 const server = app.listen(PORT, HOST, () => {

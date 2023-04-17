@@ -50,15 +50,15 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
   let json = {};
   let headers = {};
   if (['GET', 'DELETE'].includes(method)) {
-  headers = {token: tkn }
-  qs = payload;
+    headers = { token: tkn };
+    qs = payload;
   } else {
   // PUT/POST
-  json = payload;
+    json = payload;
   }
-  const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
-  if(res.statusCode !== 200){
-  return res.statusCode
+  const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+  if (res.statusCode !== 200) {
+    return res.statusCode;
   }
   return JSON.parse(res.body as string);
 }
@@ -386,4 +386,3 @@ describe('Testing channelJoinV1', () => {
     expect(result).toStrictEqual({});
   });
 });
-

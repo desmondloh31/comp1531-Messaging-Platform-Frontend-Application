@@ -1,5 +1,11 @@
 // YOU SHOULD MODIFY THIS OBJECT BELOW
-//import fs from 'fs'
+// import fs from 'fs'
+
+interface notification {
+  notificationId: number;
+  message: string;
+  timestamp: number;
+}
 
 interface usr {
   authUserId: number;
@@ -19,14 +25,6 @@ interface react {
   reactId: number;
   uids: number[];
 }
-
-interface notification {
-  notificationId: number;
-  message: string;
-  timestamp: number;
-}
-
-
 
 interface msg {
   messageId: number;
@@ -49,10 +47,8 @@ interface cnl {
   standupBuffer?: { message: string, user: number }[];
 }
 
-
-
 interface dm {
-  name: string[];
+  name: string;
   dmId: number;
   creator: number;
   allMembers: number[];
@@ -91,10 +87,9 @@ Example usage
 */
 
 // Use get() to access the data
-//const dataStorePath = './storage.json'
+// const dataStorePath = './storage.json'
 function getData() {
-  
-  //data = JSON.parse(String(fs.readFileSync(dataStorePath)))
+  // data = JSON.parse(String(fs.readFileSync(dataStorePath)))
   return data;
 }
 
@@ -104,9 +99,7 @@ function getData() {
 // Hint: this function might be useful to edit in iteration 2
 function setData(newData: db) {
   data = newData;
-  //fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
-  
+  // fs.writeFileSync(dataStorePath, JSON.stringify(newData,null,4))
 }
-
 
 export { getData, setData };
