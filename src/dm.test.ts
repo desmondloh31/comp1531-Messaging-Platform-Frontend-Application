@@ -5,30 +5,33 @@ const SERVER_URL = `${url}:${port}`;
 
 // Test Wrappers
 function requestdmCreate(token: string, uIds: number[]) {
-  return requestHelper('POST', '/dm/create/v1', { token, uIds });
+  return requestHelper('POST', '/dm/create/v1', { uIds }, token);
 }
 // function requestdmList(token: string) {
 //   return requestHelper('GET', '/dm/list/v1', { token });
 // }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast });
+  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
 }
 function requestClear() {
-  return requestHelper('DELETE', '/clear/v1', {});
+  return requestHelper('DELETE', '/clear/v1', {}, '-1');
 }
 
 // Helper Function
-function requestHelper(method: HttpVerb, path: string, payload: object) {
+function requestHelper(method: HttpVerb, path: string, payload: object, tkn: string) {
   let qs = {};
   let json = {};
+  let headers = {};
   if (['GET', 'DELETE'].includes(method)) {
+    headers = { token: tkn };
     qs = payload;
   } else {
     // PUT/POST
+    headers = { token: tkn };
     json = payload;
   }
-  const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
+  const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
   return JSON.parse(res.getBody('utf-8'));
 }
 
