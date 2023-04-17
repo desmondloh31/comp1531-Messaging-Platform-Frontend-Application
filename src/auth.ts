@@ -42,7 +42,8 @@ function authRegisterV1(email: string, password: string, nameFirst: string, name
     nameLast: nameLast,
     authUserId: authUserId,
     handleStr: handleStr,
-    token: []
+    token: [],
+    notifications:[],
   });
   setData(data);
   const token = tokenCreate(email);
@@ -92,3 +93,4 @@ export function authLogoutV1(token: string) {
   // console.log(getData());
   return {};
 }
+

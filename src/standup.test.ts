@@ -24,7 +24,7 @@ function requestSearch(queryStr: string) {
 }
 
 function requestMessageSend(token: string, channelId: number, message: string) {
-  return requestHelper('POST', '/message/send/v2', { token, channelId, message}, token);
+  return requestHelper('POST', '/message/send/v1', { token, channelId, message}, token);
 }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
@@ -62,7 +62,7 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
   return JSON.parse(res.body as string);
 }
   //testing searchV1:
-  /*describe('testing SearchV1', () => {
+  describe('testing SearchV1', () => {
     interface usr {
       authUserId: number;
       token: string;
@@ -99,7 +99,7 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
       const result = requestSearch('a'.repeat(1001));
       expect(result).toBe(400);
   });
-  });*/
+  });
   
   //testing getNotificationsV1:
   describe('testing getNotificationsV1', () => {

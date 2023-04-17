@@ -1,8 +1,6 @@
 import { getData, setData } from './dataStore';
 import { tokenVerify } from './token';
 import HttpError from 'http-errors';
-import crypto from 'crypto';
-
 
 
 //sees if the standup is currently active
@@ -57,7 +55,6 @@ function standupStartV1(token: string, channelId: number, length: number) {
         //raise error 400: Bad Request
         throw HttpError(400, "length cannot be a negative integer");
     }
-  
 
     findChannelId.standupActive = true;
     const timeFinish = Math.floor(Date.now() / 1000) + length;

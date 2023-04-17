@@ -23,7 +23,7 @@ import {
 } from './users';
 import { channelsCreateV1, channelsListAllV1, channelsListV1 } from './channels';
 import { getNotificationsV1, searchV1, standupActiveV1, standupSendV1, standupStartV1 } from './standup';
-import { adminUserRemoveV1 } from './admin';
+
 // Set up web app
 const app = express();
 // Use middleware that allows us to access the JSON body of requests
@@ -202,23 +202,6 @@ app.put('/user/profile/sethandle/v1', (req: Request, res: Response) => {
   res.json(function1);
 });
 
-app.delete('/admin/user/remove/v1', (req: Request, res: Response) => {
-  const uId = parseInt(req.query.uId as string);
-  const function1 = adminUserRemoveV1(uId)
-  res.json(function1);
-});
-
-app.post('auth/passwordreset/request/v1', (req: Request, res: Response) => {
-  const { email} = req.body;
-  const authid = authPasswordResetRequestV1(email);
-  res.json(authid);
-});
-
-app.post('auth/passwordreset/reset/v1', (req: Request, res: Response) => {
-  const { resetCode, newPassword} = req.body;
-  const authid = authPasswordResetResetV1(resetCode, newPassword);
-  res.json(authid);
-});
 
 app.get('/notifications/get/v1',(req: Request, res: Response) => {
   const token = req.query.token as string;
