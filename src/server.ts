@@ -10,12 +10,10 @@ import {
   channelMessagesV1, channelLeaveV1, channelAddOwnerV1,
   channelRemoveOwnerV1, messageDeleteV1, messageEditV1, messageSendV1, dmMessagesV1
 } from './channel';
-
 import { dmCreate, dmList, dmRemoveV1, dmDetailsV1, dmLeaveV1 } from './dm';
-
 import { clearV1 } from './other';
 
-import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
+import { authRegisterV1, authLoginV1, authLogoutV1, authPasswordResetRequestV1, authPasswordResetResetV1 } from './auth';
 import { tokenVerify } from './token';
 import {
   userProfileV1, usersAllV1, userProfileSetemailV1, userProfileSethandleV1,
@@ -34,7 +32,7 @@ app.use(cors());
 app.use(morgan('dev'));
 
 const PORT: number = parseInt(process.env.PORT || config.port);
-const HOST: string = process.env.IP || '127.0.0.1';
+const HOST: string = process.env.IP || 'localhost';
 
 // Example get request
 app.get('/echo', (req: Request, res: Response, next) => {
@@ -42,6 +40,9 @@ app.get('/echo', (req: Request, res: Response, next) => {
   return res.json(echo(data));
 });
 
+// Keep this BENEATH route definitions
+// handles errors nicely
+//app.use(errorHandler());
 // All http function wrappers for All Functions:
 app.post('/auth/login/v2', (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -50,7 +51,11 @@ app.post('/auth/login/v2', (req: Request, res: Response) => {
 });
 
 app.post('/auth/register/v2', (req: Request, res: Response) => {
-  const { email, password, nameFirst, nameLast } = req.body;
+  //const { email, password, nameFirst, nameLast } = req.body
+  const email = req.body.email as string
+  const password = req.body.password as string
+  const nameFirst = req.body.nameFirst as string
+  const nameLast = req.body.nameLast as string
   const authid = authRegisterV1(email, password, nameFirst, nameLast);
   return res.json(authid);
 });
