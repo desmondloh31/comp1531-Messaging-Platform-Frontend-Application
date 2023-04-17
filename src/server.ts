@@ -17,7 +17,7 @@ import { authRegisterV1, authLoginV1, authLogoutV1, authPasswordResetRequestV1, 
 import { tokenVerify } from './token';
 import {
   userProfileV1, usersAllV1, userProfileSetemailV1, userProfileSethandleV1,
-  userProfileSetnameV1
+  userProfileSetnameV1, uploadPhotoV1
 } from './users';
 import { channelsCreateV1, channelsListAllV1, channelsListV1 } from './channels';
 import { adminUserRemoveV1 } from './admin';
@@ -242,6 +242,12 @@ app.post('auth/passwordreset/reset/v1', (req: Request, res: Response) => {
   const authid = authPasswordResetResetV1(resetCode, newPassword);
   res.json(authid);
 });
+
+app.post('user/profile/uploadphoto/v1', (req: Request, res: Response) => {
+  const {imgUrl, xStart, yStart, xEnd, yEnd} = req.body;
+  const authid = uploadPhotoV1(imgUrl, xStart, yStart, xEnd, yEnd);
+  res.json(authid);
+})
 
 // start server
 const server = app.listen(PORT, HOST, () => {
