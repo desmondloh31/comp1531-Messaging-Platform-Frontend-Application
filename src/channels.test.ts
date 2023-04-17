@@ -28,15 +28,17 @@ function requestHelper(method: HttpVerb, path: string, payload: object) {
   let qs = {};
   let json = {};
   if (['GET', 'DELETE'].includes(method)) {
-    qs = payload;
+  qs = payload;
   } else {
-    // PUT/POST
-    json = payload;
+  // PUT/POST
+  json = payload;
   }
   const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
-  return JSON.parse(res.getBody('utf-8'));
+  if(res.statusCode !== 200){
+  return res.statusCode
+  }
+  return JSON.parse(res.body as string);
 }
-
 // testing channelsCreateV1:
 describe('Testing channelsCreateV1', () => {
   beforeEach(() => {
@@ -71,7 +73,7 @@ describe('Testing channelsCreateV1', () => {
     const name = '';
     const isPublic = true;
     const result = requestChannelscreate(user1.token, name, isPublic);
-    expect((result)).toEqual({ error: 'length of name is less than 1 or more than 20 characters' });
+    expect((result)).toEqual(400);
   });
 
   // name is too long:
@@ -81,7 +83,7 @@ describe('Testing channelsCreateV1', () => {
     const isPublic = true;
     const longName = 'abcdefghijklmnopqrstuvwxyz';
     const result = requestChannelscreate(user1.token, longName, isPublic);
-    expect((result)).toEqual({ error: 'length of name is less than 1 or more than 20 characters' });
+    expect((result)).toEqual(400);
   });
 });
 
