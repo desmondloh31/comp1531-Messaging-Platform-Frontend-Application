@@ -243,7 +243,6 @@ function messageSend(authUserId: number, channelId: number, dmId: number, messag
       pinned: false,
     });
   }
-
   setData(data);
   return { messageId: Id };
 }
@@ -272,8 +271,6 @@ export function messageShareV1(token: string, ogMessageId: number, channelId: nu
     throw HttpError(400, 'Message is too long');
   }
 
-  console.log(ogMsg);
-
   const og = ogMsg.messages.find(i => i.messageId === ogMessageId);
   finalMsg = og.message + '-->' + message;
 
@@ -284,4 +281,70 @@ export function messageShareV1(token: string, ogMessageId: number, channelId: nu
     const result = messageSend(authUserId, -1, dmId, finalMsg).messageId;
     return { sharedMessageId: result };
   }
+}
+
+export function messageSendLaterV1(token: string, channelId: number, message: string, timeSent: number) {
+  const data = getData();
+  const authUserId = tokenVerify(token) as number;
+  const channel = data.channels.find(i => i.channelId === channelId);
+  const user = data.users.find(i => i.authUserId === authUserId);
+
+  if (!user) {
+    throw HttpError(400, 'token is invalid');
+  }
+
+  if (!channel) {
+    throw HttpError(400, 'channelId is invalid');
+  }
+
+  if (channel.allMembers.find((i: number) => i === authUserId) === undefined) {
+    throw HttpError(403, 'authUserId is not a member of the channel with ID channelId');
+  }
+
+  if (message.length > 1000) {
+    throw HttpError(400, 'message length is greater than 1000 characters');
+  }
+
+  if (timeSent < 0) {
+    throw HttpError(400, 'timeSent is negative');
+  }
+
+  setTimeout(() => {
+    messageSend(authUserId, channelId, -1, message);
+  }, (timeSent * 1000) - Date.now());
+
+  return { messageId: data.msgcount };
+}
+
+export function messageSendLaterDmV1(token: string, dmId: number, message: string, timeSent: number) {
+  const data = getData();
+  const authUserId = tokenVerify(token) as number;
+  const dm = data.dms.find(i => i.dmId === dmId);
+  const user = data.users.find(i => i.authUserId === authUserId);
+
+  if (!user) {
+    throw HttpError(400, 'token is invalid');
+  }
+
+  if (!dm) {
+    throw HttpError(400, 'channelId is invalid');
+  }
+
+  if (dm.allMembers.find((i: number) => i === authUserId) === undefined) {
+    throw HttpError(403, 'authUserId is not a member of the channel with ID channelId');
+  }
+
+  if (message.length > 1000) {
+    throw HttpError(400, 'message length is greater than 1000 characters');
+  }
+
+  if (timeSent < 0) {
+    throw HttpError(400, 'timeSent is negative');
+  }
+
+  setTimeout(() => {
+    messageSend(authUserId, -1, dmId, message);
+  }, (timeSent * 1000) - Date.now());
+
+  return { messageId: data.msgcount };
 }
