@@ -5,15 +5,15 @@ import { port, url } from './config.json';
 const SERVER_URL = `${url}:${port}`;
 
 function requestChannelleavev1(token: string, channelId: number) {
-  return requestHelper('POST', '/channel/leave/v1', { token, channelId }, token);
+  return requestHelper('POST', '/channel/leave/v1', { channelId }, token);
 }
 
 function requestChanneladdowner(token: string, channelId: number, uId: number) {
-  return requestHelper('POST', '/channel/addowner/v1', { token, channelId, uId }, token);
+  return requestHelper('POST', '/channel/addowner/v1', { channelId, uId }, token);
 }
 
 function requestChannelremoveowner(token: string, channelId: number, uId: number) {
-  return requestHelper('POST', '/channel/removeowner/v1', { token, channelId, uId }, token);
+  return requestHelper('POST', '/channel/removeowner/v1', { channelId, uId }, token);
 }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
@@ -21,24 +21,24 @@ function requestAuthRegister(email: string, password: string, nameFirst: string,
 }
 
 function requestChannelscreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v2', { token, name, isPublic }, token);
+  return requestHelper('POST', '/channels/create/v2', { name, isPublic }, token);
 }
 
 // function requestChannelDetails(token: string, channelId: number) {
 //   return requestHelper('GET', '/channel/details/v2', { token, channelId });
 // }
 
-function requestChannelMessages(token: string, channelId: number, start: number) {
-  return requestHelper('GET', '/channel/messages/v2', { token, channelId, start }, token);
-}
+// function requestChannelMessages(token: string, channelId: number, start: number) {
+//   return requestHelper('GET', '/channel/messages/v2', { token, channelId, start });
+// }
 
 function requestChannelJoin(token: string, channelId: number) {
-  return requestHelper('POST', '/channel/join/v2', { token, channelId }, token);
+  return requestHelper('POST', '/channel/join/v2', { channelId }, token);
 }
 
-function requestChannelInvite(token: string, channelId: number, uId: number) {
-  return requestHelper('POST', '/channel/invite/v2', { token, channelId, uId }, token);
-}
+// function requestChannelInvite(token: string, channelId: number, uId: number) {
+//   return requestHelper('POST', '/channel/invite/v2', { token, channelId, uId });
+// }
 
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {}, '-1');

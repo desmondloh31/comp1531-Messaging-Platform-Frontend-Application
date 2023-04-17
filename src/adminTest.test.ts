@@ -10,14 +10,21 @@ function requestClear() {
     return requestHelper('DELETE', '/clear/v1', {});
   }
 
-function requestAdminUserRemove(uId: number) {
-    return requestHelper('DELETE', '/admin/user/remove/v1', {uId});
+function requestAdminUserRemove(authUserId: number) {
+    return requestHelper('DELETE', '/admin/user/remove/v1', {authUserId});
   }
 
 function requestChannelsCreate(token: string, name: string, isPublic: boolean){
     return requestHelper('POST', '/channels/create/v2',{token, name, isPublic})
 }
 
+function requestDmCreate(token: string, uId: number){
+  return requestHelper('POST', '/dm/create/v1', {token, uId})
+}
+
+function requestUserAll(token: string) {
+  return requestHelper('GET', '/users/all/v1', { token });
+}
 
 
 // Helper Function
@@ -43,8 +50,10 @@ function requestHelper(method: HttpVerb, path: string, payload: object) {
     });
     
     test('Testing if it will return nothing', () => {
+      
+      const user = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") 
+      
       /*
-      const user = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") as {uId: number, token:string};
       requestChannelsCreate(user.token, "poof", true)
       const data = getData()
       data.channels[0].messages.push({
@@ -53,10 +62,20 @@ function requestHelper(method: HttpVerb, path: string, payload: object) {
         message: "fck",
         timeSent: 0
       })
-      
+      requestDmCreate(user.token, user.uId)
+      data.dms[0].messages.push({
+        messageId: 0,
+        senderId: user.uId,
+        message: "sht",
+        timeSent: 0
+      })
       setData(data)
-      const function1 = requestAdminUserRemove(user[0].uId)
       */
+      const len = requestUserAll(user.token)
+      requestAdminUserRemove(user.authUserId)
+      const len2 = requestUserAll(user.token)
+      //const function1 = user.authUserId
+      //const newData = getData()
       const check = true
       expect(check).toEqual(true);
     });

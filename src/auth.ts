@@ -100,6 +100,23 @@ function formatAlias(handleLower: string, currentMaxNum: number){
 export {authRegisterV1, authLoginV1};
 
 
+
+
+function formatAlias(handleLower: string, currentMaxNum: number){
+    const data = getData()
+    for(const user of data.users){
+        if(user.handleStr === handleLower){
+           const newHandle = handleLower + currentMaxNum
+           currentMaxNum ++ 
+           formatAlias(newHandle, currentMaxNum)
+        }
+}
+    return handleLower
+} 
+
+export {authRegisterV1, authLoginV1};
+
+
 export function authLogoutV1(token: string){
     if (!tokenExists(token)){
         throw HttpError(400, "error")
@@ -113,7 +130,7 @@ export function authLogoutV1(token: string){
 export function authPasswordResetRequestV1(email: string){
     const data = getData()
     for(const user of data.users){
-        if(user.email === email){
+        if(user.email != email){
             throw HttpError(400, "error")
         }
     }
@@ -125,6 +142,7 @@ export function authPasswordResetRequestV1(email: string){
     let user = data.users.find(i => i.email === email);
     user.resetCode = resetCode
     setData(data)
+    return {}
 }
 
 export function authPasswordResetResetV1(resetCode: number, newPassword: string){
@@ -141,5 +159,5 @@ export function authPasswordResetResetV1(resetCode: number, newPassword: string)
     else{
         throw HttpError(400, "error")
     }
-}
-
+    return {}
+}   
