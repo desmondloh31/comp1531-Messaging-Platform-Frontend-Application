@@ -1,6 +1,6 @@
 import { getData, setData } from './dataStore';
 import { tokenVerify } from './token';
-import  HttpError  from 'http-errors';
+import HttpError from 'http-errors';
 
 function usersAll(target: any) {
   // check that token is valid
@@ -90,7 +90,7 @@ export function dmMessagesV1(token: string, dmId: number, start: number) {
   } else if (dm.messages.length < start) {
     throw HttpError(400, 'start is greater than the total number of messages in the channel');
   } else if (dm.allMembers.find((i: number) => i === authUserId) === undefined) {
-    throw HttpError(403, 'authUserId is not a member of the DM with ID DmId' );
+    throw HttpError(403, 'authUserId is not a member of the DM with ID DmId');
   }
 
   /// may need to reverse order of msgs in result

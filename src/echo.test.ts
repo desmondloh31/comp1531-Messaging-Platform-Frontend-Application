@@ -43,4 +43,3 @@ describe('HTTP tests using Jest', () => {
     expect(bodyObj.error).toStrictEqual({ message: 'Cannot echo "echo"' });
   });
 });
-

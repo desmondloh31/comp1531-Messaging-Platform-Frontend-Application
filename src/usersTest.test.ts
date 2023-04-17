@@ -1,7 +1,7 @@
 import request, { HttpVerb } from 'sync-request';
 import { port, url } from './config.json';
 import { requestAuthRegister } from './authTest.test';
-import { getData, setData } from './dataStore';
+// import { getData, setData } from './dataStore';
 
 const SERVER_URL = `${url}:${port}`;
 
@@ -9,25 +9,25 @@ function requestUserProfile(token: string, uId: number) {
   return requestHelper('GET', '/user/profile/v2', { token, uId });
 }
 
-function requestUserAll(token: string) {
-  return requestHelper('GET', '/users/all/v1', { token });
-}
+// function requestUserAll(token: string) {
+//   return requestHelper('GET', '/users/all/v1', { token });
+// }
 
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {});
 }
 
-function requestUserProfileSetname(token: string, nameFirst: string, nameLast: string) {
-  return requestHelper('PUT', '/user/profile/setname/v1', { token, nameFirst, nameLast });
-}
+// function requestUserProfileSetname(token: string, nameFirst: string, nameLast: string) {
+//   return requestHelper('PUT', '/user/profile/setname/v1', { token, nameFirst, nameLast });
+// }
 
-function requestUserProfileSetemail(token: string, email: string) {
-  return requestHelper('PUT', '/user/profile/setemail/v1', { token, email });
-}
+// function requestUserProfileSetemail(token: string, email: string) {
+//   return requestHelper('PUT', '/user/profile/setemail/v1', { token, email });
+// }
 
-function requestUserProfileSethandle(token: string, handleStr: string) {
-  return requestHelper('PUT', '/user/profile/sethandle/v1', { token, handleStr });
-}
+// function requestUserProfileSethandle(token: string, handleStr: string) {
+//   return requestHelper('PUT', '/user/profile/sethandle/v1', { token, handleStr });
+// }
 
 // Helper Function
 function requestHelper(method: HttpVerb, path: string, payload: object) {
@@ -40,8 +40,8 @@ function requestHelper(method: HttpVerb, path: string, payload: object) {
     json = payload;
   }
   const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
-  if(res.statusCode !== 200){
-    return res.statusCode
+  if (res.statusCode !== 200) {
+    return res.statusCode;
   }
   return JSON.parse(res.body as string);
 }
@@ -54,14 +54,16 @@ describe('Testing userProfileV2', () => {
   test('Testing if userProfileV2 is returning all the correct values', () => {
     const profile = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith') as {token:string, authUserId: number};
     const user = requestUserProfile(profile.token, profile.authUserId);
-    expect(user).toEqual({user:
+    expect(user).toEqual({
+      user:
       {
         uId: 0,
-        nameFirst: "John",
-        nameLast: "Smith",
-        email: "example@gmail.com",
-        handleStr: "johnsmith"
-      }});
+        nameFirst: 'John',
+        nameLast: 'Smith',
+        email: 'example@gmail.com',
+        handleStr: 'johnsmith'
+      }
+    });
   });
 });
 

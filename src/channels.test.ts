@@ -27,16 +27,16 @@ function requestClear() {
 function requestHelper(method: HttpVerb, path: string, payload: object, tkn: string) {
   let qs = {};
   let json = {};
-  let headers = {};
+  const headers = {};
   if (['GET', 'DELETE'].includes(method)) {
-  qs = payload;
+    qs = payload;
   } else {
   // PUT/POST
-  json = payload;
+    json = payload;
   }
-  const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
-  if(res.statusCode !== 200){
-  return res.statusCode
+  const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+  if (res.statusCode !== 200) {
+    return res.statusCode;
   }
   return JSON.parse(res.body as string);
 }
