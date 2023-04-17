@@ -100,6 +100,23 @@ function formatAlias(handleLower: string, currentMaxNum: number){
 export {authRegisterV1, authLoginV1};
 
 
+
+
+function formatAlias(handleLower: string, currentMaxNum: number){
+    const data = getData()
+    for(const user of data.users){
+        if(user.handleStr === handleLower){
+           const newHandle = handleLower + currentMaxNum
+           currentMaxNum ++ 
+           formatAlias(newHandle, currentMaxNum)
+        }
+}
+    return handleLower
+} 
+
+export {authRegisterV1, authLoginV1};
+
+
 export function authLogoutV1(token: string){
     if (!tokenExists(token)){
         throw HttpError(400, "error")

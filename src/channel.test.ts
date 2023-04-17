@@ -50,17 +50,18 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
   let json = {};
   let headers = {};
   if (['GET', 'DELETE'].includes(method)) {
-    headers = { token: tkn };
-    qs = payload;
+  headers = {token: tkn }
+  qs = payload;
   } else {
-    // PUT/POST
-    headers = { token: tkn };
-    json = payload;
+  // PUT/POST
+  json = payload;
   }
-  const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
-  return JSON.parse(res.getBody('utf-8'));
+  const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
+  if(res.statusCode !== 200){
+  return res.statusCode
+  }
+  return JSON.parse(res.body as string);
 }
-
 // IT2 testing /channel/leave/v1:
 describe('Testing channelLeaveV1', () => {
   interface usr {
@@ -89,12 +90,12 @@ describe('Testing channelLeaveV1', () => {
 
   test('channelId does not refer to a valid channel', () => {
     const result = requestChannelleavev1(user1.token, -1);
-    expect(result).toEqual({ error: 'channelId is not part of a valid channel' });
+    expect(result).toEqual(400);
   });
 
   test('user is not a member of the channel', () => {
     const result = requestChannelleavev1(user2.token, channel1);
-    expect(result).toEqual({ error: 'channelId is valid, but the user is not a member of the channel' });
+    expect(result).toEqual(403);
   });
 });
 
@@ -133,7 +134,7 @@ describe('Testing the addowner function', () => {
 
   test('should return error with invalid channelId', () => {
     const result = requestChanneladdowner(user1.token, -1, user2.authUserId);
-    expect(result).toEqual({ error: 'channelId is not part of a valid channel' });
+    expect(result).toEqual(400);
   });
 
   test('should return error with invalid uId', () => {
@@ -143,18 +144,18 @@ describe('Testing the addowner function', () => {
 
   test('should return error with uId not in channel', () => {
     const result = requestChanneladdowner(user1.token, channel1, user2.authUserId);
-    expect(result).toEqual({ error: 'user is not a member of the channel' });
+    expect(result).toEqual(400);
   });
 
   test('should return error with uId already an owner', () => {
     const result = requestChanneladdowner(user2.token, channel2, user2.authUserId);
-    expect(result).toEqual({ error: 'user is already an owner of the channel' });
+    expect(result).toEqual(400);
   });
 
   test('should return error with user without owner permissions', () => {
     requestChannelJoin(user2.token, channel1);
     const result = requestChanneladdowner(user3.token, channel1, user2.authUserId);
-    expect(result).toEqual({ error: 'channelId is valid, but user is not an owner of the channel' });
+    expect(result).toEqual(403);
   });
 });
 
@@ -191,7 +192,7 @@ describe('Testing the removeowner function', () => {
 
   test('should return error with invalid channelId', () => {
     const result = requestChanneladdowner(user1.token, -1, user2.authUserId);
-    expect(result).toEqual({ error: 'channelId is not part of a valid channel' });
+    expect(result).toEqual(400);
   });
 
   test('should return error with invalid uId', () => {
@@ -201,13 +202,13 @@ describe('Testing the removeowner function', () => {
 
   test('should return error with uId not in channel', () => {
     const result = requestChannelremoveowner(user1.token, channel1, user2.authUserId);
-    expect(result).toEqual({ error: 'user is not a member of the channel' });
+    expect(result).toEqual(400);
   });
 
   test('should return error with user without owner permissions', () => {
     requestChannelJoin(user2.token, channel1);
     const result = requestChannelremoveowner(user3.token, channel1, user2.authUserId);
-    expect(result).toEqual({ error: 'channelId is valid, but user is not an owner of the channel' });
+    expect(result).toEqual(403);
   });
 });
 
@@ -349,7 +350,7 @@ describe('Testing channelJoinV1', () => {
     const authId2 = requestAuthRegister('john@gmail.com', '123456789', 'John', 'Smith');
     const channelId2 = -1;
     const result = requestChannelJoin(authId2.token, channelId2);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(400);
   });
 
   // test that authorised user is already member of channel
@@ -357,7 +358,7 @@ describe('Testing channelJoinV1', () => {
     const authId1 = requestAuthRegister('lebron@gmail.com', '123456789', 'Lebron', 'James');
     const channel1 = requestChannelscreate(authId1.token, 'channel1', true);
     const result = requestChannelJoin(authId1.token, channel1);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(400);
   });
 
   // test that new authorised user cannot join private channel when not a member
@@ -365,7 +366,7 @@ describe('Testing channelJoinV1', () => {
     const authId1 = requestAuthRegister('lebron@gmail.com', '123456789', 'Lebron', 'James');
     const channel1 = requestChannelscreate(authId1.token, 'channel1', true);
     const result = requestChannelJoin(authId1.token, channel1);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toEqual(403);
   });
   // test that an authorised user's Id is invalid
   test('Authorised user Id is invalid', () => {
@@ -385,3 +386,4 @@ describe('Testing channelJoinV1', () => {
     expect(result).toStrictEqual({});
   });
 });
+

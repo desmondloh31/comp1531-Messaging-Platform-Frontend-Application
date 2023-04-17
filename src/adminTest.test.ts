@@ -2,8 +2,7 @@ import request, { HttpVerb } from 'sync-request';
 import { port, url } from './config.json';
 import { requestAuthRegister } from './authTest.test';
 import { getData , setData} from './dataStore';
-
-
+import { channelsCreateV1 } from './channels';
 
 const SERVER_URL = `${url}:${port}`;
 

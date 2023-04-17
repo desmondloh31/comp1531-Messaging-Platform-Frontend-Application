@@ -12,14 +12,16 @@ interface usr {
   resetCode: number
   deletedEmail: string
   deletedHandle: string
-  notifications: notification[]
+  notifications: notification[];
 }
 
-interface notification{
-  notificationId: number
-  message: string
-  timestamp: number
+interface notification {
+  notificationId: number;
+  message: string;
+  timestamp: number;
 }
+
+
 
 interface msg {
   messageId: number;
@@ -35,6 +37,9 @@ interface cnl {
   allMembers: number[];
   ownerMembers: number[];
   messages: msg[],
+  standupActive: boolean;
+  standupTimeFinish?: number;
+  standupBuffer?: { message: string, user: number }[];
 }
 
 
