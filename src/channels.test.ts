@@ -4,36 +4,39 @@ import { port, url } from './config.json';
 const SERVER_URL = `${url}:${port}`;
 
 function requestChannelscreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v2', { token, name, isPublic });
+  return requestHelper('POST', '/channels/create/v2', { name, isPublic }, token);
 }
 
 function requestChannelslist(token: string) {
-  return requestHelper('GET', '/channels/list/v2', { token });
+  return requestHelper('GET', '/channels/list/v2', { }, token);
 }
 
 function requestChannelsListAll(token: string) {
-  return requestHelper('GET', '/channels/listall/v2', { token });
+  return requestHelper('GET', '/channels/listall/v2', { }, token);
 }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast });
+  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
 }
 
 function requestClear() {
-  return requestHelper('DELETE', '/clear/v1', {});
+  return requestHelper('DELETE', '/clear/v1', {}, '-1');
 }
 
 // Helper Function
-function requestHelper(method: HttpVerb, path: string, payload: object) {
+function requestHelper(method: HttpVerb, path: string, payload: object, tkn: string) {
   let qs = {};
   let json = {};
+  let headers = {};
   if (['GET', 'DELETE'].includes(method)) {
+    headers = { token: tkn };
     qs = payload;
   } else {
     // PUT/POST
+    headers = { token: tkn };
     json = payload;
   }
-  const res = request(method, SERVER_URL + path, { qs, json, timeout: 20000 });
+  const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
   return JSON.parse(res.getBody('utf-8'));
 }
 

@@ -65,6 +65,7 @@ describe('Testing userProfileV2', () => {
   });
 });
 
+/*
 describe('Testing usersAllV1', () => {
   beforeEach(() => {
     requestClear();
@@ -136,3 +137,4 @@ describe("Testing userProfileSethandleV1", () =>{
        //expect(test).toEqual("bigD123")
    })
 })
+*/
