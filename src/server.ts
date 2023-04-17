@@ -3,6 +3,8 @@ import { echo } from './echo';
 import morgan from 'morgan';
 import config from './config.json';
 import cors from 'cors';
+import errorHandler from 'middleware-http-errors';
+
 import {
   channelDetailsV1, channelJoinV1, channelInviteV1,
   channelMessagesV1, channelLeaveV1, channelAddOwnerV1,
@@ -21,7 +23,7 @@ import {
 } from './users';
 import { channelsCreateV1, channelsListAllV1, channelsListV1 } from './channels';
 import { getNotificationsV1, searchV1, standupActiveV1, standupSendV1, standupStartV1 } from './standup';
-
+import { adminUserRemoveV1 } from './admin';
 // Set up web app
 const app = express();
 // Use middleware that allows us to access the JSON body of requests
@@ -200,16 +202,34 @@ app.put('/user/profile/sethandle/v1', (req: Request, res: Response) => {
   res.json(function1);
 });
 
+app.delete('/admin/user/remove/v1', (req: Request, res: Response) => {
+  const uId = parseInt(req.query.uId as string);
+  const function1 = adminUserRemoveV1(uId)
+  res.json(function1);
+});
+
+app.post('auth/passwordreset/request/v1', (req: Request, res: Response) => {
+  const { email} = req.body;
+  const authid = authPasswordResetRequestV1(email);
+  res.json(authid);
+});
+
+app.post('auth/passwordreset/reset/v1', (req: Request, res: Response) => {
+  const { resetCode, newPassword} = req.body;
+  const authid = authPasswordResetResetV1(resetCode, newPassword);
+  res.json(authid);
+});
+
 app.get('/notifications/get/v1',(req: Request, res: Response) => {
   const token = req.query.token as string;
   const oldestNotificationId = parseInt(req.query.notificationId as string);
-  res.json(getNotificationsV1(token, oldestNotificationId));
+  res.json(getNotificationsV1(token));
 });
 
 app.get('/search/v1', (req: Request, res: Response) => {
   const token = req.query.token as string;
   const queryStr = req.query.message as string;
-  res.json(searchV1(token, queryStr));
+  res.json(searchV1(queryStr));
 
 });
 
@@ -228,6 +248,7 @@ app.post('/standup/send/v1', (req: Request, res: Response) => {
   const { token, channelId, message } = req.body;
   res.json(standupSendV1(token, channelId, message));
 });
+app.use(errorHandler());
 
 // start server
 const server = app.listen(PORT, HOST, () => {
@@ -239,3 +260,4 @@ const server = app.listen(PORT, HOST, () => {
 process.on('SIGINT', () => {
   server.close(() => console.log('Shutting down server gracefully.'));
 });
+

@@ -9,6 +9,9 @@ interface usr {
   handleStr: string;
   password: string;
   token: string[];
+  resetCode: number
+  deletedEmail: string
+  deletedHandle: string
   notifications: notification[];
 }
 
@@ -17,6 +20,7 @@ interface notification {
   message: string;
   timestamp: number;
 }
+
 
 
 interface msg {
@@ -37,6 +41,8 @@ interface cnl {
   standupTimeFinish?: number;
   standupBuffer?: { message: string, user: number }[];
 }
+
+
 
 interface dm {
   name: string;
