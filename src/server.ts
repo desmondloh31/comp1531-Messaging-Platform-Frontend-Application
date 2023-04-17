@@ -11,7 +11,10 @@ import {
   channelRemoveOwnerV1, messageDeleteV1, messageEditV1, messageSendV1, dmMessagesV1
 } from './channel';
 import { dmCreate, dmList, dmRemoveV1, dmDetailsV1, dmLeaveV1 } from './dm';
-import { messageUnpinV1, messagePinV1, messageReactV1, messageUnreactV1, messageShareV1 } from './message';
+import {
+  messageUnpinV1, messagePinV1, messageReactV1, messageUnreactV1,
+  messageShareV1, messageSendLaterV1, messageSendLaterDmV1 
+} from './message';
 import { clearV1 } from './other';
 import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
 import { tokenVerify } from './token';
@@ -222,6 +225,18 @@ app.post('/message/share/v1', (req: Request, res: Response) => {
   const { channelId, ogMessageId, message, dmId } = req.body;
   const token = req.header('token');
   return res.json(messageShareV1(token, ogMessageId, channelId, dmId, message));
+});
+
+app.post('/message/sendlater/v1', (req: Request, res: Response) => {
+  const { channelId, message, timeSent } = req.body;
+  const token = req.header('token');
+  return res.json(messageSendLaterV1(token, channelId, message, timeSent));
+});
+
+app.post('/message/sendlaterdm/v1', (req: Request, res: Response) => {
+  const { dmId, message, timeSent } = req.body;
+  const token = req.header('token');
+  return res.json(messageSendLaterDmV1(token, dmId, message, timeSent));
 });
 
 app.get('/users/all/v1', (req: Request, res: Response) => {
