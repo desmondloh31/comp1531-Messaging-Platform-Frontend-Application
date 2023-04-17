@@ -11,7 +11,7 @@ import {
   channelRemoveOwnerV1, messageDeleteV1, messageEditV1, messageSendV1, dmMessagesV1
 } from './channel';
 import { dmCreate, dmList, dmRemoveV1, dmDetailsV1, dmLeaveV1 } from './dm';
-import { messageUnpinV1, messagePinV1, messageReactV1, messageUnreactV1 } from './message';
+import { messageUnpinV1, messagePinV1, messageReactV1, messageUnreactV1, messageShareV1 } from './message';
 import { clearV1 } from './other';
 import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
 import { tokenVerify } from './token';
@@ -216,6 +216,12 @@ app.post('/message/unpin/v1', (req: Request, res: Response) => {
   const { messageId } = req.body;
   const token = req.header('token');
   return res.json(messageUnpinV1(token, messageId));
+});
+
+app.post('/message/share/v1', (req: Request, res: Response) => {
+  const { channelId, ogMessageId, message, dmId } = req.body;
+  const token = req.header('token');
+  return res.json(messageShareV1(token, ogMessageId, channelId, dmId, message));
 });
 
 app.get('/users/all/v1', (req: Request, res: Response) => {

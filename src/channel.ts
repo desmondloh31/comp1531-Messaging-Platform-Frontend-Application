@@ -173,7 +173,6 @@ export function messageSendV1(authUserId: number, channelId: number, dmId: numbe
   }
 
   setData(data);
-  console.log({ messageId: Id });
   return { messageId: Id };
 }
 
