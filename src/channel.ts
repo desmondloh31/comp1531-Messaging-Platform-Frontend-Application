@@ -1,5 +1,6 @@
 import { getData, setData } from './dataStore';
 import { tokenVerify } from './token';
+import  HttpError  from 'http-errors';
 
 function usersAll(target: any) {
   // check that token is valid
@@ -29,7 +30,7 @@ export function channelDetailsV1(token: string, channelId: number) {
   const channel = data.channels.find(i => i.channelId === channelId);
 
   if (!channel) {
-    return { error: 'channelId is invalid' };
+    throw HttpError(400, 'channelId is invalid');
   }
 
   if (!user) {
@@ -44,7 +45,7 @@ export function channelDetailsV1(token: string, channelId: number) {
       return { name: channel.name, isPublic: channel.isPublic, ownerMembers: usersAll(channel.ownerMembers), allMembers: usersAll(channel.allMembers) };
     }
   }
-  return { error: 'User is not a part of the channel or invalid channelId' };
+  throw HttpError(403, 'User is not a part of the channel or invalid channelId');
 }
 
 export function channelMessagesV1(authUserId: number, channelId: number, start: number) {
@@ -55,11 +56,11 @@ export function channelMessagesV1(authUserId: number, channelId: number, start: 
   if (!user) {
     return { error: 'authUserId is invalid' };
   } else if (!channel) {
-    return { error: 'channelId is invalid' };
+    throw HttpError(400, 'channelId is invalid');
   } else if (channel.messages.length < start) {
-    return { error: 'start is greater than the total number of messages in the channel' };
+    throw HttpError(400, 'start is greater than the total number of messages in the channel');
   } else if (channel.allMembers.find((i: number) => i === authUserId) === undefined) {
-    return { error: 'authUserId is not a member of the channel with ID channelId' };
+    throw HttpError(403, 'authUserId is not a member of the channel with ID channelId');
   }
 
   const result = {
@@ -85,11 +86,11 @@ export function dmMessagesV1(token: string, dmId: number, start: number) {
   if (!user) {
     return { error: 'authUserId is invalid' };
   } else if (!dm) {
-    return { error: 'dmID is invalid' };
+    throw HttpError(400, 'dmId is invalid');
   } else if (dm.messages.length < start) {
-    return { error: 'start is greater than the total number of messages in the channel' };
+    throw HttpError(400, 'start is greater than the total number of messages in the channel');
   } else if (dm.allMembers.find((i: number) => i === authUserId) === undefined) {
-    return { error: 'authUserId is not a member of the DM with ID DmId' };
+    throw HttpError(403, 'authUserId is not a member of the DM with ID DmId' );
   }
 
   /// may need to reverse order of msgs in result
@@ -117,7 +118,7 @@ export function messageSendV1(authUserId: number, channelId: number, dmId: numbe
   if (dmId === -1) {
     ischannel = true;
     if (!channel) {
-      return { error: 'channelId is invalid' };
+      throw HttpError(400, 'channelId is invalid');
     }
   } else if (!dm) {
     return { error: 'dmId is invalid' };
@@ -129,18 +130,18 @@ export function messageSendV1(authUserId: number, channelId: number, dmId: numbe
 
   if (ischannel) {
     if (channel.allMembers.find((i: number) => i === authUserId) === undefined) {
-      return { error: 'authUserId is not a member of the channel with ID channelId' };
+      throw HttpError(403, 'authUserId is not a member of the channel with ID channelId');
     }
   } else if (!ischannel) {
     if (dm.allMembers.find((i: number) => i === authUserId) === undefined) {
-      return { error: 'authUserId is not a member of the DM with ID dmId' };
+      throw HttpError(403, 'authUserId is not a member of the DM with ID dmId');
     }
   }
 
   if (message.length > 1000) {
-    return { error: 'message length is greater than 1000 characters' };
+    throw HttpError(400, 'message length is greater than 1000 characters');
   } else if (message.length === 0) {
-    return { error: 'message length is 0' };
+    throw HttpError(400, 'message length is 0');
   }
 
   const Id = data.msgcount;
@@ -187,11 +188,11 @@ export function messageDeleteV1(token: string, messageId: number) {
   const channelmsg = data.channels.find(i => i.messages.find(j => j.messageId === messageId) !== undefined);
   const DMmsg = data.dms.find(i => i.messages.find(j => j.messageId === messageId) !== undefined);
   if (!channelmsg && !DMmsg) {
-    return { error: 'messageId is invalid' };
+    throw HttpError(400, 'messageId is invalid');
   }
 
   if (channelmsg.messages.find(i => i.messageId === messageId).senderId !== authUserId) {
-    return { error: 'authUserId is not the sender of the message with ID messageId' };
+    throw HttpError(403, 'authUserId is not the sender of the message with ID messageId');
   }
 
   if (!channelmsg) {
@@ -210,14 +211,14 @@ export function messageEditV1(token: string, messageId: number, message: string)
   if (!user) {
     return { error: 'authUserId is invalid' };
   } else if (message.length > 1000) {
-    return { error: 'message length is greater than 1000 characters' };
+    throw HttpError(400, 'message length is greater than 1000 characters');
   }
 
   const channelmsg = data.channels.find(i => i.messages.find(j => j.messageId === messageId));
   const DMmsg = data.dms.find(i => i.messages.find(j => j.messageId === messageId));
 
   if (!channelmsg && !DMmsg) {
-    return { error: 'messageId is invalid' };
+    throw HttpError(400, 'messageId is invalid');
   }
 
   if (message.length === 0) {
@@ -228,7 +229,7 @@ export function messageEditV1(token: string, messageId: number, message: string)
     if (!channelmsg) {
       response = DMmsg.messages.find(i => i.messageId === messageId);
       if (response.senderId !== authUserId) {
-        return { error: 'authUserId is not the sender of the message with ID messageId' };
+        throw HttpError(403, 'authUserId is not the sender of the message with ID messageId');
       }
       response.message = message;
 
@@ -237,7 +238,7 @@ export function messageEditV1(token: string, messageId: number, message: string)
     } else if (!DMmsg) {
       response = channelmsg.messages.find(i => i.messageId === messageId);
       if (response.senderId !== authUserId) {
-        return { error: 'authUserId is not the sender of the message with ID messageId' };
+        throw HttpError(403, 'authUserId is not the sender of the message with ID messageId');
       }
       response.message = message;
 
@@ -257,9 +258,9 @@ export function channelInviteV1(authUserId: number, channelId: number, uId: numb
   if (!user) {
     return { error: 'authUserId is invalid' };
   } else if (!channel) {
-    return { error: 'channelId is invalid' };
+    throw HttpError(400, 'channelId is invalid');
   } else if (!guest) {
-    return { error: 'uId is invalid' };
+    throw HttpError(400, 'uId is invalid');
   }
 
   let check = false;
@@ -274,7 +275,7 @@ export function channelInviteV1(authUserId: number, channelId: number, uId: numb
   }
 
   if (check === true) {
-    return { error: 'User is already a member of channel' };
+    throw HttpError(400, 'User is already a member of channel');
   }
 
   check = false;
@@ -289,7 +290,7 @@ export function channelInviteV1(authUserId: number, channelId: number, uId: numb
   }
 
   if (check === false) {
-    return { error: 'authUser is NOT a member of channel' };
+    throw HttpError(403, 'authUser is NOT a member of channel');
   }
 
   for (let i = 0; i < data.channels.length; i++) {
@@ -312,7 +313,7 @@ export function channelJoinV1(token: string, channelId: number) {
   // check if channelId refers to a valid channel
   const channel = data.channels.find(i => i.channelId === channelId);
   if (!channel) {
-    return { error: 'channelId is invalid' };
+    throw HttpError(400, 'channelId is invalid');
   }
 
   // check if user is already a member of a channel
@@ -328,12 +329,12 @@ export function channelJoinV1(token: string, channelId: number) {
   }
 
   if (check === true) {
-    return { error: 'User is already a member of channel' };
+    throw HttpError(400, 'User is already a member of channel');
   }
 
   // check if channel is private
   if (channel.isPublic !== true) {
-    return { error: 'Channel is private' };
+    throw HttpError(403, 'Channel is private');
   }
 
   channel.allMembers.push(authUserId);
@@ -351,7 +352,7 @@ export function channelLeaveV1(token: string, channelId: number) {
   const findUser = data.users.find(i => i.authUserId === authUserId);
 
   if (!findChannelId) {
-    return { error: 'channelId is not part of a valid channel' };
+    throw HttpError(400, 'channelId is not part of a valid channel');
   }
 
   if (!findUser) {
@@ -360,7 +361,7 @@ export function channelLeaveV1(token: string, channelId: number) {
 
   // checks if user is not a  member of channel:
   if (!findChannelId.allMembers.includes(authUserId)) {
-    return { error: 'channelId is valid, but the user is not a member of the channel' };
+    throw HttpError(403, 'channelId is valid, but the user is not a member of the channel');
   }
 
   // leave the channel based on authUserId
@@ -384,22 +385,22 @@ export function channelAddOwnerV1(token: string, channelId: number, uId: number)
   }
 
   if (!findChannelId) {
-    return { error: 'channelId is not part of a valid channel' };
+    throw HttpError(400, 'channelId is not part of a valid channel');
   }
 
   // checks if user is not a member of channel:
   if (!findChannelId.allMembers.includes(uId)) {
-    return { error: 'user is not a member of the channel' };
+    throw HttpError(400, 'user is not a member of the channel');
   }
 
   // checks if user is already an owner of channel:
   if (findChannelId.ownerMembers.includes(uId)) {
-    return { error: 'user is already an owner of the channel' };
+    throw HttpError(400, 'user is already an owner of the channel');
   }
 
   // checks if authUserId is an owner of channel:
   if (!findChannelId.ownerMembers.includes(authUserId)) {
-    return { error: 'channelId is valid, but user is not an owner of the channel' };
+    throw HttpError(403, 'channelId is valid, but user is not an owner of the channel');
   }
 
   findChannelId.ownerMembers.push(uId);
@@ -422,17 +423,17 @@ export function channelRemoveOwnerV1(token: string, channelId: number, uId: numb
   }
 
   if (!findChannelId) {
-    return { error: 'channelId is not part of a valid channel' };
+    throw HttpError(400, 'channelId is not part of a valid channel');
   }
 
   // checks if user is not a member of channel:
   if (!findChannelId.allMembers.includes(uId)) {
-    return { error: 'user is not a member of the channel' };
+    throw HttpError(400, 'user is not a member of the channel');
   }
 
   // checks if user is not an owner of channel:
   if (!findChannelId.ownerMembers.includes(authUserId)) {
-    return { error: 'channelId is valid, but user is not an owner of the channel' };
+    throw HttpError(403, 'channelId is valid, but user is not an owner of the channel');
   }
 
   findChannelId.ownerMembers.splice(uId);

@@ -1,6 +1,7 @@
 import { getData, setData } from './dataStore';
 import { tokenVerify } from './token';
 
+import  HttpError  from 'http-errors';
 /**
  * @module channels
  */
@@ -45,7 +46,8 @@ export function channelsCreateV1(token: string, name: string, isPublic: boolean)
 
   // check if name is valid:
   if (name.length < 1 || name.length > 20) {
-    return { error: 'length of name is less than 1 or more than 20 characters' };
+    //error 400: 
+    throw HttpError(400, "channelId is invalid")
   }
 
   const Id = data.channels.length;
@@ -58,6 +60,7 @@ export function channelsCreateV1(token: string, name: string, isPublic: boolean)
     ownerMembers: [authUserId],
     allMembers: [authUserId],
     messages: [],
+    standupActive: false,
   });
   setData(data);
 

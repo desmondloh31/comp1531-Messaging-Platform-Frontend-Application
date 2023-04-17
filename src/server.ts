@@ -16,13 +16,16 @@ import {
   messageShareV1, messageSendLaterV1, messageSendLaterDmV1 
 } from './message';
 import { clearV1 } from './other';
-import { authRegisterV1, authLoginV1, authLogoutV1 } from './auth';
+
+import { authRegisterV1, authLoginV1, authLogoutV1, authPasswordResetRequestV1, authPasswordResetResetV1 } from './auth';
 import { tokenVerify } from './token';
 import {
   userProfileV1, usersAllV1, userProfileSetemailV1, userProfileSethandleV1,
-  userProfileSetnameV1
+  userProfileSetnameV1, uploadPhotoV1
 } from './users';
 import { channelsCreateV1, channelsListAllV1, channelsListV1 } from './channels';
+import { getNotificationsV1, searchV1, standupActiveV1, standupSendV1, standupStartV1 } from './standup';
+import { adminUserRemoveV1 } from './admin';
 
 // Set up web app
 const app = express();
@@ -44,8 +47,7 @@ app.get('/echo', (req: Request, res: Response, next) => {
 
 // Keep this BENEATH route definitions
 // handles errors nicely
-app.use(errorHandler());
-
+//app.use(errorHandler());
 // All http function wrappers for All Functions:
 app.post('/auth/login/v2', (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -54,7 +56,11 @@ app.post('/auth/login/v2', (req: Request, res: Response) => {
 });
 
 app.post('/auth/register/v2', (req: Request, res: Response) => {
-  const { email, password, nameFirst, nameLast } = req.body;
+  //const { email, password, nameFirst, nameLast } = req.body
+  const email = req.body.email as string
+  const password = req.body.password as string
+  const nameFirst = req.body.nameFirst as string
+  const nameLast = req.body.nameLast as string
   const authid = authRegisterV1(email, password, nameFirst, nameLast);
   return res.json(authid);
 });
@@ -266,6 +272,61 @@ app.put('/user/profile/sethandle/v1', (req: Request, res: Response) => {
   res.json(function1);
 });
 
+
+app.get('/notifications/get/v1',(req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const oldestNotificationId = parseInt(req.query.notificationId as string);
+  res.json(getNotificationsV1(token));
+});
+
+app.get('/search/v1', (req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const queryStr = req.query.message as string;
+  res.json(searchV1(queryStr));
+
+});
+
+app.post('/standup/start/v1', (req: Request, res: Response) => {
+  const { token, channelId, length } = req.body;
+  res.json(standupStartV1(token, channelId, length));
+});
+
+app.get('/standup/active/v1', (req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const channelId = parseInt(req.query.channelId as string);
+  res.json(standupActiveV1(token, channelId));
+});
+
+app.post('/standup/send/v1', (req: Request, res: Response) => {
+  const { token, channelId, message } = req.body;
+  res.json(standupSendV1(token, channelId, message));
+});
+app.use(errorHandler());
+
+app.delete('/admin/user/remove/v1', (req: Request, res: Response) => {
+  const uId = parseInt(req.query.uId as string);
+  const function1 = adminUserRemoveV1(uId)
+  res.json(function1);
+});
+
+app.post('auth/passwordreset/request/v1', (req: Request, res: Response) => {
+  const { email} = req.body;
+  const authid = authPasswordResetRequestV1(email);
+  res.json(authid);
+});
+
+app.post('auth/passwordreset/reset/v1', (req: Request, res: Response) => {
+  const { resetCode, newPassword} = req.body;
+  const authid = authPasswordResetResetV1(resetCode, newPassword);
+  res.json(authid);
+});
+
+app.post('user/profile/uploadphoto/v1', (req: Request, res: Response) => {
+  const {imgUrl, xStart, yStart, xEnd, yEnd} = req.body;
+  const authid = uploadPhotoV1(imgUrl, xStart, yStart, xEnd, yEnd);
+  res.json(authid);
+})
+
 // start server
 const server = app.listen(PORT, HOST, () => {
   // DO NOT CHANGE THIS LINE
@@ -276,3 +337,4 @@ const server = app.listen(PORT, HOST, () => {
 process.on('SIGINT', () => {
   server.close(() => console.log('Shutting down server gracefully.'));
 });
+app.use(errorHandler());
