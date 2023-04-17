@@ -19,11 +19,11 @@ function requestClear() {
 }
 
 function requestAuthPasswordResetRequest(email: string){
-  return requestHelper('POST', 'auth/passwordreset/request/v1', {email})
+  return requestHelper('POST', '/auth/passwordreset/request/v1', {email})
 }
 
 function requestAuthPasswordResetReset(resetCode: number, newPassword: string){
-  return requestHelper('POST', 'auth/passwordreset/reset/v1', {resetCode, newPassword})
+  return requestHelper('POST', '/auth/passwordreset/reset/v1', {resetCode, newPassword})
 }
 
 // Helper Function
@@ -130,10 +130,10 @@ describe('Testing authPasswordResetRequest', () => {
   });
   
   test('Testing if it will return nothing', () => {
-    const user = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith');
-    requestAuthPasswordResetRequest(user.email)
-    const check = true
-    expect(check).toEqual(true);
+    const user = requestAuthRegister('keyon.vonrueden92@ethereal.email', 'abc123', 'John', 'Smith');
+    const function1 = requestAuthPasswordResetRequest(user.email)
+    
+    expect(function1).toEqual({});
   });
 
 
@@ -145,11 +145,9 @@ describe('Testing authPasswordResetReset', () => {
     requestClear();
   });
   
-  test('Testing if it will return nothing', () => {
-    const user = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith');
-    requestAuthPasswordResetReset(123, "abcd1234")
-    const check = true
-    expect(check).toEqual(true);
+  test('Testing if it will return error', () => {
+    const function1 = requestAuthPasswordResetReset(123, "abcd1234")
+    expect(function1).toEqual(400);
   });
 })
 */

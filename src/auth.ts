@@ -113,7 +113,7 @@ export function authLogoutV1(token: string){
 export function authPasswordResetRequestV1(email: string){
     const data = getData()
     for(const user of data.users){
-        if(user.email === email){
+        if(user.email != email){
             throw HttpError(400, "error")
         }
     }
@@ -125,6 +125,7 @@ export function authPasswordResetRequestV1(email: string){
     let user = data.users.find(i => i.email === email);
     user.resetCode = resetCode
     setData(data)
+    return {}
 }
 
 export function authPasswordResetResetV1(resetCode: number, newPassword: string){
@@ -141,4 +142,5 @@ export function authPasswordResetResetV1(resetCode: number, newPassword: string)
     else{
         throw HttpError(400, "error")
     }
-}
+    return {}
+}   
