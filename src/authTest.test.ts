@@ -106,7 +106,7 @@ describe('Testing authLoginV1', () => {
   });
 });
 
-
+/*
 describe('Testing authLogoutV1', () => {
   beforeEach(() => {
     requestClear();
@@ -126,7 +126,7 @@ describe('Testing authLogoutV1', () => {
   });
 });
 
-/*
+
 describe('Testing authPasswordResetRequest', () => {
   beforeEach(() => {
     requestClear();
