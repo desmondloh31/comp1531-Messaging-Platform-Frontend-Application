@@ -1,0 +1,38 @@
+
+> ts-node-coverage
+> nyc --reporter=text --reporter=lcov ts-node -T src/server.ts
+
+Error: listen EADDRINUSE: address already in use 127.0.0.1:48237
+    at Server.setupListenHandle [as _listen2] (node:net:1740:16)
+    at listenInCluster (node:net:1788:12)
+    at GetAddrInfoReqWrap.doListen (node:net:1937:7)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:8) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '127.0.0.1',
+  port: 48237
+}
+--------------|---------|----------|---------|---------|--------------------------------------------
+File          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                          
+--------------|---------|----------|---------|---------|--------------------------------------------
+All files     |   11.78 |     0.89 |       0 |   13.78 |                                            
+ admin.ts     |    4.87 |        0 |       0 |    7.69 | 4-37                                       
+ auth.ts      |   12.94 |        0 |       0 |   13.88 | 11-93,99-105,109-123,127-139               
+ channel.ts   |    4.69 |        0 |       0 |    5.69 | ...253-301,305-342,347-371,375-409,413-442 
+ channels.ts  |   12.76 |        0 |       0 |      15 | 18-31,37-67,72-92                          
+ dataStore.ts |      60 |      100 |       0 |      50 | 93-101                                     
+ dm.ts        |    6.79 |        0 |       0 |    8.13 | 15-65,78-89,96-135,139-157,166-191         
+ echo.ts      |      40 |        0 |       0 |      40 | 4-10                                       
+ message.ts   |    4.18 |        0 |       0 |    5.02 | ...103-136,141-247,251-282,287-316,320-349 
+ other.ts     |   35.29 |        0 |       0 |      40 | 4-10,16,26-52                              
+ server.ts    |   27.48 |      100 |       0 |   33.96 | ...305-307,311-313,317-319,323-325,331,336 
+ standup.ts   |    7.01 |        0 |       0 |    4.44 | 7-180                                      
+ token.ts     |   14.63 |        0 |       0 |   16.66 | 5-23,27-32,36-41,45-53                     
+ users.ts     |   13.04 |        0 |       0 |   15.18 | 9-32,46-62,66-84,88-109,113-132,136-152    
+--------------|---------|----------|---------|---------|--------------------------------------------
+npm notice 
+npm notice New patch version of npm available! 9.6.3 -> 9.6.4
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.6.4>
+npm notice Run `npm install -g npm@9.6.4` to update!
+npm notice 

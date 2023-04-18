@@ -1,0 +1,65 @@
+
+src/admin.ts
+  0:0  passing  No linting issues  success
+
+src/adminTest.test.ts
+  0:0  passing  No linting issues  success
+
+src/auth.ts
+  0:0  passing  No linting issues  success
+
+src/authTest.test.ts
+  0:0  passing  No linting issues  success
+
+src/channel.test.ts
+  0:0  passing  No linting issues  success
+
+src/channel.ts
+  0:0  passing  No linting issues  success
+
+src/channels.test.ts
+  0:0  passing  No linting issues  success
+
+src/channels.ts
+  0:0  passing  No linting issues  success
+
+src/dataStore.ts
+  0:0  passing  No linting issues  success
+
+src/dm.test.ts
+  0:0  passing  No linting issues  success
+
+src/dm.ts
+  0:0  passing  No linting issues  success
+
+src/echo.test.ts
+  0:0  passing  No linting issues  success
+
+src/echo.ts
+  0:0  passing  No linting issues  success
+
+src/message.ts
+  0:0  passing  No linting issues  success
+
+src/other.ts
+  0:0  passing  No linting issues  success
+
+src/server.ts
+  0:0  passing  No linting issues  success
+
+src/standup.test.ts
+  0:0  passing  No linting issues  success
+
+src/standup.ts
+  0:0  passing  No linting issues  success
+
+src/token.ts
+  0:0  passing  No linting issues  success
+
+src/users.ts
+  0:0  passing  No linting issues  success
+
+src/usersTest.test.ts
+  0:0  passing  No linting issues  success
+
+✔ 21 files successfully linted.
