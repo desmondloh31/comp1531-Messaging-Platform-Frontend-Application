@@ -4,11 +4,11 @@ import { port, url } from './config.json';
 const SERVER_URL = `${url}:${port}`;
 
 export function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
+  return requestHelper('POST', '/auth/register/v3', { email, password, nameFirst, nameLast }, '-1');
 }
 
 function requestAuthLogin(email: string, password: string) {
-  return requestHelper('POST', '/auth/login/v2', { email, password }, '-1');
+  return requestHelper('POST', '/auth/login/v3', { email, password }, '-1');
 }
 
 // function requestAuthLogout(token: string) {

@@ -4,19 +4,19 @@ import { port, url } from './config.json';
 const SERVER_URL = `${url}:${port}`;
 
 function requestChannelscreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v2', { name, isPublic }, token);
+  return requestHelper('POST', '/channels/create/v3', { name, isPublic }, token);
 }
 
 function requestChannelslist(token: string) {
-  return requestHelper('GET', '/channels/list/v2', { }, token);
+  return requestHelper('GET', '/channels/list/v3', { }, token);
 }
 
 function requestChannelsListAll(token: string) {
-  return requestHelper('GET', '/channels/listall/v2', { }, token);
+  return requestHelper('GET', '/channels/listall/v3', { }, token);
 }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
+  return requestHelper('POST', '/auth/register/v3', { email, password, nameFirst, nameLast }, '-1');
 }
 
 function requestClear() {

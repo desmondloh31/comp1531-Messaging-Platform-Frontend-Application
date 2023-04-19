@@ -1,5 +1,6 @@
 import { getData } from './dataStore';
 import { tokenVerify } from './token';
+import HttpError from 'http-errors';
 /**
  * DESCRIPTION
  * copy from table
@@ -103,9 +104,9 @@ export function dmRemoveV1(token: string, dmId: number) {
 
   const dm = data.dms.find(i => i.dmId === dmId);
   if (!dm) {
-    return { error: 'dmId is invalid' };
+    throw HttpError(400, 'dmId is invalid');
   } else if (dm.creator !== authUserId) {
-    return { error: 'Only the creator of the DM can remove it' };
+    throw HttpError(403, 'Only the creator of the DM can remove it');
   } else {
     const index = data.dms.indexOf(dm);
     data.dms.splice(index, 1);
@@ -147,14 +148,14 @@ export function dmDetailsV1(token: string, dmId: number) {
   const dm = data.dms.find(i => i.dmId === dmId);
 
   if (!dm) {
-    return { error: 'dmId is invalid' };
+    throw HttpError(400, 'dmId is invalid');
   }
 
   if (dm.allMembers.includes(authUserId)) {
     console.log({ name: dm.name, members: usersAll(dm.allMembers) });
     return { name: dm.name, members: usersAll(dm.allMembers) };
   } else {
-    return { error: 'User is not a member of the DM' };
+    throw HttpError(403, 'User is not a member of the DM');
   }
 }
 
@@ -173,11 +174,11 @@ export function dmLeaveV1(token: string, dmId: number) {
   }
 
   if (!dm) {
-    return { error: 'dmId is invalid' };
+    throw HttpError(400, 'dmId is invalid');
   }
 
   if (!dm.allMembers.includes(authUserId)) {
-    return { error: 'User is not a member of the DM' };
+    throw HttpError(403, 'User is not a member of the DM');
   }
 
   // If the user is the creator of the DM
