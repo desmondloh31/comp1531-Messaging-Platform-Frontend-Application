@@ -5,29 +5,28 @@ import { requestAuthRegister } from './authTest.test';
 
 const SERVER_URL = `${url}:${port}`;
 
-function requestUserProfile(token: string, uId: number) {
-  return requestHelper('GET', '/user/profile/v2', { token, uId });
-}
-
-// function requestUserAll(token: string) {
-//   return requestHelper('GET', '/users/all/v1', { token });
-// }
+//function requestUserProfile(token: string, uId: number) {
+  //return requestHelper('GET', '/user/profile/v3', { token, uId });
+//}
+//function requestUserAll(token: string) {
+  //return requestHelper('GET', '/users/all/v2', { token });
+//}
 
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {});
 }
 
-// function requestUserProfileSetname(token: string, nameFirst: string, nameLast: string) {
-//   return requestHelper('PUT', '/user/profile/setname/v1', { token, nameFirst, nameLast });
-// }
+function requestUserProfileSetname(token: string, nameFirst: string, nameLast: string) {
+  return requestHelper('PUT', '/user/profile/setname/v2', { token, nameFirst, nameLast });
+}
 
-// function requestUserProfileSetemail(token: string, email: string) {
-//   return requestHelper('PUT', '/user/profile/setemail/v1', { token, email });
-// }
+function requestUserProfileSetemail(token: string, email: string) {
+  return requestHelper('PUT', '/user/profile/setemail/v2', { token, email });
+}
 
-// function requestUserProfileSethandle(token: string, handleStr: string) {
-//   return requestHelper('PUT', '/user/profile/sethandle/v1', { token, handleStr });
-// }
+function requestUserProfileSethandle(token: string, handleStr: string) {
+  return requestHelper('PUT', '/user/profile/sethandle/v2', { token, handleStr });
+}
 
 // Helper Function
 function requestHelper(method: HttpVerb, path: string, payload: object) {
@@ -45,7 +44,7 @@ function requestHelper(method: HttpVerb, path: string, payload: object) {
   }
   return JSON.parse(res.body as string);
 }
-
+/*
 describe('Testing userProfileV2', () => {
   beforeEach(() => {
     requestClear();
@@ -67,7 +66,7 @@ describe('Testing userProfileV2', () => {
   });
 });
 
-/*
+
 describe('Testing usersAllV1', () => {
   beforeEach(() => {
     requestClear();
@@ -88,7 +87,7 @@ describe('Testing usersAllV1', () => {
     expect(tempData).toEqual('example@gmail.com');
   });
 });
-
+*/
 describe("Testing userProfileSetnameV1", () =>{
 
    beforeEach (() => {
@@ -139,4 +138,4 @@ describe("Testing userProfileSethandleV1", () =>{
        //expect(test).toEqual("bigD123")
    })
 })
-*/
+

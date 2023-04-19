@@ -11,21 +11,21 @@ function requestAuthLogin(email: string, password: string) {
   return requestHelper('POST', '/auth/login/v3', { email, password }, '-1');
 }
 
-// function requestAuthLogout(token: string) {
-//   return requestHelper('POST', '/auth/logout/v1', { }, token);
-// }
+function requestAuthLogout(token: string) {
+  return requestHelper('POST', '/auth/logout/v2', { }, token);
+ }
 
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {}, '-1');
 }
 
-// function requestAuthPasswordResetRequest(email: string) {
-//   return requestHelper('POST', '/auth/passwordreset/request/v1', { email }, '');
-// }
+function requestAuthPasswordResetRequest(email: string) {
+  return requestHelper('POST', '/auth/passwordreset/request/v1', { email }, '');
+ }
 
-// function requestAuthPasswordResetReset(resetCode: number, newPassword: string) {
-//   return requestHelper('POST', '/auth/passwordreset/reset/v1', { resetCode, newPassword }, '');
-// }
+function requestAuthPasswordResetReset(resetCode: number, newPassword: string) {
+  return requestHelper('POST', '/auth/passwordreset/reset/v1', { resetCode, newPassword }, '');
+ }
 
 // Helper Function
 function requestHelper(method: HttpVerb, path: string, payload: object, tkn: string) {
@@ -106,7 +106,7 @@ describe('Testing authLoginV1', () => {
   });
 });
 
-/*
+
 describe('Testing authLogoutV1', () => {
   beforeEach(() => {
     requestClear();
@@ -125,7 +125,7 @@ describe('Testing authLogoutV1', () => {
     expect(logout2).toEqual(400);
   });
 });
-
+/*
 describe('Testing authPasswordResetRequest', () => {
   beforeEach(() => {
     requestClear();
