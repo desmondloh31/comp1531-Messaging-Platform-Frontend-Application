@@ -4,7 +4,7 @@ import { port, url } from '../config.json';
 const SERVER_URL = `${url}:${port}`;
 
 export function requestChannelInvite(token: string, channelId: number, uId: number) {
-  return requestHelper('POST', '/channel/invite/v2', { channelId, uId }, token);
+  return requestHelper('POST', '/channel/invite/v3', { channelId, uId }, token);
 }
 
 export function requestClear() {
@@ -12,55 +12,55 @@ export function requestClear() {
 }
 
 export function requestdmLeave(token: string, dmId: number) {
-  return requestHelper('POST', '/dm/leave/v1', { dmId }, token);
+  return requestHelper('POST', '/dm/leave/v2', { dmId }, token);
 }
 
 export function requestDeleteMessage(token: string, messageId: number) {
-  return requestHelper('DELETE', '/message/remove/v1', { messageId }, token);
+  return requestHelper('DELETE', '/message/remove/v2', { messageId }, token);
 }
 
 export function requestdmDelete(token: string, dmId: number) {
-  return requestHelper('DELETE', '/dm/remove/v1', { dmId }, token);
+  return requestHelper('DELETE', '/dm/remove/v2', { dmId }, token);
 }
 
 export function requestChannelMessages(token: string, channelId: number, start: number) {
-  return requestHelper('GET', '/channel/messages/v2', { channelId, start }, token);
+  return requestHelper('GET', '/channel/messages/v3', { channelId, start }, token);
 }
 
 export function requestDmMessages(token: string, dmId: number, start: number) {
-  return requestHelper('GET', '/dm/messages/v1', { dmId, start }, token);
+  return requestHelper('GET', '/dm/messages/v2', { dmId, start }, token);
 }
 
 export function requestdmDetails(token: string, dmId: number) {
-  return requestHelper('GET', '/dm/details/v1', { dmId }, token);
+  return requestHelper('GET', '/dm/details/v2', { dmId }, token);
 }
 
 export function requestEditMessage(token: string, messageId: number, message: string) {
-  return requestHelper('PUT', '/message/edit/v1', { messageId, message }, token);
+  return requestHelper('PUT', '/message/edit/v2', { messageId, message }, token);
 }
 
 export function requestSendMessages(token: string, channelId: number, message: string) {
-  return requestHelper('POST', '/message/send/v1', { channelId, message }, token);
+  return requestHelper('POST', '/message/send/v2', { channelId, message }, token);
 }
 
 export function requestSendDm(token: string, dmId: number, message: string) {
-  return requestHelper('POST', '/message/senddm/v1', { dmId, message }, token);
+  return requestHelper('POST', '/message/senddm/v2', { dmId, message }, token);
 }
 
 export function requestDmCreate(token: string, uIds: number[]) {
-  return requestHelper('POST', '/dm/create/v1', { uIds }, token);
+  return requestHelper('POST', '/dm/create/v2', { uIds }, token);
 }
 
 export function requestChannelCreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v2', { name, isPublic }, token);
+  return requestHelper('POST', '/channels/create/v3', { name, isPublic }, token);
 }
 
 export function requestChannelJoin(token: string, channelId: number) {
-  return requestHelper('POST', '/channel/join/v2', { channelId }, token);
+  return requestHelper('POST', '/channel/join/v3', { channelId }, token);
 }
 
 export function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
+  return requestHelper('POST', '/auth/register/v3', { email, password, nameFirst, nameLast }, '-1');
 }
 
 export function requestMessageReact(messageId: number, reactId: number, token: string) {
@@ -123,22 +123,22 @@ describe('Error Checking in Send Message v1', () => {
     test('invalid channel id', () => {
       const channelid = -1;
       const result = requestSendMessages(user.token, channelid, 'Test Message');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('invalid Message - toolong', () => {
       const result = requestSendMessages(user.token, channelid, 'temp'.repeat(1000));
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('invalid Message - tooshort', () => {
       const result = requestSendMessages(user.token, channelid, '');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('Authuser not part of channel', () => {
       const result = requestSendMessages(user1.token, channelid, 'Test Message');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('Valid Test', () => {
@@ -171,17 +171,17 @@ describe('Error Checking in Edit Message v1', () => {
 
     test('invalid msg id', () => {
       const result = requestEditMessage(user.token, -1, 'Test Message');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('invalid Message - toolong', () => {
       const result = requestEditMessage(user.token, msgId, 'temp'.repeat(1000));
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('authUserId is not the sender of the message with ID messageId', () => {
       const result = requestEditMessage(user1.token, msgId, 'Test Message');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('Valid Test', () => {
@@ -214,12 +214,12 @@ describe('Error Checking in delete Message v1', () => {
 
     test('invalid msg id', () => {
       const result = requestDeleteMessage(user.token, -1);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('authUserId is not the sender of the message with ID messageId', () => {
       const result = requestDeleteMessage(user1.token, msgId);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('Valid Test', () => {
@@ -255,17 +255,17 @@ describe('Error Checking in dm messages v1', () => {
     test('invalid dm id', () => {
       const dmid = -1;
       const result = requestDmMessages(user.token, dmid, 0);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('invalid start', () => {
       const result = requestDmMessages(user.token, dmid, 1);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('Authuser not part of channel', () => {
       const result = requestDmMessages(user3.token, dmid, 0);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('Valid Test', () => {
@@ -300,22 +300,22 @@ describe('Error Checking in Senddm v1', () => {
 
     test('invalid dm id', () => {
       const result = requestSendDm(user1.token, -1, 'Test Message');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('invalid Message - toolong', () => {
       const result = requestSendDm(user1.token, dmid, 'temp'.repeat(1000));
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('invalid Message - tooshort', () => {
       const result = requestSendDm(user1.token, dmid, '');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('Authuser not part of channel', () => {
       const result = requestSendDm(user3.token, dmid, 'Test Message');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('Valid Test', () => {
@@ -350,17 +350,17 @@ describe('Error Checking in dmDelete v1', () => {
 
   test('invalid dm id', () => {
     const result = requestdmDelete(user1.token, -1);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(400);
   });
 
   test('Authuser not part of channel', () => {
     const result = requestdmDelete(user3.token, dmid);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(403);
   });
 
   test('Authuser is not owner of DM', () => {
     const result = requestdmDelete(user1.token, dmid);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(403);
   });
 
   test('Valid Test', () => {
@@ -395,12 +395,12 @@ describe('Error Checking in dmDetails v1', () => {
 
   test('invalid dm id', () => {
     const result = requestdmDetails(user1.token, -1);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(400);
   });
 
   test('Authuser not part of channel', () => {
     const result = requestdmDetails(user3.token, dmid);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(403);
   });
 
   test('Valid Test', () => {
@@ -435,12 +435,12 @@ describe('Error Checking in dmLeave v1', () => {
 
   test('invalid dm id', () => {
     const result = requestdmLeave(user1.token, -1);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(400);
   });
 
   test('Authuser not part of channel', () => {
     const result = requestdmLeave(user3.token, dmid);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(403);
   });
 
   test('Valid Test', () => {

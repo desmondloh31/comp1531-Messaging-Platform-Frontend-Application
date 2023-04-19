@@ -3,7 +3,7 @@ import { port, url } from '../config.json';
 const SERVER_URL = `${url}:${port}`;
 
 export function requestChannelInvite(token: string, channelId: number, uId: number) {
-  return requestHelper('POST', '/channel/invite/v2', { channelId, uId }, token);
+  return requestHelper('POST', '/channel/invite/v3', { channelId, uId }, token);
 }
 
 export function requestClear() {
@@ -11,19 +11,19 @@ export function requestClear() {
 }
 
 export function requestChannelMessages(token: string, channelId: number, start: number) {
-  return requestHelper('GET', '/channel/messages/v2', { channelId, start }, token);
+  return requestHelper('GET', '/channel/messages/v3', { channelId, start }, token);
 }
 
 export function requestChannelCreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v2', { name, isPublic }, token);
+  return requestHelper('POST', '/channels/create/v3', { name, isPublic }, token);
 }
 
 export function requestChannelJoin(token: string, channelId: number) {
-  return requestHelper('POST', '/channel/join/v2', { channelId }, token);
+  return requestHelper('POST', '/channel/join/v3', { channelId }, token);
 }
 
 export function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
+  return requestHelper('POST', '/auth/register/v3', { email, password, nameFirst, nameLast }, '-1');
 }
 
 // Helper Function
@@ -40,6 +40,9 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
     json = payload;
   }
   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+  if (res.statusCode !== 200) {
+    return res.statusCode;
+  }
   return JSON.parse(res.getBody('utf-8'));
 }
 
@@ -68,26 +71,26 @@ describe('Error Checking in channel invite v1', () => {
 
     test('invalid channel id', () => {
       const result = requestChannelInvite(user.token, -1, user2.authUserId);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('uid already member of channel', () => {
       const result = requestChannelInvite(user.token, channelid, user1.authUserId);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('invalid uid', () => {
       const result = requestChannelInvite(user.token, channelid, -1);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('Authuser not part of channel', () => {
       const result = requestChannelInvite(user2.token, channelid, user3.authUserId);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('authuser is invalid', () => {
-      const result = requestChannelInvite(user.token, channelid, -1);
+      const result = requestChannelInvite('-1', channelid, user3.authUserId);
       expect(result).toStrictEqual(ERROR);
     });
 
@@ -120,17 +123,17 @@ describe('Error Checking in channel messages v1', () => {
     test('invalid channel id', () => {
       const channelid = -1;
       const result = requestChannelMessages(user.token, channelid, 0);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('invalid start', () => {
       const result = requestChannelMessages(user.token, channelid, 1);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(400);
     });
 
     test('Authuser not part of channel', () => {
       const result = requestChannelMessages(user1.token, channelid, 0);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('Valid Test', () => {

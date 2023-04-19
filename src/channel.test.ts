@@ -5,23 +5,23 @@ import { port, url } from './config.json';
 const SERVER_URL = `${url}:${port}`;
 
 function requestChannelleavev1(token: string, channelId: number) {
-  return requestHelper('POST', '/channel/leave/v1', { channelId }, token);
+  return requestHelper('POST', '/channel/leave/v2', { channelId }, token);
 }
 
 function requestChanneladdowner(token: string, channelId: number, uId: number) {
-  return requestHelper('POST', '/channel/addowner/v1', { channelId, uId }, token);
+  return requestHelper('POST', '/channel/addowner/v2', { channelId, uId }, token);
 }
 
 function requestChannelremoveowner(token: string, channelId: number, uId: number) {
-  return requestHelper('POST', '/channel/removeowner/v1', { channelId, uId }, token);
+  return requestHelper('POST', '/channel/removeowner/v2', { channelId, uId }, token);
 }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
+  return requestHelper('POST', '/auth/register/v3', { email, password, nameFirst, nameLast }, '-1');
 }
 
 function requestChannelscreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v2', { name, isPublic }, token);
+  return requestHelper('POST', '/channels/create/v3', { name, isPublic }, token);
 }
 
 // function requestChannelDetails(token: string, channelId: number) {
@@ -33,7 +33,7 @@ function requestChannelscreate(token: string, name: string, isPublic: boolean) {
 // }
 
 function requestChannelJoin(token: string, channelId: number) {
-  return requestHelper('POST', '/channel/join/v2', { channelId }, token);
+  return requestHelper('POST', '/channel/join/v3', { channelId }, token);
 }
 
 // function requestChannelInvite(token: string, channelId: number, uId: number) {

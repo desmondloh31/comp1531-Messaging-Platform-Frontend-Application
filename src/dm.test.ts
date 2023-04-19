@@ -12,7 +12,7 @@ function requestdmCreate(token: string, uIds: number[]) {
 // }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
+  return requestHelper('POST', '/auth/register/v3', { email, password, nameFirst, nameLast }, '-1');
 }
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {}, '-1');
