@@ -13,15 +13,15 @@ function requestAdminUserRemove(authUserId: number) {
 }
 
 // function requestChannelsCreate(token: string, name: string, isPublic: boolean) {
-//   return requestHelper('POST', '/channels/create/v2', { token, name, isPublic });
+//   return requestHelper('POST', '/channels/create/v3', { token, name, isPublic });
 // }
 
 // function requestDmCreate(token: string, uId: number) {
-//   return requestHelper('POST', '/dm/create/v1', { token, uId });
+//   return requestHelper('POST', '/dm/create/v2', { token, uId });
 // }
 
 // function requestUserAll(token: string) {
-//   return requestHelper('GET', '/users/all/v1', { token });
+//   return requestHelper('GET', '/users/all/v2', { token });
 // }
 
 // Helper Function

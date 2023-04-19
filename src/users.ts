@@ -43,7 +43,7 @@ export function userProfileV1(token: string, uId: number) {
 
 export function usersAllV1(token: string) {
   // check that token is valid
-  if (!tokenExists) {
+  if (!tokenExists(token)) {
     throw HttpError(400, 'error');
   }
   const data = getData();
