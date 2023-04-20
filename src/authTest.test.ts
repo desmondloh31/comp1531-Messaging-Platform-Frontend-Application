@@ -125,7 +125,7 @@ describe('Testing authLogoutV1', () => {
     expect(logout2).toEqual(400);
   });
 });
-/*
+
 describe('Testing authPasswordResetRequest', () => {
   beforeEach(() => {
     requestClear();
@@ -133,7 +133,7 @@ describe('Testing authPasswordResetRequest', () => {
 
   test('Testing if it will return nothing', () => {
     const user = requestAuthRegister('keyon.vonrueden92@ethereal.email', 'abc123', 'John', 'Smith');
-    const function1 = requestAuthPasswordResetRequest(user.email)
+    const function1 = requestAuthPasswordResetRequest('keyon.vonrueden92@ethereal.email')
 
     expect(function1).toEqual({});
   });
@@ -150,4 +150,4 @@ describe('Testing authPasswordResetReset', () => {
     expect(function1).toEqual(400);
   });
 })
-*/
+

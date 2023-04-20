@@ -307,19 +307,19 @@ app.delete('/admin/user/remove/v1', (req: Request, res: Response) => {
   res.json(function1);
 });
 
-app.post('auth/passwordreset/request/v1', (req: Request, res: Response) => {
+app.post('/auth/passwordreset/request/v1', (req: Request, res: Response) => {
   const { email } = req.body;
   const authid = authPasswordResetRequestV1(email);
   res.json(authid);
 });
 
-app.post('auth/passwordreset/reset/v1', (req: Request, res: Response) => {
+app.post('/auth/passwordreset/reset/v1', (req: Request, res: Response) => {
   const { resetCode, newPassword } = req.body;
   const authid = authPasswordResetResetV1(resetCode, newPassword);
   res.json(authid);
 });
 
-app.post('user/profile/uploadphoto/v1', (req: Request, res: Response) => {
+app.post('/user/profile/uploadphoto/v1', (req: Request, res: Response) => {
   const { imgUrl, xStart, yStart, xEnd, yEnd } = req.body;
   const authid = uploadPhotoV1(imgUrl, xStart, yStart, xEnd, yEnd);
   res.json(authid);
