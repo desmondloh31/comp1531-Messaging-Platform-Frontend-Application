@@ -10,7 +10,7 @@ function standupActiveV1(token: string, channelId: number) {
   const findChannelId = data.channels.find((i) => i.channelId === channelId);
 
   if (!findUser) {
-    throw new Error('token is invalid');
+    throw HttpError(400);
   }
   if (!findChannelId) {
     // raise error 400 in HTTP: Bad Request
@@ -35,7 +35,7 @@ function standupStartV1(token: string, channelId: number, length: number) {
   const findChannelId = data.channels.find((i) => i.channelId === channelId);
 
   if (!findUser) {
-    return { error: 'token is invalid' };
+    throw HttpError(400);
   }
   if (!findChannelId) {
     // raise error 400: Bad request
@@ -100,7 +100,7 @@ function standupSendV1(token: string, channelId: number, message: string) {
   const findChannelId = data.channels.find((i) => i.channelId === channelId);
 
   if (!findUser) {
-    return { error: 'token is invalid' };
+    throw HttpError(400);
   }
   if (!findChannelId) {
     // raise error 400: Bad request
@@ -142,7 +142,7 @@ function getNotificationsV1(token: string) {
   const user = data.users.find(u => u.authUserId === authUserId);
 
   if (!user) {
-    throw new Error('User not found');
+    throw HttpError(400);
   }
 
   const notifications = user.notifications

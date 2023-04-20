@@ -24,15 +24,15 @@ function requestSearch(queryStr: string) {
 }
 
 function requestMessageSend(token: string, channelId: number, message: string) {
-  return requestHelper('POST', '/message/send/v1', { token, channelId, message }, token);
+  return requestHelper('POST', '/message/send/v2', { token, channelId, message }, token);
 }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
-  return requestHelper('POST', '/auth/register/v2', { email, password, nameFirst, nameLast }, '-1');
+  return requestHelper('POST', '/auth/register/v3', { email, password, nameFirst, nameLast }, '-1');
 }
 
 function requestChannelscreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v2', { token, name, isPublic }, token);
+  return requestHelper('POST', '/channels/create/v3', { token, name, isPublic }, token);
 }
 
 // function requestChannelDetails(token: string, channelId: number) {
@@ -61,6 +61,8 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
   }
   return JSON.parse(res.body as string);
 }
+
+
 // testing searchV1:
 describe('testing SearchV1', () => {
     interface usr {
@@ -237,9 +239,12 @@ describe('testing standupActiveV1', () => {
     test('returns true for an active standup period', () => {
       requeststandupStart(user1.token, channel1, 60);
       requeststandupSend(user1.token, channel1, 'test message');
+  
       const result = requeststandupActive(user1.token, channel1);
+      console.log(result);
       expect(result.isActive).toEqual(true);
       expect(result.timeFinish).not.toEqual(null);
+    
     });
 
     test('returns false for an inactive standup period', () => {
