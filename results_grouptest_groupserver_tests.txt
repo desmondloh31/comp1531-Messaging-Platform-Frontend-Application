@@ -1,0 +1,1062 @@
+
+> test
+> jest **/?(*.)+(test).ts
+
+  Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
+  Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
+FAIL src/tests/dm.test.ts (31.2 s)
+  ● Error Checking in Send Message v1 › invalid channel id
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      124 |       const channelid = -1;
+      125 |       const result = requestSendMessages(user.token, channelid, 'Test Message');
+    > 126 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      127 |     });
+      128 |
+      129 |     test('invalid Message - toolong', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:126:22)
+
+  ● Error Checking in Send Message v1 › invalid Message - toolong
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      129 |     test('invalid Message - toolong', () => {
+      130 |       const result = requestSendMessages(user.token, channelid, 'temp'.repeat(1000));
+    > 131 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      132 |     });
+      133 |
+      134 |     test('invalid Message - tooshort', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:131:22)
+
+  ● Error Checking in Send Message v1 › invalid Message - tooshort
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      134 |     test('invalid Message - tooshort', () => {
+      135 |       const result = requestSendMessages(user.token, channelid, '');
+    > 136 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      137 |     });
+      138 |
+      139 |     test('Authuser not part of channel', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:136:22)
+
+  ● Error Checking in Send Message v1 › Authuser not part of channel
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 403
+
+      139 |     test('Authuser not part of channel', () => {
+      140 |       const result = requestSendMessages(user1.token, channelid, 'Test Message');
+    > 141 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      142 |     });
+      143 |
+      144 |     test('Valid Test', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:141:22)
+
+  ● Error Checking in Edit Message v1 › invalid msg id
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      172 |     test('invalid msg id', () => {
+      173 |       const result = requestEditMessage(user.token, -1, 'Test Message');
+    > 174 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      175 |     });
+      176 |
+      177 |     test('invalid Message - toolong', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:174:22)
+
+  ● Error Checking in Edit Message v1 › invalid Message - toolong
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      177 |     test('invalid Message - toolong', () => {
+      178 |       const result = requestEditMessage(user.token, msgId, 'temp'.repeat(1000));
+    > 179 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      180 |     });
+      181 |
+      182 |     test('authUserId is not the sender of the message with ID messageId', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:179:22)
+
+  ● Error Checking in Edit Message v1 › authUserId is not the sender of the message with ID messageId
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 403
+
+      182 |     test('authUserId is not the sender of the message with ID messageId', () => {
+      183 |       const result = requestEditMessage(user1.token, msgId, 'Test Message');
+    > 184 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      185 |     });
+      186 |
+      187 |     test('Valid Test', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:184:22)
+
+  ● Error Checking in delete Message v1 › invalid msg id
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      215 |     test('invalid msg id', () => {
+      216 |       const result = requestDeleteMessage(user.token, -1);
+    > 217 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      218 |     });
+      219 |
+      220 |     test('authUserId is not the sender of the message with ID messageId', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:217:22)
+
+  ● Error Checking in delete Message v1 › authUserId is not the sender of the message with ID messageId
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 403
+
+      220 |     test('authUserId is not the sender of the message with ID messageId', () => {
+      221 |       const result = requestDeleteMessage(user1.token, msgId);
+    > 222 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      223 |     });
+      224 |
+      225 |     test('Valid Test', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:222:22)
+
+  ● Error Checking in dm messages v1 › invalid dm id
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      256 |       const dmid = -1;
+      257 |       const result = requestDmMessages(user.token, dmid, 0);
+    > 258 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      259 |     });
+      260 |
+      261 |     test('invalid start', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:258:22)
+
+  ● Error Checking in dm messages v1 › invalid start
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      261 |     test('invalid start', () => {
+      262 |       const result = requestDmMessages(user.token, dmid, 1);
+    > 263 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      264 |     });
+      265 |
+      266 |     test('Authuser not part of channel', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:263:22)
+
+  ● Error Checking in dm messages v1 › Authuser not part of channel
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 403
+
+      266 |     test('Authuser not part of channel', () => {
+      267 |       const result = requestDmMessages(user3.token, dmid, 0);
+    > 268 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      269 |     });
+      270 |
+      271 |     test('Valid Test', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:268:22)
+
+  ● Error Checking in Senddm v1 › invalid dm id
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      301 |     test('invalid dm id', () => {
+      302 |       const result = requestSendDm(user1.token, -1, 'Test Message');
+    > 303 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      304 |     });
+      305 |
+      306 |     test('invalid Message - toolong', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:303:22)
+
+  ● Error Checking in Senddm v1 › invalid Message - toolong
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      306 |     test('invalid Message - toolong', () => {
+      307 |       const result = requestSendDm(user1.token, dmid, 'temp'.repeat(1000));
+    > 308 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      309 |     });
+      310 |
+      311 |     test('invalid Message - tooshort', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:308:22)
+
+  ● Error Checking in Senddm v1 › invalid Message - tooshort
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 400
+
+      311 |     test('invalid Message - tooshort', () => {
+      312 |       const result = requestSendDm(user1.token, dmid, '');
+    > 313 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      314 |     });
+      315 |
+      316 |     test('Authuser not part of channel', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:313:22)
+
+  ● Error Checking in Senddm v1 › Authuser not part of channel
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: {"error": Any<String>}
+    Received: 403
+
+      316 |     test('Authuser not part of channel', () => {
+      317 |       const result = requestSendDm(user3.token, dmid, 'Test Message');
+    > 318 |       expect(result).toStrictEqual(ERROR);
+          |                      ^
+      319 |     });
+      320 |
+      321 |     test('Valid Test', () => {
+
+      at Object.<anonymous> (src/tests/dm.test.ts:318:22)
+
+FAIL src/channel.test.ts (10.602 s)
+  ● Testing channelLeaveV1 › allowing a member of a channel to leave the channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {}
+    Received: 400
+
+      81 |   test('allowing a member of a channel to leave the channel', () => {
+      82 |     const result = requestChannelleavev1(user1.token, channel1);
+    > 83 |     expect(result).toEqual({});
+         |                    ^
+      84 |   });
+      85 |
+      86 |   test('token generated is invalid', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:83:20)
+
+  ● Testing channelLeaveV1 › token generated is invalid
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"error": "token is invalid"}
+    Received: 400
+
+      86 |   test('token generated is invalid', () => {
+      87 |     const result = requestChannelleavev1('wrong token', channel1);
+    > 88 |     expect(result).toEqual({ error: 'token is invalid' });
+         |                    ^
+      89 |   });
+      90 |
+      91 |   test('channelId does not refer to a valid channel', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:88:20)
+
+  ● Testing channelLeaveV1 › user is not a member of the channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: 400
+
+       96 |   test('user is not a member of the channel', () => {
+       97 |     const result = requestChannelleavev1(user2.token, channel1);
+    >  98 |     expect(result).toEqual(403);
+          |                    ^
+       99 |   });
+      100 | });
+      101 |
+
+      at Object.<anonymous> (src/channel.test.ts:98:20)
+
+  ● Testing the addowner function › Adding a user as an owner to the channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "error": "token is invalid",
+    + }
+
+      124 |     requestChannelJoin(user2.token, channel1);
+      125 |     const result = requestChanneladdowner(user1.token, channel1, user2.authUserId);
+    > 126 |     expect(result).toEqual({});
+          |                    ^
+      127 |   });
+      128 |
+      129 |   test('should return error with invalid token', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:126:20)
+
+  ● Testing the addowner function › should return error with invalid channelId
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      135 |   test('should return error with invalid channelId', () => {
+      136 |     const result = requestChanneladdowner(user1.token, -1, user2.authUserId);
+    > 137 |     expect(result).toEqual(400);
+          |                    ^
+      138 |   });
+      139 |
+      140 |   test('should return error with invalid uId', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:137:20)
+
+  ● Testing the addowner function › should return error with uId not in channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      145 |   test('should return error with uId not in channel', () => {
+      146 |     const result = requestChanneladdowner(user1.token, channel1, user2.authUserId);
+    > 147 |     expect(result).toEqual(400);
+          |                    ^
+      148 |   });
+      149 |
+      150 |   test('should return error with uId already an owner', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:147:20)
+
+  ● Testing the addowner function › should return error with uId already an owner
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      150 |   test('should return error with uId already an owner', () => {
+      151 |     const result = requestChanneladdowner(user2.token, channel2, user2.authUserId);
+    > 152 |     expect(result).toEqual(400);
+          |                    ^
+      153 |   });
+      154 |
+      155 |   test('should return error with user without owner permissions', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:152:20)
+
+  ● Testing the addowner function › should return error with user without owner permissions
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: {"error": "token is invalid"}
+
+      156 |     requestChannelJoin(user2.token, channel1);
+      157 |     const result = requestChanneladdowner(user3.token, channel1, user2.authUserId);
+    > 158 |     expect(result).toEqual(403);
+          |                    ^
+      159 |   });
+      160 | });
+      161 |
+
+      at Object.<anonymous> (src/channel.test.ts:158:20)
+
+  ● Testing the removeowner function › removing an owner from the channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "error": "token is invalid",
+    + }
+
+      182 |     requestChannelJoin(user2.token, channel1);
+      183 |     const result = requestChannelremoveowner(user1.token, channel1, user2.authUserId);
+    > 184 |     expect(result).toEqual({});
+          |                    ^
+      185 |   });
+      186 |
+      187 |   test('should return error with invalid token', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:184:20)
+
+  ● Testing the removeowner function › should return error with invalid channelId
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      193 |   test('should return error with invalid channelId', () => {
+      194 |     const result = requestChanneladdowner(user1.token, -1, user2.authUserId);
+    > 195 |     expect(result).toEqual(400);
+          |                    ^
+      196 |   });
+      197 |
+      198 |   test('should return error with invalid uId', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:195:20)
+
+  ● Testing the removeowner function › should return error with uId not in channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      203 |   test('should return error with uId not in channel', () => {
+      204 |     const result = requestChannelremoveowner(user1.token, channel1, user2.authUserId);
+    > 205 |     expect(result).toEqual(400);
+          |                    ^
+      206 |   });
+      207 |
+      208 |   test('should return error with user without owner permissions', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:205:20)
+
+  ● Testing the removeowner function › should return error with user without owner permissions
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: {"error": "token is invalid"}
+
+      209 |     requestChannelJoin(user2.token, channel1);
+      210 |     const result = requestChannelremoveowner(user3.token, channel1, user2.authUserId);
+    > 211 |     expect(result).toEqual(403);
+          |                    ^
+      212 |   });
+      213 | });
+      214 |
+
+      at Object.<anonymous> (src/channel.test.ts:211:20)
+
+  ● Testing channelJoinV1 › channelId is invalid
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "authUserId is invalid"}
+
+      351 |     const channelId2 = -1;
+      352 |     const result = requestChannelJoin(authId2.token, channelId2);
+    > 353 |     expect(result).toStrictEqual(400);
+          |                    ^
+      354 |   });
+      355 |
+      356 |   // test that authorised user is already member of channel
+
+      at Object.<anonymous> (src/channel.test.ts:353:20)
+
+  ● Testing channelJoinV1 › Authorised user is already a member
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "authUserId is invalid"}
+
+      359 |     const channel1 = requestChannelscreate(authId1.token, 'channel1', true);
+      360 |     const result = requestChannelJoin(authId1.token, channel1);
+    > 361 |     expect(result).toStrictEqual(400);
+          |                    ^
+      362 |   });
+      363 |
+      364 |   // test that new authorised user cannot join private channel when not a member
+
+      at Object.<anonymous> (src/channel.test.ts:361:20)
+
+  ● Testing channelJoinV1 › Private channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: {"error": "authUserId is invalid"}
+
+      367 |     const channel1 = requestChannelscreate(authId1.token, 'channel1', true);
+      368 |     const result = requestChannelJoin(authId1.token, channel1);
+    > 369 |     expect(result).toEqual(403);
+          |                    ^
+      370 |   });
+      371 |   // test that an authorised user's Id is invalid
+      372 |   test('Authorised user Id is invalid', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:369:20)
+
+  ● Testing channelJoinV1 › Authorised user successfully joins channel
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "error": "authUserId is invalid",
+    + }
+
+      384 |     const channel1 = requestChannelscreate(authId2.token, 'channel1', true);
+      385 |     const result = requestChannelJoin(authId1.token, channel1.channelId);
+    > 386 |     expect(result).toStrictEqual({});
+          |                    ^
+      387 |   });
+      388 | });
+      389 |
+
+      at Object.<anonymous> (src/channel.test.ts:386:20)
+
+FAIL src/standup.test.ts (11.506 s)
+  ● testing SearchV1 › returns messages containing query substring
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: [{"message": "test case", "messageId": 2, "senderId": 0, "timeSent": Any<Number>}]
+    Received: undefined
+
+      79 |       requestMessageSend(user1.token, channel1, 'test case');
+      80 |       const result = requestSearch('test');
+    > 81 |       expect(result.messages).toEqual([
+         |                               ^
+      82 |         { messageId: 2, senderId: user1.authUserId, message: 'test case', timeSent: expect.any(Number) },
+      83 |       ]);
+      84 |     });
+
+      at Object.<anonymous> (src/standup.test.ts:81:31)
+
+  ● testing SearchV1 › returns empty array if no messages contain query substring
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: []
+    Received: undefined
+
+      88 |       requestMessageSend(user1.token, channel1, 'test case');
+      89 |       const result = requestSearch('foo');
+    > 90 |       expect(result.messages).toEqual([]);
+         |                               ^
+      91 |     });
+      92 |
+      93 |     test('throws HttpError if queryStr is less than 1 character', () => {
+
+      at Object.<anonymous> (src/standup.test.ts:90:31)
+
+  ● testing SearchV1 › throws HttpError if queryStr is less than 1 character
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 500
+
+      93 |     test('throws HttpError if queryStr is less than 1 character', () => {
+      94 |       const result = requestSearch('');
+    > 95 |       expect(result).toBe(400);
+         |                      ^
+      96 |     });
+      97 |
+      98 |     test('throws HttpError if queryStr is over 1000 characters', () => {
+
+      at Object.<anonymous> (src/standup.test.ts:95:22)
+
+  ● testing SearchV1 › throws HttpError if queryStr is over 1000 characters
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 500
+
+       98 |     test('throws HttpError if queryStr is over 1000 characters', () => {
+       99 |       const result = requestSearch('a'.repeat(1001));
+    > 100 |       expect(result).toBe(400);
+          |                      ^
+      101 |     });
+      102 | });
+      103 |
+
+      at Object.<anonymous> (src/standup.test.ts:100:22)
+
+  ● testing standupSendV1 › should send a message to a running standup
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {}
+    Received: 400
+
+      146 |       requeststandupStart(user1.token, channel1, 60);
+      147 |       const result = requeststandupSend(user1.token, channel1, 'Test message');
+    > 148 |       expect(result).toEqual({});
+          |                      ^
+      149 |     });
+      150 |
+      151 |     test('channelId is invalid', () => {
+
+      at Object.<anonymous> (src/standup.test.ts:148:22)
+
+  ● testing standupSendV1 › an active standup is not currently running
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"isActive": false, "timeFinish": null}
+    Received: 400
+
+      161 |
+      162 |     test('an active standup is not currently running', () => {
+    > 163 |       expect(requeststandupActive(user1.token, channel1)).toEqual({ isActive: false, timeFinish: null });
+          |                                                           ^
+      164 |       const result = requeststandupSend(user1.token, channel1, 'Test message');
+      165 |       expect(result).toBe(400);
+      166 |     });
+
+      at Object.<anonymous> (src/standup.test.ts:163:59)
+
+  ● testing standupSendV1 › user is not a member of the channel
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 403
+    Received: 400
+
+      168 |     test('user is not a member of the channel', () => {
+      169 |       const result = requeststandupSend(user2.token, channel1, 'test message');
+    > 170 |       expect(result).toBe(403);
+          |                      ^
+      171 |     });
+      172 | });
+      173 |
+
+      at Object.<anonymous> (src/standup.test.ts:170:22)
+
+  ● testing standupStartV1 › testing if standup manages to start
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: Any<Number>
+    Received: undefined
+
+      190 |     test('testing if standup manages to start', () => {
+      191 |       const result = requeststandupStart(user1.token, channel1, 5);
+    > 192 |       expect(result.timeFinish).toEqual(expect.any(Number));
+          |                                 ^
+      193 |       expect(result.timeFinish).toBeGreaterThan(Math.floor(Date.now() / 1000));
+      194 |       expect(result.timeFinish).toBeLessThanOrEqual(Math.floor(Date.now() / 1000) + 5);
+      195 |     });
+
+      at Object.<anonymous> (src/standup.test.ts:192:33)
+
+  ● testing standupStartV1 › testing if user is not a member of the channel
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 403
+    Received: 400
+
+      215 |     test('testing if user is not a member of the channel', () => {
+      216 |       const result = requeststandupStart(user2.token, channel1, 10);
+    > 217 |       expect(result).toBe(403);
+          |                      ^
+      218 |     });
+      219 | });
+      220 |
+
+      at Object.<anonymous> (src/standup.test.ts:217:22)
+
+  ● testing standupActiveV1 › returns true for an active standup period
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: true
+    Received: undefined
+
+      239 |       requeststandupSend(user1.token, channel1, 'test message');
+      240 |       const result = requeststandupActive(user1.token, channel1);
+    > 241 |       expect(result.isActive).toEqual(true);
+          |                               ^
+      242 |       expect(result.timeFinish).not.toEqual(null);
+      243 |     });
+      244 |
+
+      at Object.<anonymous> (src/standup.test.ts:241:31)
+
+  ● testing standupActiveV1 › returns false for an inactive standup period
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: false
+    Received: undefined
+
+      245 |     test('returns false for an inactive standup period', () => {
+      246 |       const result = requeststandupActive(user1.token, channel1);
+    > 247 |       expect(result.isActive).toEqual(false);
+          |                               ^
+      248 |       expect(result.timeFinish).toEqual(null);
+      249 |     });
+      250 |
+
+      at Object.<anonymous> (src/standup.test.ts:247:31)
+
+  ● testing standupActiveV1 › user is not a member of channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: 400
+
+      261 |     test('user is not a member of channel', () => {
+      262 |       const result = requeststandupActive(user2.token, channel1);
+    > 263 |       expect(result).toEqual(403);
+          |                      ^
+      264 |     });
+      265 | });
+      266 |
+
+      at Object.<anonymous> (src/standup.test.ts:263:22)
+
+PASS src/tests/message.test.ts
+PASS src/authTest.test.ts
+FAIL src/tests/channelhttp.test.ts (6.206 s)
+  ● Error Checking in channel invite v1 › invalid channel id
+
+    Server responded to http://127.0.0.1:48237/channel/invite/v2 with status code 400:
+    {"error":{"message":"channelId is invalid"}}
+
+      41 |   }
+      42 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 43 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      44 | }
+      45 |
+      46 | const ERROR = { error: expect.any(String) };
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/tests/channelhttp.test.ts:43:25)
+      at requestChannelInvite (src/tests/channelhttp.test.ts:6:10)
+      at Object.<anonymous> (src/tests/channelhttp.test.ts:70:22)
+
+  ● Error Checking in channel invite v1 › uid already member of channel
+
+    Server responded to http://127.0.0.1:48237/channel/invite/v2 with status code 400:
+    {"error":{"message":"User is already a member of channel"}}
+
+      41 |   }
+      42 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 43 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      44 | }
+      45 |
+      46 | const ERROR = { error: expect.any(String) };
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/tests/channelhttp.test.ts:43:25)
+      at requestChannelInvite (src/tests/channelhttp.test.ts:6:10)
+      at Object.<anonymous> (src/tests/channelhttp.test.ts:75:22)
+
+  ● Error Checking in channel invite v1 › invalid uid
+
+    Server responded to http://127.0.0.1:48237/channel/invite/v2 with status code 400:
+    {"error":{"message":"uId is invalid"}}
+
+      41 |   }
+      42 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 43 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      44 | }
+      45 |
+      46 | const ERROR = { error: expect.any(String) };
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/tests/channelhttp.test.ts:43:25)
+      at requestChannelInvite (src/tests/channelhttp.test.ts:6:10)
+      at Object.<anonymous> (src/tests/channelhttp.test.ts:80:22)
+
+  ● Error Checking in channel invite v1 › Authuser not part of channel
+
+    Server responded to http://127.0.0.1:48237/channel/invite/v2 with status code 403:
+    {"error":{"message":"authUser is NOT a member of channel"}}
+
+      41 |   }
+      42 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 43 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      44 | }
+      45 |
+      46 | const ERROR = { error: expect.any(String) };
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/tests/channelhttp.test.ts:43:25)
+      at requestChannelInvite (src/tests/channelhttp.test.ts:6:10)
+      at Object.<anonymous> (src/tests/channelhttp.test.ts:85:22)
+
+  ● Error Checking in channel invite v1 › authuser is invalid
+
+    Server responded to http://127.0.0.1:48237/channel/invite/v2 with status code 400:
+    {"error":{"message":"uId is invalid"}}
+
+      41 |   }
+      42 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 43 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      44 | }
+      45 |
+      46 | const ERROR = { error: expect.any(String) };
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/tests/channelhttp.test.ts:43:25)
+      at requestChannelInvite (src/tests/channelhttp.test.ts:6:10)
+      at Object.<anonymous> (src/tests/channelhttp.test.ts:90:22)
+
+  ● Error Checking in channel messages v1 › invalid channel id
+
+    Server responded to http://127.0.0.1:48237/channel/messages/v2?channelId=-1&start=0 with status code 400:
+    {"error":{"message":"channelId is invalid"}}
+
+      41 |   }
+      42 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 43 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      44 | }
+      45 |
+      46 | const ERROR = { error: expect.any(String) };
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/tests/channelhttp.test.ts:43:25)
+      at requestChannelMessages (src/tests/channelhttp.test.ts:14:10)
+      at Object.<anonymous> (src/tests/channelhttp.test.ts:122:22)
+
+  ● Error Checking in channel messages v1 › invalid start
+
+    Server responded to http://127.0.0.1:48237/channel/messages/v2?channelId=0&start=1 with status code 400:
+    {"error":{"message":"start is greater than the total number of messages in the channel"}}
+
+      41 |   }
+      42 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 43 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      44 | }
+      45 |
+      46 | const ERROR = { error: expect.any(String) };
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/tests/channelhttp.test.ts:43:25)
+      at requestChannelMessages (src/tests/channelhttp.test.ts:14:10)
+      at Object.<anonymous> (src/tests/channelhttp.test.ts:127:22)
+
+  ● Error Checking in channel messages v1 › Authuser not part of channel
+
+    Server responded to http://127.0.0.1:48237/channel/messages/v2?channelId=0&start=0 with status code 403:
+    {"error":{"message":"authUserId is not a member of the channel with ID channelId"}}
+
+      41 |   }
+      42 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 43 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      44 | }
+      45 |
+      46 | const ERROR = { error: expect.any(String) };
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/tests/channelhttp.test.ts:43:25)
+      at requestChannelMessages (src/tests/channelhttp.test.ts:14:10)
+      at Object.<anonymous> (src/tests/channelhttp.test.ts:132:22)
+
+FAIL src/channels.test.ts
+  ● Testing channelsCreateV1 › creates a new channel with valid parameters
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "channelId": Any<Number>,
+    +   "error": "authUserId is invalid",
+      }
+
+      54 |     const result = requestChannelscreate(user1.token, name, isPublic);
+      55 |
+    > 56 |     expect((result)).toEqual({
+         |                      ^
+      57 |       channelId: expect.any(Number)
+      58 |     });
+      59 |   });
+
+      at Object.<anonymous> (src/channels.test.ts:56:22)
+
+  ● Testing channelsCreateV1 › returns error when name is too short
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "authUserId is invalid"}
+
+      75 |     const isPublic = true;
+      76 |     const result = requestChannelscreate(user1.token, name, isPublic);
+    > 77 |     expect((result)).toEqual(400);
+         |                      ^
+      78 |   });
+      79 |
+      80 |   // name is too long:
+
+      at Object.<anonymous> (src/channels.test.ts:77:22)
+
+  ● Testing channelsCreateV1 › returns error when name is too long
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "authUserId is invalid"}
+
+      85 |     const longName = 'abcdefghijklmnopqrstuvwxyz';
+      86 |     const result = requestChannelscreate(user1.token, longName, isPublic);
+    > 87 |     expect((result)).toEqual(400);
+         |                      ^
+      88 |   });
+      89 | });
+      90 |
+
+      at Object.<anonymous> (src/channels.test.ts:87:22)
+
+  ● Testing channelsListV1 › returns array of channels when authUserId is valid
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 6
+    + Received  + 1
+
+      Object {
+    -   "channels": Array [
+    -     Object {
+    -       "channelId": undefined,
+    -       "name": "test",
+    -     },
+    -   ],
+    +   "error": "authUserId is invalid",
+      }
+
+       99 |     const channel1 = requestChannelscreate(user1.token, 'test', true).channelId;
+      100 |     const result = requestChannelslist(user1.token);
+    > 101 |     expect((result)).toEqual({ channels: [{ channelId: channel1, name: 'test' }] });
+          |                      ^
+      102 |   });
+      103 |
+      104 |   // authUserId is invalid:
+
+      at Object.<anonymous> (src/channels.test.ts:101:22)
+
+  ● Testing channelsListAllV1 › returns array of channels when authUserId is valid
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 6
+    + Received  + 1
+
+      Object {
+    -   "channels": Array [
+    -     Object {
+    -       "channelId": undefined,
+    -       "name": "pass",
+    -     },
+    -   ],
+    +   "error": "authUserId is invalid",
+      }
+
+      123 |     const channel2 = requestChannelscreate(authUserId2.token, 'pass', true);
+      124 |     const result = requestChannelsListAll(authUserId1.token);
+    > 125 |     expect((result)).toEqual({ channels: [{ channelId: channel2.channelId, name: 'pass' }] });
+          |                      ^
+      126 |   });
+      127 | });
+      128 |
+
+      at Object.<anonymous> (src/channels.test.ts:125:22)
+
+FAIL src/usersTest.test.ts
+  ● Testing userProfileV2 › Testing if userProfileV2 is returning all the correct values
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"user": {"email": "example@gmail.com", "handleStr": "johnsmith", "nameFirst": "John", "nameLast": "Smith", "uId": 0}}
+    Received: 400
+
+      55 |     const profile = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith') as {token:string, authUserId: number};
+      56 |     const user = requestUserProfile(profile.token, profile.authUserId);
+    > 57 |     expect(user).toEqual({
+         |                  ^
+      58 |       user:
+      59 |       {
+      60 |         uId: 0,
+
+      at Object.<anonymous> (src/usersTest.test.ts:57:18)
+
+PASS src/dm.test.ts
+PASS src/adminTest.test.ts
+PASS src/echo.test.ts
+
+Test Suites: 6 failed, 5 passed, 11 total
+Tests:       58 failed, 98 passed, 156 total
+Snapshots:   0 total
+Time:        77.179 s
+Ran all test suites.
+npm notice 
+npm notice New patch version of npm available! 9.6.3 -> 9.6.5
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.6.5>
+npm notice Run `npm install -g npm@9.6.5` to update!
+npm notice 

@@ -1,0 +1,17 @@
+
+> tsc
+> tsc --noImplicitAny --pretty
+
+[96mnode_modules/@types/node/globals.d.ts[0m:[93m72[0m:[93m13[0m - [91merror[0m[90m TS2403: [0mSubsequent variable declarations must have the same type.  Variable 'AbortSignal' must be of type '{ new (): AbortSignal; prototype: AbortSignal; abort(reason?: any): AbortSignal; timeout(milliseconds: number): AbortSignal; }', but here has type '{ new (): AbortSignal; prototype: AbortSignal; }'.
+
+[7m72[0m declare var AbortSignal: {
+[7m  [0m [91m            ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.dom.d.ts[0m:[93m2071[0m:[93m13[0m
+    [7m2071[0m declare var AbortSignal: {
+    [7m    [0m [96m            ~~~~~~~~~~~[0m
+    'AbortSignal' was also declared here.
+
+
+Found 1 error in node_modules/@types/node/globals.d.ts[90m:72[0m
+

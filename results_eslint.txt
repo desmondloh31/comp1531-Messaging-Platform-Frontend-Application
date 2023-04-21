@@ -1,0 +1,66 @@
+
+[4msrc/admin.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/adminTest.test.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/auth.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/authTest.test.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/channel.test.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/channel.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/channels.test.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/channels.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/dataStore.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/dm.test.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/dm.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/echo.test.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/echo.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/message.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/other.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/server.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/standup.test.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/standup.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/token.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/users.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[4msrc/usersTest.test.ts[24m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
+
+[32m[1m✔ 21 files successfully linted.[22m[39m
+[32m[1m[22m[39m
