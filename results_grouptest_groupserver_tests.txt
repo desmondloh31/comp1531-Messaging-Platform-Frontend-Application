@@ -1,0 +1,717 @@
+
+> test
+> jest **/?(*.)+(test).ts
+
+  Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
+  Invalid testPattern **/?(*.)+(test).ts supplied. Running all tests instead.
+PASS src/tests/dm.test.ts (27.911 s)
+FAIL src/channel.test.ts (9.532 s)
+  ● Testing channelLeaveV1 › allowing a member of a channel to leave the channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {}
+    Received: 400
+
+      81 |   test('allowing a member of a channel to leave the channel', () => {
+      82 |     const result = requestChannelleavev1(user1.token, channel1);
+    > 83 |     expect(result).toEqual({});
+         |                    ^
+      84 |   });
+      85 |
+      86 |   test('token generated is invalid', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:83:20)
+
+  ● Testing channelLeaveV1 › token generated is invalid
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"error": "token is invalid"}
+    Received: 400
+
+      86 |   test('token generated is invalid', () => {
+      87 |     const result = requestChannelleavev1('wrong token', channel1);
+    > 88 |     expect(result).toEqual({ error: 'token is invalid' });
+         |                    ^
+      89 |   });
+      90 |
+      91 |   test('channelId does not refer to a valid channel', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:88:20)
+
+  ● Testing channelLeaveV1 › user is not a member of the channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: 400
+
+       96 |   test('user is not a member of the channel', () => {
+       97 |     const result = requestChannelleavev1(user2.token, channel1);
+    >  98 |     expect(result).toEqual(403);
+          |                    ^
+       99 |   });
+      100 | });
+      101 |
+
+      at Object.<anonymous> (src/channel.test.ts:98:20)
+
+  ● Testing the addowner function › Adding a user as an owner to the channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "error": "token is invalid",
+    + }
+
+      124 |     requestChannelJoin(user2.token, channel1);
+      125 |     const result = requestChanneladdowner(user1.token, channel1, user2.authUserId);
+    > 126 |     expect(result).toEqual({});
+          |                    ^
+      127 |   });
+      128 |
+      129 |   test('should return error with invalid token', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:126:20)
+
+  ● Testing the addowner function › should return error with invalid channelId
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      135 |   test('should return error with invalid channelId', () => {
+      136 |     const result = requestChanneladdowner(user1.token, -1, user2.authUserId);
+    > 137 |     expect(result).toEqual(400);
+          |                    ^
+      138 |   });
+      139 |
+      140 |   test('should return error with invalid uId', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:137:20)
+
+  ● Testing the addowner function › should return error with uId not in channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      145 |   test('should return error with uId not in channel', () => {
+      146 |     const result = requestChanneladdowner(user1.token, channel1, user2.authUserId);
+    > 147 |     expect(result).toEqual(400);
+          |                    ^
+      148 |   });
+      149 |
+      150 |   test('should return error with uId already an owner', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:147:20)
+
+  ● Testing the addowner function › should return error with uId already an owner
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      150 |   test('should return error with uId already an owner', () => {
+      151 |     const result = requestChanneladdowner(user2.token, channel2, user2.authUserId);
+    > 152 |     expect(result).toEqual(400);
+          |                    ^
+      153 |   });
+      154 |
+      155 |   test('should return error with user without owner permissions', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:152:20)
+
+  ● Testing the addowner function › should return error with user without owner permissions
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: {"error": "token is invalid"}
+
+      156 |     requestChannelJoin(user2.token, channel1);
+      157 |     const result = requestChanneladdowner(user3.token, channel1, user2.authUserId);
+    > 158 |     expect(result).toEqual(403);
+          |                    ^
+      159 |   });
+      160 | });
+      161 |
+
+      at Object.<anonymous> (src/channel.test.ts:158:20)
+
+  ● Testing the removeowner function › removing an owner from the channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "error": "token is invalid",
+    + }
+
+      182 |     requestChannelJoin(user2.token, channel1);
+      183 |     const result = requestChannelremoveowner(user1.token, channel1, user2.authUserId);
+    > 184 |     expect(result).toEqual({});
+          |                    ^
+      185 |   });
+      186 |
+      187 |   test('should return error with invalid token', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:184:20)
+
+  ● Testing the removeowner function › should return error with invalid channelId
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      193 |   test('should return error with invalid channelId', () => {
+      194 |     const result = requestChanneladdowner(user1.token, -1, user2.authUserId);
+    > 195 |     expect(result).toEqual(400);
+          |                    ^
+      196 |   });
+      197 |
+      198 |   test('should return error with invalid uId', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:195:20)
+
+  ● Testing the removeowner function › should return error with uId not in channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "token is invalid"}
+
+      203 |   test('should return error with uId not in channel', () => {
+      204 |     const result = requestChannelremoveowner(user1.token, channel1, user2.authUserId);
+    > 205 |     expect(result).toEqual(400);
+          |                    ^
+      206 |   });
+      207 |
+      208 |   test('should return error with user without owner permissions', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:205:20)
+
+  ● Testing the removeowner function › should return error with user without owner permissions
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: {"error": "token is invalid"}
+
+      209 |     requestChannelJoin(user2.token, channel1);
+      210 |     const result = requestChannelremoveowner(user3.token, channel1, user2.authUserId);
+    > 211 |     expect(result).toEqual(403);
+          |                    ^
+      212 |   });
+      213 | });
+      214 |
+
+      at Object.<anonymous> (src/channel.test.ts:211:20)
+
+  ● Testing channelJoinV1 › channelId is invalid
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "authUserId is invalid"}
+
+      351 |     const channelId2 = -1;
+      352 |     const result = requestChannelJoin(authId2.token, channelId2);
+    > 353 |     expect(result).toStrictEqual(400);
+          |                    ^
+      354 |   });
+      355 |
+      356 |   // test that authorised user is already member of channel
+
+      at Object.<anonymous> (src/channel.test.ts:353:20)
+
+  ● Testing channelJoinV1 › Authorised user is already a member
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "authUserId is invalid"}
+
+      359 |     const channel1 = requestChannelscreate(authId1.token, 'channel1', true);
+      360 |     const result = requestChannelJoin(authId1.token, channel1);
+    > 361 |     expect(result).toStrictEqual(400);
+          |                    ^
+      362 |   });
+      363 |
+      364 |   // test that new authorised user cannot join private channel when not a member
+
+      at Object.<anonymous> (src/channel.test.ts:361:20)
+
+  ● Testing channelJoinV1 › Private channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: {"error": "authUserId is invalid"}
+
+      367 |     const channel1 = requestChannelscreate(authId1.token, 'channel1', true);
+      368 |     const result = requestChannelJoin(authId1.token, channel1);
+    > 369 |     expect(result).toEqual(403);
+          |                    ^
+      370 |   });
+      371 |   // test that an authorised user's Id is invalid
+      372 |   test('Authorised user Id is invalid', () => {
+
+      at Object.<anonymous> (src/channel.test.ts:369:20)
+
+  ● Testing channelJoinV1 › Authorised user successfully joins channel
+
+    expect(received).toStrictEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Object {}
+    + Object {
+    +   "error": "authUserId is invalid",
+    + }
+
+      384 |     const channel1 = requestChannelscreate(authId2.token, 'channel1', true);
+      385 |     const result = requestChannelJoin(authId1.token, channel1.channelId);
+    > 386 |     expect(result).toStrictEqual({});
+          |                    ^
+      387 |   });
+      388 | });
+      389 |
+
+      at Object.<anonymous> (src/channel.test.ts:386:20)
+
+FAIL src/standup.test.ts (10.982 s)
+  ● Console
+
+    console.log
+      400
+
+      at Object.<anonymous> (src/standup.test.ts:244:15)
+
+  ● testing SearchV1 › returns messages containing query substring
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: [{"message": "test case", "messageId": 2, "senderId": 0, "timeSent": Any<Number>}]
+    Received: undefined
+
+      81 |       requestMessageSend(user1.token, channel1, 'test case');
+      82 |       const result = requestSearch('test');
+    > 83 |       expect(result.messages).toEqual([
+         |                               ^
+      84 |         { messageId: 2, senderId: user1.authUserId, message: 'test case', timeSent: expect.any(Number) },
+      85 |       ]);
+      86 |     });
+
+      at Object.<anonymous> (src/standup.test.ts:83:31)
+
+  ● testing SearchV1 › returns empty array if no messages contain query substring
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: []
+    Received: undefined
+
+      90 |       requestMessageSend(user1.token, channel1, 'test case');
+      91 |       const result = requestSearch('foo');
+    > 92 |       expect(result.messages).toEqual([]);
+         |                               ^
+      93 |     });
+      94 |
+      95 |     test('throws HttpError if queryStr is less than 1 character', () => {
+
+      at Object.<anonymous> (src/standup.test.ts:92:31)
+
+  ● testing SearchV1 › throws HttpError if queryStr is less than 1 character
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 500
+
+       95 |     test('throws HttpError if queryStr is less than 1 character', () => {
+       96 |       const result = requestSearch('');
+    >  97 |       expect(result).toBe(400);
+          |                      ^
+       98 |     });
+       99 |
+      100 |     test('throws HttpError if queryStr is over 1000 characters', () => {
+
+      at Object.<anonymous> (src/standup.test.ts:97:22)
+
+  ● testing SearchV1 › throws HttpError if queryStr is over 1000 characters
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 400
+    Received: 500
+
+      100 |     test('throws HttpError if queryStr is over 1000 characters', () => {
+      101 |       const result = requestSearch('a'.repeat(1001));
+    > 102 |       expect(result).toBe(400);
+          |                      ^
+      103 |     });
+      104 | });
+      105 |
+
+      at Object.<anonymous> (src/standup.test.ts:102:22)
+
+  ● testing standupSendV1 › should send a message to a running standup
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {}
+    Received: 400
+
+      148 |       requeststandupStart(user1.token, channel1, 60);
+      149 |       const result = requeststandupSend(user1.token, channel1, 'Test message');
+    > 150 |       expect(result).toEqual({});
+          |                      ^
+      151 |     });
+      152 |
+      153 |     test('channelId is invalid', () => {
+
+      at Object.<anonymous> (src/standup.test.ts:150:22)
+
+  ● testing standupSendV1 › an active standup is not currently running
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"isActive": false, "timeFinish": null}
+    Received: 400
+
+      163 |
+      164 |     test('an active standup is not currently running', () => {
+    > 165 |       expect(requeststandupActive(user1.token, channel1)).toEqual({ isActive: false, timeFinish: null });
+          |                                                           ^
+      166 |       const result = requeststandupSend(user1.token, channel1, 'Test message');
+      167 |       expect(result).toBe(400);
+      168 |     });
+
+      at Object.<anonymous> (src/standup.test.ts:165:59)
+
+  ● testing standupSendV1 › user is not a member of the channel
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 403
+    Received: 400
+
+      170 |     test('user is not a member of the channel', () => {
+      171 |       const result = requeststandupSend(user2.token, channel1, 'test message');
+    > 172 |       expect(result).toBe(403);
+          |                      ^
+      173 |     });
+      174 | });
+      175 |
+
+      at Object.<anonymous> (src/standup.test.ts:172:22)
+
+  ● testing standupStartV1 › testing if standup manages to start
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: Any<Number>
+    Received: undefined
+
+      192 |     test('testing if standup manages to start', () => {
+      193 |       const result = requeststandupStart(user1.token, channel1, 5);
+    > 194 |       expect(result.timeFinish).toEqual(expect.any(Number));
+          |                                 ^
+      195 |       expect(result.timeFinish).toBeGreaterThan(Math.floor(Date.now() / 1000));
+      196 |       expect(result.timeFinish).toBeLessThanOrEqual(Math.floor(Date.now() / 1000) + 5);
+      197 |     });
+
+      at Object.<anonymous> (src/standup.test.ts:194:33)
+
+  ● testing standupStartV1 › testing if user is not a member of the channel
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 403
+    Received: 400
+
+      217 |     test('testing if user is not a member of the channel', () => {
+      218 |       const result = requeststandupStart(user2.token, channel1, 10);
+    > 219 |       expect(result).toBe(403);
+          |                      ^
+      220 |     });
+      221 | });
+      222 |
+
+      at Object.<anonymous> (src/standup.test.ts:219:22)
+
+  ● testing standupActiveV1 › returns true for an active standup period
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: true
+    Received: undefined
+
+      243 |       const result = requeststandupActive(user1.token, channel1);
+      244 |       console.log(result);
+    > 245 |       expect(result.isActive).toEqual(true);
+          |                               ^
+      246 |       expect(result.timeFinish).not.toEqual(null);
+      247 |     
+      248 |     });
+
+      at Object.<anonymous> (src/standup.test.ts:245:31)
+
+  ● testing standupActiveV1 › returns false for an inactive standup period
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: false
+    Received: undefined
+
+      250 |     test('returns false for an inactive standup period', () => {
+      251 |       const result = requeststandupActive(user1.token, channel1);
+    > 252 |       expect(result.isActive).toEqual(false);
+          |                               ^
+      253 |       expect(result.timeFinish).toEqual(null);
+      254 |     });
+      255 |
+
+      at Object.<anonymous> (src/standup.test.ts:252:31)
+
+  ● testing standupActiveV1 › user is not a member of channel
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 403
+    Received: 400
+
+      266 |     test('user is not a member of channel', () => {
+      267 |       const result = requeststandupActive(user2.token, channel1);
+    > 268 |       expect(result).toEqual(403);
+          |                      ^
+      269 |     });
+      270 | });
+      271 |
+
+      at Object.<anonymous> (src/standup.test.ts:268:22)
+
+PASS src/tests/message.test.ts (8.282 s)
+PASS src/authTest.test.ts
+PASS src/tests/channelhttp.test.ts (5.709 s)
+FAIL src/channels.test.ts
+  ● Testing channelsCreateV1 › creates a new channel with valid parameters
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "channelId": Any<Number>,
+    +   "error": "authUserId is invalid",
+      }
+
+      54 |     const result = requestChannelscreate(user1.token, name, isPublic);
+      55 |
+    > 56 |     expect((result)).toEqual({
+         |                      ^
+      57 |       channelId: expect.any(Number)
+      58 |     });
+      59 |   });
+
+      at Object.<anonymous> (src/channels.test.ts:56:22)
+
+  ● Testing channelsCreateV1 › returns error when name is too short
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "authUserId is invalid"}
+
+      75 |     const isPublic = true;
+      76 |     const result = requestChannelscreate(user1.token, name, isPublic);
+    > 77 |     expect((result)).toEqual(400);
+         |                      ^
+      78 |   });
+      79 |
+      80 |   // name is too long:
+
+      at Object.<anonymous> (src/channels.test.ts:77:22)
+
+  ● Testing channelsCreateV1 › returns error when name is too long
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 400
+    Received: {"error": "authUserId is invalid"}
+
+      85 |     const longName = 'abcdefghijklmnopqrstuvwxyz';
+      86 |     const result = requestChannelscreate(user1.token, longName, isPublic);
+    > 87 |     expect((result)).toEqual(400);
+         |                      ^
+      88 |   });
+      89 | });
+      90 |
+
+      at Object.<anonymous> (src/channels.test.ts:87:22)
+
+  ● Testing channelsListV1 › returns array of channels when authUserId is valid
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 6
+    + Received  + 1
+
+      Object {
+    -   "channels": Array [
+    -     Object {
+    -       "channelId": undefined,
+    -       "name": "test",
+    -     },
+    -   ],
+    +   "error": "authUserId is invalid",
+      }
+
+       99 |     const channel1 = requestChannelscreate(user1.token, 'test', true).channelId;
+      100 |     const result = requestChannelslist(user1.token);
+    > 101 |     expect((result)).toEqual({ channels: [{ channelId: channel1, name: 'test' }] });
+          |                      ^
+      102 |   });
+      103 |
+      104 |   // authUserId is invalid:
+
+      at Object.<anonymous> (src/channels.test.ts:101:22)
+
+  ● Testing channelsListAllV1 › returns array of channels when authUserId is valid
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 6
+    + Received  + 1
+
+      Object {
+    -   "channels": Array [
+    -     Object {
+    -       "channelId": undefined,
+    -       "name": "pass",
+    -     },
+    -   ],
+    +   "error": "authUserId is invalid",
+      }
+
+      123 |     const channel2 = requestChannelscreate(authUserId2.token, 'pass', true);
+      124 |     const result = requestChannelsListAll(authUserId1.token);
+    > 125 |     expect((result)).toEqual({ channels: [{ channelId: channel2.channelId, name: 'pass' }] });
+          |                      ^
+      126 |   });
+      127 | });
+      128 |
+
+      at Object.<anonymous> (src/channels.test.ts:125:22)
+
+PASS src/usersTest.test.ts
+FAIL src/dm.test.ts
+  ● /dm/create/v1 › Current test
+
+    Server responded to http://127.0.0.1:48237/dm/create/v1 with status code 404:
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Error</title>
+    </head>
+    <body>
+    <pre>Cannot POST /dm/create/v1</pre>
+    </body>
+    </html>
+
+      33 |   }
+      34 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 35 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      36 | }
+      37 |
+      38 | // Tests
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/dm.test.ts:35:25)
+      at requestdmCreate (src/dm.test.ts:8:10)
+      at Object.<anonymous> (src/dm.test.ts:49:20)
+
+  ● /dm/create/v1 › Invalid Token
+
+    Server responded to http://127.0.0.1:48237/dm/create/v1 with status code 404:
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Error</title>
+    </head>
+    <body>
+    <pre>Cannot POST /dm/create/v1</pre>
+    </body>
+    </html>
+
+      33 |   }
+      34 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 35 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      36 | }
+      37 |
+      38 | // Tests
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/dm.test.ts:35:25)
+      at requestdmCreate (src/dm.test.ts:8:10)
+      at Object.<anonymous> (src/dm.test.ts:54:12)
+
+  ● /dm/create/v1 › Duplicate User Ids
+
+    Server responded to http://127.0.0.1:48237/dm/create/v1 with status code 404:
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Error</title>
+    </head>
+    <body>
+    <pre>Cannot POST /dm/create/v1</pre>
+    </body>
+    </html>
+
+      33 |   }
+      34 |   const res = request(method, SERVER_URL + path, { qs, headers, json, timeout: 20000 });
+    > 35 |   return JSON.parse(res.getBody('utf-8'));
+         |                         ^
+      36 | }
+      37 |
+      38 | // Tests
+
+      at Response.Object.<anonymous>.Response.getBody (node_modules/http-response-object/lib/index.js:41:23)
+      at requestHelper (src/dm.test.ts:35:25)
+      at requestdmCreate (src/dm.test.ts:8:10)
+      at Object.<anonymous> (src/dm.test.ts:62:12)
+
+PASS src/adminTest.test.ts
+PASS src/echo.test.ts
+
+Test Suites: 4 failed, 7 passed, 11 total
+Tests:       36 failed, 140 passed, 176 total
+Snapshots:   0 total
+Time:        79.02 s
+Ran all test suites.
+npm notice 
+npm notice New patch version of npm available! 9.6.3 -> 9.6.5
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.6.5>
+npm notice Run `npm install -g npm@9.6.5` to update!
+npm notice 

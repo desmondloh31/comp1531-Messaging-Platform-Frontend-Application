@@ -303,8 +303,8 @@ httpTests/userTests/test_user_profile_uploadphoto.py::testInvalidToken FAILED [1
 =================================== FAILURES ===================================
 ______________________ testOnceRemovedUserCantDoAnything _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='545520992', handleStr='sheriffwoody')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='180869727', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='975997973', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='560498160', handleStr='lordzerg')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -319,8 +319,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/adminTests/test_admin_user_remove.py:23: Failed
 _______________ testRemovedProfileStillFetchableWithUserProfile ________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='221397587', handleStr='sheriffwoody')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='514453173', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='991897025', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='913162240', handleStr='lordzerg')
 ctx = None
 
     @iteration3
@@ -338,8 +338,8 @@ E         ?        +)
 httpTests/adminTests/test_admin_user_remove.py:44: AssertionError
 ___________________________ testRemovalNotInUsersAll ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='140583160', handleStr='sheriffwoody')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='785908019', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='848162984', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='705100204', handleStr='lordzerg')
 ctx = None
 
     @iteration3
@@ -350,12 +350,12 @@ ctx = None
     
 >       assert userZerg.uId not in [u['uId'] for u in users]
 E       AssertionError: assert 1 not in [0, 1]
-E        +  where 1 = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='785908019', handleStr='lordzerg').uId
+E        +  where 1 = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='705100204', handleStr='lordzerg').uId
 
 httpTests/adminTests/test_admin_user_remove.py:70: AssertionError
 _______________________________ testInvalidUser ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='103118065', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='379678604', handleStr='sheriffwoody')
 ctx = None
 
     @iteration3
@@ -385,7 +385,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 __________________________ testCannotRemoveLastOwner ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='594542989', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='203356841', handleStr='sheriffwoody')
 ctx = None
 
     @iteration3
@@ -397,8 +397,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/adminTests/test_admin_user_remove.py:95: Failed
 _________________________ testCannotRemoveUserNonowner _________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='333415608', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='862952359', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='767603107', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='874470255', handleStr='buzzlightyear')
 ctx = None
 
     @iteration3
@@ -410,8 +410,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/adminTests/test_admin_user_remove.py:100: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='599819071', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='80503025', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='756911379', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='464640189', handleStr='buzzlightyear')
 ctx = None
 
     @iteration3
@@ -424,8 +424,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/adminTests/test_admin_user_remove.py:106: Failed
 ________________________ testSuccessfulPermissionChange ________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='50420702', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='906077384', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='670893086', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='441729983', handleStr='buzzlightyear')
 ctx = None
 
     @iteration3
@@ -454,7 +454,7 @@ E           Exception: <Response [404]>
 httpTests/fakepi/util.py:155: Exception
 __________________________ testCannotDemoteLastOwner ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='426564755', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='358568370', handleStr='sheriffwoody')
 ctx = None
 
     @iteration3
@@ -484,7 +484,7 @@ E           Exception: <Response [404]>
 httpTests/fakepi/util.py:155: Exception
 ____________________________ testCannotPromoteOwner ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='711174158', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='938036305', handleStr='sheriffwoody')
 ctx = None
 
     @iteration3
@@ -514,8 +514,8 @@ E           Exception: <Response [404]>
 httpTests/fakepi/util.py:155: Exception
 ______________________ testNonownerCantChangePermissions _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='530854864', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='959245415', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='446221572', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='789064679', handleStr='buzzlightyear')
 ctx = None
 
     @iteration3
@@ -545,7 +545,7 @@ E           Exception: <Response [404]>
 httpTests/fakepi/util.py:155: Exception
 _______________________________ testInvalidUser ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='841913300', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='305408473', handleStr='sheriffwoody')
 ctx = None
 
     @iteration3
@@ -575,8 +575,8 @@ E           Exception: <Response [404]>
 httpTests/fakepi/util.py:155: Exception
 ____________________________ testInvalidPermission _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='47372958', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='83974576', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='446112151', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='336332608', handleStr='buzzlightyear')
 ctx = None
 
     @iteration3
@@ -606,8 +606,8 @@ E           Exception: <Response [404]>
 httpTests/fakepi/util.py:155: Exception
 ______________________________ testSamePermission ______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='30246272', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='823095649', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='702979993', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='971754206', handleStr='buzzlightyear')
 ctx = None
 
     @iteration3
@@ -637,8 +637,8 @@ E           Exception: <Response [404]>
 httpTests/fakepi/util.py:155: Exception
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='699321436', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='351037290', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='903673967', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='679838144', handleStr='buzzlightyear')
 ctx = None
 
     @iteration3
@@ -669,7 +669,7 @@ E           Exception: <Response [404]>
 httpTests/fakepi/util.py:155: Exception
 ____________________________ testCanHaveTwoSessions ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='189661919', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='598898555', handleStr='sheriffwoody')
 ctx = None
 
     @pytest.mark.overrideMarks(2)
@@ -703,7 +703,7 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 _____________________ testForbidden403WhenAlreadyLoggedOut _____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='408160787', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='800727105', handleStr='sheriffwoody')
 ctx = None
 
     def testForbidden403WhenAlreadyLoggedOut(userWoody, ctx):
@@ -733,7 +733,7 @@ _ testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrs-abcdefghijklmnopqr
 first1 = 'abcdefghij', last1 = 'klmnopqrs', handle1 = 'abcdefghijklmnopqrs'
 first2 = 'abcdefghij', last2 = 'klmnopqrs', handle2 = 'abcdefghijklmnopqrs0'
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='753215437', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='224839287', handleStr='sheriffwoody')
 ctx = None
 
     @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
@@ -764,7 +764,7 @@ _ testDuplicateHandlesGeneratedCorrectly[abcdefghij-klmnopqrst-abcdefghijklmnopq
 first1 = 'abcdefghij', last1 = 'klmnopqrst', handle1 = 'abcdefghijklmnopqrst'
 first2 = 'abcdefghij', last2 = 'klmnopqrst', handle2 = 'abcdefghijklmnopqrst0'
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='64611030', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='663397689', handleStr='sheriffwoody')
 ctx = None
 
     @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
@@ -795,7 +795,7 @@ _ testDuplicateHandlesGeneratedCorrectly[@bcdefgh!j-klmn opqrst-bcdefghjklmnopqr
 first1 = '@bcdefgh!j', last1 = 'klmn opqrst', handle1 = 'bcdefghjklmnopqrst'
 first2 = 'bcdefghj', last2 = 'klmnopqrst', handle2 = 'bcdefghjklmnopqrst0'
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='431149542', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='568100746', handleStr='sheriffwoody')
 ctx = None
 
     @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
@@ -824,7 +824,7 @@ ___ testDuplicateHandlesGeneratedCorrectly[abc-def0-abcdef0-abc-def-abcdef1] ___
 first1 = 'abc', last1 = 'def0', handle1 = 'abcdef0', first2 = 'abc'
 last2 = 'def', handle2 = 'abcdef1'
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='283038263', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='883849093', handleStr='sheriffwoody')
 ctx = None
 
     @pytest.mark.parametrize('first1, last1, handle1, first2, last2, handle2', [
@@ -852,7 +852,7 @@ E         ?       +
 httpTests/authTests/test_auth_register.py:99: AssertionError
 ___________________________ testReturnFormatCorrect ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='598513028', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='398762114', handleStr='sheriffwoody')
 ctx = None
 
     @iteration3
@@ -878,7 +878,7 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 _____________________ testPasswordRequestLogsOutEverywhere _____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='328826880', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='203415068', handleStr='sheriffwoody')
 ctx = None
 
     @iteration3
@@ -894,7 +894,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/authTests/test_passwordreset_request.py:29: Failed
 _______________________ testGlobalOwnerMemberCanAddowner _______________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='825901337', handleStr='buzzlightyear')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='126903184', handleStr='buzzlightyear')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
 
@@ -924,7 +924,7 @@ httpTests/fakepi/util.py:153: Forbidden403
 _________________________ testNonMemberCannotAddOwner __________________________
 
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='925089754', handleStr='buzzlightyear')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='835085423', handleStr='buzzlightyear')
 ctx = None
 
     def testNonMemberCannotAddOwner(woodysPublicToybox, userBuzz, ctx):
@@ -949,7 +949,7 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 _________________ testGlobalOwnerNonMemberCantAddownerPrivate __________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='427838957', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='81668469', handleStr='sheriffwoody')
 zergsPrivateLair = Channel(name='zergs lair', isPublic=False, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
 
@@ -975,7 +975,7 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 __________________ testGlobalOwnerNonMemberCantAddownerPublic __________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='644625476', handleStr='buzzlightyear')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='188739785', handleStr='buzzlightyear')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
 
@@ -1001,7 +1001,7 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 ______________________________ testWithInvalidUId ______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='686058499', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='658626032', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -1013,9 +1013,9 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/channelTests/test_channel_addowner.py:71: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='21378652', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='157502076', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='315614564', handleStr='buzzlightyear')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='351464898', handleStr='buzzlightyear')
 ctx = None
 
     def testInvalidToken(userWoody, woodysPublicToybox, userBuzz, ctx):
@@ -1027,7 +1027,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/channelTests/test_channel_addowner.py:82: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='746897202', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='498608478', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -1040,9 +1040,9 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/channelTests/test_channel_details.py:46: Failed
 _____________________________ testInvalidatedToken _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='122770944', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='915454166', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='655081558', handleStr='buzzlightyear')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='796194996', handleStr='buzzlightyear')
 ctx = None
 
     def testInvalidatedToken(userWoody, woodysPublicToybox, userBuzz, ctx):
@@ -1054,7 +1054,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/channelTests/test_channel_invite.py:58: Failed
 ______________________ testGlobalOwnerJoinChannelPrivate _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='560433561', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='431267555', handleStr='sheriffwoody')
 zergsPrivateLair = Channel(name='zergs lair', isPublic=False, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
 
@@ -1081,7 +1081,7 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 _____________________________ testInvalidatedToken _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='587368768', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='664535264', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -1094,7 +1094,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/channelTests/test_channel_join.py:59: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='90109736', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='22516268', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -1108,7 +1108,7 @@ httpTests/channelTests/test_channel_leave.py:35: Failed
 _____________________________ testMessageTimestamp _____________________________
 
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='394606101', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='174209648', handleStr='sheriffwoody')
 ctx = None
 
     def testMessageTimestamp(woodysPublicToybox, userWoody, ctx):
@@ -1116,14 +1116,14 @@ ctx = None
         messageSend(userWoody.token, woodysPublicToybox.channelId, 'you are a toy', ctx)
         chMsgs = channelMessages(userWoody.token, woodysPublicToybox.channelId, 0, ctx)
 >       assert abs(chMsgs['messages'][0]['timeSent'] - expectedTime) <= 2
-E       assert 1680404083005 <= 2
-E        +  where 1680404083005 = abs((1682086169174 - 1682086169))
+E       assert 1680404291222 <= 2
+E        +  where 1680404291222 = abs((1682086377599 - 1682086377))
 
 httpTests/channelTests/test_channel_messages.py:19: AssertionError
 __________________________ testUnderFiftyMessagesSent __________________________
 
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='794564095', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='699324560', handleStr='sheriffwoody')
 ctx = None
 
     def testUnderFiftyMessagesSent(woodysPublicToybox, userWoody, ctx):
@@ -1147,7 +1147,7 @@ httpTests/channelTests/test_channel_messages.py:32: AssertionError
 __________________________ testOverFiftyMessagesSent ___________________________
 
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='456077081', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='732710497', handleStr='sheriffwoody')
 ctx = None
 
     def testOverFiftyMessagesSent(woodysPublicToybox, userWoody, ctx):
@@ -1270,7 +1270,7 @@ E           ]
 httpTests/channelTests/test_channel_messages.py:45: AssertionError
 ____________________ testForbidden403WhenInvalidTokenGiven _____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='301635717', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='144682729', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -1283,10 +1283,10 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/channelTests/test_channel_messages.py:101: Failed
 ______________________ testGlobalOwnerMmberCanRemoveOwner ______________________
 
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='208847527', handleStr='lordzerg')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='310034178', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='53501223', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='901263507', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=2, token='257066516', handleStr='buzzlightyear')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=2, token='387270037', handleStr='buzzlightyear')
 ctx = None
 
     def testGlobalOwnerMmberCanRemoveOwner(userZerg, userWoody, woodysPublicToybox, userBuzz, ctx):
@@ -1316,7 +1316,7 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 __________________________ testCannotRemoveLastOwner ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='509730113', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='439901302', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -1328,8 +1328,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/channelTests/test_channel_removeowner.py:62: Failed
 _____________________ testGlobalOwnerCannotRemoveOnlyOwner _____________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='155284943', handleStr='buzzlightyear')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='118090001', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='794200708', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='399055226', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
 
@@ -1358,7 +1358,7 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 ________________________________ testInvalidUId ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='785069849', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='444521509', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -1370,9 +1370,9 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/channelTests/test_channel_removeowner.py:78: Failed
 _____________________________ testInvalidatedToken _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='25914746', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='525243632', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='941490549', handleStr='buzzlightyear')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='875542029', handleStr='buzzlightyear')
 ctx = None
 
     def testInvalidatedToken(userWoody, woodysPublicToybox, userBuzz, ctx):
@@ -1384,7 +1384,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/channelTests/test_channel_removeowner.py:89: Failed
 _____________________________ testInvalidatedToken _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='54537461', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='534785293', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidatedToken(userWoody, ctx):
@@ -1396,7 +1396,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/channels_tests/test_channels_create.py:40: Failed
 _____________________________ testInvalidatedToken _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='469369223', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='975987155', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidatedToken(userWoody, ctx):
@@ -1408,7 +1408,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/channels_tests/test_channels_list.py:53: Failed
 _____________________________ testInvalidatedToken _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='273351367', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='402781030', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidatedToken(userWoody, ctx):
@@ -1420,8 +1420,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/channels_tests/test_channels_listall.py:44: Failed
 ___________________________ testSuccessfulDmCreation ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='761250945', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='619332206', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='301227184', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='6651898', handleStr='buzzlightyear')
 ctx = None
 
     def testSuccessfulDmCreation(userWoody, userBuzz, ctx):
@@ -1436,7 +1436,7 @@ E       IndexError: list index out of range
 httpTests/dmTests/test_dm_create.py:20: IndexError
 _____________________________ testDmToInvalidUsers _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='309153036', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='886491147', handleStr='sheriffwoody')
 ctx = None
 
     def testDmToInvalidUsers(userWoody, ctx):
@@ -1447,8 +1447,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/dmTests/test_dm_create.py:39: Failed
 __________________________ testDmToUsersButOneInvalid __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='426019822', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='794834007', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='532276956', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='97396546', handleStr='buzzlightyear')
 ctx = None
 
     def testDmToUsersButOneInvalid(userWoody, userBuzz, ctx):
@@ -1459,8 +1459,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/dmTests/test_dm_create.py:44: Failed
 __________________________ testDmToUsersButDuplicate ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='430037949', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='213633486', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='180487602', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='774688475', handleStr='buzzlightyear')
 ctx = None
 
     def testDmToUsersButDuplicate(userWoody, userBuzz, ctx):
@@ -1471,7 +1471,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/dmTests/test_dm_create.py:49: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='912171803', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='149595118', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidToken(userWoody, ctx):
@@ -1483,7 +1483,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/dmTests/test_dm_create.py:55: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='255672653', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='213376501', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1496,7 +1496,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/dmTests/test_dm_details.py:43: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='169207537', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='784800891', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1509,7 +1509,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/dmTests/test_dm_leave.py:37: Failed
 _______________________________ testWhenInOneDm ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='838991703', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='936309138', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1527,8 +1527,8 @@ E         + {'dms': []}
 httpTests/dmTests/test_dm_list.py:21: AssertionError
 ____________________________ testWhenInMultipleDms _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='823977731', handleStr='sheriffwoody')
-dmFactory = <function dmFactory.<locals>.makeDm at 0x7f0b006a9160>, ctx = None
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='610078666', handleStr='sheriffwoody')
+dmFactory = <function dmFactory.<locals>.makeDm at 0x7fac6d989160>, ctx = None
 
     def testWhenInMultipleDms(userWoody, dmFactory, ctx):
         dm_1 = dmFactory(userWoody, [])
@@ -1547,7 +1547,7 @@ E         + []
 httpTests/dmTests/test_dm_list.py:31: AssertionError
 _____________________________ testInvalidatedToken _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='12299513', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='784205936', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidatedToken(userWoody, ctx):
@@ -1559,7 +1559,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/dmTests/test_dm_list.py:43: Failed
 __________________________ testUnderFiftyMessagesSent __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='948327592', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='775573267', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1583,7 +1583,7 @@ E         + [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 httpTests/dmTests/test_dm_messages.py:25: AssertionError
 __________________________ testOverFiftyMessagesSent ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='442013041', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='702508639', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1707,7 +1707,7 @@ E           ]
 httpTests/dmTests/test_dm_messages.py:38: AssertionError
 __________________________ testRemovalByEditReflected __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='979646651', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='646790748', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1743,7 +1743,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 ________________________ testRemovalByDeletionReflected ________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='517581856', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='224834853', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1779,7 +1779,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 ____________________ testForbidden403WhenInvalidTokenGiven _____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='100612558', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='788247425', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1792,9 +1792,9 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/dmTests/test_dm_messages.py:94: Failed
 __________________________ testRemovalRemovesMessages __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='375288500', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='275786343', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b005e9820>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d8a9820>
 ctx = None
 
     @iteration3
@@ -1827,7 +1827,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 _______________________ testOwnerNonmemberCannotRemoveDm _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='401775653', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='314150729', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1840,7 +1840,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/dmTests/test_dm_remove.py:42: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='892648334', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='820533668', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -1853,10 +1853,10 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/dmTests/test_dm_remove.py:56: Failed
 ____________________ testOwnerCanEditMembersMessageChannel _____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='812621868', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='232440071', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='775342987', handleStr='buzzlightyear')
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0052e820>
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='125189332', handleStr='buzzlightyear')
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d810820>
 ctx = None
 
     def testOwnerCanEditMembersMessageChannel(userWoody, woodysPublicToybox, userBuzz, messageFactory, ctx):
@@ -1885,10 +1885,10 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 _______________________ testOwnerCanEditMembersMessageDm _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='911166309', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='620396795', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='985442379', handleStr='buzzlightyear')
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0050fca0>
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='437423565', handleStr='buzzlightyear')
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d7f3ca0>
 ctx = None
 
     def testOwnerCanEditMembersMessageDm(userWoody, woodyAndBuzzDm, userBuzz, messageFactory, ctx):
@@ -1916,10 +1916,10 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 _________________ testGlobalOwnerCanEditMembersMessageChannel __________________
 
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='101884610', handleStr='lordzerg')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='282539091', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='889528163', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='713173893', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b005db700>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d8bf700>
 ctx = None
 
     def testGlobalOwnerCanEditMembersMessageChannel(userZerg, userWoody, woodysPublicToybox, messageFactory, ctx):
@@ -1947,9 +1947,9 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='235435902', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='401434741', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b006a91f0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d9891f0>
 ctx = None
 
     def testInvalidToken(userWoody, woodysPublicToybox, messageFactory, ctx):
@@ -1962,8 +1962,8 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/messageTests/test_message_edit.py:116: Failed
 __________________________ testMessageIdsUniqueIter3 ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='515675134', handleStr='sheriffwoody')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='121090280', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='657864449', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='567958005', handleStr='lordzerg')
 woodyAndBuzzDm = DM(owner=0, members=[2], name='buzzlightyear, sheriffwoody', dmId=0)
 zergsPrivateLair = Channel(name='zergs lair', isPublic=False, channelId=0, ownerMembers=[1], allMembers=[])
 ctx = None
@@ -1989,9 +1989,9 @@ E       assert 2 != 2
 httpTests/messageTests/test_message_meta.py:36: AssertionError
 ____________________ testSuccessfulPinChannelOwnerInChannel ____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='120660744', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='811495640', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b006003a0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d8e43a0>
 ctx = None
 
     @iteration3
@@ -2010,9 +2010,9 @@ E       KeyError: 'isPinned'
 httpTests/messageTests/test_message_pin.py:26: KeyError
 _________________________ testSuccessfulPinDmOwnerInDm _________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='416553122', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='487555412', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b00531dc0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d827dc0>
 ctx = None
 
     @iteration3
@@ -2031,10 +2031,10 @@ E       KeyError: 'isPinned'
 httpTests/messageTests/test_message_pin.py:39: KeyError
 ____________________ testSuccessfulPinGlobalOwnerInChannel _____________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='891935518', handleStr='buzzlightyear')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='925655117', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='865226651', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='867700528', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0056b310>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d83e310>
 ctx = None
 
     @iteration3
@@ -2065,10 +2065,10 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 _____________________________ testNonmemberCantPin _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='769678050', handleStr='sheriffwoody')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='469174644', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='9870176', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='922177689', handleStr='lordzerg')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0056bd30>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d83ed30>
 ctx = None
 
     @iteration3
@@ -2097,10 +2097,10 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 _________________________ testSuccessfulReactInChannel _________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='943949772', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='215396383', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='206118855', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='774510071', handleStr='buzzlightyear')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b00531430>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d827430>
 ctx = None
 
     @iteration3
@@ -2117,10 +2117,10 @@ E       KeyError: 'reacts'
 httpTests/messageTests/test_message_react.py:26: KeyError
 ________________________ testSuccessfulReactToDmMessage ________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='501631769', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='149747081', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='177966579', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='418759167', handleStr='buzzlightyear')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b00544430>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d81b430>
 ctx = None
 
     @iteration3
@@ -2151,10 +2151,10 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 ___________________ testTwoSuccessfulReactsToChannelMessage ____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='594322114', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='824459842', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='522772522', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='998163112', handleStr='buzzlightyear')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b006a9040>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d989040>
 ctx = None
 
     @iteration3
@@ -2172,10 +2172,10 @@ E       KeyError: 'reacts'
 httpTests/messageTests/test_message_react.py:60: KeyError
 ___________________________ testNonmemberCannotReact ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='334037150', handleStr='sheriffwoody')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='152615730', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='476795919', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='922191715', handleStr='lordzerg')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b004e01f0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d7a61f0>
 ctx = None
 
     @iteration3
@@ -2204,10 +2204,10 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 _______________________ testOwnerCanRemoveMembersMessage _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='30265501', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='661487372', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='908820089', handleStr='buzzlightyear')
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0056b820>
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='78263343', handleStr='buzzlightyear')
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d83e820>
 ctx = None
 
     def testOwnerCanRemoveMembersMessage(userWoody, woodysPublicToybox, userBuzz, messageFactory, ctx):
@@ -2236,10 +2236,10 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 ________________ testGlobalOwnerCanRemoveMembersMessageChannel _________________
 
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='873055838', handleStr='lordzerg')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='64978260', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='978096399', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='834933', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b006a9550>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d989550>
 ctx = None
 
     def testGlobalOwnerCanRemoveMembersMessageChannel(userZerg, userWoody, woodysPublicToybox, messageFactory, ctx):
@@ -2267,10 +2267,10 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 __________________ testGlobalOwnerCantRemoveMembersMessageDm ___________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='624435700', handleStr='buzzlightyear')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='989856892', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='735987099', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='655987871', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=1, members=[0], name='buzzlightyear, sheriffwoody', dmId=0)
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b00531670>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d827670>
 ctx = None
 
     def testGlobalOwnerCantRemoveMembersMessageDm(userBuzz, userWoody, woodyAndBuzzDm, messageFactory, ctx):
@@ -2300,9 +2300,9 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='83546052', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='568298455', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b004eaca0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d792ca0>
 ctx = None
 
     def testInvalidToken(userWoody, woodysPublicToybox, messageFactory, ctx):
@@ -2315,7 +2315,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/messageTests/test_message_remove.py:75: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='491843579', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='860966378', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -2328,7 +2328,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/messageTests/test_message_send.py:44: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='493240940', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='769398267', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
 ctx = None
 
@@ -2341,7 +2341,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/messageTests/test_message_senddm.py:45: Failed
 ____________________________ testValidFutureMessage ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='669368944', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='738005122', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -2359,13 +2359,13 @@ ctx = None
         assert chMsgs['messages'][0]['message'] == msgText
     
 >       assert abs(chMsgs['messages'][0]['timeSent'] - tts) <= 1
-E       assert 1680404090824 <= 1
-E        +  where 1680404090824 = abs((1682086177001 - 1682086177))
+E       assert 1680404299615 <= 1
+E        +  where 1680404299615 = abs((1682086386001 - 1682086386))
 
 httpTests/messageTests/test_message_sendlater.py:29: AssertionError
 ___________________ testCannotTimeTravelAkaSendMessageInPast ___________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='380566321', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='786737208', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -2380,7 +2380,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/messageTests/test_message_sendlater.py:73: Failed
 _____________________________ testInvalidMessage[] _____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='540768481', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='938283699', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 message = '', ctx = None
 
@@ -2394,7 +2394,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/messageTests/test_message_sendlater.py:80: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='355362312', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='738255832', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
 ctx = None
 
@@ -2423,11 +2423,11 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 ______________________ testCannotShareFromUnjoinedChannel ______________________
 
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='233474966', handleStr='lordzerg')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='685657437', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='19465930', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='787376651', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
 zergsPrivateLair = Channel(name='zergs lair', isPublic=False, channelId=1, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b005314c0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d8274c0>
 ctx = None
 
     @iteration3
@@ -2440,11 +2440,11 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/messageTests/test_message_share.py:77: Failed
 ________________________ testCannotShareFromUnjoinedDm _________________________
 
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='84531606', handleStr='lordzerg')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='426661710', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=0, token='395626146', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='456785898', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=1, members=[2], name='buzzlightyear, sheriffwoody', dmId=0)
 zergsPrivateLair = Channel(name='zergs lair', isPublic=False, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0047a280>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d759280>
 ctx = None
 
     @iteration3
@@ -2457,9 +2457,9 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/messageTests/test_message_share.py:84: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='828083199', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='996415328', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b00494f70>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d76ef70>
 ctx = None
 
     @iteration3
@@ -2487,9 +2487,9 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 ___________________ testSuccessfulUnpinChannelOwnerInChannel ___________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='150404681', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='478673898', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b004c59d0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d7c39d0>
 ctx = None
 
     @iteration3
@@ -2510,9 +2510,9 @@ E       KeyError: 'isPinned'
 httpTests/messageTests/test_message_unpin.py:28: KeyError
 ________________________ testSuccessfulUnpinDmOwnerInDm ________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='336986736', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='784364259', handleStr='sheriffwoody')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b00587dc0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d85cdc0>
 ctx = None
 
     @iteration3
@@ -2533,10 +2533,10 @@ E       KeyError: 'isPinned'
 httpTests/messageTests/test_message_unpin.py:43: KeyError
 ___________________ testSuccessfulUnpinGlobalOwnerInChannel ____________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='163151389', handleStr='buzzlightyear')
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='837541169', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='456691375', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=1, token='941315511', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[1], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b004849d0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d76d9d0>
 ctx = None
 
     @iteration3
@@ -2567,10 +2567,10 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 ____________________________ testNonmemberCantUnpin ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='315624343', handleStr='sheriffwoody')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='284848413', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='274318756', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='755133914', handleStr='lordzerg')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b00600940>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d8e4940>
 ctx = None
 
     @iteration3
@@ -2600,10 +2600,10 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 ________________________ testSuccessfulUnreactInChannel ________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='76640720', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='363802537', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='217868971', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='62838997', handleStr='buzzlightyear')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b005dbca0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d8bfca0>
 ctx = None
 
     @iteration3
@@ -2624,10 +2624,10 @@ E       KeyError: 'reacts'
 httpTests/messageTests/test_message_unreact.py:31: KeyError
 _______________________ testSuccessfulUnreactToDmMessage _______________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='703262207', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='460500313', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='760975586', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='333485189', handleStr='buzzlightyear')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b004c9c10>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d796c10>
 ctx = None
 
     @iteration3
@@ -2658,10 +2658,10 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 __________________________ testNonmemberCannotUnreact __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='814224257', handleStr='sheriffwoody')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='515032733', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='673745221', handleStr='sheriffwoody')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=1, token='157214569', handleStr='lordzerg')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0056bd30>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d83ed30>
 ctx = None
 
     @iteration3
@@ -2691,8 +2691,8 @@ E           httpTests.error.Forbidden403: 403 Forbidden: None
 httpTests/fakepi/util.py:153: Forbidden403
 ________________________________ testClearWorks ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='268299812', handleStr='sheriffwoody')
-userFactory = <function userFactory.<locals>.makeUser at 0x7f0b0056b550>
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='124496690', handleStr='sheriffwoody')
+userFactory = <function userFactory.<locals>.makeUser at 0x7fac6d83e550>
 ctx = None
 
     def testClearWorks(userWoody, userFactory, ctx):
@@ -2723,10 +2723,10 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 __________________ testTagThruMessageSendTriggersNotification __________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='505225653', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='484327166', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='563818972', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='83446693', handleStr='buzzlightyear')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0056b820>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d83e820>
 ctx = None
 
     @iteration3
@@ -2756,10 +2756,10 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 _____________________________ testTagNotInChannel ______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='869137542', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='909325754', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='668473742', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='794100219', handleStr='buzzlightyear')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0059dee0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d885ee0>
 ctx = None
 
     @iteration3
@@ -2787,10 +2787,10 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 ___________________ testMultipleSameTagsOnlyOneNotification ____________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='899972059', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='119175322', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='570879810', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='85310256', handleStr='buzzlightyear')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0058b160>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d87f160>
 ctx = None
 
     @iteration3
@@ -2820,9 +2820,9 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 _________________________________ testTagSelf __________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='946579461', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='553124790', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b004e01f0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d7a61f0>
 ctx = None
 
     @iteration3
@@ -2850,11 +2850,11 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 _______________________________ testMultipleTags _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='690298123', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='350332392', handleStr='buzzlightyear')
-userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=2, token='809908646', handleStr='lordzerg')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='370947930', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='140653487', handleStr='buzzlightyear')
+userZerg = User(email='zerg.thedestroyer@zergworld.com', password='!!qazwsx', nameFirst='lord', nameLast='zerg', uId=2, token='413691648', handleStr='lordzerg')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b005fde50>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d8e2e50>
 ctx = None
 
     @iteration3
@@ -2885,10 +2885,10 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 _________________ testTagThruMessageSenddmTriggersNotification _________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='679557589', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='629562230', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='731506820', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='503839292', handleStr='buzzlightyear')
 woodyAndBuzzDm = DM(owner=0, members=[1], name='buzzlightyear, sheriffwoody', dmId=0)
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b005fd790>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d8e2790>
 ctx = None
 
     @iteration3
@@ -2916,10 +2916,10 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 __________________ testTagThruMessageEditTriggersNotification __________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='241055511', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='386199711', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='22511868', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='11697951', handleStr='buzzlightyear')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b0056b3a0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d83e3a0>
 ctx = None
 
     @iteration3
@@ -2951,7 +2951,7 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 ________________________________ testNoMatches _________________________________
 
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='389300851', handleStr='buzzlightyear')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=0, token='154180660', handleStr='buzzlightyear')
 ctx = None
 
     @iteration3
@@ -2980,9 +2980,9 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 _______________________________ testSingleMatch ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='928806891', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='526966171', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b005375e0>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d81c5e0>
 ctx = None
 
     @iteration3
@@ -3013,9 +3013,9 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 ___________________________ testCaseInsensitiveMatch ___________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='619371541', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='498880847', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b006a9820>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d989820>
 ctx = None
 
     @iteration3
@@ -3046,9 +3046,9 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 _____________________________ testMultipleMatches ______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='128566184', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='351453498', handleStr='sheriffwoody')
 woodysPublicToybox = Channel(name='woodys toybox', isPublic=True, channelId=0, ownerMembers=[0], allMembers=[])
-messageFactory = <function messageFactory.<locals>.makeMessage at 0x7f0b00537820>
+messageFactory = <function messageFactory.<locals>.makeMessage at 0x7fac6d81c820>
 ctx = None
 
     @iteration3
@@ -3080,7 +3080,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='585222258', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='214733185', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidToken(userWoody, ctx):
@@ -3106,7 +3106,7 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='434243397', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='275966648', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidToken(userWoody, ctx):
@@ -3132,7 +3132,7 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='114311343', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='418295599', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidToken(userWoody, ctx):
@@ -3158,7 +3158,7 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 __________________________ testSuccessfulHandleChange __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='857774444', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='787426824', handleStr='sheriffwoody')
 ctx = None
 
     def testSuccessfulHandleChange(userWoody, ctx):
@@ -3183,8 +3183,8 @@ E           httpTests.error.BadRequest400: 400 Bad Request: None
 httpTests/fakepi/util.py:151: BadRequest400
 ________________________ testCannotChangeToTakenHandle _________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='770434977', handleStr='sheriffwoody')
-userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='755685195', handleStr='buzzlightyear')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='91717208', handleStr='sheriffwoody')
+userBuzz = User(email='buzz.lightyear@starcommand.com', password='qazwsx@@', nameFirst='buzz', nameLast='lightyear', uId=1, token='941459916', handleStr='buzzlightyear')
 ctx = None
 
     def testCannotChangeToTakenHandle(userWoody, userBuzz, ctx):
@@ -3196,7 +3196,7 @@ httpTests/userTests/test_user_profile_sethandle.py:25: Failed
 _________________________ testInvalidHandle[newh@ndle] _________________________
 
 handleStr = 'newh@ndle'
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='39124903', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='85637903', handleStr='sheriffwoody')
 ctx = None
 
     @pytest.mark.parametrize('handleStr', ['', 'a', 'aa', 'a' * 21, 'new handle', 'newh@ndle'])
@@ -3208,7 +3208,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.BadRequest400'>
 httpTests/userTests/test_user_profile_sethandle.py:31: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='944186887', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='915471840', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidToken(userWoody, ctx):
@@ -3220,7 +3220,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/userTests/test_user_profile_sethandle.py:37: Failed
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='497872989', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='92950203', handleStr='sheriffwoody')
 ctx = None
 
     def testInvalidToken(userWoody, ctx):
@@ -3232,7 +3232,7 @@ E           Failed: DID NOT RAISE <class 'httpTests.error.Forbidden403'>
 httpTests/userTests/test_user_profile_setname.py:34: Failed
 ___________________________ testReturnFormatCorrect ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='938194259', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='74156805', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3262,7 +3262,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 ___________________________ testCannotUploadNonJpeg ____________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='331130368', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='928118814', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3294,7 +3294,7 @@ httpTests/fakepi/util.py:155: Exception
 ______________________ testInvalidDimensions[-1000-0-0-0] ______________________
 
 xminDiff = -1000, ymaxDiff = 0, xmaxDiff = 0, yminDiff = 0
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='972597284', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='623081133', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3344,7 +3344,7 @@ httpTests/fakepi/util.py:155: Exception
 ______________________ testInvalidDimensions[0--1000-0-0] ______________________
 
 xminDiff = 0, ymaxDiff = 0, xmaxDiff = 0, yminDiff = -1000
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='311800228', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='905798505', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3394,7 +3394,7 @@ httpTests/fakepi/util.py:155: Exception
 ______________________ testInvalidDimensions[0-0--1000-0] ______________________
 
 xminDiff = 0, ymaxDiff = 0, xmaxDiff = -1000, yminDiff = 0
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='553943184', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='993019166', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3444,7 +3444,7 @@ httpTests/fakepi/util.py:155: Exception
 ______________________ testInvalidDimensions[0-0-0--1000] ______________________
 
 xminDiff = 0, ymaxDiff = -1000, xmaxDiff = 0, yminDiff = 0
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='764205575', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='857375950', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3494,7 +3494,7 @@ httpTests/fakepi/util.py:155: Exception
 _____________________ testInvalidDimensions[0-0-1000-1000] _____________________
 
 xminDiff = 0, ymaxDiff = 1000, xmaxDiff = 1000, yminDiff = 0
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='172061195', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='930468748', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3543,7 +3543,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 __________________________ testXEndLessThanStartValue __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='115616491', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='110559710', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3574,7 +3574,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 __________________________ testYEndLessThanStartValue __________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='406700891', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='812406449', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3605,7 +3605,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 ________________________________ testInvalidUrl ________________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='907519652', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='924576431', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3636,7 +3636,7 @@ E           Exception: <Response [500]>
 httpTests/fakepi/util.py:155: Exception
 _______________________________ testInvalidToken _______________________________
 
-userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='871259614', handleStr='sheriffwoody')
+userWoody = User(email='sheriff.woody@andysroom.com', password='qazwsx!!', nameFirst='sheriff', nameLast='woody', uId=0, token='751776443', handleStr='sheriffwoody')
 img = IMG(url='http://cgi.cse.unsw.edu.au/~jas/home/pics/jas.jpg', xmin=0, ymin=0, xmax=144, ymax=61)
 ctx = None
 
@@ -3795,4 +3795,4 @@ FAILED httpTests/userTests/test_user_profile_uploadphoto.py::testXEndLessThanSta
 FAILED httpTests/userTests/test_user_profile_uploadphoto.py::testYEndLessThanStartValue
 FAILED httpTests/userTests/test_user_profile_uploadphoto.py::testInvalidUrl
 FAILED httpTests/userTests/test_user_profile_uploadphoto.py::testInvalidToken
-======================= 128 failed, 162 passed in 19.39s =======================
+======================= 128 failed, 162 passed in 19.41s =======================
