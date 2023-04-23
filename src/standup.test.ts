@@ -32,7 +32,7 @@ function requestAuthRegister(email: string, password: string, nameFirst: string,
 }
 
 function requestChannelscreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v3', { token, name, isPublic }, token);
+  return requestHelper('POST', '/channels/create/v3', { token,name, isPublic }, token);
 }
 
 // function requestChannelDetails(token: string, channelId: number) {
@@ -234,33 +234,29 @@ describe('testing standupActiveV1', () => {
       user1 = requestAuthRegister('wrongemail@gmail.com', 'badpassword', 'wrong', 'email');
       user2 = requestAuthRegister('testtest@gmail.com', 'badpassword', 'wrong1', 'email1');
       channel1 = requestChannelscreate(user1.token, 'test', true).channelId;
+      requestChannelscreate(user2.token, 'test 2', true);
     });
 
     test('returns true for an active standup period', () => {
       requeststandupStart(user1.token, channel1, 60);
-      requeststandupSend(user1.token, channel1, 'test message');
-  
-      const result = requeststandupActive(user1.token, channel1);
-      console.log(result);
-      expect(result.isActive).toEqual(true);
-      expect(result.timeFinish).not.toEqual(null);
-    
+      const {isActive, timeFinish} = requeststandupActive(user1.token, channel1)
+      expect(isActive).toBe(true);
+      expect(timeFinish).toBeDefined();
+      const now = Date.now();
+      const expectedFinishTime = Math.floor(now / 1000) + 60;
+      expect(timeFinish).toBeGreaterThanOrEqual(expectedFinishTime - 1);
+      expect(timeFinish).toBeLessThanOrEqual(expectedFinishTime + 1);
     });
 
     test('returns false for an inactive standup period', () => {
-      const result = requeststandupActive(user1.token, channel1);
-      expect(result.isActive).toEqual(false);
-      expect(result.timeFinish).toEqual(null);
+      const { isActive, timeFinish } = requeststandupActive(user1.token, channel1);
+      expect(isActive).toBe(false);
+      expect(timeFinish).toBeNull();
     });
 
     test('throws error for invalid channelId', () => {
-      const result = requeststandupActive(user1.token, -999);
-      expect(result).toEqual(400);
-      try {
-        requeststandupActive(user1.token, -999);
-      } catch (error) {
-        expect(error.statusCode).toEqual(400);
-      }
+      const result = requeststandupActive(user1.token, -12345);
+      expect(result).toBe(400);
     });
 
     test('user is not a member of channel', () => {
