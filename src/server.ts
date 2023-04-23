@@ -26,6 +26,8 @@ import {
 import { channelsCreateV1, channelsListAllV1, channelsListV1 } from './channels';
 import { getNotificationsV1, searchV1, standupActiveV1, standupSendV1, standupStartV1 } from './standup';
 import { adminUserRemoveV1 } from './admin';
+import { escape } from 'querystring';
+import { userStatsV1, usersStatsV1 } from './stats';
 
 // Set up web app
 const app = express();
@@ -285,19 +287,21 @@ app.get('/search/v1', (req: Request, res: Response) => {
 });
 
 app.post('/standup/start/v1', (req: Request, res: Response) => {
-  const { token, channelId, length } = req.body;
-  res.json(standupStartV1(token, channelId, length));
+  const { channelId, length } = req.body;
+  const token = req.header('token');
+  return res.json(standupStartV1(token, channelId, length));
 });
 
 app.get('/standup/active/v1', (req: Request, res: Response) => {
-  const token = req.query.token as string;
-  const channelId = parseInt(req.query.channelId as string);
-  res.json(standupActiveV1(token, channelId));
+  const { channelId } = req.query;
+  const token = req.header('token');
+  return res.json(standupActiveV1(token as string, parseInt(channelId as string)));
 });
 
 app.post('/standup/send/v1', (req: Request, res: Response) => {
-  const { token, channelId, message } = req.body;
-  res.json(standupSendV1(token, channelId, message));
+  const { channelId, message } = req.body;
+  const token = req.header('token');
+  return res.json(standupSendV1(token, channelId, message));
 });
 app.use(errorHandler());
 
@@ -324,6 +328,12 @@ app.post('/user/profile/uploadphoto/v1', (req: Request, res: Response) => {
   const authid = uploadPhotoV1(imgUrl, xStart, yStart, xEnd, yEnd);
   res.json(authid);
 });
+
+app.get('/user/stats', (req: Request, res: Response) => {
+  const token = req.query.token as string;
+  const stats = userStatsV1(token);
+  res.json(stats);
+})
 
 // start server
 const server = app.listen(PORT, HOST, () => {

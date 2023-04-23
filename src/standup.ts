@@ -11,12 +11,10 @@ function standupActiveV1(token: string, channelId: number) {
 
   if (!findUser) {
     throw HttpError(400);
-  }
-  if (!findChannelId) {
+  } else if (!findChannelId) {
     // raise error 400 in HTTP: Bad Request
     throw HttpError(400, 'channelId is invalid');
-  }
-  if (!findChannelId.allMembers.includes(authUserId)) {
+  } else if (findChannelId.allMembers.find((i: number) => i === authUserId) === undefined) {
     // raise error 403 in HTTP: Forbidden
     throw HttpError(403, 'user is not a member of the channel');
   }
