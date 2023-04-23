@@ -19,10 +19,20 @@ function standupActiveV1(token: string, channelId: number) {
     throw HttpError(403, 'user is not a member of the channel');
   }
 
-  const isActive = findChannelId.standupActive;
-  const timeFinish = findChannelId.standupTimeFinish || null;
+  //const isActive = findChannelId.standupActive;
+  //const timeFinish = findChannelId.standupTimeFinish || null;
+  const standup = findChannelId.standupBuffer;
+  const standupActive = findChannelId.standupActive;
+  let timeFinish = null;
 
-  return { isActive, timeFinish };
+  if (standupActive) {
+    const finishTime = findChannelId.standupTimeFinish;
+    if (finishTime) {
+      timeFinish = new Date(finishTime * 1000);
+    }
+  }
+
+  return { standupActive, timeFinish };
 }
 
 // start a standup with a timer:

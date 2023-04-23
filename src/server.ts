@@ -303,7 +303,6 @@ app.post('/standup/send/v1', (req: Request, res: Response) => {
   const token = req.header('token');
   return res.json(standupSendV1(token, channelId, message));
 });
-app.use(errorHandler());
 
 app.delete('/admin/user/remove/v1', (req: Request, res: Response) => {
   const uId = parseInt(req.query.uId as string);
@@ -329,11 +328,7 @@ app.post('/user/profile/uploadphoto/v1', (req: Request, res: Response) => {
   res.json(authid);
 });
 
-app.get('/user/stats', (req: Request, res: Response) => {
-  const token = req.query.token as string;
-  const stats = userStatsV1(token);
-  res.json(stats);
-})
+
 
 // start server
 const server = app.listen(PORT, HOST, () => {
