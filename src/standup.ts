@@ -19,8 +19,8 @@ function standupActiveV1(token: string, channelId: number) {
     throw HttpError(403, 'user is not a member of the channel');
   }
 
-  //const isActive = findChannelId.standupActive;
-  //const timeFinish = findChannelId.standupTimeFinish || null;
+  // const isActive = findChannelId.standupActive;
+  // const timeFinish = findChannelId.standupTimeFinish || null;
   const standup = findChannelId.standupBuffer;
   const standupActive = findChannelId.standupActive;
   let timeFinish = null;
@@ -84,7 +84,7 @@ function standupStartV1(token: string, channelId: number, length: number) {
           reactId: 1,
           uids: [] as number[],
         },
-        pinned: false,
+        isPinned: '',
       };
       findChannelId.messages.push(message);
       data.msgcount += 1;

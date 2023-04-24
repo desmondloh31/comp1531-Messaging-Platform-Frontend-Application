@@ -32,7 +32,7 @@ interface msg {
   message: string;
   timeSent: number;
   reacts: react;
-  pinned: boolean;
+  isPinned: boolean;
 }
 
 interface cnl {

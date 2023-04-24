@@ -33,7 +33,7 @@ export function messageReactV1(token: string, messageId: number, reactId: number
     if (message.reacts.uids.includes(authUserId)) {
       throw HttpError(400, 'User has already reacted with this reactId');
     }
-    message.reacts[reactId].push(authUserId);
+    message.reacts.uids.push(authUserId);
     return {};
   }
 
@@ -117,10 +117,10 @@ export function messagePinV1(token: string, messageId: number) {
       throw HttpError(403, 'User does not have permission');
     }
     const message = dm.messages.find(i => i.messageId === messageId);
-    if (message.pinned) {
+    if (message.isPinned) {
       throw HttpError(400, 'Message is already pinned');
     }
-    message.pinned = true;
+    message.isPinned = true;
     return {};
   }
 
@@ -129,10 +129,11 @@ export function messagePinV1(token: string, messageId: number) {
       throw HttpError(403, 'User does not have permission');
     }
     const message = channel.messages.find(i => i.messageId === messageId);
-    if (message.pinned) {
+    if (message.isPinned) {
       throw HttpError(400, 'Message is already pinned');
     }
-    message.pinned = true;
+    message.isPinned = true;
+    console.log(message);
     return {};
   }
 }
@@ -140,6 +141,12 @@ export function messagePinV1(token: string, messageId: number) {
 export function messageUnpinV1(token: string, messageId: number) {
   const data = getData();
   const authUserId = tokenVerify(token) as number;
+  const authUser = data.users.find(i => i.authUserId === authUserId);
+
+  if (!authUser) {
+    throw HttpError(403, 'token is invalid');
+  }
+
   const channel = data.channels.find(i => i.messages.find(j => j.messageId === messageId) !== undefined);
   const dm = data.dms.find(i => i.messages.find(j => j.messageId === messageId) !== undefined);
   let isdm = false;
@@ -155,10 +162,10 @@ export function messageUnpinV1(token: string, messageId: number) {
       throw HttpError(403, 'User does not have permission');
     }
     const message = dm.messages.find(i => i.messageId === messageId);
-    if (!message.pinned) {
+    if (!message.isPinned) {
       throw HttpError(400, 'Message is not already pinned');
     }
-    message.pinned = false;
+    message.isPinned = false;
     return {};
   }
 
@@ -167,10 +174,10 @@ export function messageUnpinV1(token: string, messageId: number) {
       throw HttpError(403, 'User does not have permission');
     }
     const message = channel.messages.find(i => i.messageId === messageId);
-    if (!message.pinned) {
+    if (!message.isPinned) {
       throw HttpError(400, 'Message is not already pinned');
     }
-    message.pinned = false;
+    message.isPinned = false;
     return {};
   }
 }
@@ -228,7 +235,7 @@ function messageSend(authUserId: number, channelId: number, dmId: number, messag
         reactId: 1,
         uids: [],
       },
-      pinned: false,
+      isPinned: false,
     });
   } else {
     dm.messages.push({
@@ -240,7 +247,7 @@ function messageSend(authUserId: number, channelId: number, dmId: number, messag
         reactId: 1,
         uids: [],
       },
-      pinned: false,
+      isPinned: false,
     });
   }
   setData(data);
@@ -308,10 +315,12 @@ export function messageSendLaterV1(token: string, channelId: number, message: st
   if (timeSent < 0) {
     throw HttpError(400, 'timeSent is negative');
   }
-
+  console.log('time now', Date.now());
+  console.log('interval', (timeSent * 1000) - Date.now());
   setTimeout(() => {
+    console.log('time sent');
     messageSend(authUserId, channelId, -1, message);
-  }, (timeSent * 1000) - Date.now());
+  }, ((timeSent * 1000) - Date.now()));
 
   return { messageId: data.msgcount };
 }
@@ -338,7 +347,7 @@ export function messageSendLaterDmV1(token: string, dmId: number, message: strin
     throw HttpError(400, 'message length is greater than 1000 characters');
   }
 
-  if (timeSent < 0) {
+  if ((timeSent * 1000) < Date.now()) {
     throw HttpError(400, 'timeSent is negative');
   }
 
