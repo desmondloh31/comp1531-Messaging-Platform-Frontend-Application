@@ -351,9 +351,15 @@ export function messageSendLaterDmV1(token: string, dmId: number, message: strin
     throw HttpError(400, 'timeSent is negative');
   }
 
+  if (timeSent < 0) {
+    throw HttpError(400, 'timeSent is negative');
+  }
+  // console.log('time now', Date.now());
+  // console.log('interval', (timeSent * 1000) - Date.now());
   setTimeout(() => {
+    // console.log('time sent');
     messageSend(authUserId, -1, dmId, message);
-  }, (timeSent * 1000) - Date.now());
+  }, ((timeSent * 1000) - Date.now()));
 
   return { messageId: data.msgcount };
 }
