@@ -106,7 +106,6 @@ export function authLogoutV1(token: string) {
 }
 
 export function authPasswordResetRequestV1(email: string) {
-  console.log("bruh")
   const data = getData();
   for (const user of data.users) {
     if (user.email !== email) {

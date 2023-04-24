@@ -34,7 +34,7 @@ export function channelDetailsV1(token: string, channelId: number) {
   }
 
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(403, 'authUserId is invalid');
   }
 
   // Determine whether the channelId is valid & user is a part of the channel
@@ -54,7 +54,7 @@ export function channelMessagesV1(authUserId: number, channelId: number, start: 
   const channel = data.channels.find(i => i.channelId === channelId);
 
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(403, 'authUserId is invalid');
   } else if (!channel) {
     throw HttpError(400, 'channelId is invalid');
   } else if (channel.messages.length < start) {
@@ -70,7 +70,22 @@ export function channelMessagesV1(authUserId: number, channelId: number, start: 
   };
   for (let i = 0; i < channel.messages.length; i++) {
     if (i < 50) {
-      result.messages.push({ messageId: channel.messages[i].messageId, uId: channel.messages[i].senderId, message: channel.messages[i].message, timeSent: channel.messages[i].timeSent });
+      let isThisUserReacted = false;
+      if (channel.messages[i].reacts.uids.includes(authUserId)) {
+        isThisUserReacted = true;
+      }
+      result.messages.push({
+        messageId: channel.messages[i].messageId,
+        uId: channel.messages[i].senderId,
+        message: channel.messages[i].message,
+        timeSent: channel.messages[i].timeSent,
+        reacts: [{
+          reactId: 1,
+          uIds: channel.messages[i].reacts.uids,
+          isThisUserReacted: isThisUserReacted
+        }],
+        isPinned: channel.messages[i].isPinned
+      });
     }
   }
   console.log(result);
@@ -84,7 +99,7 @@ export function dmMessagesV1(token: string, dmId: number, start: number) {
   const dm = data.dms.find(i => i.dmId === dmId);
 
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(403, 'authUserId is invalid');
   } else if (!dm) {
     throw HttpError(400, 'dmId is invalid');
   } else if (dm.messages.length < start) {
@@ -101,7 +116,22 @@ export function dmMessagesV1(token: string, dmId: number, start: number) {
   };
   for (let i = 0; i < dm.messages.length; i++) {
     if (i < 50) {
-      result.messages.push({ messageId: dm.messages[i].messageId, uId: dm.messages[i].senderId, message: dm.messages[i].message, timeSent: dm.messages[i].timeSent });
+      let isThisUserReacted = false;
+      if (dm.messages[i].reacts.uids.includes(authUserId)) {
+        isThisUserReacted = true;
+      }
+      result.messages.push({
+        messageId: dm.messages[i].messageId,
+        uId: dm.messages[i].senderId,
+        message: dm.messages[i].message,
+        timeSent: dm.messages[i].timeSent,
+        reacts: [{
+          reactId: 1,
+          uIds: dm.messages[i].reacts.uids,
+          isThisUserReacted: isThisUserReacted
+        }],
+        isPinned: dm.messages[i].isPinned
+      });
     }
   }
 
@@ -121,11 +151,11 @@ export function messageSendV1(authUserId: number, channelId: number, dmId: numbe
       throw HttpError(400, 'channelId is invalid');
     }
   } else if (!dm) {
-    return { error: 'dmId is invalid' };
+    throw HttpError(400, 'dmId is invalid');
   }
 
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(403, 'authUserId is invalid');
   }
 
   if (ischannel) {
@@ -157,7 +187,7 @@ export function messageSendV1(authUserId: number, channelId: number, dmId: numbe
         reactId: 1,
         uids: [],
       },
-      pinned: false,
+      isPinned: false,
     });
   } else {
     dm.messages.push({
@@ -169,7 +199,7 @@ export function messageSendV1(authUserId: number, channelId: number, dmId: numbe
         reactId: 1,
         uids: [],
       },
-      pinned: false,
+      isPinned: false,
     });
   }
 
@@ -182,7 +212,7 @@ export function messageDeleteV1(token: string, messageId: number) {
   const authUserId = tokenVerify(token) as number;
   const user = data.users.find(i => i.authUserId === authUserId);
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(403, 'authUserId is invalid');
   }
 
   const channelmsg = data.channels.find(i => i.messages.find(j => j.messageId === messageId) !== undefined);
@@ -209,7 +239,7 @@ export function messageEditV1(token: string, messageId: number, message: string)
   const authUserId = tokenVerify(token) as number;
   const user = data.users.find(i => i.authUserId === authUserId);
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(403, 'authUserId is invalid');
   } else if (message.length > 1000) {
     throw HttpError(400, 'message length is greater than 1000 characters');
   }
@@ -256,7 +286,7 @@ export function channelInviteV1(authUserId: number, channelId: number, uId: numb
   const guest = data.users.find(i => i.authUserId === uId);
 
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(403, 'authUserId is invalid');
   } else if (!channel) {
     throw HttpError(400, 'channelId is invalid');
   } else if (!guest) {
@@ -307,7 +337,7 @@ export function channelJoinV1(token: string, channelId: number) {
   const authUserId = tokenVerify(token) as number;
   const user = data.users.find(i => i.authUserId === authUserId);
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(403, 'authUserId is invalid');
   }
 
   // check if channelId refers to a valid channel
@@ -356,7 +386,7 @@ export function channelLeaveV1(token: string, channelId: number) {
   }
 
   if (!findUser) {
-    return { error: 'token is invalid' };
+    throw HttpError(403, 'authUserId is not part of a valid user');
   }
 
   // checks if user is not a  member of channel:
@@ -377,11 +407,11 @@ export function channelAddOwnerV1(token: string, channelId: number, uId: number)
   const findChannelId = data.channels.find(i => i.channelId === channelId);
   const findUser = data.users.find(i => i.authUserId === uId);
   if (!findUser) {
-    return { error: 'user is not valid' };
+    throw HttpError(403, 'uId is not part of a valid user');
   }
 
   if (typeof authUserId !== 'number') {
-    return { error: 'token is invalid' };
+    throw HttpError(403, 'token is invalid');
   }
 
   if (!findChannelId) {
@@ -415,11 +445,11 @@ export function channelRemoveOwnerV1(token: string, channelId: number, uId: numb
   const findChannelId = data.channels.find((i) => i.channelId === channelId);
   const findUser = data.users.find((i) => i.authUserId === uId);
   if (!findUser) {
-    return { error: 'user is not valid' };
+    throw HttpError(403, 'uId is not part of a valid user');
   }
 
   if (typeof authUserId !== 'number') {
-    return { error: 'token is invalid' };
+    throw HttpError(403, 'token is invalid');
   }
 
   if (!findChannelId) {

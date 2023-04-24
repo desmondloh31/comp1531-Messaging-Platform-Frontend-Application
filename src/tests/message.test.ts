@@ -188,7 +188,7 @@ describe('message/sendlater/v1', () => {
   });
 
   test('Valid test', () => {
-    const result = requestSendLater(user.token, cnid, 'Test Message', 100);
+    const result = requestSendLater(user.token, cnid, 'Test Message', (Date.now() + 1000));
     expect(result).toEqual({ messageId: expect.any(Number) });
   });
 });
@@ -232,7 +232,7 @@ describe('message/sendlaterdm/v1', () => {
   });
 
   test('Valid test', () => {
-    const result = requestSendLaterDm(user.token, dmid, 'Test Message', 10);
+    const result = requestSendLaterDm(user.token, dmid, 'Test Message', (Date.now() + 1000));
     expect(result).toEqual({ messageId: expect.any(Number) });
   });
 });

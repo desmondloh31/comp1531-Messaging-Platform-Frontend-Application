@@ -29,7 +29,6 @@ export function tokenVerify(token: string) {
   if (!user) {
     return { error: 'token is invalid' };
   }
-  
   return user.authUserId;
 }
 

@@ -236,6 +236,7 @@ app.post('/message/share/v1', (req: Request, res: Response) => {
 app.post('/message/sendlater/v1', (req: Request, res: Response) => {
   const { channelId, message, timeSent } = req.body;
   const token = req.header('token');
+  console.log('timeSent', timeSent * 1000);
   return res.json(messageSendLaterV1(token, channelId, message, timeSent));
 });
 
