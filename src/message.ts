@@ -218,7 +218,7 @@ function messageSend(authUserId: number, channelId: number, dmId: number, messag
 
   if (message.length > 1000) {
     throw HttpError(400, 'message length is greater than 1000 characters');
-  } else if (message.length === 0) {
+  } else if (message.length < 1) {
     throw HttpError(400, 'message length is 0');
   }
 
@@ -312,7 +312,7 @@ export function messageSendLaterV1(token: string, channelId: number, message: st
     throw HttpError(400, 'message length is greater than 1000 characters');
   }
 
-  if (timeSent < 0) {
+  if ((timeSent * 1000) < Date.now()) {
     throw HttpError(400, 'timeSent is negative');
   }
   console.log('time now', Date.now());
@@ -348,10 +348,6 @@ export function messageSendLaterDmV1(token: string, dmId: number, message: strin
   }
 
   if ((timeSent * 1000) < Date.now()) {
-    throw HttpError(400, 'timeSent is negative');
-  }
-
-  if (timeSent < 0) {
     throw HttpError(400, 'timeSent is negative');
   }
   // console.log('time now', Date.now());
