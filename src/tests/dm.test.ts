@@ -98,7 +98,7 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
   }
   return JSON.parse(res.getBody('utf-8'));
 }
-const ERROR = { error: expect.any(String) };
+// const ERROR = { error: expect.any(String) };
 
 describe('Error Checking in Send Message v1', () => {
     interface usr {
@@ -117,7 +117,7 @@ describe('Error Checking in Send Message v1', () => {
 
     test('invalid authuser id', () => {
       const result = requestSendMessages('-1', channelid, 'Test Message');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('invalid channel id', () => {
@@ -166,7 +166,7 @@ describe('Error Checking in Edit Message v1', () => {
 
     test('invalid authuser id', () => {
       const result = requestEditMessage('-1', msgId, 'Test Message');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('invalid msg id', () => {
@@ -209,7 +209,7 @@ describe('Error Checking in delete Message v1', () => {
 
     test('invalid authuser id', () => {
       const result = requestDeleteMessage('-1', msgId);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('invalid msg id', () => {
@@ -249,7 +249,7 @@ describe('Error Checking in dm messages v1', () => {
 
     test('invalid authuser id', () => {
       const result = requestDmMessages('-1', dmid, 0);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('invalid dm id', () => {
@@ -295,7 +295,7 @@ describe('Error Checking in Senddm v1', () => {
 
     test('invalid authuser id', () => {
       const result = requestSendDm('-1', dmid, 'Test Message');
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('invalid dm id', () => {
@@ -345,7 +345,7 @@ describe('Error Checking in dmDelete v1', () => {
 
   test('invalid authuser id', () => {
     const result = requestdmDelete('-1', dmid);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(403);
   });
 
   test('invalid dm id', () => {
@@ -390,7 +390,7 @@ describe('Error Checking in dmDetails v1', () => {
 
   test('invalid authuser id', () => {
     const result = requestdmDetails('-1', dmid);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(403);
   });
 
   test('invalid dm id', () => {
@@ -430,7 +430,7 @@ describe('Error Checking in dmLeave v1', () => {
 
   test('invalid authuser id', () => {
     const result = requestdmLeave('-1', dmid);
-    expect(result).toStrictEqual(ERROR);
+    expect(result).toStrictEqual(403);
   });
 
   test('invalid dm id', () => {

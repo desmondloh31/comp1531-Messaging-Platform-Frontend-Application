@@ -13,7 +13,7 @@ function requestAuthLogin(email: string, password: string) {
 
 function requestAuthLogout(token: string) {
   return requestHelper('POST', '/auth/logout/v2', { }, token);
- }
+}
 
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {}, '-1');
@@ -21,11 +21,11 @@ function requestClear() {
 
 function requestAuthPasswordResetRequest(email: string) {
   return requestHelper('POST', '/auth/passwordreset/request/v1', { email }, '');
- }
+}
 
 function requestAuthPasswordResetReset(resetCode: number, newPassword: string) {
   return requestHelper('POST', '/auth/passwordreset/reset/v1', { resetCode, newPassword }, '');
- }
+}
 
 // Helper Function
 function requestHelper(method: HttpVerb, path: string, payload: object, tkn: string) {
@@ -106,7 +106,6 @@ describe('Testing authLoginV1', () => {
   });
 });
 
-
 describe('Testing authLogoutV1', () => {
   beforeEach(() => {
     requestClear();
@@ -132,12 +131,11 @@ describe('Testing authPasswordResetRequest', () => {
   });
 
   test('Testing if it will return nothing', () => {
-    const user = requestAuthRegister('keyon.vonrueden92@ethereal.email', 'abc123', 'John', 'Smith');
-    const function1 = requestAuthPasswordResetRequest('keyon.vonrueden92@ethereal.email')
+    // const user = requestAuthRegister('keyon.vonrueden92@ethereal.email', 'abc123', 'John', 'Smith');
+    const function1 = requestAuthPasswordResetRequest('keyon.vonrueden92@ethereal.email');
 
     expect(function1).toEqual({});
   });
-
 });
 
 describe('Testing authPasswordResetReset', () => {
@@ -146,8 +144,7 @@ describe('Testing authPasswordResetReset', () => {
   });
 
   test('Testing if it will return error', () => {
-    const function1 = requestAuthPasswordResetReset(123, "abcd1234")
+    const function1 = requestAuthPasswordResetReset(123, 'abcd1234');
     expect(function1).toEqual(400);
   });
-})
-
+});

@@ -54,7 +54,7 @@ export function channelMessagesV1(authUserId: number, channelId: number, start: 
   const channel = data.channels.find(i => i.channelId === channelId);
 
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(403, 'authUserId is invalid');
   } else if (!channel) {
     throw HttpError(400, 'channelId is invalid');
   } else if (channel.messages.length < start) {
