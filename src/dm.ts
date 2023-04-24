@@ -18,7 +18,7 @@ export function dmCreate(token:string, uIds: number[]) {
 
   const authUser = data.users.find(i => i.authUserId === authUserId);
   if (!authUser) {
-    return { error: 'Invalid Token' };
+    throw HttpError(403, 'Invalid Token');
   }
 
   // Determining whether there are duplicates user Ids in uIds
@@ -99,7 +99,7 @@ export function dmRemoveV1(token: string, dmId: number) {
   const authUser = data.users.find(i => i.authUserId === authUserId);
 
   if (!authUser) {
-    return { error: 'Invalid Token' };
+    throw HttpError(403, 'Invalid Token');
   }
 
   const dm = data.dms.find(i => i.dmId === dmId);
@@ -142,7 +142,7 @@ export function dmDetailsV1(token: string, dmId: number) {
   const authUser = data.users.find(i => i.authUserId === authUserId);
 
   if (!authUser) {
-    return { error: 'Invalid Token' };
+    throw HttpError(403, 'Invalid Token');
   }
 
   const dm = data.dms.find(i => i.dmId === dmId);
@@ -170,7 +170,7 @@ export function dmLeaveV1(token: string, dmId: number) {
   const dm = data.dms.find(i => i.dmId === dmId);
 
   if (!authUser) {
-    return { error: 'Invalid Token' };
+    throw HttpError(403, 'Invalid Token');
   }
 
   if (!dm) {

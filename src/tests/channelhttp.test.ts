@@ -46,7 +46,7 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
   return JSON.parse(res.getBody('utf-8'));
 }
 
-const ERROR = { error: expect.any(String) };
+// const ERROR = { error: expect.any(String) };
 
 describe('Error Checking in channel invite v1', () => {
     interface usr {
@@ -91,7 +91,7 @@ describe('Error Checking in channel invite v1', () => {
 
     test('authuser is invalid', () => {
       const result = requestChannelInvite('-1', channelid, user3.authUserId);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('valid test', () => {
@@ -117,7 +117,7 @@ describe('Error Checking in channel messages v1', () => {
 
     test('invalid authuser id', () => {
       const result = requestChannelMessages('-1', channelid, 0);
-      expect(result).toStrictEqual(ERROR);
+      expect(result).toStrictEqual(403);
     });
 
     test('invalid channel id', () => {

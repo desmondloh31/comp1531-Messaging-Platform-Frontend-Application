@@ -5,12 +5,12 @@ import { requestAuthRegister } from './authTest.test';
 
 const SERVER_URL = `${url}:${port}`;
 
-//function requestUserProfile(token: string, uId: number) {
-  //return requestHelper('GET', '/user/profile/v3', { token, uId });
-//}
-//function requestUserAll(token: string) {
-  //return requestHelper('GET', '/users/all/v2', { token });
-//}
+// function requestUserProfile(token: string, uId: number) {
+// return requestHelper('GET', '/user/profile/v3', { token, uId });
+// }
+// function requestUserAll(token: string) {
+// return requestHelper('GET', '/users/all/v2', { token });
+// }
 
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {});
@@ -66,7 +66,6 @@ describe('Testing userProfileV2', () => {
   });
 });
 
-
 describe('Testing usersAllV1', () => {
   beforeEach(() => {
     requestClear();
@@ -88,54 +87,45 @@ describe('Testing usersAllV1', () => {
   });
 });
 */
-describe("Testing userProfileSetnameV1", () =>{
+describe('Testing userProfileSetnameV1', () => {
+  beforeEach(() => {
+    requestClear();
+  });
 
-   beforeEach (() => {
-       requestClear();
+  test('Testing if userProfileSetnameV1 is changing name', () => {
+    const user = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith') as {token: string, uId: number};
+    requestUserProfileSetname(user.token, 'Big', 'D');
+    const check = true;
+    expect(check).toEqual(true);
+    // expect(test).toEqual("BigD")
+    // const newUser = requestUserProfile(user.token, user.uId) as {nameFirst: string, nameLast: string}
+    // expect(newUser.nameFirst + newUser.nameLast).toEqual("BigD")
+  });
+});
 
-   });
+describe('Testing userProfileSetemailV1', () => {
+  beforeEach(() => {
+    requestClear();
+  });
 
-   test('Testing if userProfileSetnameV1 is changing name',() =>{
-       const user = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") as {token: string, uId: number}
-       requestUserProfileSetname(user.token, "Big", "D")
-       const check = true
-       expect(check).toEqual(true)
-       //expect(test).toEqual("BigD")
-       //const newUser = requestUserProfile(user.token, user.uId) as {nameFirst: string, nameLast: string}
-       //expect(newUser.nameFirst + newUser.nameLast).toEqual("BigD")
-   })
+  test('Testing if userProfileSetemailV1 is changing email', () => {
+    const user = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith') as {token: string};
+    requestUserProfileSetemail(user.token, 'mybd@yourmoms.com');
+    const check = true;
+    expect(check).toEqual(true);
+  });
+});
 
-})
+describe('Testing userProfileSethandleV1', () => {
+  beforeEach(() => {
+    requestClear();
+  });
 
-describe("Testing userProfileSetemailV1", () =>{
-
-   beforeEach (() => {
-       requestClear();
-
-   });
-
-   test('Testing if userProfileSetemailV1 is changing email',() =>{
-       const user = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") as {token: string}
-       requestUserProfileSetemail(user.token, "mybd@yourmoms.com")
-       const check = true
-       expect(check).toEqual(true)
-
-   })
-})
-
-describe("Testing userProfileSethandleV1", () =>{
-
-   beforeEach (() => {
-       requestClear();
-
-   });
-
-   test('Testing if userProfileSethandleV1 is changing handle',() =>{
-       const user = requestAuthRegister("example@gmail.com", "abc123", "John", "Smith") as {token: string}
-       requestUserProfileSethandle(user.token, "bigD123")
-       const check = true
-       expect(check).toEqual(true)
-       //expect(test).toEqual("bigD123")
-   })
-})
-
+  test('Testing if userProfileSethandleV1 is changing handle', () => {
+    const user = requestAuthRegister('example@gmail.com', 'abc123', 'John', 'Smith') as {token: string};
+    requestUserProfileSethandle(user.token, 'bigD123');
+    const check = true;
+    expect(check).toEqual(true);
+    // expect(test).toEqual("bigD123")
+  });
+});

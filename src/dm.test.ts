@@ -45,8 +45,10 @@ describe('/dm/create/v1', () => {
     const user2 = requestAuthRegister('john.smith@live.com.au', 'passer123$%', 'John', 'Smith');
     const user3 = requestAuthRegister('lames.sdcth@live.com.au', 'passeasd23$%', 'Lames', 'Smoth');
     const user4 = requestAuthRegister('singsong.sdcth@live.com.au', 'passeasd23$%', 'ding', 'Dong');
+    console.log(user1, user2, user3, user4);
     // const user4tok = requestAuthRegister('singsong.sdcth@live.com.au', 'passeasd23$%', 'ding', 'Dong').token
     const result = requestdmCreate(user4.token, [user1.authUserId, user2.authUserId, user3.authUserId]);
+    console.log(requestdmCreate);
     expect(result).toStrictEqual({ dmId: expect.any(Number) });
   });
 

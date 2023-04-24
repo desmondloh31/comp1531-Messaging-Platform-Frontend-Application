@@ -1,6 +1,6 @@
 import request, { HttpVerb } from 'sync-request';
 import { port, url } from './config.json';
-import { requestDmCreate } from './tests/dm.test';
+// import { requestDmCreate } from './tests/dm.test';
 
 const SERVER_URL = `${url}:${port}`;
 
@@ -40,8 +40,6 @@ function requestChannelscreate(token: string, name: string, isPublic: boolean) {
   return requestHelper('POST', '/channels/create/v3', { name, isPublic }, token);
 }
 
-
-
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {}, '-1');
 }
@@ -65,7 +63,6 @@ function requestHelper(method: HttpVerb, path: string, payload: object, tkn: str
   return JSON.parse(res.body as string);
 }
 
-
 // testing searchV1:
 describe('testing SearchV1', () => {
     interface usr {
@@ -75,21 +72,20 @@ describe('testing SearchV1', () => {
     let user1: usr;
     let user2: usr;
     let channel1: number;
-    let channel2: number;
+    // let channel2: number;
     let dmChannel1: number;
     beforeEach(() => {
       requestClear();
       user1 = requestAuthRegister('wrongemail@gmail.com', 'badpassword', 'wrong', 'email');
-      user2 = requestAuthRegister('testemail@gmail.com', 'password', 'pass','word');
+      user2 = requestAuthRegister('testemail@gmail.com', 'password', 'pass', 'word');
       channel1 = requestChannelscreate(user1.token, 'test', true).channelId;
-      channel2 = requestChannelscreate(user1.token, 'test2', true).channelId;
+      // channel2 = requestChannelscreate(user1.token, 'test2', true).channelId;
       dmChannel1 = requestdmCreate(user1.token, [user2.authUserId]).channelId;
       requestMessageSend(user1.token, channel1, 'Test message one');
       requestMessageSend(user2.token, channel1, 'Test message two');
       requestMessageSend(user1.token, dmChannel1, 'Direct message one');
       requestMessageSend(user2.token, dmChannel1, 'Direct message two');
-  
-  });
+    });
 
     test('returns messages containing query substring', () => {
       const { messages } = requestSearch(user1.token, 'message');
@@ -110,29 +106,28 @@ describe('testing SearchV1', () => {
       const longQueryStr = 'a'.repeat(1001);
       const result = requestSearch(user1.token, longQueryStr);
       expect(result).toBe(400);
-  });
+    });
 });
 // testing getNotificationsV1:
 describe('testing getNotificationsV1', () => {
-    interface usr {
-      authUserId: number;
-      token: string;
-    }
-    let user1: usr;
-    let channel1: number;
-    beforeEach(() => {
-      requestClear();
-      user1 = requestAuthRegister('wrongemail@gmail.com', 'badpassword', 'wrong', 'email');
-      channel1 = requestChannelscreate(user1.token, 'test', true).channelId;
-    });
+  interface usr {
+    authUserId: number;
+    token: string;
+  }
+  let user1: usr;
+  let channel1: number;
+  beforeEach(() => {
+    requestClear();
+    user1 = requestAuthRegister('wrongemail@gmail.com', 'badpassword', 'wrong', 'email');
+    channel1 = requestChannelscreate(user1.token, 'test', true).channelId;
+  });
 
-    test('function return 20 most recent notifications', () => {
-      const notifications = requestNotifications(user1.token).notifications;
-
+  test('function return 20 most recent notifications', () => {
+    const notifications = requestNotifications(user1.token).notifications;
     // Create 25 notifications and verify that the first 20 are returned by the function
-      const numNotifications = 25;
-      const messages = Array.from({ length: numNotifications }, (_, i) => `notification ${i + 1}`);
-      messages.forEach((message) => {
+    const numNotifications = 25;
+    const messages = Array.from({ length: numNotifications }, (_, i) => `notification ${i + 1}`);
+    messages.forEach((message) => {
       requestHelper('POST', '/message/send/v2', { channelId: channel1, message }, user1.token);
     });
 
@@ -142,7 +137,7 @@ describe('testing getNotificationsV1', () => {
       .map((message, i) => ({ notificationId: numNotifications - i, message, timestamp: expect.any(Number) }));
 
     expect(notifications).toEqual(expectedNotifications);
-    });
+  });
 });
 
 // testing standupSendV1:
@@ -254,9 +249,8 @@ describe('testing standupActiveV1', () => {
     });
 
     test('returns true for an active standup period', () => {
-      //requeststandupStart(user1.token, channel1, 60);
-      const {isActive, timeFinish} = requeststandupActive(user1.token, channel1);
-  
+      // requeststandupStart(user1.token, channel1, 60);
+      const { isActive, timeFinish } = requeststandupActive(user1.token, channel1);
       expect(isActive).toBe(true);
       expect(timeFinish).toBeDefined();
       const now = Date.now();
