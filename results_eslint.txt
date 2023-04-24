@@ -6,21 +6,10 @@
   [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/auth.ts[24m
-  [2m109:15[22m  [31merror[39m  Strings must use singlequote  [2mquotes[22m
-  [2m109:22[22m  [31merror[39m  Missing semicolon             [2msemi[22m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/authTest.test.ts[24m
-   [2m16:1[22m   [31merror[39m  Expected indentation of 0 spaces but found 1               [2mindent[22m
-   [2m24:1[22m   [31merror[39m  Expected indentation of 0 spaces but found 1               [2mindent[22m
-   [2m28:1[22m   [31merror[39m  Expected indentation of 0 spaces but found 1               [2mindent[22m
-  [2m109:1[22m   [31merror[39m  More than 1 blank line not allowed                         [2mno-multiple-empty-lines[22m
-  [2m135:11[22m  [31merror[39m  'user' is assigned a value but never used                  [2m@typescript-eslint/no-unused-vars[22m
-  [2m136:90[22m  [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m139:6[22m   [31merror[39m  Block must not be padded by blank lines                    [2mpadded-blocks[22m
-  [2m149:58[22m  [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m149:69[22m  [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m152:3[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m153:1[22m   [31merror[39m  Too many blank lines at the end of file. Max of 0 allowed  [2mno-multiple-empty-lines[22m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/channel.test.ts[24m
   [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
@@ -59,10 +48,7 @@
   [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/standup.test.ts[24m
-   [2m65:1[22m   [31merror[39m  More than 1 blank line not allowed       [2mno-multiple-empty-lines[22m
-  [2m242:1[22m   [31merror[39m  Trailing spaces not allowed              [2mno-trailing-spaces[22m
-  [2m246:51[22m  [31merror[39m  Block must not be padded by blank lines  [2mpadded-blocks[22m
-  [2m247:1[22m   [31merror[39m  Trailing spaces not allowed              [2mno-trailing-spaces[22m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/standup.ts[24m
   [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
@@ -74,109 +60,7 @@
   [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
 [4msrc/usersTest.test.ts[24m
-    [2m8:1[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-    [2m9:1[22m    [31merror[39m  Expected indentation of 0 spaces but found 2               [2mindent[22m
-    [2m9:3[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-   [2m10:1[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-   [2m11:1[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-   [2m12:1[22m    [31merror[39m  Expected indentation of 0 spaces but found 2               [2mindent[22m
-   [2m12:3[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-   [2m13:1[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-   [2m69:1[22m    [31merror[39m  More than 1 blank line not allowed                         [2mno-multiple-empty-lines[22m
-   [2m91:10[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-   [2m91:47[22m   [31merror[39m  Missing space after =>                                     [2marrow-spacing[22m
-   [2m91:47[22m   [31merror[39m  Block must not be padded by blank lines                    [2mpadded-blocks[22m
-   [2m93:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-   [2m93:14[22m   [31merror[39m  Unexpected whitespace between function name and paren      [2mfunc-call-spacing[22m
-   [2m94:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-   [2m94:23[22m   [31merror[39m  Block must not be padded by blank lines                    [2mpadded-blocks[22m
-   [2m96:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-   [2m98:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-   [2m98:59[22m   [31merror[39m  A space is required after ','                              [2mcomma-spacing[22m
-   [2m98:65[22m   [31merror[39m  Missing space after =>                                     [2marrow-spacing[22m
-   [2m99:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-   [2m99:41[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-   [2m99:62[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-   [2m99:72[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-   [2m99:80[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-   [2m99:120[22m  [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m100:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m100:46[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m100:53[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m100:57[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m101:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m101:26[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m102:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m102:35[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m103:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m103:8[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-  [2m104:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m104:8[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-  [2m105:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m105:8[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-  [2m106:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-  [2m106:6[22m    [31merror[39m  Block must not be padded by blank lines                    [2mpadded-blocks[22m
-  [2m106:6[22m    [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m108:3[22m    [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m110:10[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m110:48[22m   [31merror[39m  Missing space after =>                                     [2marrow-spacing[22m
-  [2m110:48[22m   [31merror[39m  Block must not be padded by blank lines                    [2mpadded-blocks[22m
-  [2m112:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-  [2m112:14[22m   [31merror[39m  Unexpected whitespace between function name and paren      [2mfunc-call-spacing[22m
-  [2m113:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m113:23[22m   [31merror[39m  Block must not be padded by blank lines                    [2mpadded-blocks[22m
-  [2m115:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-  [2m117:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-  [2m117:61[22m   [31merror[39m  A space is required after ','                              [2mcomma-spacing[22m
-  [2m117:67[22m   [31merror[39m  Missing space after =>                                     [2marrow-spacing[22m
-  [2m118:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m118:41[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m118:62[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m118:72[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m118:80[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m118:107[22m  [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m119:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m119:47[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m119:67[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m120:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m120:26[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m121:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m121:35[22m   [31merror[39m  Block must not be padded by blank lines                    [2mpadded-blocks[22m
-  [2m121:35[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m123:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-  [2m123:6[22m    [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m124:3[22m    [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m126:10[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m126:49[22m   [31merror[39m  Missing space after =>                                     [2marrow-spacing[22m
-  [2m126:49[22m   [31merror[39m  Block must not be padded by blank lines                    [2mpadded-blocks[22m
-  [2m128:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-  [2m128:14[22m   [31merror[39m  Unexpected whitespace between function name and paren      [2mfunc-call-spacing[22m
-  [2m129:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m129:23[22m   [31merror[39m  Block must not be padded by blank lines                    [2mpadded-blocks[22m
-  [2m131:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-  [2m133:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-  [2m133:63[22m   [31merror[39m  A space is required after ','                              [2mcomma-spacing[22m
-  [2m133:69[22m   [31merror[39m  Missing space after =>                                     [2marrow-spacing[22m
-  [2m134:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m134:41[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m134:62[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m134:72[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m134:80[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m134:107[22m  [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m135:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m135:48[22m   [31merror[39m  Strings must use singlequote                               [2mquotes[22m
-  [2m135:58[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m136:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m136:26[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m137:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m137:35[22m   [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m138:1[22m    [31merror[39m  Expected indentation of 4 spaces but found 7               [2mindent[22m
-  [2m138:8[22m    [31merror[39m  Expected space or tab after '//' in comment                [2mspaced-comment[22m
-  [2m139:1[22m    [31merror[39m  Expected indentation of 2 spaces but found 3               [2mindent[22m
-  [2m139:6[22m    [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m140:3[22m    [31merror[39m  Missing semicolon                                          [2msemi[22m
-  [2m141:1[22m    [31merror[39m  Too many blank lines at the end of file. Max of 0 allowed  [2mno-multiple-empty-lines[22m
+  [2m0:0[22m  [32mpassing[39m  No linting issues  [2msuccess[22m
 
-[31m[1m✖ 119 problems (119 errors, 0 warnings)[22m[39m
-[31m[1m[22m[39m[31m[1m  118 errors, 0 warnings potentially fixable with the `--fix` option.[22m[39m
-[31m[1m[22m[39m
+[32m[1m✔ 21 files successfully linted.[22m[39m
+[32m[1m[22m[39m
