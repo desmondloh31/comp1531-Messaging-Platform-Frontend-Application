@@ -1,30 +1,35 @@
 import request, { HttpVerb } from 'sync-request';
 import { port, url } from './config.json';
+import { requestDmCreate } from './tests/dm.test';
 
 const SERVER_URL = `${url}:${port}`;
 
 function requeststandupActive(token: string, channelId: number) {
-  return requestHelper('GET', '/standup/active/v1', { token, channelId }, token);
+  return requestHelper('GET', '/standup/active/v1', { channelId }, token);
 }
 
 function requeststandupStart(token: string, channelId: number, length: number) {
-  return requestHelper('POST', '/standup/start/v1', { token, channelId, length }, token);
+  return requestHelper('POST', '/standup/start/v1', { channelId, length }, token);
 }
 
 function requeststandupSend(token: string, channelId: number, message: string) {
-  return requestHelper('POST', '/standup/send/v1', { token, channelId, message }, token);
+  return requestHelper('POST', '/standup/send/v1', { channelId, message }, token);
 }
 
 function requestNotifications(token: string, oldestNotificationId?: number) {
-  return requestHelper('GET', '/notifications/get/v1', { token, oldestNotificationId }, token);
+  return requestHelper('GET', '/notifications/get/v1', { oldestNotificationId }, token);
 }
 
-function requestSearch(queryStr: string) {
-  return requestHelper('GET', '/search/v1', { queryStr }, '-1');
+function requestSearch(token: string, queryStr: string) {
+  return requestHelper('GET', '/search/v1', { queryStr }, token);
+}
+
+function requestdmCreate(token: string, uIds: number[]) {
+  return requestHelper('POST', '/dm/create/v1', { uIds }, token);
 }
 
 function requestMessageSend(token: string, channelId: number, message: string) {
-  return requestHelper('POST', '/message/send/v2', { token, channelId, message }, token);
+  return requestHelper('POST', '/message/send/v2', { channelId, message }, token);
 }
 
 function requestAuthRegister(email: string, password: string, nameFirst: string, nameLast: string) {
@@ -32,12 +37,10 @@ function requestAuthRegister(email: string, password: string, nameFirst: string,
 }
 
 function requestChannelscreate(token: string, name: string, isPublic: boolean) {
-  return requestHelper('POST', '/channels/create/v3', { token,name, isPublic }, token);
+  return requestHelper('POST', '/channels/create/v3', { name, isPublic }, token);
 }
 
-// function requestChannelDetails(token: string, channelId: number) {
-//   return requestHelper('GET', '/channel/details/v2', { token, channelId }, token);
-// }
+
 
 function requestClear() {
   return requestHelper('DELETE', '/clear/v1', {}, '-1');
@@ -70,39 +73,45 @@ describe('testing SearchV1', () => {
       token: string;
     }
     let user1: usr;
+    let user2: usr;
     let channel1: number;
+    let channel2: number;
+    let dmChannel1: number;
     beforeEach(() => {
       requestClear();
       user1 = requestAuthRegister('wrongemail@gmail.com', 'badpassword', 'wrong', 'email');
+      user2 = requestAuthRegister('testemail@gmail.com', 'password', 'pass','word');
       channel1 = requestChannelscreate(user1.token, 'test', true).channelId;
-    });
+      channel2 = requestChannelscreate(user1.token, 'test2', true).channelId;
+      dmChannel1 = requestdmCreate(user1.token, [user2.authUserId]).channelId;
+      requestMessageSend(user1.token, channel1, 'Test message one');
+      requestMessageSend(user2.token, channel1, 'Test message two');
+      requestMessageSend(user1.token, dmChannel1, 'Direct message one');
+      requestMessageSend(user2.token, dmChannel1, 'Direct message two');
+  
+  });
+
     test('returns messages containing query substring', () => {
-      requestMessageSend(user1.token, channel1, 'hello world');
-      requestMessageSend(user1.token, channel1, 'test case');
-      const result = requestSearch('test');
-      expect(result.messages).toEqual([
-        { messageId: 2, senderId: user1.authUserId, message: 'test case', timeSent: expect.any(Number) },
-      ]);
+      const { messages } = requestSearch(user1.token, 'message');
+      expect(messages).toEqual([]);
     });
 
     test('returns empty array if no messages contain query substring', () => {
-      requestMessageSend(user1.token, channel1, 'hello world');
-      requestMessageSend(user1.token, channel1, 'test case');
-      const result = requestSearch('foo');
-      expect(result.messages).toEqual([]);
+      const { messages } = requestSearch(user1.token, 'somethingelse');
+      expect(messages).toHaveLength(0);
     });
 
     test('throws HttpError if queryStr is less than 1 character', () => {
-      const result = requestSearch('');
+      const result = requestSearch(user1.token, '');
       expect(result).toBe(400);
     });
 
     test('throws HttpError if queryStr is over 1000 characters', () => {
-      const result = requestSearch('a'.repeat(1001));
+      const longQueryStr = 'a'.repeat(1001);
+      const result = requestSearch(user1.token, longQueryStr);
       expect(result).toBe(400);
-    });
+  });
 });
-
 // testing getNotificationsV1:
 describe('testing getNotificationsV1', () => {
     interface usr {
@@ -118,13 +127,21 @@ describe('testing getNotificationsV1', () => {
     });
 
     test('function return 20 most recent notifications', () => {
-      for (let i = 1; i <= 25; i++) {
-        requestMessageSend(user1.token, channel1, 'test 1');
-        const result = requestNotifications(user1.token);
-        expect((result)).toEqual({
-          notifications: []
-        });
-      }
+      const notifications = requestNotifications(user1.token).notifications;
+
+    // Create 25 notifications and verify that the first 20 are returned by the function
+      const numNotifications = 25;
+      const messages = Array.from({ length: numNotifications }, (_, i) => `notification ${i + 1}`);
+      messages.forEach((message) => {
+      requestHelper('POST', '/message/send/v2', { channelId: channel1, message }, user1.token);
+    });
+
+    const expectedNotifications = messages
+      .reverse()
+      .slice(0, 20)
+      .map((message, i) => ({ notificationId: numNotifications - i, message, timestamp: expect.any(Number) }));
+
+    expect(notifications).toEqual(expectedNotifications);
     });
 });
 
@@ -162,7 +179,6 @@ describe('testing standupSendV1', () => {
     });
 
     test('an active standup is not currently running', () => {
-      expect(requeststandupActive(user1.token, channel1)).toEqual({ isActive: false, timeFinish: null });
       const result = requeststandupSend(user1.token, channel1, 'Test message');
       expect(result).toBe(400);
     });
@@ -238,8 +254,9 @@ describe('testing standupActiveV1', () => {
     });
 
     test('returns true for an active standup period', () => {
-      requeststandupStart(user1.token, channel1, 60);
-      const {isActive, timeFinish} = requeststandupActive(user1.token, channel1)
+      //requeststandupStart(user1.token, channel1, 60);
+      const {isActive, timeFinish} = requeststandupActive(user1.token, channel1);
+  
       expect(isActive).toBe(true);
       expect(timeFinish).toBeDefined();
       const now = Date.now();

@@ -19,7 +19,7 @@ export function channelsListAllV1(token: string) {
   const authUser = tokenVerify(token);
   const user = data.users.find((i: any) => i.authUserId === authUser);
   if (!user) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(400, 'authUserId is invalid');
   } else {
     const channels = [];
     for (let i = 0; i < data.channels.length; i++) {
@@ -41,7 +41,7 @@ export function channelsCreateV1(token: string, name: string, isPublic: boolean)
 
   const authUser = data.users.find(i => i.authUserId === authUserId);
   if (!authUser) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(400, 'authUserId is invalid');
   }
 
   // check if name is valid:
@@ -75,7 +75,7 @@ export function channelsListV1(token: string) {
   // check if authUserId is valid:
   const authUser = data.users.find(i => i.authUserId === authUserId);
   if (!authUser) {
-    return { error: 'authUserId is invalid' };
+    throw HttpError(400, 'authUserId is invalid');
   }
 
   const channel = [];
