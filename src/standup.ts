@@ -1,4 +1,5 @@
 import { getData, setData } from './dataStore';
+import { messageShareV1 } from './message';
 import { tokenVerify } from './token';
 import HttpError from 'http-errors';
 
@@ -11,21 +12,19 @@ function standupActiveV1(token: string, channelId: number) {
 
   if (!findUser) {
     throw HttpError(400);
-  } else if (!findChannelId) {
+  } if (!findChannelId) {
     // raise error 400 in HTTP: Bad Request
     throw HttpError(400, 'channelId is invalid');
-  } else if (findChannelId.allMembers.find((i: number) => i === authUserId) === undefined) {
+  } if (findChannelId.allMembers.find((i: number) => i === authUserId) === undefined) {
     // raise error 403 in HTTP: Forbidden
     throw HttpError(403, 'user is not a member of the channel');
   }
 
-  // const isActive = findChannelId.standupActive;
-  // const timeFinish = findChannelId.standupTimeFinish || null;
-  const standup = findChannelId.standupBuffer;
+  //const isActive = findChannelId.standupActive;
+  //const timeFinish = findChannelId.standupTimeFinish || null;
   const standupActive = findChannelId.standupActive;
   let timeFinish = null;
-
-  if (standupActive) {
+  if (standupActive === true) {
     const finishTime = findChannelId.standupTimeFinish;
     if (finishTime) {
       timeFinish = new Date(finishTime * 1000);
@@ -49,7 +48,7 @@ function standupStartV1(token: string, channelId: number, length: number) {
     // raise error 400: Bad request
     throw HttpError(400, 'ChannelId is invalid');
   }
-  if (!findChannelId.allMembers.includes(authUserId)) {
+  if (findChannelId.allMembers.find((i: number) => i === authUserId) === undefined) {
     // raise error 403: Forbidden
     throw HttpError(403, 'user is not a member of the channel');
   }
@@ -114,7 +113,7 @@ function standupSendV1(token: string, channelId: number, message: string) {
     // raise error 400: Bad request
     throw HttpError(400, 'channelId is invalid');
   }
-  if (!findChannelId.allMembers.includes(authUserId)) {
+  if (findChannelId.allMembers.find((i: number) => i === authUserId) === undefined) {
     // raise error 403: Forbidden
     throw HttpError(403, 'user is not a member of the channel');
   }
@@ -138,7 +137,6 @@ function standupSendV1(token: string, channelId: number, message: string) {
   } else {
     findChannelId.standupBuffer.push(standupMessage);
   }
-
   setData(data);
   return {};
 }
@@ -146,7 +144,7 @@ function standupSendV1(token: string, channelId: number, message: string) {
 // miscellaneous function: getting users 20 most recent notifications:
 function getNotificationsV1(token: string) {
   const data = getData();
-  const authUserId = tokenVerify(token);
+  const authUserId = tokenVerify(token) as number;
   const user = data.users.find(u => u.authUserId === authUserId);
 
   if (!user) {
@@ -161,31 +159,45 @@ function getNotificationsV1(token: string) {
 }
 
 // search/v1:
-function searchV1(queryStr: string) {
+function searchV1(token: string, queryStr: string) {
   const data = getData();
-  const messages = [];
-
+  const authUserId = tokenVerify(token) as number;
   if (queryStr.length < 1 || queryStr.length > 1000) {
     throw HttpError(400, 'queryStr must be between 1 and 1000 characters in length');
   }
-
-  for (const channel of data.channels) {
+  const channels = data.channels.filter(channel => 
+    channel.allMembers.includes(authUserId) || channel.ownerMembers.includes(authUserId)
+    );
+  const dms = data.dms.filter(dm => dm.allMembers.includes(authUserId));
+  const messages = [];
+  for (const channel of channels) {
     for (const message of channel.messages) {
       if (message.message.toLowerCase().includes(queryStr.toLowerCase())) {
-        messages.push(message);
+        messages.push({
+          messageId: message.messageId,
+          senderId: message.senderId,
+          channelId: channel.channelId,
+          message: message.message,
+          timeSent: message.timeSent,
+        });
       }
     }
   }
 
-  for (const dm of data.dms) {
+  for (const dm of dms) {
     for (const message of dm.messages) {
       if (message.message.toLowerCase().includes(queryStr.toLowerCase())) {
-        messages.push(message);
+        messages.push({
+          messageId: message.messageId,
+          senderId: message.senderId,
+          channelId: dm.dmId,
+          message: message.message,
+          timeSent: message.timeSent,
+        });
       }
     }
   }
-
-  return { messages };
+  return { messages }
 }
 
 export { standupActiveV1, standupSendV1, standupStartV1, getNotificationsV1, searchV1 };
