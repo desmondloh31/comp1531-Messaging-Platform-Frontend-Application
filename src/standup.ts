@@ -83,7 +83,7 @@ function standupStartV1(token: string, channelId: number, length: number) {
           reactId: 1,
           uids: [] as number[],
         },
-        pinned: false,
+        isPinned: '',
       };
       findChannelId.messages.push(message);
       data.msgcount += 1;

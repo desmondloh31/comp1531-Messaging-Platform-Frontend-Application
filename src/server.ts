@@ -26,8 +26,8 @@ import {
 import { channelsCreateV1, channelsListAllV1, channelsListV1 } from './channels';
 import { getNotificationsV1, searchV1, standupActiveV1, standupSendV1, standupStartV1 } from './standup';
 import { adminUserRemoveV1 } from './admin';
-import { escape } from 'querystring';
-
+// import { escape } from 'querystring';
+// import { userStatsV1, usersStatsV1 } from './stats';
 
 // Set up web app
 const app = express();
@@ -238,6 +238,7 @@ app.post('/message/share/v1', (req: Request, res: Response) => {
 app.post('/message/sendlater/v1', (req: Request, res: Response) => {
   const { channelId, message, timeSent } = req.body;
   const token = req.header('token');
+  console.log('timeSent', timeSent * 1000);
   return res.json(messageSendLaterV1(token, channelId, message, timeSent));
 });
 
@@ -329,7 +330,6 @@ app.post('/user/profile/uploadphoto/v1', (req: Request, res: Response) => {
   const authid = uploadPhotoV1(imgUrl, xStart, yStart, xEnd, yEnd);
   res.json(authid);
 });
-
 
 // start server
 const server = app.listen(PORT, HOST, () => {
