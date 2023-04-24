@@ -1,5 +1,4 @@
 import { getData, setData } from './dataStore';
-import { messageShareV1 } from './message';
 import { tokenVerify } from './token';
 import HttpError from 'http-errors';
 
@@ -20,8 +19,8 @@ function standupActiveV1(token: string, channelId: number) {
     throw HttpError(403, 'user is not a member of the channel');
   }
 
-  //const isActive = findChannelId.standupActive;
-  //const timeFinish = findChannelId.standupTimeFinish || null;
+  // const isActive = findChannelId.standupActive;
+  // const timeFinish = findChannelId.standupTimeFinish || null;
   const standupActive = findChannelId.standupActive;
   let timeFinish = null;
   if (standupActive === true) {
@@ -71,7 +70,7 @@ function standupStartV1(token: string, channelId: number, length: number) {
     const messages = findChannelId.standupBuffer || [];
     const packagedMessage = messages
       .map(m => `${data.users.find(u => u.authUserId === m.user)?.handleStr}: ${m.message}`)
-      .join(' ');
+      .join('\n');
 
     if (packagedMessage.length > 0) {
       const message = {
@@ -165,9 +164,9 @@ function searchV1(token: string, queryStr: string) {
   if (queryStr.length < 1 || queryStr.length > 1000) {
     throw HttpError(400, 'queryStr must be between 1 and 1000 characters in length');
   }
-  const channels = data.channels.filter(channel => 
+  const channels = data.channels.filter(channel =>
     channel.allMembers.includes(authUserId) || channel.ownerMembers.includes(authUserId)
-    );
+  );
   const dms = data.dms.filter(dm => dm.allMembers.includes(authUserId));
   const messages = [];
   for (const channel of channels) {
@@ -197,7 +196,7 @@ function searchV1(token: string, queryStr: string) {
       }
     }
   }
-  return { messages }
+  return { messages };
 }
 
 export { standupActiveV1, standupSendV1, standupStartV1, getNotificationsV1, searchV1 };
