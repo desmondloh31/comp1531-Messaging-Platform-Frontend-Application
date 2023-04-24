@@ -1,5 +1,4 @@
 import { getData, setData } from './dataStore';
-// import { messageShareV1 } from './message';
 import { tokenVerify } from './token';
 import HttpError from 'http-errors';
 
@@ -71,7 +70,7 @@ function standupStartV1(token: string, channelId: number, length: number) {
     const messages = findChannelId.standupBuffer || [];
     const packagedMessage = messages
       .map(m => `${data.users.find(u => u.authUserId === m.user)?.handleStr}: ${m.message}`)
-      .join(' ');
+      .join('\n');
 
     if (packagedMessage.length > 0) {
       const message = {
